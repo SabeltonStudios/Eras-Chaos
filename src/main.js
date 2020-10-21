@@ -13,7 +13,7 @@ window.onload = function(){
         backgroudColor: 0x000000,
         autoCenter: 1,
         scaleMode: 3,
-        scene:  [bootScene,menuPrincipalScene,multijugadorSeleccionScene,tiendaScene,creditosScene]
+        scene:  [bootScene,menuPrincipalScene,prehistoriaScene,multijugadorSeleccionScene,tiendaScene,creditosScene]
     }
 
     var game = new Phaser.Game(gameConfig);
