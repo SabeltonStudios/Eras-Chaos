@@ -14,9 +14,10 @@ class prehistoriaScene extends Phaser.Scene {
         this.player.setBounce(1);
         this.player.setCollideWorldBounds(true);
         
-        this.spriteParar = this.add.sprite(0,600,'square').setScale(0.1);
-        this.spriteParar.setInteractive().on('pointerdown', () => this.player.body.moves=false);
-        this.spriteParar.on('pointerup', () => this.player.body.moves=true);
+        this.spriteParar = this.add.sprite(50,550,'square').setScale(0.1);
+        this.spriteParar.setInteractive().on('pointerdown', () => this.player.body.moves=false)
+        .on('pointerup', () => this.player.body.moves=true)
+        .on('pointerout',() => this.player.body.moves=true);
     }
 
     update() {
