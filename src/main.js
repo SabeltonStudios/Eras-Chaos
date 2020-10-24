@@ -23,7 +23,9 @@
         backgroudColor: 0x000000,
         autoCenter: 1,
         scaleMode: 3,
-        scene: [bootScene, menuPrincipalScene, prehistoriaScene, multijugadorSeleccionScene, tiendaScene, creditosScene]
+        scene: [bootScene, menuPrincipalScene, prehistoriaScene, multijugadorSeleccionScene,
+             tiendaScene,tiendaMapasScene,tiendaPersonajesScene,tiendaArmasScene,
+             tiendaPaquetesScene,tiendaRecargarScene, creditosScene]
     }
 
 window.onload = function () {
