@@ -1,11 +1,11 @@
+    //To adjust the screen on mobile, on progress
+    // Check using this.sys.game.device.os.desktop, returns true if we are desktop, else if mobile
     const DEFAULT_HEIGHT = 600
     // adjust the width dynamically based on the device screen ratio
     const DEFAULT_WIDTH = (window.innerWidth / window.innerHeight) * DEFAULT_HEIGHT
 
     var gameConfig = {
         type: Phaser.AUTO,
-        /*maxWidth: 800,
-        maxHeight: 600,*/
 
         //Comment to not fill completely the screen, for desktop purposes, or uncomment the max values↑
         scale: {
@@ -30,9 +30,6 @@
 
 window.onload = function () {
 
-    //To adjust the screen on mobile, on progress
-    // Check using this.sys.game.device.os.desktop, returns true if we are desktop, else if mobile
-    
     var game = new Phaser.Game(gameConfig);
     window.focus();
 }
