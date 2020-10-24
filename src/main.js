@@ -1,7 +1,3 @@
-window.onload = function () {
-
-    //To adjust the screen on mobile, on progress
-    // Check using this.sys.game.device.os.desktop, returns true if we are desktop, else if mobile
     const DEFAULT_HEIGHT = 600
     // adjust the width dynamically based on the device screen ratio
     const DEFAULT_WIDTH = (window.innerWidth / window.innerHeight) * DEFAULT_HEIGHT
@@ -30,6 +26,11 @@ window.onload = function () {
         scene: [bootScene, menuPrincipalScene, prehistoriaScene, multijugadorSeleccionScene, tiendaScene, creditosScene]
     }
 
+window.onload = function () {
+
+    //To adjust the screen on mobile, on progress
+    // Check using this.sys.game.device.os.desktop, returns true if we are desktop, else if mobile
+    
     var game = new Phaser.Game(gameConfig);
     window.focus();
 }
