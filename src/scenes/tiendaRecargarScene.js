@@ -3,7 +3,7 @@ class tiendaRecargarScene extends Phaser.Scene{
         super("TiendaRecargarScene");
     }
     preload(){
-        this.load.image('botonSalirTienda', 'assets/images/botonSalirTienda.png');
+        this.load.image('botonSalirTienda', 'assets/Interfaz/botonSalirTienda.png');
     }
 
     create(){

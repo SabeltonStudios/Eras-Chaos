@@ -48,14 +48,14 @@ class tiendaMapasScene extends Phaser.Scene{
     }
     
     preload(){
-        this.load.image('mapaBloqueado', 'assets/images/mapaBloqueado.png');
-        this.load.image('mapaDesbloqueado', 'assets/images/mapaDesbloqueado.png');
-        this.load.image('flechaDerecha', 'assets/images/flechaDerecha.png');
-        this.load.image('flechaIzquierda', 'assets/images/flechaIzquierda.png');
-        this.load.image('botonSalirTienda', 'assets/images/botonSalirTienda.png');
-        this.load.image('botonDesbloquearNo', 'assets/images/botonDesbloquearNo.png');
-        this.load.image('botonDesbloquearSi', 'assets/images/botonDesbloquearSi.png');
-        this.load.image('mensajeDesbloquear', 'assets/images/mensajeDesbloquear.png');
+        this.load.image('mapaBloqueado', 'assets/Interfaz/mapaBloqueado.png');
+        this.load.image('mapaDesbloqueado', 'assets/Interfaz/mapaDesbloqueado.png');
+        this.load.image('flechaDerecha', 'assets/Interfaz/flechaDerecha.png');
+        this.load.image('flechaIzquierda', 'assets/Interfaz/flechaIzquierda.png');
+        this.load.image('botonSalirTienda', 'assets/Interfaz/botonSalirTienda.png');
+        this.load.image('botonDesbloquearNo', 'assets/Interfaz/botonDesbloquearNo.png');
+        this.load.image('botonDesbloquearSi', 'assets/Interfaz/botonDesbloquearSi.png');
+        this.load.image('mensajeDesbloquear', 'assets/Interfaz/mensajeDesbloquear.png');
     }
 
     create(){

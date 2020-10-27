@@ -6,12 +6,12 @@ class tiendaScene extends Phaser.Scene{
     }
 
     preload(){
-        this.load.image('botonMapas', 'assets/images/botonMapas.png');
-        this.load.image('botonPersonajes', 'assets/images/botonPersonajes.png');
-        this.load.image('botonArmas', 'assets/images/botonArmas.png');
-        this.load.image('botonPaquetes', 'assets/images/botonPaquetes.png');
-        this.load.image('botonSalirTienda', 'assets/images/botonSalirTienda.png');
-        this.load.image('botonRecargar', 'assets/images/botonRecargar.png');
+        this.load.image('botonMapas', 'assets/Interfaz/botonMapas.png');
+        this.load.image('botonPersonajes', 'assets/Interfaz/botonPersonajes.png');
+        this.load.image('botonArmas', 'assets/Interfaz/botonArmas.png');
+        this.load.image('botonPaquetes', 'assets/Interfaz/botonPaquetes.png');
+        this.load.image('botonSalirTienda', 'assets/Interfaz/botonSalirTienda.png');
+        this.load.image('botonRecargar', 'assets/Interfaz/botonRecargar.png');
     }
 
     create(){

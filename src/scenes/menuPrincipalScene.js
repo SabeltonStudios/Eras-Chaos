@@ -6,13 +6,13 @@ class menuPrincipalScene extends Phaser.Scene{
     }
     
     preload(){
-        this.load.image('botonHistoria', 'assets/images/botonHistoria.png');
-        this.load.image('boton2Jugadores', 'assets/images/boton2Jugadores.png');
-        this.load.image('botonTienda', 'assets/images/botonTienda.png');
-        this.load.image('botonCreditos', 'assets/images/botonCreditos.png');
-        this.load.image('botonSalir', 'assets/images/botonSalir.png');
-        this.load.image('botonIdiomaEspanol', 'assets/images/espanol.png');
-        this.load.image('botonIdiomaEnglish', 'assets/images/english.png');
+        this.load.image('botonHistoria', 'assets/Interfaz/botonHistoria.png');
+        this.load.image('boton2Jugadores', 'assets/Interfaz/boton2Jugadores.png');
+        this.load.image('botonTienda', 'assets/Interfaz/botonTienda.png');
+        this.load.image('botonCreditos', 'assets/Interfaz/botonCreditos.png');
+        this.load.image('botonSalir', 'assets/Interfaz/botonSalir.png');
+        this.load.image('botonIdiomaEspanol', 'assets/Interfaz/espanol.png');
+        this.load.image('botonIdiomaEnglish', 'assets/Interfaz/english.png');
         
     }
 

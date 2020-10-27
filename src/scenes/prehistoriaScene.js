@@ -2,6 +2,7 @@ var bullets;
 var player;
 var fireRate = 100;
 var nextFire = 0;
+var is_paused= false;
 var config = {
 
     classType: Phaser.GameObjects.Image,
@@ -21,11 +22,12 @@ class prehistoriaScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('mapa', 'assets/images/MapaEgipto.jpg');
-        this.load.image('square', 'assets/images/Imagen1.jpg');
-        this.load.image('foto', 'assets/images/descarga.png');
-        this.load.spritesheet('dude', 'assets/images/dude.png', { frameWidth: 32, frameHeight: 48 });
-        this.load.image('bullet', 'assets/images/Bullet.png');
+        this.load.image('mapa', 'assets/Fondos/1.Prehistoria/Prehistoria.png');
+        this.load.image('FreezeB', 'assets/Interfaz/FreezeButton.png');
+        this.load.image('ShootB', 'assets/Interfaz/ShootButton.png');
+        this.load.image('PauseB', 'assets/Interfaz/PauseButton.png');
+        this.load.spritesheet('dude', 'assets/Interfaz/dude.png', { frameWidth: 32, frameHeight: 48 });
+        this.load.image('bullet', 'assets/Interfaz/Bullet.png');
     }
     resetLaser(laser) {
         // Destroy the laser
@@ -46,19 +48,29 @@ class prehistoriaScene extends Phaser.Scene {
         player.anims.play('walk', true);
         player.setVelocity(0, -300);
         player.setBounce(1);
+        player.body.setAllowGravity(false);
         player.setCollideWorldBounds(true)
 
         bullets = this.physics.add.group(config);
         Phaser.Actions.Call(bullets.getChildren(), function (bullet) {
             bullet.body.onWorldBounds = true;
         });
-    
-        this.physics.world.on('worldbounds',()=>console.log('Bye'));
 
-        this.spriteParar = this.add.sprite(gameConfig.scale.width / 16, gameConfig.scale.height * 11 / 12, 'square').setScale(0.1);
+        this.physics.world.on('worldbounds', () => console.log('Bye'));
+
+        this.spriteParar = this.add.sprite(gameConfig.scale.width * 2.3 / 16, gameConfig.scale.height * 11 / 12, 'FreezeB').setScale(0.13);
         this.spriteParar.setInteractive().on('pointerdown', () => player.body.moves = false /*cambiar a iddle */)
             .on('pointerup', () => player.body.moves = true, player.anims.play('walk', true))
             .on('pointerout', () => player.body.moves = true, player.anims.play('walk', true));
+
+        this.spriteDisparar = this.add.sprite(gameConfig.scale.width / 16, gameConfig.scale.height * 11 / 12, 'ShootB').setScale(0.13);
+        this.spriteDisparar.setInteractive().on('pointerdown', () => fire() /*animar disparo */);
+
+        this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.5 / 16, gameConfig.scale.height / 13, 'PauseB').setScale(0.1);
+        this.spritePausar.setInteractive().on('pointerdown', () => pauseGame(this.spriteParar,this.spriteDisparar,freezeInput,shootInput));
+
+        var pauseInput = this.input.keyboard.addKey('ESC');
+        pauseInput.on('down', () => pauseGame(this.spriteParar,this.spriteDisparar,freezeInput,shootInput));
 
         var freezeInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         freezeInput.on('down', () => player.body.moves = false /*cambiar a iddle */)
@@ -67,11 +79,7 @@ class prehistoriaScene extends Phaser.Scene {
         var shootInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         shootInput.on('down', () => fire());
 
-
-
     }
-
-
 
     update() {
         //console.log(bullets.countActive());
@@ -90,5 +98,36 @@ function fire() {
     bomb.body.setCollideWorldBounds(false);
     bomb.body.collideWorldBounds = true;
     bomb.body.onWorldBounds(() => console.log('Bye'));*/
+}
+function pauseGame(spriteParar,spriteDisparar,f,s) {
+    this.bulls= bullets.getChildren();
+    if (is_paused) {
+        //menu.destroy();
+        console.log('resume')
+        player.body.moves=true;
+        
+        var i;
+        for(i=0; i<this.bulls.length; i++){
+            bulls[i].body.moves=true;
+        }
+        spriteParar.setInteractive();
+        spriteDisparar.setInteractive();
+        f.enabled=true;
+        s.enabled=true;
+        is_paused=false;
+    } else {
+        console.log('paused')
+        is_paused=true;
+        player.body.moves=false;
+        var i;
+        for(i=0; i<this.bulls.length; i++){
+            bulls[i].body.moves=false;
+        }
+        f.enabled=false;
+        s.enabled=false;
+        spriteParar.disableInteractive();
+        spriteDisparar.disableInteractive();
+    }
+
 }
 
