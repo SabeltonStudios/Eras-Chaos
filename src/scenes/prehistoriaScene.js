@@ -34,11 +34,14 @@ class prehistoriaScene extends Phaser.Scene {
         laser.kill();
     }
     create() {
-
+        //this.cameras.main.zoom= 1.3;
+        this.cameras.main.zoomTo(1.3,2000);
+        this.physics.world.bounds.setTo(92.5, 69.5, 615, 461);
+        
         this.Mapa = this.add.image(0, 0, 'mapa').setOrigin(0)
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
 
-        player = this.physics.add.sprite(gameConfig.scale.width / 8, gameConfig.scale.height / 6, 'dude');
+        player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'dude');
         this.anims.create({
             key: 'walk',
             frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
@@ -58,15 +61,15 @@ class prehistoriaScene extends Phaser.Scene {
 
         this.physics.world.on('worldbounds', () => console.log('Bye'));
 
-        this.spriteParar = this.add.sprite(gameConfig.scale.width * 2.3 / 16, gameConfig.scale.height * 11 / 12, 'FreezeB').setScale(0.13);
+        this.spriteParar = this.add.sprite(gameConfig.scale.width * 2.3 / 16, gameConfig.scale.height * 11 / 12, 'FreezeB').setScale(0.1*gameConfig.scale.width/800);
         this.spriteParar.setInteractive().on('pointerdown', () => player.body.moves = false /*cambiar a iddle */)
             .on('pointerup', () => player.body.moves = true, player.anims.play('walk', true))
             .on('pointerout', () => player.body.moves = true, player.anims.play('walk', true));
-
-        this.spriteDisparar = this.add.sprite(gameConfig.scale.width / 16, gameConfig.scale.height * 11 / 12, 'ShootB').setScale(0.13);
+        
+        this.spriteDisparar = this.add.sprite(gameConfig.scale.width / 16, gameConfig.scale.height * 11 / 12, 'ShootB').setScale(0.1*gameConfig.scale.width/800);
         this.spriteDisparar.setInteractive().on('pointerdown', () => fire() /*animar disparo */);
 
-        this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.5 / 16, gameConfig.scale.height / 13, 'PauseB').setScale(0.1);
+        this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.5 / 16, gameConfig.scale.height / 13, 'PauseB').setScale(0.07*gameConfig.scale.width/800);
         this.spritePausar.setInteractive().on('pointerdown', () => pauseGame(this.spriteParar,this.spriteDisparar,freezeInput,shootInput));
 
         var pauseInput = this.input.keyboard.addKey('ESC');
@@ -103,7 +106,6 @@ function pauseGame(spriteParar,spriteDisparar,f,s) {
     this.bulls= bullets.getChildren();
     if (is_paused) {
         //menu.destroy();
-        console.log('resume')
         player.body.moves=true;
         
         var i;
@@ -116,7 +118,7 @@ function pauseGame(spriteParar,spriteDisparar,f,s) {
         s.enabled=true;
         is_paused=false;
     } else {
-        console.log('paused')
+        //menu.pintar
         is_paused=true;
         player.body.moves=false;
         var i;
