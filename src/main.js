@@ -3,7 +3,8 @@
     const DEFAULT_HEIGHT = 600
     // adjust the width dynamically based on the device screen ratio
     const DEFAULT_WIDTH = (window.innerWidth / window.innerHeight) * DEFAULT_HEIGHT
-
+    var espanol = new Boolean(true);
+    
     var gameConfig = {
         type: Phaser.AUTO,
 
