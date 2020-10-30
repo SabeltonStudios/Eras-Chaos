@@ -20,7 +20,7 @@ class menuPrincipalScene extends Phaser.Scene{
         this.load.image('boton2Jugadores', 'assets/Interfaz/Menu/boton2Jugadores.png');
         this.load.image('botonTienda', 'assets/Interfaz/Menu/botonTienda.png');
         this.load.image('botonCreditos', 'assets/Interfaz/Menu/botonCreditos.png');
-        this.load.image('botonSalir', 'assets/Interfaz/Menu/botonSalir.png');
+        //this.load.image('botonSalir', 'assets/Interfaz/Menu/botonSalir.png');
 
 
         //Assets en ingles

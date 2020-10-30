@@ -23,12 +23,14 @@ class egiptoScene extends Phaser.Scene {
     preload() {
         this.load.image('mapa', 'assets/Fondos/2.AntiguoEgipto/BackgroundNoColumns.png');
         this.load.image('rectangulo', 'assets/Fondos/2.AntiguoEgipto/RectanguloCentral.png');
-        this.load.image('columnaI', 'assets/Fondos/2.AntiguoEgipto/ColumnLeft.png');
         this.load.image('columnaC', 'assets/Fondos/2.AntiguoEgipto/ColumnUp.png');
         this.load.image('columnaD', 'assets/Fondos/2.AntiguoEgipto/ColumnRight.png');
-        this.load.image('FreezeB', 'assets/Interfaz/FreezeButton.png');
-        this.load.image('ShootB', 'assets/Interfaz/ShootButton.png');
-        this.load.image('PauseB', 'assets/Interfaz/PauseButton.png');
+        this.load.image('FreezeBON', 'assets/Interfaz/FreezeButton.png');
+        this.load.image('FreezeBOFF', 'assets/Interfaz/FreezeButtonOFF.png');
+        this.load.image('ShootBON', 'assets/Interfaz/ShootButton.png');
+        this.load.image('ShootBOFF', 'assets/Interfaz/ShootButtonOFF.png');
+        this.load.image('PauseBON', 'assets/Interfaz/PauseButton.png');
+        this.load.image('PauseBOFF', 'assets/Interfaz/PauseButtonOFF.png');
         this.load.spritesheet('dude', 'assets/Interfaz/dude.png', { frameWidth: 32, frameHeight: 48 });
         this.load.image('bullet', 'assets/Interfaz/Bullet.png');
     }
@@ -50,15 +52,18 @@ class egiptoScene extends Phaser.Scene {
 
         this.columnas = this.physics.add.staticGroup();
 
+        //Columnas izquierda
+        this.columnas.create(gameConfig.scale.width * 0.041, gameConfig.scale.height * 0.21, 'columnaD').setScale(0.175 * gameConfig.scale.width / 800, 0.175 * gameConfig.scale.height / 600).refreshBody();
+        this.columnas.create(gameConfig.scale.width * 0.041, gameConfig.scale.height * 0.712, 'columnaD').setScale(0.175 * gameConfig.scale.width / 800, 0.175 * gameConfig.scale.height / 600).refreshBody();
         //Columnas centro
         this.columnas.create(gameConfig.scale.width * 0.72, gameConfig.scale.height * 0.0791, 'columnaC').setScale(0.175 * gameConfig.scale.width / 800, 0.175 * gameConfig.scale.height / 600).refreshBody();//.refreshBody();
         this.columnas.create(gameConfig.scale.width * 0.28, gameConfig.scale.height * 0.0791, 'columnaC').setScale(0.175 * gameConfig.scale.width / 800, 0.175 * gameConfig.scale.height / 600).refreshBody();
         //Columnas derecha
         this.columnas.create(gameConfig.scale.width * 0.958, gameConfig.scale.height * 0.21, 'columnaD').setScale(0.175 * gameConfig.scale.width / 800, 0.175 * gameConfig.scale.height / 600).refreshBody();//.refreshBody();
         this.columnas.create(gameConfig.scale.width * 0.958, gameConfig.scale.height * 0.712, 'columnaD').setScale(0.175 * gameConfig.scale.width / 800, 0.175 * gameConfig.scale.height / 600).refreshBody();
-        //Columnas izquierda
-        this.columnas.create(gameConfig.scale.width * 0.041, gameConfig.scale.height * 0.21, 'columnaI').setScale(0.175 * gameConfig.scale.width / 800, 0.175 * gameConfig.scale.height / 600).refreshBody();
-        this.columnas.create(gameConfig.scale.width * 0.041, gameConfig.scale.height * 0.712, 'columnaI').setScale(0.175 * gameConfig.scale.width / 800, 0.175 * gameConfig.scale.height / 600).refreshBody();
+        this.aux= this.columnas.getChildren();
+        this.aux[0].flipX=true;
+        this.aux[1].flipX=true;
 
         player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'dude');
         this.anims.create({
@@ -80,26 +85,43 @@ class egiptoScene extends Phaser.Scene {
         this.physics.add.collider(bullets, this.columnas);
 
 
-        this.spriteParar = this.add.sprite(gameConfig.scale.width * 2.2 / 16, gameConfig.scale.height * 11 / 12, 'FreezeB').setScale(0.1 * gameConfig.scale.width / 800);
+        this.spriteParar = this.add.sprite(gameConfig.scale.width * 2.2 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
         this.spriteParar.setInteractive().on('pointerdown', () => player.body.moves = false /*cambiar a iddle */)
             .on('pointerup', () => player.body.moves = true, player.anims.play('walk', true))
-            .on('pointerout', () => player.body.moves = true, player.anims.play('walk', true));
+            .on('pointerout', () => player.body.moves = true, player.anims.play('walk', true))
+            .on('pointerdown', () => this.spriteParar.setTexture('FreezeBOFF'))
+            .on('pointerup', () => this.spriteParar.setTexture('FreezeBON'))
+            .on('pointerout', () => this.spriteParar.setTexture('FreezeBON'));
 
-        this.spriteDisparar = this.add.sprite(gameConfig.scale.width / 16, gameConfig.scale.height * 11 / 12, 'ShootB').setScale(0.1 * gameConfig.scale.width / 800);
-        this.spriteDisparar.setInteractive().on('pointerdown', () => fire() /*animar disparo */);
+        this.spriteDisparar = this.add.sprite(gameConfig.scale.width / 16, gameConfig.scale.height * 11 / 12, 'ShootBON').setScale(0.1 * gameConfig.scale.width / 800);
+        this.spriteDisparar.setInteractive().on('pointerdown', () => fire() /*animar disparo */)
+            .on('pointerdown', () => this.spriteDisparar.setTexture('ShootBOFF'))
+            .on('pointerup', () => this.spriteDisparar.setTexture('ShootBON'))
+            .on('pointerout', () => this.spriteDisparar.setTexture('ShootBON'));
 
-        this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.3 / 16, gameConfig.scale.height / 13, 'PauseB').setScale(0.07 * gameConfig.scale.width / 800);
-        this.spritePausar.setInteractive().on('pointerdown', () => pauseGame(this.spriteParar, this.spriteDisparar, freezeInput, shootInput));
+        this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.3 / 16, gameConfig.scale.height / 13, 'PauseBON').setScale(0.07 * gameConfig.scale.width / 800);
+        this.spritePausar.setInteractive().on('pointerdown', () => pauseGame(this.spriteParar, this.spriteDisparar, freezeInput, shootInput))
+            .on('pointerdown', () => (is_paused ? player.anims.stop() : player.anims.play('walk', true)))
+            .on('pointerdown', () => this.spritePausar.setTexture('PauseBOFF'))
+            .on('pointerup', () => this.spritePausar.setTexture('PauseBON'))
+            .on('pointerout', () => this.spritePausar.setTexture('PauseBON'));
 
         var pauseInput = this.input.keyboard.addKey('ESC');
-        pauseInput.on('down', () => pauseGame(this.spriteParar, this.spriteDisparar, freezeInput, shootInput));
+        pauseInput.on('down', () => pauseGame(this.spriteParar, this.spriteDisparar, freezeInput, shootInput))
+            .on('down', () => is_paused ? player.anims.stop() : player.anims.play('walk', true))
+            .on('down', () => this.spritePausar.setTexture('PauseBOFF'))
+            .on('up', () => this.spritePausar.setTexture('PauseBON'));
 
-        var freezeInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+        var freezeInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         freezeInput.on('down', () => player.body.moves = false /*cambiar a iddle */)
-            .on('up', () => player.body.moves = true, player.anims.play('walk', true));
+            .on('up', () => player.body.moves = true, player.anims.play('walk', true))
+            .on('down', () => this.spriteParar.setTexture('FreezeBOFF'))
+            .on('up', () => this.spriteParar.setTexture('FreezeBON'));
 
-        var shootInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-        shootInput.on('down', () => fire());
+        var shootInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+        shootInput.on('down', () => fire())
+            .on('down', () => this.spriteDisparar.setTexture('ShootBOFF'))
+            .on('up', () => this.spriteDisparar.setTexture('ShootBON'));
 
     }
 
@@ -112,10 +134,10 @@ function fire() {
         bullets.remove(bullets.getFirst(true), true);
     }
     var bomb = bullets.create(player.x, player.y, 'bullet').setScale(0.1);
-    bomb.setOrigin(0, 0);
+    //bomb.setOrigin(0, 0);
     bomb.angle = 90;
     bomb.body.setAllowGravity(false);
-    bomb.body.setCircle(45);
+    bomb.body.setCircle(100);
     /*bomb.body.setBounce(1);
     bomb.body.setVelocity(500, 0);
     bomb.body.setCollideWorldBounds(false);
