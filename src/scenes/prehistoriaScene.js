@@ -113,6 +113,7 @@ class prehistoriaScene extends Phaser.Scene {
         this.spritePausar.setInteractive().on('pointerdown', () => pauseGame(this.spriteParar, this.spriteDisparar, freezeInput, shootInput))
             .on('pointerdown', () => (is_paused ? player.anims.stop() : player.anims.play('walk', true)))
             .on('pointerdown', () => this.spritePausar.setTexture('PauseBOFF'))
+            .on('pointerdown', () => is_paused ? this.mostrarMenu(this) : this.ocultarMenu(this))
             .on('pointerup', () => this.spritePausar.setTexture('PauseBON'))
             .on('pointerout', () => this.spritePausar.setTexture('PauseBON'));
 

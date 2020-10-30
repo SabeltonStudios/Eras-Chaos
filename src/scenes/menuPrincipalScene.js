@@ -20,8 +20,6 @@ class menuPrincipalScene extends Phaser.Scene{
         this.load.image('boton2Jugadores', 'assets/Interfaz/Menu/boton2Jugadores.png');
         this.load.image('botonTienda', 'assets/Interfaz/Menu/botonTienda.png');
         this.load.image('botonCreditos', 'assets/Interfaz/Menu/botonCreditos.png');
-        //this.load.image('botonSalir', 'assets/Interfaz/Menu/botonSalir.png');
-
 
         //Assets en ingles
         this.load.image('botonHistoriai','assets/Interfaz/Menu/botonHistoriai.png');
@@ -59,8 +57,9 @@ class menuPrincipalScene extends Phaser.Scene{
         }
         
         //Interactividad de los botones
-        this.spriteHistoria.setInteractive().on('pointerdown', () => this.scene.start("PrehistoriaScene"));
-        this.spriteMultijugadorSeleccion.setInteractive().on('pointerdown', () => this.scene.start("MultijugadorSeleccionScene"));
+        this.spriteHistoria.setInteractive().on('pointerdown', () => this.scene.start("PrehistoriaScene"))
+            
+        this.spriteMultijugadorSeleccion.setInteractive().on('pointerdown', () => this.scene.start("MultijugadorSeleccionScene"))
         this.spriteTienda.setInteractive().on('pointerdown', () => this.scene.start("TiendaScene"));
         this.spriteCreditos.setInteractive().on('pointerdown', () => this.scene.start("CreditosScene"));
         this.spriteIngles.setInteractive().on('pointerdown', () =>this.cambiarIdiomaIngles());

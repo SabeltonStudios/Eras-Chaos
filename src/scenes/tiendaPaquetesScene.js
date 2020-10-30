@@ -3,13 +3,24 @@ class tiendaPaquetesScene extends Phaser.Scene{
         super("TiendaPaquetesScene");
     }
     preload(){
-        this.load.image('botonSalirTienda', 'assets/Interfaz/botonSalirTienda.png');
+        //Assets español
+        this.load.image('tituloPaquetes', 'assets/Interfaz/Tienda/Paquetes/tituloPaquetes.png');
+
+        //Assets ingles
+        this.load.image('tituloPaquetesi', 'assets/Interfaz/Tienda/Paquetes/tituloPaquetesi.png');
     }
 
     create(){
-        var titulo = this.add.text(gameConfig.scale.width*7.35/16,gameConfig.scale.height/10,'PAQUETES', { fill: '#0f0' })
+        this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
+        this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
 
-        this.spriteSalir = this.add.sprite(gameConfig.scale.width / 8,(gameConfig.scale.height/8)*6.5,'botonSalirTienda').setScale(0.8);
+        if(espanol){
+            this.spriteTituloPaquetes = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloPaquetes');
+        }else{
+            this.spriteTituloPaquetes = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloPaquetesi');
+        }
+
+        this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15,(gameConfig.scale.height/8)*7.5,'botonSalir').setScale(0.1);
         this.spriteSalir.setInteractive().on('pointerdown', () => this.scene.start("TiendaScene"));
     }
 }
