@@ -58,7 +58,7 @@ class menuPrincipalScene extends Phaser.Scene{
         
         //Interactividad de los botones
         this.spriteHistoria.setInteractive().on('pointerdown', () => this.scene.start("PrehistoriaScene"))
-            
+           
         this.spriteMultijugadorSeleccion.setInteractive().on('pointerdown', () => this.scene.start("MultijugadorSeleccionScene"))
         this.spriteTienda.setInteractive().on('pointerdown', () => this.scene.start("TiendaScene"));
         this.spriteCreditos.setInteractive().on('pointerdown', () => this.scene.start("CreditosScene"));

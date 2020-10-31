@@ -2,7 +2,6 @@ var bullets;
 var player;
 var fireRate = 100;
 var nextFire = 0;
-var is_paused = false;
 var config = {
 
     classType: Phaser.GameObjects.Image,
@@ -33,17 +32,23 @@ class prehistoriaScene extends Phaser.Scene {
         this.load.image('PauseBOFF', 'assets/Interfaz/PauseButtonOFF.png');
 
         this.load.image('PauseMenu', 'assets/Interfaz/Menu/fondoBlanco.png');
-        this.load.image('botonMenuPral', 'assets/Interfaz/Menu/boton2Jugadores.png');
+        this.load.image('PauseTitle', 'assets/Interfaz/Menu/tituloPaused.png');
+        this.load.image('PauseTitlei', 'assets/Interfaz/Menu/tituloPausedi.png');
+        this.load.image('botonMenuPral', 'assets/Interfaz/Menu/MainMenu.png');
+        this.load.image('botonMenuPrali', 'assets/Interfaz/Menu/MainMenui.png');
         this.load.image('botonTienda', 'assets/Interfaz/Menu/botonTienda.png');
+        this.load.image('botonTiendai', 'assets/Interfaz/Menu/botonTiendai.png');
 
         this.load.spritesheet('dude', 'assets/Interfaz/dude.png', { frameWidth: 32, frameHeight: 48 });
         this.load.image('bullet', 'assets/Interfaz/Bullet.png');
+
     }
     resetLaser(laser) {
         // Destroy the laser
         laser.kill();
     }
     create() {
+        this.is_paused = false;
         //this.cameras.main.zoom= 1.3;
         this.cameras.main.zoomTo(1.05, 1000);
         this.physics.world.bounds.setTo(92.5, 69.5, 615, 461);
@@ -79,21 +84,21 @@ class prehistoriaScene extends Phaser.Scene {
         //this.physics.add.collider(bullets, wall);
 
         this.physics.world.on('worldbounds', () => console.log('Bye'));
-/*
-        this.rock = new Phaser.Geom.Circle(gameConfig.scale.width / 20, gameConfig.scale.height * 11.5 / 12, 200);
-        //this.r=this.add.ellipse( gameConfig.scale.width/20, gameConfig.scale.height*11.5/12,200,200, 0xff0000);
-        this.house = new Phaser.Geom.Circle(gameConfig.scale.width / 20, gameConfig.scale.height / 24, 250);
-        //this.r=this.add.ellipse( gameConfig.scale.width/20, gameConfig.scale.height/24,250,250, 0xff0000);
+        /*
+                this.rock = new Phaser.Geom.Circle(gameConfig.scale.width / 20, gameConfig.scale.height * 11.5 / 12, 200);
+                //this.r=this.add.ellipse( gameConfig.scale.width/20, gameConfig.scale.height*11.5/12,200,200, 0xff0000);
+                this.house = new Phaser.Geom.Circle(gameConfig.scale.width / 20, gameConfig.scale.height / 24, 250);
+                //this.r=this.add.ellipse( gameConfig.scale.width/20, gameConfig.scale.height/24,250,250, 0xff0000);
+                
+                //new Phaser.Geom.Rectangle(gameConfig.scale.width * 0.98, gameConfig.scale.height / 2, 20, gameConfig.scale.height);
+                //this.r=this.add.ellipse( gameConfig.scale.width*0.98, gameConfig.scale.height/2,20, gameConfig.scale.height, 0xff0000);
+                this.physics.world.enable(this.rock);
+                this.physics.world.enable(this.house);
+                
         
-        //new Phaser.Geom.Rectangle(gameConfig.scale.width * 0.98, gameConfig.scale.height / 2, 20, gameConfig.scale.height);
-        //this.r=this.add.ellipse( gameConfig.scale.width*0.98, gameConfig.scale.height/2,20, gameConfig.scale.height, 0xff0000);
-        this.physics.world.enable(this.rock);
-        this.physics.world.enable(this.house);
-        
+                this.physics.add.collider(bullets, this.rock);
+                this.physics.add.collider(bullets, this.house);*/
 
-        this.physics.add.collider(bullets, this.rock);
-        this.physics.add.collider(bullets, this.house);*/
-        
 
         this.spriteParar = this.add.sprite(gameConfig.scale.width * 2.2 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
         this.spriteParar.setInteractive().on('pointerdown', () => player.body.moves = false /*cambiar a iddle */)
@@ -110,19 +115,16 @@ class prehistoriaScene extends Phaser.Scene {
             .on('pointerout', () => this.spriteDisparar.setTexture('ShootBON'));
 
         this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.3 / 16, gameConfig.scale.height / 13, 'PauseBON').setScale(0.07 * gameConfig.scale.width / 800);
-        this.spritePausar.setInteractive().on('pointerdown', () => pauseGame(this.spriteParar, this.spriteDisparar, freezeInput, shootInput))
-            .on('pointerdown', () => (is_paused ? player.anims.stop() : player.anims.play('walk', true)))
+        this.spritePausar.setInteractive().on('pointerdown', () => this.is_paused = !this.is_paused)
+            .on('pointerdown', () => this.pauseGame(this.spriteParar, this.spriteDisparar, freezeInput, shootInput))
+            .on('pointerdown', () => !this.is_paused ? player.anims.play('walk', true) : player.anims.stop())
             .on('pointerdown', () => this.spritePausar.setTexture('PauseBOFF'))
-            .on('pointerdown', () => is_paused ? this.mostrarMenu(this) : this.ocultarMenu(this))
+            .on('pointerdown', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
             .on('pointerup', () => this.spritePausar.setTexture('PauseBON'))
             .on('pointerout', () => this.spritePausar.setTexture('PauseBON'));
 
-        var pauseInput = this.input.keyboard.addKey('ESC');
-        pauseInput.on('down', () => pauseGame(this.spriteParar, this.spriteDisparar, freezeInput, shootInput))
-            .on('down', () => is_paused ? player.anims.stop() : player.anims.play('walk', true))
-            .on('down', () => is_paused ? this.mostrarMenu(this) : this.ocultarMenu(this))
-            .on('down', () => this.spritePausar.setTexture('PauseBOFF'))
-            .on('up', () => this.spritePausar.setTexture('PauseBON'));
+        //var pauseInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
+
 
         var freezeInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         freezeInput.on('down', () => player.body.moves = false /*cambiar a iddle */)
@@ -135,22 +137,63 @@ class prehistoriaScene extends Phaser.Scene {
             .on('down', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('up', () => this.spriteDisparar.setTexture('ShootBON'));
 
+        this.input.keyboard.on('keydown-' + 'ESC', () => this.is_paused = !this.is_paused)
+            .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, freezeInput, shootInput))
+            .on('keydown-' + 'ESC', () => !this.is_paused ? player.anims.play('walk', true) : player.anims.stop())
+            .on('keydown-' + 'ESC', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
+            .on('keydown-' + 'ESC', () => this.spritePausar.setTexture('PauseBOFF'))
+            .on('keyup-' + 'ESC', () => this.spritePausar.setTexture('PauseBON'));
+
     }
     mostrarMenu(t) {
-        this.Menu = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'PauseMenu').setScale(0.5);
+        t.Menu = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'PauseMenu').setScale(0.5);
+        t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7);
+        t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonMenuPral');
+        t.BotonMenu.setInteractive().on('pointerdown', () => t.scene.start("MenuPrincipalScene"));
 
-        this.BotonMenu = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonMenuPral');
-        this.BotonMenu.setInteractive().on('pointerdown', () => this.scene.start("MenuPrincipalScene"));
-
-        this.BotonTienda = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda');
-        this.BotonTienda.setInteractive().on('pointerdown', () => this.scene.start("TiendaScene"));
+        t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda');
+        t.BotonTienda.setInteractive().on('pointerdown', () => t.scene.start("TiendaScene"));
+        if (!espanol) {
+            t.PauseTitle.setTexture('PauseTitlei');
+            t.BotonMenu.setTexture('botonMenuPrali');
+            t.BotonTienda.setTexture('botonTiendai');
+        }
     }
     ocultarMenu(t) {
         t.Menu.destroy();
+        t.PauseTitle.destroy();
         t.BotonTienda.destroy();
         t.BotonMenu.destroy();
     }
     update() {
+        console.log(this.is_paused);
+    }
+    pauseGame(spriteParar, spriteDisparar, f, s) {
+        this.bulls = bullets.getChildren();
+        if (!this.is_paused) {
+            player.body.moves = true;
+            var i;
+            for (i = 0; i < this.bulls.length; i++) {
+                this.bulls[i].body.moves = true;
+            }
+            spriteParar.setInteractive();
+            spriteDisparar.setInteractive();
+            f.enabled = true;
+            s.enabled = true;
+            //this.is_paused = false;
+        } else {
+            //this.is_paused = true;
+            player.body.moves = false;
+            var i;
+            for (i = 0; i < this.bulls.length; i++) {
+                this.bulls[i].body.moves = false;
+            }
+            f.enabled = false;
+            s.enabled = false;
+            spriteParar.disableInteractive();
+            spriteDisparar.disableInteractive();
+        }
+
     }
 }
 function fire() {
@@ -169,32 +212,5 @@ function fire() {
     bomb.body.onWorldBounds(() => console.log('Bye'));*/
 }
 
-function pauseGame(spriteParar, spriteDisparar, f, s) {
-    this.bulls = bullets.getChildren();
-    if (is_paused) {
-        player.body.moves = true;
-        var i;
-        for (i = 0; i < this.bulls.length; i++) {
-            bulls[i].body.moves = true;
-        }
-        spriteParar.setInteractive();
-        spriteDisparar.setInteractive();
-        f.enabled = true;
-        s.enabled = true;
-        is_paused = false;
-    } else {
-        //menu.pintar
-        is_paused = true;
-        player.body.moves = false;
-        var i;
-        for (i = 0; i < this.bulls.length; i++) {
-            bulls[i].body.moves = false;
-        }
-        f.enabled = false;
-        s.enabled = false;
-        spriteParar.disableInteractive();
-        spriteDisparar.disableInteractive();
-    }
 
-}
 
