@@ -2,7 +2,7 @@ var bullets;
 var player;
 var fireRate = 100;
 var nextFire = 0;
-var is_paused = false;
+var gameOver;
 var config = {
 
     classType: Phaser.GameObjects.Image,
@@ -31,6 +31,15 @@ class egiptoScene extends Phaser.Scene {
         this.load.image('ShootBOFF', 'assets/Interfaz/ShootButtonOFF.png');
         this.load.image('PauseBON', 'assets/Interfaz/PauseButton.png');
         this.load.image('PauseBOFF', 'assets/Interfaz/PauseButtonOFF.png');
+
+        this.load.image('PauseMenu', 'assets/Interfaz/Menu/fondoBlanco.png');
+        this.load.image('PauseTitle', 'assets/Interfaz/Menu/tituloPaused.png');
+        this.load.image('PauseTitlei', 'assets/Interfaz/Menu/tituloPausedi.png');
+        this.load.image('botonMenuPral', 'assets/Interfaz/Menu/MainMenu.png');
+        this.load.image('botonMenuPrali', 'assets/Interfaz/Menu/MainMenui.png');
+        this.load.image('botonTienda', 'assets/Interfaz/Menu/botonTienda.png');
+        this.load.image('botonTiendai', 'assets/Interfaz/Menu/botonTiendai.png');
+
         this.load.spritesheet('dude', 'assets/Interfaz/dude.png', { frameWidth: 32, frameHeight: 48 });
         this.load.image('bullet', 'assets/Interfaz/Bullet.png');
     }
@@ -39,6 +48,7 @@ class egiptoScene extends Phaser.Scene {
         laser.kill();
     }
     create() {
+        this.is_paused = false;
         //this.cameras.main.zoom= 1.3;
         this.cameras.main.zoomTo(1.05, 2000);
         this.physics.world.bounds.setTo(92.5, 69.5, 615, 461);
@@ -61,11 +71,15 @@ class egiptoScene extends Phaser.Scene {
         //Columnas derecha
         this.columnas.create(gameConfig.scale.width * 0.958, gameConfig.scale.height * 0.21, 'columnaD').setScale(0.175 * gameConfig.scale.width / 800, 0.175 * gameConfig.scale.height / 600).refreshBody();//.refreshBody();
         this.columnas.create(gameConfig.scale.width * 0.958, gameConfig.scale.height * 0.712, 'columnaD').setScale(0.175 * gameConfig.scale.width / 800, 0.175 * gameConfig.scale.height / 600).refreshBody();
-        this.aux= this.columnas.getChildren();
-        this.aux[0].flipX=true;
-        this.aux[1].flipX=true;
+        this.aux = this.columnas.getChildren();
+        this.aux[0].flipX = true;
+        this.aux[1].flipX = true;
+        this.aux[2].body.setSize(gameConfig.scale.width / 3, 0.16 * gameConfig.scale.height, false);
+        this.aux[3].body.setSize(gameConfig.scale.width / 3, 0.16 * gameConfig.scale.height, false);
+        this.aux[3].body.setOffset(-gameConfig.scale.width / 3 + 65, 0);
 
-        player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'dude');
+        player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 5, 'dude');
+        player.setPosition( gameConfig.scale.width / 6, gameConfig.scale.height / 5);
         this.anims.create({
             key: 'walk',
             frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
@@ -83,7 +97,9 @@ class egiptoScene extends Phaser.Scene {
             bullet.body.onWorldBounds = true;
         });
         this.physics.add.collider(bullets, this.columnas);
+        this.physics.add.collider(bullets, bullets);
 
+        this.physics.add.collider(bullets, player, hitBomb, null, this);
 
         this.spriteParar = this.add.sprite(gameConfig.scale.width * 2.2 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
         this.spriteParar.setInteractive().on('pointerdown', () => player.body.moves = false /*cambiar a iddle */)
@@ -106,11 +122,13 @@ class egiptoScene extends Phaser.Scene {
             .on('pointerup', () => this.spritePausar.setTexture('PauseBON'))
             .on('pointerout', () => this.spritePausar.setTexture('PauseBON'));
 
-        var pauseInput = this.input.keyboard.addKey('ESC');
-        pauseInput.on('down', () => pauseGame(this.spriteParar, this.spriteDisparar, freezeInput, shootInput))
-            .on('down', () => is_paused ? player.anims.stop() : player.anims.play('walk', true))
-            .on('down', () => this.spritePausar.setTexture('PauseBOFF'))
-            .on('up', () => this.spritePausar.setTexture('PauseBON'));
+        this.input.keyboard.on('keydown-' + 'ESC', () => this.is_paused = !this.is_paused)
+            .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, freezeInput, shootInput))
+            .on('keydown-' + 'ESC', () => !this.is_paused ? player.anims.play('walk', true) : player.anims.stop())
+            .on('keydown-' + 'ESC', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
+            .on('keydown-' + 'ESC', () => this.spritePausar.setTexture('PauseBOFF'))
+            .on('keyup-' + 'ESC', () => this.spritePausar.setTexture('PauseBON'));
+
 
         var freezeInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         freezeInput.on('down', () => player.body.moves = false /*cambiar a iddle */)
@@ -124,54 +142,79 @@ class egiptoScene extends Phaser.Scene {
             .on('up', () => this.spriteDisparar.setTexture('ShootBON'));
 
     }
+    mostrarMenu(t) {
+        t.Menu = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'PauseMenu').setScale(0.5);
+        t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7);
+        t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonMenuPral');
+        t.BotonMenu.setInteractive().on('pointerdown', () => t.scene.start("MenuPrincipalScene"));
 
-    update() {
-        //console.log(bullets.countActive());
+        t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda');
+        t.BotonTienda.setInteractive().on('pointerdown', () => t.scene.start("TiendaScene"));
+        if (!espanol) {
+            t.PauseTitle.setTexture('PauseTitlei');
+            t.BotonMenu.setTexture('botonMenuPrali');
+            t.BotonTienda.setTexture('botonTiendai');
+        }
     }
+    ocultarMenu(t) {
+        t.Menu.destroy();
+        t.PauseTitle.destroy();
+        t.BotonTienda.destroy();
+        t.BotonMenu.destroy();
+    }
+    update() {
+        if (gameOver) {
+            this.scene.setActive(false);
+            this.scene.restart();
+        }
+    }
+    pauseGame(spriteParar, spriteDisparar, f, s) {
+        this.bulls = bullets.getChildren();
+        if (!this.is_paused) {
+            player.body.moves = true;
+            var i;
+            for (i = 0; i < this.bulls.length; i++) {
+                this.bulls[i].body.moves = true;
+            }
+            spriteParar.setInteractive();
+            spriteDisparar.setInteractive();
+            f.enabled = true;
+            s.enabled = true;
+            //this.is_paused = false;
+        } else {
+            //this.is_paused = true;
+            player.body.moves = false;
+            var i;
+            for (i = 0; i < this.bulls.length; i++) {
+                this.bulls[i].body.moves = false;
+            }
+            f.enabled = false;
+            s.enabled = false;
+            spriteParar.disableInteractive();
+            spriteDisparar.disableInteractive();
+        }
+
+    }
+}
+function hitBomb(player, bomb) {
+    bomb.destroy();
+
+    gameOver = true;
 }
 function fire() {
     if (bullets.isFull()) {
         bullets.remove(bullets.getFirst(true), true);
     }
-    var bomb = bullets.create(player.x, player.y, 'bullet').setScale(0.1);
-    //bomb.setOrigin(0, 0);
-    bomb.angle = 90;
+    var bomb = bullets.create(player.x, player.y, 'bullet').setScale(0.1, 0.05);
+    //bomb.setOrigin(0,1);
     bomb.body.setAllowGravity(false);
-    bomb.body.setCircle(100);
+    bomb.body.setCircle(120, -10, 80);
+    bomb.angle = 90;
     /*bomb.body.setBounce(1);
     bomb.body.setVelocity(500, 0);
     bomb.body.setCollideWorldBounds(false);
     bomb.body.collideWorldBounds = true;
     bomb.body.onWorldBounds(() => console.log('Bye'));*/
 }
-function pauseGame(spriteParar, spriteDisparar, f, s) {
-    this.bulls = bullets.getChildren();
-    if (is_paused) {
-        //menu.destroy();
-        player.body.moves = true;
 
-        var i;
-        for (i = 0; i < this.bulls.length; i++) {
-            bulls[i].body.moves = true;
-        }
-        spriteParar.setInteractive();
-        spriteDisparar.setInteractive();
-        f.enabled = true;
-        s.enabled = true;
-        is_paused = false;
-    } else {
-        //menu.pintar
-        is_paused = true;
-        player.body.moves = false;
-        var i;
-        for (i = 0; i < this.bulls.length; i++) {
-            bulls[i].body.moves = false;
-        }
-        f.enabled = false;
-        s.enabled = false;
-        spriteParar.disableInteractive();
-        spriteDisparar.disableInteractive();
-    }
-
-}
 

@@ -68,36 +68,41 @@ class prehistoriaScene extends Phaser.Scene {
         player.setVelocity(0, -200);
         player.setBounce(1);
         player.body.setAllowGravity(false);
-        player.setCollideWorldBounds(true)
-        /*var wall = this.add.graphics();
-        wall.fillStyle(0xff0000, 1);
-        wall.fillRect(gameConfig.scale.width * 0.8, gameConfig.scale.height / 2, 20, gameConfig.scale.height);
-        
-        this.physics.world.enable(wall);
+        player.setCollideWorldBounds(true);
+
+        var wall = this.add.rectangle(gameConfig.scale.width * 0.8, gameConfig.scale.height / 2, 20, gameConfig.scale.height);//this.add.graphics();
+        /*wall.fillStyle(0xff0000, 1);
+        wall.fillRect(gameConfig.scale.width * 0.8, 0, 20, gameConfig.scale.height);*/
+
+        //this.physics.world.enable(wall);
+        this.physics.add.existing(wall);
         wall.body.setAllowGravity(false);
-        wall.body.setSize(200, 200);*/
+        wall.body.setSize(20, gameConfig.scale.width);
 
         bullets = this.physics.add.group(config);
         Phaser.Actions.Call(bullets.getChildren(), function (bullet) {
             bullet.body.onWorldBounds = true;
         });
-        //this.physics.add.collider(bullets, wall);
+        this.physics.add.collider(wall, bullets);
 
         this.physics.world.on('worldbounds', () => console.log('Bye'));
-        /*
-                this.rock = new Phaser.Geom.Circle(gameConfig.scale.width / 20, gameConfig.scale.height * 11.5 / 12, 200);
-                //this.r=this.add.ellipse( gameConfig.scale.width/20, gameConfig.scale.height*11.5/12,200,200, 0xff0000);
-                this.house = new Phaser.Geom.Circle(gameConfig.scale.width / 20, gameConfig.scale.height / 24, 250);
-                //this.r=this.add.ellipse( gameConfig.scale.width/20, gameConfig.scale.height/24,250,250, 0xff0000);
-                
-                //new Phaser.Geom.Rectangle(gameConfig.scale.width * 0.98, gameConfig.scale.height / 2, 20, gameConfig.scale.height);
-                //this.r=this.add.ellipse( gameConfig.scale.width*0.98, gameConfig.scale.height/2,20, gameConfig.scale.height, 0xff0000);
-                this.physics.world.enable(this.rock);
-                this.physics.world.enable(this.house);
-                
-        
-                this.physics.add.collider(bullets, this.rock);
-                this.physics.add.collider(bullets, this.house);*/
+
+        this.rock = new Phaser.Geom.Circle(gameConfig.scale.width / 20, gameConfig.scale.height * 11.5 / 12, 200);
+        this.physics.add.existing(this.rock);
+        this.rock.body.setAllowGravity(false);
+        this.rock.body.setCircle(200,0,0);
+        //this.r=this.add.ellipse( gameConfig.scale.width/20, gameConfig.scale.height*11.5/12,200,200, 0xff0000);
+        this.house = new Phaser.Geom.Circle(gameConfig.scale.width / 20, gameConfig.scale.height / 24, 250);
+        //this.r=this.add.ellipse( gameConfig.scale.width/20, gameConfig.scale.height/24,250,250, 0xff0000);
+
+        //new Phaser.Geom.Rectangle(gameConfig.scale.width * 0.98, gameConfig.scale.height / 2, 20, gameConfig.scale.height);
+        //this.r=this.add.ellipse( gameConfig.scale.width*0.98, gameConfig.scale.height/2,20, gameConfig.scale.height, 0xff0000);
+        //this.physics.world.enable(this.rock);
+        this.physics.world.enable(this.house);
+
+
+        this.physics.add.collider(bullets, this.rock);
+        this.physics.add.collider(bullets, this.house);
 
 
         this.spriteParar = this.add.sprite(gameConfig.scale.width * 2.2 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
@@ -122,8 +127,6 @@ class prehistoriaScene extends Phaser.Scene {
             .on('pointerdown', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
             .on('pointerup', () => this.spritePausar.setTexture('PauseBON'))
             .on('pointerout', () => this.spritePausar.setTexture('PauseBON'));
-
-        //var pauseInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
 
         var freezeInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -166,7 +169,6 @@ class prehistoriaScene extends Phaser.Scene {
         t.BotonMenu.destroy();
     }
     update() {
-        console.log(this.is_paused);
     }
     pauseGame(spriteParar, spriteDisparar, f, s) {
         this.bulls = bullets.getChildren();
@@ -198,13 +200,13 @@ class prehistoriaScene extends Phaser.Scene {
 }
 function fire() {
     if (bullets.isFull()) {
-        bullets.remove(bullets.getFirst(true), true);
+        //bullets.remove(bullets.getFirst(true), true);
+        bullets.getFirst(true).destroy();
     }
     var bomb = bullets.create(player.x, player.y, 'bullet').setScale(0.1);
-    //bomb.setOrigin(0, 0);
-    bomb.angle = 90;
     bomb.body.setAllowGravity(false);
-    bomb.body.setCircle(100);
+    bomb.body.setCircle(120,-10,80);
+    bomb.angle = 90;
     /*bomb.body.setBounce(1);
     bomb.body.setVelocity(500, 0);
     bomb.body.setCollideWorldBounds(false);
