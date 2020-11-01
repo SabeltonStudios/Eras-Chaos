@@ -1,17 +1,31 @@
 var bullets;
+var EnemyBullets;
 var player;
+var enemy;
 var fireRate = 100;
 var nextFire = 0;
+var gameOver;
+var win;
 var config = {
-
     classType: Phaser.GameObjects.Image,
     defaultKey: 'bullet',
     defaultFrame: null,
     active: true,
-    maxSize: 2,
+    maxSize: 5,
     bounceX: 1,
     bounceY: 1,
     velocityX: 500,
+    velocityY: 0,
+}
+var EnemyConfig = {
+    classType: Phaser.GameObjects.Image,
+    defaultKey: 'enemyBullet',
+    defaultFrame: null,
+    active: true,
+    maxSize: 5,
+    bounceX: 1,
+    bounceY: 1,
+    velocityX: -500,
     velocityY: 0,
 }
 class prehistoriaScene extends Phaser.Scene {
@@ -48,6 +62,8 @@ class prehistoriaScene extends Phaser.Scene {
         laser.kill();
     }
     create() {
+        gameOver = false;
+        win = false;
         this.is_paused = false;
         //this.cameras.main.zoom= 1.3;
         this.cameras.main.zoomTo(1.05, 1000);
@@ -58,6 +74,8 @@ class prehistoriaScene extends Phaser.Scene {
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
 
         player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'dude');
+        enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height * 5 / 6, 'dude');
+        enemy.flipX = true;
         this.anims.create({
             key: 'walk',
             frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
@@ -70,36 +88,67 @@ class prehistoriaScene extends Phaser.Scene {
         player.body.setAllowGravity(false);
         player.setCollideWorldBounds(true);
 
-        var wall = this.add.rectangle(gameConfig.scale.width * 0.8, gameConfig.scale.height / 2, 20, gameConfig.scale.height);//this.add.graphics();
-        /*wall.fillStyle(0xff0000, 1);
-        wall.fillRect(gameConfig.scale.width * 0.8, 0, 20, gameConfig.scale.height);*/
+        enemy.anims.play('walk', true);
+        enemy.setVelocity(0, 240);
+        enemy.setBounce(1);
+        enemy.body.setAllowGravity(false);
+        enemy.setCollideWorldBounds(true);
 
-        //this.physics.world.enable(wall);
-        this.physics.add.existing(wall);
-        wall.body.setAllowGravity(false);
-        wall.body.setSize(20, gameConfig.scale.width);
+        var wallR = this.add.rectangle(gameConfig.scale.width + 20, gameConfig.scale.height / 2, 20, gameConfig.scale.height);
+        this.physics.add.existing(wallR);
+        wallR.body.setAllowGravity(false);
+        wallR.body.setSize(20, gameConfig.scale.width);
+        wallR.body.immovable = true;
+        var wallL = this.add.rectangle(-20, gameConfig.scale.height / 2, 20, gameConfig.scale.height);
+        this.physics.add.existing(wallL);
+        wallL.body.setAllowGravity(false);
+        wallL.body.setSize(20, gameConfig.scale.width);
+        wallL.body.immovable = true;
+        var wallU = this.add.rectangle(gameConfig.scale.width / 2, -20, gameConfig.scale.width, 20);
+        this.physics.add.existing(wallU);
+        wallU.body.setAllowGravity(false);
+        wallU.body.setSize(gameConfig.scale.height, 20);
+        wallU.body.immovable = true;
+        var wallD = this.add.rectangle(gameConfig.scale.width / 2, gameConfig.scale.height + 20, gameConfig.scale.width, 20);
+        this.physics.add.existing(wallD);
+        wallD.body.setAllowGravity(false);
+        wallD.body.setSize(gameConfig.scale.height, 20);
+        wallD.body.immovable = true;
 
+        EnemyBullets = this.physics.add.group(EnemyConfig);
+        Phaser.Actions.Call(EnemyBullets.getChildren(), function (bullet) {
+            //if(bullet.position.x>gameConfig.scale.width){bullet.destroy();}
+        });
         bullets = this.physics.add.group(config);
         Phaser.Actions.Call(bullets.getChildren(), function (bullet) {
-            bullet.body.onWorldBounds = true;
+            //if(bullet.position.x>gameConfig.scale.width){bullet.destroy();}
         });
-        this.physics.add.collider(wall, bullets);
+        this.physics.add.collider(wallR, bullets, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallL, bullets, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallU, bullets, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallD, bullets, function (wall, bullet) { bullet.destroy(); });
 
-        this.physics.world.on('worldbounds', () => console.log('Bye'));
+        this.physics.add.collider(wallR, EnemyBullets, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallL, EnemyBullets, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallU, EnemyBullets, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallD, EnemyBullets, function (wall, bullet) { bullet.destroy(); });
 
-        this.rock = new Phaser.Geom.Circle(gameConfig.scale.width / 20, gameConfig.scale.height * 11.5 / 12, 200);
+        this.physics.add.collider(player, bullets, function () { gameOver = true; })
+        this.physics.add.collider(player, EnemyBullets, function () { gameOver = true; })
+        this.physics.add.collider(enemy, bullets, function () { win = true; })
+        this.physics.add.collider(bullets, bullets);
+        this.physics.add.collider(bullets, EnemyBullets);
+
+        this.rock = this.add.ellipse(gameConfig.scale.width / 20, gameConfig.scale.height * 11.5 / 12, 200, 200);
+        this.house = this.add.ellipse(gameConfig.scale.width / 20, gameConfig.scale.height / 24, 250, 250);
+        this.physics.add.existing(this.house);
         this.physics.add.existing(this.rock);
         this.rock.body.setAllowGravity(false);
-        this.rock.body.setCircle(200,0,0);
-        //this.r=this.add.ellipse( gameConfig.scale.width/20, gameConfig.scale.height*11.5/12,200,200, 0xff0000);
-        this.house = new Phaser.Geom.Circle(gameConfig.scale.width / 20, gameConfig.scale.height / 24, 250);
-        //this.r=this.add.ellipse( gameConfig.scale.width/20, gameConfig.scale.height/24,250,250, 0xff0000);
-
-        //new Phaser.Geom.Rectangle(gameConfig.scale.width * 0.98, gameConfig.scale.height / 2, 20, gameConfig.scale.height);
-        //this.r=this.add.ellipse( gameConfig.scale.width*0.98, gameConfig.scale.height/2,20, gameConfig.scale.height, 0xff0000);
-        //this.physics.world.enable(this.rock);
-        this.physics.world.enable(this.house);
-
+        this.rock.body.setCircle(100, 0, 0);
+        this.rock.body.immovable = true;
+        this.house.body.immovable = true;
+        this.house.body.setAllowGravity(false);
+        this.house.body.setCircle(125, 0, 0);
 
         this.physics.add.collider(bullets, this.rock);
         this.physics.add.collider(bullets, this.house);
@@ -147,6 +196,17 @@ class prehistoriaScene extends Phaser.Scene {
             .on('keydown-' + 'ESC', () => this.spritePausar.setTexture('PauseBOFF'))
             .on('keyup-' + 'ESC', () => this.spritePausar.setTexture('PauseBON'));
 
+            setInterval(function(){
+                console.log('pium');
+                if (EnemyBullets.isFull()) {
+                    //bullets.remove(bullets.getFirst(true), true);
+                    EnemyBullets.getFirst(true).destroy();
+                    var EnemyBomb = EnemyBullets.create(enemy.x, enemy.y, 'enemyBullet').setScale(0.1);
+                    EnemyBomb.body.setAllowGravity(false);
+                    EnemyBomb.body.setCircle(120, -10, 80);
+                    EnemyBomb.angle = 270;
+                }
+            }, 1000);
     }
     mostrarMenu(t) {
         t.Menu = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'PauseMenu').setScale(0.5);
@@ -169,14 +229,26 @@ class prehistoriaScene extends Phaser.Scene {
         t.BotonMenu.destroy();
     }
     update() {
+        if (gameOver) {
+            this.scene.setActive(false);
+            this.scene.restart();
+        }
+        if (win) {
+            this.scene.setActive(false);
+            this.scene.start("EgiptoScene");
+        }
     }
     pauseGame(spriteParar, spriteDisparar, f, s) {
         this.bulls = bullets.getChildren();
+        this.ebulls = EnemyBullets.getChildren();
         if (!this.is_paused) {
             player.body.moves = true;
             var i;
             for (i = 0; i < this.bulls.length; i++) {
                 this.bulls[i].body.moves = true;
+            }
+            for (i = 0; i < this.ebulls.length; i++) {
+                this.ebulls[i].body.moves = true;
             }
             spriteParar.setInteractive();
             spriteDisparar.setInteractive();
@@ -190,12 +262,25 @@ class prehistoriaScene extends Phaser.Scene {
             for (i = 0; i < this.bulls.length; i++) {
                 this.bulls[i].body.moves = false;
             }
+            for (i = 0; i < this.ebulls.length; i++) {
+                this.ebulls[i].body.moves = true;
+            }
             f.enabled = false;
             s.enabled = false;
             spriteParar.disableInteractive();
             spriteDisparar.disableInteractive();
         }
 
+    }
+}
+function fireEnemy() {
+    if (EnemyBullets.isFull()) {
+        //bullets.remove(bullets.getFirst(true), true);
+        EnemyBullets.getFirst(true).destroy();
+        var EnemyBomb = EnemyBullets.create(enemy.x, enemy.y, 'enemyBullet').setScale(0.1);
+        EnemyBomb.body.setAllowGravity(false);
+        EnemyBomb.body.setCircle(120, -10, 80);
+        EnemyBomb.angle = 270;
     }
 }
 function fire() {
@@ -205,13 +290,8 @@ function fire() {
     }
     var bomb = bullets.create(player.x, player.y, 'bullet').setScale(0.1);
     bomb.body.setAllowGravity(false);
-    bomb.body.setCircle(120,-10,80);
+    bomb.body.setCircle(120, -10, 80);
     bomb.angle = 90;
-    /*bomb.body.setBounce(1);
-    bomb.body.setVelocity(500, 0);
-    bomb.body.setCollideWorldBounds(false);
-    bomb.body.collideWorldBounds = true;
-    bomb.body.onWorldBounds(() => console.log('Bye'));*/
 }
 
 

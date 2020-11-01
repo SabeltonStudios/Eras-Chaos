@@ -48,6 +48,7 @@ class egiptoScene extends Phaser.Scene {
         laser.kill();
     }
     create() {
+        gameOver = false;
         this.is_paused = false;
         //this.cameras.main.zoom= 1.3;
         this.cameras.main.zoomTo(1.05, 2000);
