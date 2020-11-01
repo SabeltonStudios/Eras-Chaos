@@ -1,40 +1,38 @@
-var bullets;
-var EnemyBullets;
-var player;
-var enemy;
-var fireRate = 100;
-var nextFire = 0;
-var gameOver;
-var win;
-var config = {
-    classType: Phaser.GameObjects.Image,
-    defaultKey: 'bullet',
-    defaultFrame: null,
-    active: true,
-    maxSize: 5,
-    bounceX: 1,
-    bounceY: 1,
-    velocityX: 500,
-    velocityY: 0,
-}
-var EnemyConfig = {
-    classType: Phaser.GameObjects.Image,
-    defaultKey: 'enemyBullet',
-    defaultFrame: null,
-    active: true,
-    maxSize: 5,
-    bounceX: 1,
-    bounceY: 1,
-    velocityX: -500,
-    velocityY: 0,
-}
 class prehistoriaScene extends Phaser.Scene {
+    bulletsPre;
+    EnemyBulletsPre;
+    player;
+    enemy;
+    gameOver;
+    win;
+    configPre = {
+        classType: Phaser.GameObjects.Image,
+        defaultKey: 'bullet',
+        defaultFrame: null,
+        active: true,
+        maxSize: 5,
+        bounceX: 1,
+        bounceY: 1,
+        velocityX: 500,
+        velocityY: 0,
+    }
+    EnemyConfigPre = {
+        classType: Phaser.GameObjects.Image,
+        defaultKey: 'enemyBullet',
+        defaultFrame: null,
+        active: true,
+        maxSize: 5,
+        bounceX: 1,
+        bounceY: 1,
+        velocityX: -500,
+        velocityY: 0,
+    }
     constructor() {
         super("PrehistoriaScene");
     }
 
     preload() {
-        this.load.image('mapa', 'assets/Fondos/1.Prehistoria/Prehistoria.png');
+        this.load.image('mapaPre', 'assets/Fondos/1.Prehistoria/Background.png');
 
         this.load.image('FreezeBON', 'assets/Interfaz/FreezeButton.png');
         this.load.image('FreezeBOFF', 'assets/Interfaz/FreezeButtonOFF.png');
@@ -62,37 +60,39 @@ class prehistoriaScene extends Phaser.Scene {
         laser.kill();
     }
     create() {
-        gameOver = false;
-        win = false;
+        this.gameOver = false;
+        this.win = false;
         this.is_paused = false;
         //this.cameras.main.zoom= 1.3;
         this.cameras.main.zoomTo(1.05, 1000);
         this.physics.world.bounds.setTo(92.5, 69.5, 615, 461);
         this.physics.world.setBoundsCollision(false, false, true, true);
 
-        this.Mapa = this.add.image(0, 0, 'mapa').setOrigin(0)
+        this.Mapa = this.add.image(0, 0, 'mapaPre').setOrigin(0)
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
 
-        player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'dude');
-        enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height * 5 / 6, 'dude');
-        enemy.flipX = true;
+        this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'dude');
+        this.player.body.immovable = true;
+        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height * 5 / 6, 'dude');
+        this.enemy.flipX = true;
+        this.enemy.body.immovable = true;
         this.anims.create({
             key: 'walk',
             frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
             frameRate: 10,
             repeat: -1
         });
-        player.anims.play('walk', true);
-        player.setVelocity(0, -200);
-        player.setBounce(1);
-        player.body.setAllowGravity(false);
-        player.setCollideWorldBounds(true);
+        this.player.anims.play('walk', true);
+        this.player.setVelocity(0, -200);
+        this.player.setBounce(1);
+        this.player.body.setAllowGravity(false);
+        this.player.setCollideWorldBounds(true);
 
-        enemy.anims.play('walk', true);
-        enemy.setVelocity(0, 240);
-        enemy.setBounce(1);
-        enemy.body.setAllowGravity(false);
-        enemy.setCollideWorldBounds(true);
+        this.enemy.anims.play('walk', true);
+        this.enemy.setVelocity(0, 240);
+        this.enemy.setBounce(1);
+        this.enemy.body.setAllowGravity(false);
+        this.enemy.setCollideWorldBounds(true);
 
         var wallR = this.add.rectangle(gameConfig.scale.width + 20, gameConfig.scale.height / 2, 20, gameConfig.scale.height);
         this.physics.add.existing(wallR);
@@ -115,29 +115,29 @@ class prehistoriaScene extends Phaser.Scene {
         wallD.body.setSize(gameConfig.scale.height, 20);
         wallD.body.immovable = true;
 
-        EnemyBullets = this.physics.add.group(EnemyConfig);
-        Phaser.Actions.Call(EnemyBullets.getChildren(), function (bullet) {
+        this.EnemyBulletsPre = this.physics.add.group(this.EnemyConfigPre);
+        Phaser.Actions.Call(this.EnemyBulletsPre.getChildren(), function (bullet) {
             //if(bullet.position.x>gameConfig.scale.width){bullet.destroy();}
         });
-        bullets = this.physics.add.group(config);
-        Phaser.Actions.Call(bullets.getChildren(), function (bullet) {
+        this.bulletsPre = this.physics.add.group(this.configPre);
+        Phaser.Actions.Call(this.bulletsPre.getChildren(), function (bullet) {
             //if(bullet.position.x>gameConfig.scale.width){bullet.destroy();}
         });
-        this.physics.add.collider(wallR, bullets, function (wall, bullet) { bullet.destroy(); });
-        this.physics.add.collider(wallL, bullets, function (wall, bullet) { bullet.destroy(); });
-        this.physics.add.collider(wallU, bullets, function (wall, bullet) { bullet.destroy(); });
-        this.physics.add.collider(wallD, bullets, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallR, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallL, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallU, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallD, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
 
-        this.physics.add.collider(wallR, EnemyBullets, function (wall, bullet) { bullet.destroy(); });
-        this.physics.add.collider(wallL, EnemyBullets, function (wall, bullet) { bullet.destroy(); });
-        this.physics.add.collider(wallU, EnemyBullets, function (wall, bullet) { bullet.destroy(); });
-        this.physics.add.collider(wallD, EnemyBullets, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallR, this.EnemyBulletsPre, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallL, this.EnemyBulletsPre, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallU, this.EnemyBulletsPre, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallD, this.EnemyBulletsPre, function (wall, bullet) { bullet.destroy(); });
 
-        this.physics.add.collider(player, bullets, function () { gameOver = true; })
-        this.physics.add.collider(player, EnemyBullets, function () { gameOver = true; })
-        this.physics.add.collider(enemy, bullets, function () { win = true; })
-        this.physics.add.collider(bullets, bullets);
-        this.physics.add.collider(bullets, EnemyBullets);
+        this.physics.add.collider(this.player, this.bulletsPre, ()=> this.gameOver = true );
+        this.physics.add.collider(this.player, this.EnemyBulletsPre, ()=> this.gameOver = true);
+        this.physics.add.collider(this.enemy, this.bulletsPre, ()=> this.win = true );
+        this.physics.add.collider(this.bulletsPre, this.bulletsPre);
+        this.physics.add.collider(this.bulletsPre, this.EnemyBulletsPre);
 
         this.rock = this.add.ellipse(gameConfig.scale.width / 20, gameConfig.scale.height * 11.5 / 12, 200, 200);
         this.house = this.add.ellipse(gameConfig.scale.width / 20, gameConfig.scale.height / 24, 250, 250);
@@ -150,20 +150,22 @@ class prehistoriaScene extends Phaser.Scene {
         this.house.body.setAllowGravity(false);
         this.house.body.setCircle(125, 0, 0);
 
-        this.physics.add.collider(bullets, this.rock);
-        this.physics.add.collider(bullets, this.house);
+        this.physics.add.collider(this.EnemyBulletsPre, this.rock);
+        this.physics.add.collider(this.EnemyBulletsPre, this.house);
+        this.physics.add.collider(this.bulletsPre, this.rock);
+        this.physics.add.collider(this.bulletsPre, this.house);
 
 
         this.spriteParar = this.add.sprite(gameConfig.scale.width * 2.2 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
-        this.spriteParar.setInteractive().on('pointerdown', () => player.body.moves = false /*cambiar a iddle */)
-            .on('pointerup', () => player.body.moves = true, player.anims.play('walk', true))
-            .on('pointerout', () => player.body.moves = true, player.anims.play('walk', true))
+        this.spriteParar.setInteractive().on('pointerdown', () => this.player.body.moves = false /*cambiar a iddle */)
+            .on('pointerup', () => this.player.body.moves = true, this.player.anims.play('walk', true))
+            .on('pointerout', () => this.player.body.moves = true, this.player.anims.play('walk', true))
             .on('pointerdown', () => this.spriteParar.setTexture('FreezeBOFF'))
             .on('pointerup', () => this.spriteParar.setTexture('FreezeBON'))
             .on('pointerout', () => this.spriteParar.setTexture('FreezeBON'));
 
         this.spriteDisparar = this.add.sprite(gameConfig.scale.width / 16, gameConfig.scale.height * 11 / 12, 'ShootBON').setScale(0.1 * gameConfig.scale.width / 800);
-        this.spriteDisparar.setInteractive().on('pointerdown', () => fire() /*animar disparo */)
+        this.spriteDisparar.setInteractive().on('pointerdown', () => this.fire() /*animar disparo */)
             .on('pointerdown', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('pointerup', () => this.spriteDisparar.setTexture('ShootBON'))
             .on('pointerout', () => this.spriteDisparar.setTexture('ShootBON'));
@@ -171,7 +173,7 @@ class prehistoriaScene extends Phaser.Scene {
         this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.3 / 16, gameConfig.scale.height / 13, 'PauseBON').setScale(0.07 * gameConfig.scale.width / 800);
         this.spritePausar.setInteractive().on('pointerdown', () => this.is_paused = !this.is_paused)
             .on('pointerdown', () => this.pauseGame(this.spriteParar, this.spriteDisparar, freezeInput, shootInput))
-            .on('pointerdown', () => !this.is_paused ? player.anims.play('walk', true) : player.anims.stop())
+            .on('pointerdown', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
             .on('pointerdown', () => this.spritePausar.setTexture('PauseBOFF'))
             .on('pointerdown', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
             .on('pointerup', () => this.spritePausar.setTexture('PauseBON'))
@@ -179,34 +181,24 @@ class prehistoriaScene extends Phaser.Scene {
 
 
         var freezeInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-        freezeInput.on('down', () => player.body.moves = false /*cambiar a iddle */)
-            .on('up', () => player.body.moves = true, player.anims.play('walk', true))
+        freezeInput.on('down', () => this.player.body.moves = false /*cambiar a iddle */)
+            .on('up', () => this.player.body.moves = true, this.player.anims.play('walk', true))
             .on('down', () => this.spriteParar.setTexture('FreezeBOFF'))
             .on('up', () => this.spriteParar.setTexture('FreezeBON'));
 
         var shootInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
-        shootInput.on('down', () => fire())
+        shootInput.on('down', () => this.fire())
             .on('down', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('up', () => this.spriteDisparar.setTexture('ShootBON'));
 
         this.input.keyboard.on('keydown-' + 'ESC', () => this.is_paused = !this.is_paused)
             .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, freezeInput, shootInput))
-            .on('keydown-' + 'ESC', () => !this.is_paused ? player.anims.play('walk', true) : player.anims.stop())
+            .on('keydown-' + 'ESC', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
             .on('keydown-' + 'ESC', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
             .on('keydown-' + 'ESC', () => this.spritePausar.setTexture('PauseBOFF'))
             .on('keyup-' + 'ESC', () => this.spritePausar.setTexture('PauseBON'));
 
-            setInterval(function(){
-                console.log('pium');
-                if (EnemyBullets.isFull()) {
-                    //bullets.remove(bullets.getFirst(true), true);
-                    EnemyBullets.getFirst(true).destroy();
-                    var EnemyBomb = EnemyBullets.create(enemy.x, enemy.y, 'enemyBullet').setScale(0.1);
-                    EnemyBomb.body.setAllowGravity(false);
-                    EnemyBomb.body.setCircle(120, -10, 80);
-                    EnemyBomb.angle = 270;
-                }
-            }, 1000);
+        setInterval(this.fireEnemy, 1000);
     }
     mostrarMenu(t) {
         t.Menu = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'PauseMenu').setScale(0.5);
@@ -229,25 +221,25 @@ class prehistoriaScene extends Phaser.Scene {
         t.BotonMenu.destroy();
     }
     update() {
-        if (gameOver) {
+        if (this.gameOver) {
             this.scene.setActive(false);
             this.scene.restart();
         }
-        if (win) {
+        if (this.win) {
             this.scene.setActive(false);
             this.scene.start("EgiptoScene");
         }
     }
     pauseGame(spriteParar, spriteDisparar, f, s) {
-        this.bulls = bullets.getChildren();
-        this.ebulls = EnemyBullets.getChildren();
+        this.bulls = this.bulletsPre.getChildren();
+        this.ebulls = this.EnemyBulletsPre.getChildren();
         if (!this.is_paused) {
-            player.body.moves = true;
-            var i;
-            for (i = 0; i < this.bulls.length; i++) {
+            this.player.body.moves = true;
+            this.enemy.body.moves = true;
+            for (let i = 0; i < this.bulls.length; i++) {
                 this.bulls[i].body.moves = true;
             }
-            for (i = 0; i < this.ebulls.length; i++) {
+            for (let i = 0; i < this.ebulls.length; i++) {
                 this.ebulls[i].body.moves = true;
             }
             spriteParar.setInteractive();
@@ -257,12 +249,12 @@ class prehistoriaScene extends Phaser.Scene {
             //this.is_paused = false;
         } else {
             //this.is_paused = true;
-            player.body.moves = false;
-            var i;
-            for (i = 0; i < this.bulls.length; i++) {
+            this.player.body.moves = false;
+            this.enemy.body.moves = false;
+            for (let i = 0; i < this.bulls.length; i++) {
                 this.bulls[i].body.moves = false;
             }
-            for (i = 0; i < this.ebulls.length; i++) {
+            for (let i = 0; i < this.ebulls.length; i++) {
                 this.ebulls[i].body.moves = true;
             }
             f.enabled = false;
@@ -272,27 +264,25 @@ class prehistoriaScene extends Phaser.Scene {
         }
 
     }
-}
-function fireEnemy() {
-    if (EnemyBullets.isFull()) {
-        //bullets.remove(bullets.getFirst(true), true);
-        EnemyBullets.getFirst(true).destroy();
-        var EnemyBomb = EnemyBullets.create(enemy.x, enemy.y, 'enemyBullet').setScale(0.1);
+    fireEnemy() {
+        if (this.EnemyBulletsPre.isFull()) {
+            //bullets.remove(bullets.getFirst(true), true);
+            this.EnemyBulletsPre.getFirst(true).destroy();
+        }
+        var EnemyBomb = this.EnemyBulletsPre.create(this.enemy.x - 10, this.enemy.y, 'bullet').setScale(0.1, 0.05);
         EnemyBomb.body.setAllowGravity(false);
         EnemyBomb.body.setCircle(120, -10, 80);
         EnemyBomb.angle = 270;
     }
-}
-function fire() {
-    if (bullets.isFull()) {
-        //bullets.remove(bullets.getFirst(true), true);
-        bullets.getFirst(true).destroy();
+    fire() {
+        if (this.bulletsPre.isFull()) {
+            //bullets.remove(bullets.getFirst(true), true);
+            this.bulletsPre.getFirst(true).destroy();
+        }
+        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, 'bullet').setScale(0.1, 0.05);
+        //bomb.setOrigin(0,1);
+        bomb.body.setAllowGravity(false);
+        bomb.body.setCircle(120, -10, 80);
+        bomb.angle = 90;
     }
-    var bomb = bullets.create(player.x, player.y, 'bullet').setScale(0.1);
-    bomb.body.setAllowGravity(false);
-    bomb.body.setCircle(120, -10, 80);
-    bomb.angle = 90;
 }
-
-
-

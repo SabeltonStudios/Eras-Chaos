@@ -1,21 +1,20 @@
-var bullets;
-var player;
-var fireRate = 100;
-var nextFire = 0;
-var gameOver;
-var config = {
 
-    classType: Phaser.GameObjects.Image,
-    defaultKey: 'bullet',
-    defaultFrame: null,
-    active: true,
-    maxSize: 2,
-    bounceX: 1,
-    bounceY: 1,
-    velocityX: 500,
-    velocityY: 0,
-}
 class egiptoScene extends Phaser.Scene {
+    bullets;
+    player;
+    gameOver;
+    config = {
+
+        classType: Phaser.GameObjects.Image,
+        defaultKey: 'bullet',
+        defaultFrame: null,
+        active: true,
+        maxSize: 2,
+        bounceX: 1,
+        bounceY: 1,
+        velocityX: 500,
+        velocityY: 0,
+    }
     constructor() {
         super("EgiptoScene");
     }
@@ -48,7 +47,7 @@ class egiptoScene extends Phaser.Scene {
         laser.kill();
     }
     create() {
-        gameOver = false;
+        this.gameOver = false;
         this.is_paused = false;
         //this.cameras.main.zoom= 1.3;
         this.cameras.main.zoomTo(1.05, 2000);
@@ -79,33 +78,33 @@ class egiptoScene extends Phaser.Scene {
         this.aux[3].body.setSize(gameConfig.scale.width / 3, 0.16 * gameConfig.scale.height, false);
         this.aux[3].body.setOffset(-gameConfig.scale.width / 3 + 65, 0);
 
-        player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 5, 'dude');
-        player.setPosition( gameConfig.scale.width / 6, gameConfig.scale.height / 5);
+        this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 5, 'dude');
+        this.player.setPosition(gameConfig.scale.width / 6, gameConfig.scale.height / 5);
         this.anims.create({
             key: 'walk',
             frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
             frameRate: 10,
             repeat: -1
         });
-        player.anims.play('walk', true);
-        player.setVelocity(0, -300);
-        player.setBounce(1);
-        player.body.setAllowGravity(false);
-        player.setCollideWorldBounds(true)
+        this.player.anims.play('walk', true);
+        this.player.setVelocity(0, -300);
+        this.player.setBounce(1);
+        this.player.body.setAllowGravity(false);
+        this.player.setCollideWorldBounds(true)
 
-        bullets = this.physics.add.group(config);
-        Phaser.Actions.Call(bullets.getChildren(), function (bullet) {
+        this.bullets = this.physics.add.group(this.config);
+        Phaser.Actions.Call(this.bullets.getChildren(), function (bullet) {
             bullet.body.onWorldBounds = true;
         });
-        this.physics.add.collider(bullets, this.columnas);
-        this.physics.add.collider(bullets, bullets);
+        this.physics.add.collider(this.bullets, this.columnas);
+        this.physics.add.collider(this.bullets, this.bullets);
 
-        this.physics.add.collider(bullets, player, hitBomb, null, this);
+        this.physics.add.collider(this.bullets, this.player, hitBomb, null, this);
 
         this.spriteParar = this.add.sprite(gameConfig.scale.width * 2.2 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
-        this.spriteParar.setInteractive().on('pointerdown', () => player.body.moves = false /*cambiar a iddle */)
-            .on('pointerup', () => player.body.moves = true, player.anims.play('walk', true))
-            .on('pointerout', () => player.body.moves = true, player.anims.play('walk', true))
+        this.spriteParar.setInteractive().on('pointerdown', () => this.player.body.moves = false /*cambiar a iddle */)
+            .on('pointerup', () => this.player.body.moves = true, this.player.anims.play('walk', true))
+            .on('pointerout', () => this.player.body.moves = true, this.player.anims.play('walk', true))
             .on('pointerdown', () => this.spriteParar.setTexture('FreezeBOFF'))
             .on('pointerup', () => this.spriteParar.setTexture('FreezeBON'))
             .on('pointerout', () => this.spriteParar.setTexture('FreezeBON'));
@@ -118,22 +117,22 @@ class egiptoScene extends Phaser.Scene {
 
         this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.3 / 16, gameConfig.scale.height / 13, 'PauseBON').setScale(0.07 * gameConfig.scale.width / 800);
         this.spritePausar.setInteractive().on('pointerdown', () => pauseGame(this.spriteParar, this.spriteDisparar, freezeInput, shootInput))
-            .on('pointerdown', () => (is_paused ? player.anims.stop() : player.anims.play('walk', true)))
+            .on('pointerdown', () => (is_paused ? this.player.anims.stop() : this.player.anims.play('walk', true)))
             .on('pointerdown', () => this.spritePausar.setTexture('PauseBOFF'))
             .on('pointerup', () => this.spritePausar.setTexture('PauseBON'))
             .on('pointerout', () => this.spritePausar.setTexture('PauseBON'));
 
         this.input.keyboard.on('keydown-' + 'ESC', () => this.is_paused = !this.is_paused)
             .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, freezeInput, shootInput))
-            .on('keydown-' + 'ESC', () => !this.is_paused ? player.anims.play('walk', true) : player.anims.stop())
+            .on('keydown-' + 'ESC', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
             .on('keydown-' + 'ESC', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
             .on('keydown-' + 'ESC', () => this.spritePausar.setTexture('PauseBOFF'))
             .on('keyup-' + 'ESC', () => this.spritePausar.setTexture('PauseBON'));
 
 
         var freezeInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-        freezeInput.on('down', () => player.body.moves = false /*cambiar a iddle */)
-            .on('up', () => player.body.moves = true, player.anims.play('walk', true))
+        freezeInput.on('down', () => this.player.body.moves = false /*cambiar a iddle */)
+            .on('up', () => this.player.body.moves = true, this.player.anims.play('walk', true))
             .on('down', () => this.spriteParar.setTexture('FreezeBOFF'))
             .on('up', () => this.spriteParar.setTexture('FreezeBON'));
 
@@ -164,15 +163,15 @@ class egiptoScene extends Phaser.Scene {
         t.BotonMenu.destroy();
     }
     update() {
-        if (gameOver) {
+        if (this.gameOver) {
             this.scene.setActive(false);
             this.scene.restart();
         }
     }
     pauseGame(spriteParar, spriteDisparar, f, s) {
-        this.bulls = bullets.getChildren();
+        this.bulls = this.bullets.getChildren();
         if (!this.is_paused) {
-            player.body.moves = true;
+            this.player.body.moves = true;
             var i;
             for (i = 0; i < this.bulls.length; i++) {
                 this.bulls[i].body.moves = true;
@@ -184,7 +183,7 @@ class egiptoScene extends Phaser.Scene {
             //this.is_paused = false;
         } else {
             //this.is_paused = true;
-            player.body.moves = false;
+            this.player.body.moves = false;
             var i;
             for (i = 0; i < this.bulls.length; i++) {
                 this.bulls[i].body.moves = false;
@@ -200,13 +199,13 @@ class egiptoScene extends Phaser.Scene {
 function hitBomb(player, bomb) {
     bomb.destroy();
 
-    gameOver = true;
+    this.gameOver = true;
 }
 function fire() {
-    if (bullets.isFull()) {
-        bullets.remove(bullets.getFirst(true), true);
+    if (this.bullets.isFull()) {
+        this.bullets.remove(this.bullets.getFirst(true), true);
     }
-    var bomb = bullets.create(player.x, player.y, 'bullet').setScale(0.1, 0.05);
+    var bomb = this.bullets.create(this.player.x, this.player.y, 'bullet').setScale(0.1, 0.05);
     //bomb.setOrigin(0,1);
     bomb.body.setAllowGravity(false);
     bomb.body.setCircle(120, -10, 80);
