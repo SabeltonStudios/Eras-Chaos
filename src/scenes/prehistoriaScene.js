@@ -1,6 +1,6 @@
 class prehistoriaScene extends Phaser.Scene {
     bulletsPre;
-    EnemyBulletsPre;
+    bulletsEnemy;
     player;
     enemy;
     gameOver;
@@ -18,7 +18,7 @@ class prehistoriaScene extends Phaser.Scene {
     }
     EnemyConfigPre = {
         classType: Phaser.GameObjects.Image,
-        defaultKey: 'enemyBullet',
+        defaultKey: 'bullet',
         defaultFrame: null,
         active: true,
         maxSize: 5,
@@ -73,7 +73,7 @@ class prehistoriaScene extends Phaser.Scene {
 
         this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'dude');
         this.player.body.immovable = true;
-        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height * 5 / 6, 'dude');
+        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 2, 'dude');
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
         this.anims.create({
@@ -115,29 +115,28 @@ class prehistoriaScene extends Phaser.Scene {
         wallD.body.setSize(gameConfig.scale.height, 20);
         wallD.body.immovable = true;
 
-        this.EnemyBulletsPre = this.physics.add.group(this.EnemyConfigPre);
-        Phaser.Actions.Call(this.EnemyBulletsPre.getChildren(), function (bullet) {
-            //if(bullet.position.x>gameConfig.scale.width){bullet.destroy();}
-        });
         this.bulletsPre = this.physics.add.group(this.configPre);
         Phaser.Actions.Call(this.bulletsPre.getChildren(), function (bullet) {
             //if(bullet.position.x>gameConfig.scale.width){bullet.destroy();}
         });
+        this.bulletsEnemy = this.physics.add.group(this.EnemyConfigPre);
+        Phaser.Actions.Call(this.bulletsEnemy.getChildren(), function (bullet) { });
+
         this.physics.add.collider(wallR, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallL, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallU, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallD, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallR, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallL, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallU, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallD, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
 
-        this.physics.add.collider(wallR, this.EnemyBulletsPre, function (wall, bullet) { bullet.destroy(); });
-        this.physics.add.collider(wallL, this.EnemyBulletsPre, function (wall, bullet) { bullet.destroy(); });
-        this.physics.add.collider(wallU, this.EnemyBulletsPre, function (wall, bullet) { bullet.destroy(); });
-        this.physics.add.collider(wallD, this.EnemyBulletsPre, function (wall, bullet) { bullet.destroy(); });
-
-        this.physics.add.collider(this.player, this.bulletsPre, ()=> this.gameOver = true );
-        this.physics.add.collider(this.player, this.EnemyBulletsPre, ()=> this.gameOver = true);
-        this.physics.add.collider(this.enemy, this.bulletsPre, ()=> this.win = true );
+        this.physics.add.collider(this.player, this.bulletsPre, () => this.gameOver = true);
+        this.physics.add.collider(this.player, this.bulletsEnemy, () => this.gameOver = true);
+        this.physics.add.collider(this.enemy, this.bulletsPre, () => this.win = true);
         this.physics.add.collider(this.bulletsPre, this.bulletsPre);
-        this.physics.add.collider(this.bulletsPre, this.EnemyBulletsPre);
+        this.physics.add.collider(this.bulletsEnemy, this.bulletsEnemy);
+        this.physics.add.collider(this.bulletsPre, this.bulletsEnemy);
 
         this.rock = this.add.ellipse(gameConfig.scale.width / 20, gameConfig.scale.height * 11.5 / 12, 200, 200);
         this.house = this.add.ellipse(gameConfig.scale.width / 20, gameConfig.scale.height / 24, 250, 250);
@@ -150,8 +149,8 @@ class prehistoriaScene extends Phaser.Scene {
         this.house.body.setAllowGravity(false);
         this.house.body.setCircle(125, 0, 0);
 
-        this.physics.add.collider(this.EnemyBulletsPre, this.rock);
-        this.physics.add.collider(this.EnemyBulletsPre, this.house);
+        this.physics.add.collider(this.bulletsEnemy, this.rock);
+        this.physics.add.collider(this.bulletsEnemy, this.house);
         this.physics.add.collider(this.bulletsPre, this.rock);
         this.physics.add.collider(this.bulletsPre, this.house);
 
@@ -172,42 +171,54 @@ class prehistoriaScene extends Phaser.Scene {
 
         this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.3 / 16, gameConfig.scale.height / 13, 'PauseBON').setScale(0.07 * gameConfig.scale.width / 800);
         this.spritePausar.setInteractive().on('pointerdown', () => this.is_paused = !this.is_paused)
-            .on('pointerdown', () => this.pauseGame(this.spriteParar, this.spriteDisparar, freezeInput, shootInput))
+            .on('pointerdown', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
             .on('pointerdown', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
+            .on('pointerdown', () => !this.is_paused ? this.enemy.anims.play('walk', true) : this.enemy.anims.stop())
             .on('pointerdown', () => this.spritePausar.setTexture('PauseBOFF'))
             .on('pointerdown', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
             .on('pointerup', () => this.spritePausar.setTexture('PauseBON'))
             .on('pointerout', () => this.spritePausar.setTexture('PauseBON'));
 
 
-        var freezeInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-        freezeInput.on('down', () => this.player.body.moves = false /*cambiar a iddle */)
+        this.freezeInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        this.freezeInput.on('down', () => this.player.body.moves = false /*cambiar a iddle */)
             .on('up', () => this.player.body.moves = true, this.player.anims.play('walk', true))
             .on('down', () => this.spriteParar.setTexture('FreezeBOFF'))
             .on('up', () => this.spriteParar.setTexture('FreezeBON'));
 
-        var shootInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
-        shootInput.on('down', () => this.fire())
+        this.shootInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+        this.shootInput.on('down', () => this.fire())
             .on('down', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('up', () => this.spriteDisparar.setTexture('ShootBON'));
 
         this.input.keyboard.on('keydown-' + 'ESC', () => this.is_paused = !this.is_paused)
-            .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, freezeInput, shootInput))
+            .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
             .on('keydown-' + 'ESC', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
+            .on('keydown-' + 'ESC', () => !this.is_paused ? this.enemy.anims.play('walk', true) : this.enemy.anims.stop())
             .on('keydown-' + 'ESC', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
             .on('keydown-' + 'ESC', () => this.spritePausar.setTexture('PauseBOFF'))
             .on('keyup-' + 'ESC', () => this.spritePausar.setTexture('PauseBON'));
 
-        setInterval(this.fireEnemy, 1000);
+        this.inter = setInterval(() => {
+            if (!this.is_paused) {
+                if (this.bulletsEnemy.isFull()) {
+                    this.bulletsEnemy.getFirst(true).destroy();
+                }
+                this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'bullet').setScale(0.1, 0.05);
+                this.bomb.body.setAllowGravity(false);
+                this.bomb.body.setCircle(120, -10, 80);
+                this.bomb.angle = 270;
+            }
+        }, 1000);
     }
     mostrarMenu(t) {
         t.Menu = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'PauseMenu').setScale(0.5);
         t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7);
         t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonMenuPral');
-        t.BotonMenu.setInteractive().on('pointerdown', () => t.scene.start("MenuPrincipalScene"));
+        t.BotonMenu.setInteractive().on('pointerdown', () => {this.shootInput.destroy();clearInterval(this.inter);t.scene.start("MenuPrincipalScene")});
 
         t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda');
-        t.BotonTienda.setInteractive().on('pointerdown', () => t.scene.start("TiendaScene"));
+        t.BotonTienda.setInteractive().on('pointerdown', () => {this.shootInput.destroy();clearInterval(this.inter);t.scene.start("TiendaScene")});
         if (!espanol) {
             t.PauseTitle.setTexture('PauseTitlei');
             t.BotonMenu.setTexture('botonMenuPrali');
@@ -222,17 +233,21 @@ class prehistoriaScene extends Phaser.Scene {
     }
     update() {
         if (this.gameOver) {
+            clearInterval(this.inter);
+            this.shootInput.destroy();
+            this.scene.sleep();
             this.scene.setActive(false);
             this.scene.restart();
         }
         if (this.win) {
-            this.scene.setActive(false);
+            clearInterval(this.inter);
+            this.scene.stop();
             this.scene.start("EgiptoScene");
         }
     }
     pauseGame(spriteParar, spriteDisparar, f, s) {
         this.bulls = this.bulletsPre.getChildren();
-        this.ebulls = this.EnemyBulletsPre.getChildren();
+        this.ebulls = this.bulletsEnemy.getChildren();
         if (!this.is_paused) {
             this.player.body.moves = true;
             this.enemy.body.moves = true;
@@ -255,7 +270,7 @@ class prehistoriaScene extends Phaser.Scene {
                 this.bulls[i].body.moves = false;
             }
             for (let i = 0; i < this.ebulls.length; i++) {
-                this.ebulls[i].body.moves = true;
+                this.ebulls[i].body.moves = false;
             }
             f.enabled = false;
             s.enabled = false;
@@ -263,16 +278,6 @@ class prehistoriaScene extends Phaser.Scene {
             spriteDisparar.disableInteractive();
         }
 
-    }
-    fireEnemy() {
-        if (this.EnemyBulletsPre.isFull()) {
-            //bullets.remove(bullets.getFirst(true), true);
-            this.EnemyBulletsPre.getFirst(true).destroy();
-        }
-        var EnemyBomb = this.EnemyBulletsPre.create(this.enemy.x - 10, this.enemy.y, 'bullet').setScale(0.1, 0.05);
-        EnemyBomb.body.setAllowGravity(false);
-        EnemyBomb.body.setCircle(120, -10, 80);
-        EnemyBomb.angle = 270;
     }
     fire() {
         if (this.bulletsPre.isFull()) {

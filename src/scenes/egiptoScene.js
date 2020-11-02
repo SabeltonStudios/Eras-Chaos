@@ -110,7 +110,7 @@ class egiptoScene extends Phaser.Scene {
             .on('pointerout', () => this.spriteParar.setTexture('FreezeBON'));
 
         this.spriteDisparar = this.add.sprite(gameConfig.scale.width / 16, gameConfig.scale.height * 11 / 12, 'ShootBON').setScale(0.1 * gameConfig.scale.width / 800);
-        this.spriteDisparar.setInteractive().on('pointerdown', () => fire() /*animar disparo */)
+        this.spriteDisparar.setInteractive().on('pointerdown', () => this.fire() /*animar disparo */)
             .on('pointerdown', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('pointerup', () => this.spriteDisparar.setTexture('ShootBON'))
             .on('pointerout', () => this.spriteDisparar.setTexture('ShootBON'));
@@ -137,7 +137,7 @@ class egiptoScene extends Phaser.Scene {
             .on('up', () => this.spriteParar.setTexture('FreezeBON'));
 
         var shootInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
-        shootInput.on('down', () => fire())
+        shootInput.on('down', () => this.fire())
             .on('down', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('up', () => this.spriteDisparar.setTexture('ShootBON'));
 
@@ -195,26 +195,27 @@ class egiptoScene extends Phaser.Scene {
         }
 
     }
+    fire() {
+        if (this.bullets.isFull()) {
+            this.bullets.remove(this.bullets.getFirst(true), true);
+        }
+        var bomb = this.bullets.create(this.player.x, this.player.y, 'bullet').setScale(0.1, 0.05);
+        //bomb.setOrigin(0,1);
+        bomb.body.setAllowGravity(false);
+        bomb.body.setCircle(120, -10, 80);
+        bomb.angle = 90;
+        /*bomb.body.setBounce(1);
+        bomb.body.setVelocity(500, 0);
+        bomb.body.setCollideWorldBounds(false);
+        bomb.body.collideWorldBounds = true;
+        bomb.body.onWorldBounds(() => console.log('Bye'));*/
+    }
 }
 function hitBomb(player, bomb) {
     bomb.destroy();
 
     this.gameOver = true;
 }
-function fire() {
-    if (this.bullets.isFull()) {
-        this.bullets.remove(this.bullets.getFirst(true), true);
-    }
-    var bomb = this.bullets.create(this.player.x, this.player.y, 'bullet').setScale(0.1, 0.05);
-    //bomb.setOrigin(0,1);
-    bomb.body.setAllowGravity(false);
-    bomb.body.setCircle(120, -10, 80);
-    bomb.angle = 90;
-    /*bomb.body.setBounce(1);
-    bomb.body.setVelocity(500, 0);
-    bomb.body.setCollideWorldBounds(false);
-    bomb.body.collideWorldBounds = true;
-    bomb.body.onWorldBounds(() => console.log('Bye'));*/
-}
+
 
 
