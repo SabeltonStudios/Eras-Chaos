@@ -68,10 +68,7 @@ class tiendaMapasScene extends Phaser.Scene{
         //Assets de tienda
         this.load.image('flechaDerecha', 'assets/Interfaz/Tienda/flechaDerecha.png');
         this.load.image('flechaIzquierda', 'assets/Interfaz/Tienda/flechaIzquierda.png');
-        this.load.image('botonDesbloquearNo', 'assets/Interfaz/Tienda/botonDesbloquearNo.png');
-        this.load.image('botonDesbloquearSi', 'assets/Interfaz/Tienda/botonDesbloquearSi.png');
         
-
         //Assets español
         this.load.image('tituloMapas', 'assets/Interfaz/Tienda/Mapas/tituloMapas.png');
         
@@ -80,12 +77,10 @@ class tiendaMapasScene extends Phaser.Scene{
         this.load.image('egiptoDesbloqueado', 'assets/Interfaz/Tienda/Mapas/egiptoDesbloqueado.png');
         this.load.image('edadMediaBloqueado', 'assets/Interfaz/Tienda/Mapas/edadMediaBloqueado.png');
         this.load.image('edadMediaDesbloqueado', 'assets/Interfaz/Tienda/Mapas/edadMediaDesbloqueado.png');
-        this.load.image('mensajeDesbloquear', 'assets/Interfaz/Tienda/mensajeDesbloquear.png');
-        
 
         //Assets ingles
         this.load.image('tituloMapasi', 'assets/Interfaz/Tienda/Mapas/tituloMapasi.png');
-        this.load.image('mensajeDesbloqueari', 'assets/Interfaz/Tienda/mensajeDesbloqueari.png');
+
         this.load.image('prehistoriaDesbloqueadoi', 'assets/Interfaz/Tienda/Mapas/prehistoriaDesbloqueado.png');
         this.load.image('egiptoBloqueadoi', 'assets/Interfaz/Tienda/Mapas/egiptoBloqueadoi.png');
         this.load.image('egiptoDesbloqueadoi', 'assets/Interfaz/Tienda/Mapas/egiptoDesbloqueadoi.png');

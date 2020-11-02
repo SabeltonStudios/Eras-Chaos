@@ -13,7 +13,10 @@ class tiendaScene extends Phaser.Scene{
         this.load.image('botonArmas', 'assets/Interfaz/Tienda/botonArmas.png');
         this.load.image('botonPaquetes', 'assets/Interfaz/Tienda/botonPaquetes.png');
         this.load.image('botonRecargar', 'assets/Interfaz/Tienda/botonRecargar.png');
-
+        this.load.image('mensajeDesbloquear', 'assets/Interfaz/Tienda/mensajeDesbloquear.png');
+        
+        this.load.image('botonDesbloquearNo', 'assets/Interfaz/Tienda/botonDesbloquearNo.png');
+        this.load.image('botonDesbloquearSi', 'assets/Interfaz/Tienda/botonDesbloquearSi.png');
         this.load.image('botonSalir', 'assets/Interfaz/Tienda/botonSalir.png');
         
         this.load.image('tituloTiendai','assets/Interfaz/Tienda/tituloTiendai.png');
@@ -22,6 +25,8 @@ class tiendaScene extends Phaser.Scene{
         this.load.image('botonArmasi', 'assets/Interfaz/Tienda/botonArmasi.png');
         this.load.image('botonPaquetesi', 'assets/Interfaz/Tienda/botonPaquetesi.png');
         this.load.image('botonRecargari', 'assets/Interfaz/Tienda/botonRecargari.png');
+        this.load.image('mensajeDesbloqueari', 'assets/Interfaz/Tienda/mensajeDesbloqueari.png');
+        
     }
 
     create(){
