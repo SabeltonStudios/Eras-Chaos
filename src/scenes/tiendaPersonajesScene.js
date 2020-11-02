@@ -84,19 +84,19 @@ class tiendaPersonajesScene extends Phaser.Scene{
 
         //Asignamos los botones a cinco personajes
         personajesButton[0] = this.add.sprite(gameConfig.scale.width / 6,gameConfig.scale.height*1.5/3,personajes[0].sprite);
-        personajesButton[0].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[0],dinero,0));
+        personajesButton[0].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[0+personajesPosicion],dinero,0));
 
         personajesButton[1] = this.add.sprite((gameConfig.scale.width / 6)*2,gameConfig.scale.height*1.5/3,personajes[1].sprite);
-        personajesButton[1].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[1],dinero,1));
+        personajesButton[1].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[1+personajesPosicion],dinero,1));
 
         personajesButton[2] = this.add.sprite((gameConfig.scale.width / 6)*3,gameConfig.scale.height*1.5/3,personajes[2].sprite);
-        personajesButton[2].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[2],dinero,2));
+        personajesButton[2].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[2+personajesPosicion],dinero,2));
 
         personajesButton[3] = this.add.sprite((gameConfig.scale.width / 6)*4,gameConfig.scale.height*1.5/3,personajes[3].sprite);
-        personajesButton[3].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[3],dinero,3));
+        personajesButton[3].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[3+personajesPosicion],dinero,3));
 
         personajesButton[4] = this.add.sprite((gameConfig.scale.width / 6)*5,gameConfig.scale.height*1.5/3,personajes[4].sprite);
-        personajesButton[4].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[4],dinero,4));
+        personajesButton[4].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[4+personajesPosicion],dinero,4));
 
         //Flechas derecha e izquierda
         this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 25,gameConfig.scale.height*1.5/3,'flechaIzquierda').setScale(0.4);
