@@ -148,7 +148,13 @@ class tiendaMapasScene extends Phaser.Scene{
 
     //Show a message to unlock a map
     desbloquear(mapa,dinero,pos){
+        var i;
+        for (i = 0; i < mapasButton.length; i++) {
+            mapasButton[i].disableInteractive();
+        }
+        
         if(mapa.bloqueado){
+            mapasButton[pos].setTint(0xDEDE7C);
             if(espanol){
                 this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloquear');
             }else{
@@ -157,7 +163,7 @@ class tiendaMapasScene extends Phaser.Scene{
             
 
             this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width*1.2 / 2,(gameConfig.scale.height/3)*2.6,'botonDesbloquearNo');
-            this.spriteDesbloquearNo.setInteractive().on('pointerdown',()=> this.cerrarMensajeDesbloquear());
+            this.spriteDesbloquearNo.setInteractive().on('pointerdown',()=> this.cerrarMensajeDesbloquear(pos));
 
             this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width*0.8 / 2,(gameConfig.scale.height/3)*2.6,'botonDesbloquearSi');
             this.spriteDesbloquearSi.setInteractive().on('pointerdown',()=> this.comprarMapa(mapa,dinero,pos));
@@ -167,7 +173,7 @@ class tiendaMapasScene extends Phaser.Scene{
 
     comprarMapa(mapa,dinero,pos){
         //If i have enough money and the map is not blocked
-        this.cerrarMensajeDesbloquear();
+        this.cerrarMensajeDesbloquear(pos);
         if(coins >= mapa.coins){
             //Change sprite, set new texture and update coins
             if(espanol){
@@ -187,7 +193,12 @@ class tiendaMapasScene extends Phaser.Scene{
     }
 
     //Destroy the message
-    cerrarMensajeDesbloquear(){
+    cerrarMensajeDesbloquear(pos){
+        var i;
+        for (i = 0; i < mapasButton.length; i++) {
+            mapasButton[i].setInteractive();
+        }
+        mapasButton[pos].clearTint();
         this.mensajeDesbloquear.destroy();
         this.spriteDesbloquearNo.destroy();
         this.spriteDesbloquearSi.destroy();
@@ -216,4 +227,5 @@ class tiendaMapasScene extends Phaser.Scene{
         }
         
     }
+
 }

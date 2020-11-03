@@ -16,6 +16,7 @@ let monedas=[
     }
 ];
 
+let monedasButton = [];
 class tiendaRecargarScene extends Phaser.Scene{
     constructor(){
         super("TiendaRecargarScene");
@@ -43,14 +44,14 @@ class tiendaRecargarScene extends Phaser.Scene{
             this.spriteTituloRecargar = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloRecargari');
         }
 
-        this.sprite100monedas = this.add.sprite(gameConfig.scale.width / 4,gameConfig.scale.height*1.5/3,monedas[0].sprite);
-        this.sprite100monedas.setInteractive().on('pointerdown', () =>this.desbloquear(monedas[0],dinero,0));
+        monedasButton[0] = this.add.sprite(gameConfig.scale.width / 4,gameConfig.scale.height*1.5/3,monedas[0].sprite);
+        monedasButton[0].setInteractive().on('pointerdown', () =>this.desbloquear(monedas[0],dinero,0));
 
-        this.sprite500monedas = this.add.sprite(gameConfig.scale.width*2 / 4,gameConfig.scale.height*1.5/3,monedas[1].sprite);
-        this.sprite500monedas.setInteractive().on('pointerdown', () =>this.desbloquear(monedas[1],dinero,1));
+        monedasButton[1] = this.add.sprite(gameConfig.scale.width*2 / 4,gameConfig.scale.height*1.5/3,monedas[1].sprite);
+        monedasButton[1].setInteractive().on('pointerdown', () =>this.desbloquear(monedas[1],dinero,1));
 
-        this.sprite1000monedas = this.add.sprite(gameConfig.scale.width*3 / 4,gameConfig.scale.height*1.5/3,monedas[2].sprite);
-        this.sprite1000monedas.setInteractive().on('pointerdown', () =>this.desbloquear(monedas[2],dinero,2));
+        monedasButton[2] = this.add.sprite(gameConfig.scale.width*3 / 4,gameConfig.scale.height*1.5/3,monedas[2].sprite);
+        monedasButton[2].setInteractive().on('pointerdown', () =>this.desbloquear(monedas[2],dinero,2));
 
         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15,(gameConfig.scale.height/8)*7.5,'botonSalir').setScale(0.1);
         this.spriteSalir.setInteractive().on('pointerdown', () => this.scene.start("TiendaScene"));
@@ -58,8 +59,13 @@ class tiendaRecargarScene extends Phaser.Scene{
 
     //Show a message to unlock a map
     desbloquear(moneda,dinero,pos){
+        var i;
+        for (i = 0; i < monedasButton.length; i++) {
+            monedasButton[i].disableInteractive();
+        }
 
         if(espanol){
+            monedasButton[pos].setTint(0xDEDE7C);
             this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloquear');
         }else{
             this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloqueari');
@@ -67,7 +73,7 @@ class tiendaRecargarScene extends Phaser.Scene{
         
 
         this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width*1.2 / 2,(gameConfig.scale.height/3)*2.6,'botonDesbloquearNo');
-        this.spriteDesbloquearNo.setInteractive().on('pointerdown',()=> this.cerrarMensajeDesbloquear());
+        this.spriteDesbloquearNo.setInteractive().on('pointerdown',()=> this.cerrarMensajeDesbloquear(pos));
 
         this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width*0.8 / 2,(gameConfig.scale.height/3)*2.6,'botonDesbloquearSi');
         this.spriteDesbloquearSi.setInteractive().on('pointerdown',()=> this.comprarMonedas(moneda,dinero,pos));
@@ -75,7 +81,12 @@ class tiendaRecargarScene extends Phaser.Scene{
     }
 
     //Destroy the message
-    cerrarMensajeDesbloquear(){
+    cerrarMensajeDesbloquear(pos){
+        var i;
+        for (i = 0; i < monedasButton.length; i++) {
+            monedasButton[i].setInteractive();
+        }
+        monedasButton[pos].clearTint();
         this.mensajeDesbloquear.destroy();
         this.spriteDesbloquearNo.destroy();
         this.spriteDesbloquearSi.destroy();
@@ -84,6 +95,6 @@ class tiendaRecargarScene extends Phaser.Scene{
     comprarMonedas(moneda,dinero,pos){
         coins += moneda.monedas;
         dinero.setText(coins);
-        this.cerrarMensajeDesbloquear();
+        this.cerrarMensajeDesbloquear(pos);
     }
 }
