@@ -31,7 +31,7 @@ class prehistoriaScene extends Phaser.Scene {
     }
     mConfig = {
         mute: false,
-        volume: 0.05,
+        volume: 0.2,
         rate: 1,
         detune: 0,
         seek: 0,
@@ -73,19 +73,17 @@ class prehistoriaScene extends Phaser.Scene {
         this.load.image('preSkull', 'assets/Objetos/1.Prehistoria/object_skull.png');
         this.load.image('preStone', 'assets/Objetos/1.Prehistoria/object_stone.png');
 
-        this.load.audio('music', ['assets/Música/PrehistoriaFinal.mp3']);//, 'assets/Música/PrehistoriaFinal.ogg']);
+        this.load.audio('preMusic', ['assets/Música/PrehistoriaFinal.mp3']);//, 'assets/Música/PrehistoriaFinal.ogg']);
 
         this.load.spritesheet('dude', 'assets/Interfaz/dude.png', { frameWidth: 32, frameHeight: 48 });
         this.load.image('bullet', 'assets/Interfaz/Bullet.png');
 
     }
-    resetLaser(laser) {
-        // Destroy the laser
-        laser.kill();
-    }
     create() {
         if (this.music==null) {
-            this.music = this.sound.add('music');
+            this.music = this.sound.add('preMusic');  
+        }
+        if (!this.gameOver) {
             this.music.play(this.mConfig);
         }
         this.gameOver = false;
@@ -264,14 +262,14 @@ class prehistoriaScene extends Phaser.Scene {
         }, 750);
     }
     mostrarMenu(t) {
-        this.music.stop();
+        this.music.setVolume(0.05);
         t.Menu = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'PauseMenu').setScale(0.5);
         t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7);
         t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonMenuPral');
-        t.BotonMenu.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.destroy(); t.scene.start("MenuPrincipalScene") });
+        t.BotonMenu.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.stop(); t.scene.start("MenuPrincipalScene") });
 
         t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda');
-        t.BotonTienda.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.destroy(); t.scene.start("TiendaScene") });
+        t.BotonTienda.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.stop(); t.scene.start("TiendaScene") });
         if (!espanol) {
             t.PauseTitle.setTexture('PauseTitlei');
             t.BotonMenu.setTexture('botonMenuPrali');
@@ -279,7 +277,7 @@ class prehistoriaScene extends Phaser.Scene {
         }
     }
     ocultarMenu(t) {
-        this.music.resume();
+        this.music.setVolume(0.2);
         t.Menu.destroy();
         t.PauseTitle.destroy();
         t.BotonTienda.destroy();
@@ -296,7 +294,7 @@ class prehistoriaScene extends Phaser.Scene {
         }
         if (this.win) {
             clearInterval(this.inter);
-            this.music.destroy();
+            this.music.stop();
             this.scene.stop();
             this.scene.start("EgiptoScene");
         }

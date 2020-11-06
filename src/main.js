@@ -33,6 +33,7 @@
 window.onload = function () {
 
     var game = new Phaser.Game(gameConfig);
+    game.sound.pauseOnBlur = false;
     window.focus();
 }
 
