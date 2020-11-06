@@ -1,10 +1,12 @@
 class prehistoriaScene extends Phaser.Scene {
     bulletsPre;
     bulletsEnemy;
+    obstacles;
     player;
     enemy;
     gameOver;
     win;
+    music;
     configPre = {
         classType: Phaser.GameObjects.Image,
         defaultKey: 'bullet',
@@ -26,6 +28,22 @@ class prehistoriaScene extends Phaser.Scene {
         bounceY: 1,
         velocityX: -500,
         velocityY: 0,
+    }
+    mConfig = {
+        mute: false,
+        volume: 0.05,
+        rate: 1,
+        detune: 0,
+        seek: 0,
+        loop: true,
+        delay: 0
+    }
+    ObstaclesConfig = {
+        classType: Phaser.GameObjects.Image,
+        defaultKey: 'obstacle',
+        defaultFrame: null,
+        active: true,
+        immovable: true,
     }
     constructor() {
         super("PrehistoriaScene");
@@ -51,6 +69,12 @@ class prehistoriaScene extends Phaser.Scene {
         this.load.image('botonTienda', 'assets/Interfaz/Menu/botonTienda.png');
         this.load.image('botonTiendai', 'assets/Interfaz/Menu/botonTiendai.png');
 
+        this.load.image('preLog', 'assets/Objetos/1.Prehistoria/object_log.png');
+        this.load.image('preSkull', 'assets/Objetos/1.Prehistoria/object_skull.png');
+        this.load.image('preStone', 'assets/Objetos/1.Prehistoria/object_stone.png');
+
+        this.load.audio('music', ['assets/Música/PrehistoriaFinal.mp3']);//, 'assets/Música/PrehistoriaFinal.ogg']);
+
         this.load.spritesheet('dude', 'assets/Interfaz/dude.png', { frameWidth: 32, frameHeight: 48 });
         this.load.image('bullet', 'assets/Interfaz/Bullet.png');
 
@@ -60,6 +84,10 @@ class prehistoriaScene extends Phaser.Scene {
         laser.kill();
     }
     create() {
+        if (this.music==null) {
+            this.music = this.sound.add('music');
+            this.music.play(this.mConfig);
+        }
         this.gameOver = false;
         this.win = false;
         this.is_paused = false;
@@ -67,7 +95,7 @@ class prehistoriaScene extends Phaser.Scene {
         this.cameras.main.zoomTo(1.05, 1000);
         this.physics.world.bounds.setTo(92.5, 69.5, 615, 461);
         this.physics.world.setBoundsCollision(false, false, true, true);
-
+        
         this.Mapa = this.add.image(0, 0, 'mapaPre').setOrigin(0)
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
 
@@ -122,6 +150,27 @@ class prehistoriaScene extends Phaser.Scene {
         this.bulletsEnemy = this.physics.add.group(this.EnemyConfigPre);
         Phaser.Actions.Call(this.bulletsEnemy.getChildren(), function (bullet) { });
 
+        this.obstacles = this.physics.add.group(this.ObstaclesConfig);
+        this.obstacles.setOrigin(0.5, 0.5);
+        this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'preStone').setScale(0.1).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, 'preLog').setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, 'preSkull').setScale(0.2).body.setCircle(120, 40, 20).setAllowGravity(false);
+
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'preStone').setScale(0.2).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, 'preSkull').setScale(0.2).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.62, 'preStone').setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'preLog').setScale(0.2).body.setCircle(120, 40, 20).setAllowGravity(false);
+
+        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, 'preSkull').setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.31, gameConfig.scale.height * 0.7, 'preLog').setScale(0.1).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.32, 'preSkull').setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.7, 'preLog').setScale(0.20).body.setCircle(120, 40, 20).setAllowGravity(false);
+
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'preStone').setScale(0.25).body.setCircle(125, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, 'preLog').setScale(0.25).body.setCircle(125, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'preSkull').setScale(0.30).body.setCircle(130, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'preStone').setScale(0.25).body.setCircle(125, 40, 20).setAllowGravity(false);
+
         this.physics.add.collider(wallR, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallL, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallU, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
@@ -153,6 +202,9 @@ class prehistoriaScene extends Phaser.Scene {
         this.physics.add.collider(this.bulletsEnemy, this.house);
         this.physics.add.collider(this.bulletsPre, this.rock);
         this.physics.add.collider(this.bulletsPre, this.house);
+
+        this.physics.add.collider(this.bulletsEnemy, this.obstacles);
+        this.physics.add.collider(this.bulletsPre, this.obstacles);
 
 
         this.spriteParar = this.add.sprite(gameConfig.scale.width * 2.2 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
@@ -209,16 +261,17 @@ class prehistoriaScene extends Phaser.Scene {
                 this.bomb.body.setCircle(120, -10, 80);
                 this.bomb.angle = 270;
             }
-        }, 1000);
+        }, 750);
     }
     mostrarMenu(t) {
+        this.music.stop();
         t.Menu = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'PauseMenu').setScale(0.5);
         t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7);
         t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonMenuPral');
-        t.BotonMenu.setInteractive().on('pointerdown', () => {this.shootInput.destroy();clearInterval(this.inter);t.scene.start("MenuPrincipalScene")});
+        t.BotonMenu.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.destroy(); t.scene.start("MenuPrincipalScene") });
 
         t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda');
-        t.BotonTienda.setInteractive().on('pointerdown', () => {this.shootInput.destroy();clearInterval(this.inter);t.scene.start("TiendaScene")});
+        t.BotonTienda.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.destroy(); t.scene.start("TiendaScene") });
         if (!espanol) {
             t.PauseTitle.setTexture('PauseTitlei');
             t.BotonMenu.setTexture('botonMenuPrali');
@@ -226,6 +279,7 @@ class prehistoriaScene extends Phaser.Scene {
         }
     }
     ocultarMenu(t) {
+        this.music.resume();
         t.Menu.destroy();
         t.PauseTitle.destroy();
         t.BotonTienda.destroy();
@@ -235,12 +289,14 @@ class prehistoriaScene extends Phaser.Scene {
         if (this.gameOver) {
             clearInterval(this.inter);
             this.shootInput.destroy();
+            //this.music.destroy();
             this.scene.sleep();
             this.scene.setActive(false);
             this.scene.restart();
         }
         if (this.win) {
             clearInterval(this.inter);
+            this.music.destroy();
             this.scene.stop();
             this.scene.start("EgiptoScene");
         }
