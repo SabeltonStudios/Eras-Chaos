@@ -2,7 +2,7 @@
 let mapas=[
     {
         "bloqueado":false,
-        "coins" : 100,
+        "coins" : 0,
         "sprite": 'prehistoriaDesbloqueado',
         "spriteDesbloqueado": 'prehistoriaDesbloqueado',
         "spriteBloqueado": 'prehistoriaDesbloqueado',
@@ -11,7 +11,7 @@ let mapas=[
     },
     {
         "bloqueado":true,
-        "coins" : 200,
+        "coins" : 350,
         "sprite": 'egiptoBloqueado',
         "spriteDesbloqueado": 'egiptoDesbloqueado',
         "spriteBloqueado": 'egiptoBloqueado',
@@ -20,7 +20,7 @@ let mapas=[
     },
     {
         "bloqueado":true,
-        "coins" : 300,
+        "coins" : 450,
         "sprite": 'edadMediaBloqueado',
         "spriteDesbloqueado": 'edadMediaDesbloqueado',
         "spriteBloqueado": 'edadMediaBloqueado',
@@ -29,7 +29,7 @@ let mapas=[
     },
     {
         "bloqueado":true,
-        "coins" : 400,
+        "coins" : 550,
         "sprite": 'egiptoBloqueado',
         "spriteDesbloqueado": 'egiptoDesbloqueado',
         "spriteBloqueado": 'egiptoBloqueado',
@@ -38,7 +38,7 @@ let mapas=[
     },
     {
         "bloqueado":true,
-        "coins" : 500,
+        "coins" : 650,
         "sprite": 'egiptoBloqueado',
         "spriteDesbloqueado": 'egiptoDesbloqueado',
         "spriteBloqueado": 'egiptoBloqueado',
@@ -47,7 +47,7 @@ let mapas=[
     },
     {
         "bloqueado":true,
-        "coins" : 600,
+        "coins" : 650,
         "spriteDesbloqueado": 'egiptoDesbloqueado',
         "spriteBloqueado": 'egiptoBloqueado',
         "spriteDesbloqueadoi": 'egiptoDesbloqueadoi',
@@ -148,6 +148,8 @@ class tiendaMapasScene extends Phaser.Scene{
 
     //Show a message to unlock a map
     desbloquear(mapa,dinero,pos){
+        this.spriteDerecha.disableInteractive();
+        this.spriteIzquierda.disableInteractive();
         var i;
         for (i = 0; i < mapasButton.length; i++) {
             mapasButton[i].disableInteractive();
@@ -172,8 +174,6 @@ class tiendaMapasScene extends Phaser.Scene{
     }
 
     comprarMapa(mapa,dinero,pos){
-        //If i have enough money and the map is not blocked
-        this.cerrarMensajeDesbloquear(pos);
         if(coins >= mapa.coins){
             //Change sprite, set new texture and update coins
             if(espanol){
@@ -190,6 +190,8 @@ class tiendaMapasScene extends Phaser.Scene{
         }else{
             var nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'No tienes dinero suficiente', { fill: '#0f0' })
         }
+        //If i have enough money and the map is not blocked
+        this.cerrarMensajeDesbloquear(pos);
     }
 
     //Destroy the message
@@ -199,6 +201,8 @@ class tiendaMapasScene extends Phaser.Scene{
             mapasButton[i].setInteractive();
         }
         mapasButton[pos].clearTint();
+        this.spriteDerecha.setInteractive();
+        this.spriteIzquierda.setInteractive();
         this.mensajeDesbloquear.destroy();
         this.spriteDesbloquearNo.destroy();
         this.spriteDesbloquearSi.destroy();
@@ -217,7 +221,6 @@ class tiendaMapasScene extends Phaser.Scene{
 
     //Mueve los mapas para que se vean los de la derecha
     trasladarDerecha(){
-        console.log("trasladando derecha");
         if((mapasPosicion+5)<mapas.length){
             mapasPosicion++;
             var i;

@@ -2,45 +2,59 @@
 let personajes=[
     {
         "bloqueado":false,
-        "coins" : 100,
-        "sprite": 'personajePrehistoriaDes',
-        "spriteDesbloqueado": 'personajePrehistoriaDes',
-        "spriteBloqueado": 'personajePrehistoriaDes'
+        "coins" : 0,
+        "sprite": 'Unvaar',
+        "spriteDesbloqueado": 'Unvaar',
+        "spriteBloqueado": 'Unvaar'
+    },
+    {
+        "bloqueado":true,
+        "coins" : 250,
+        "sprite": 'NahibB',
+        "spriteDesbloqueado": 'Nahib',
+        "spriteBloqueado": 'NahibB'
+    },
+    {
+        "bloqueado":true,
+        "coins" : 300,
+        "sprite": 'LamberB',
+        "spriteDesbloqueado": 'Lamber',
+        "spriteBloqueado": 'LamberB'
+    },
+    {
+        "bloqueado":true,
+        "coins" : 400,
+        "sprite": 'ThomasB',
+        "spriteDesbloqueado": 'Thomas',
+        "spriteBloqueado": 'ThomasB'
     },
     {
         "bloqueado":true,
         "coins" : 500,
-        "sprite": 'personajeEgiptoBloq',
-        "spriteDesbloqueado": 'personajeEgiptoDes',
-        "spriteBloqueado": 'personajeEgiptoBloq'
+        "sprite": 'ThomasB',
+        "spriteDesbloqueado": 'Thomas',
+        "spriteBloqueado": 'ThomasB'
     },
     {
         "bloqueado":true,
-        "coins" : 500,
-        "sprite": 'personajeEgiptoBloq',
-        "spriteDesbloqueado": 'personajeEgiptoDes',
-        "spriteBloqueado": 'personajeEgiptoBloq'
+        "coins" : 650,
+        "sprite": 'GaardB',
+        "spriteDesbloqueado": 'Gaard',
+        "spriteBloqueado": 'GaardB'
     },
     {
         "bloqueado":true,
-        "coins" : 500,
-        "sprite": 'personajeEgiptoBloq',
-        "spriteDesbloqueado": 'personajeEgiptoDes',
-        "spriteBloqueado": 'personajeEgiptoBloq'
+        "coins" : 650,
+        "sprite": 'CleopatraB',
+        "spriteDesbloqueado": 'Cleopatra',
+        "spriteBloqueado": 'CleopatraB'
     },
     {
         "bloqueado":true,
-        "coins" : 500,
-        "sprite": 'personajeEgiptoBloq',
-        "spriteDesbloqueado": 'personajeEgiptoDes',
-        "spriteBloqueado": 'personajeEgiptoBloq'
-    },
-    {
-        "bloqueado":true,
-        "coins" : 500,
-        "sprite": 'personajeEgiptoBloq',
-        "spriteDesbloqueado": 'personajeEgiptoDes',
-        "spriteBloqueado": 'personajeEgiptoBloq'
+        "coins" : 650,
+        "sprite": 'SirRodrickB',
+        "spriteDesbloqueado": 'SirRodrick',
+        "spriteBloqueado": 'SirRodrickB'
     }
 ];
 
@@ -58,11 +72,23 @@ class tiendaPersonajesScene extends Phaser.Scene{
         this.load.image('botonDesbloquearNo', 'assets/Interfaz/Tienda/botonDesbloquearNo.png');
         this.load.image('botonDesbloquearSi', 'assets/Interfaz/Tienda/botonDesbloquearSi.png');
 
+        //Assets personajes
+        this.load.image('Unvaar', 'assets/Interfaz/Tienda/Personajes/Unvaar.png');
+        this.load.image('Gaard', 'assets/Interfaz/Tienda/Personajes/Gaard.png');
+        this.load.image('GaardB', 'assets/Interfaz/Tienda/Personajes/GaardB.png');
+        this.load.image('Nahib', 'assets/Interfaz/Tienda/Personajes/Nahib.png');
+        this.load.image('NahibB', 'assets/Interfaz/Tienda/Personajes/NahibB.png');
+        this.load.image('Cleopatra', 'assets/Interfaz/Tienda/Personajes/Cleopatra.png');
+        this.load.image('CleopatraB', 'assets/Interfaz/Tienda/Personajes/CleopatraB.png');
+        this.load.image('Lamber', 'assets/Interfaz/Tienda/Personajes/Lamber.png');
+        this.load.image('LamberB', 'assets/Interfaz/Tienda/Personajes/LamberB.png');
+        this.load.image('SirRodrick', 'assets/Interfaz/Tienda/Personajes/SirRodrick.png');
+        this.load.image('SirRodrickB', 'assets/Interfaz/Tienda/Personajes/SirRodrickB.png');
+        this.load.image('Thomas', 'assets/Interfaz/Tienda/Personajes/Thomas.png');
+        this.load.image('ThomasB', 'assets/Interfaz/Tienda/Personajes/ThomasB.png');
+
         //Assets español
         this.load.image('tituloPersonajes', 'assets/Interfaz/Tienda/Personajes/tituloPersonajes.png');
-        this.load.image('personajeEgiptoBloq', 'assets/Interfaz/Tienda/Personajes/EgiptoBloqueado.png');
-        this.load.image('personajeEgiptoDes', 'assets/Interfaz/Tienda/Personajes/EgiptoDesbloqueado.png');
-        this.load.image('personajePrehistoriaDes', 'assets/Interfaz/Tienda/Personajes/PrehistoriaDesbloqueado.png');
         this.load.image('mensajeDesbloquear', 'assets/Interfaz/Tienda/mensajeDesbloquear.png');
 
         //Assets ingles
@@ -113,6 +139,8 @@ class tiendaPersonajesScene extends Phaser.Scene{
     
     //Show a message to unlock a map
     desbloquear(personaje,dinero,pos){
+        this.spriteDerecha.disableInteractive();
+        this.spriteIzquierda.disableInteractive();
         var i;
         for (i = 0; i < personajesButton.length; i++) {
             personajesButton[i].disableInteractive();
@@ -136,8 +164,6 @@ class tiendaPersonajesScene extends Phaser.Scene{
     }
 
     comprarPersonaje(personaje,dinero,pos){
-        //If i have enough money and the map is not blocked
-        this.cerrarMensajeDesbloquear(pos);
         if(coins >= personaje.coins){
             //Change sprite, set new texture and update coins
             personaje.sprite = personaje.spriteDesbloqueado;
@@ -149,6 +175,8 @@ class tiendaPersonajesScene extends Phaser.Scene{
         }else{
             var nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'No tienes dinero suficiente', { fill: '#0f0' })
         }
+        //If i have enough money and the map is not blocked
+        this.cerrarMensajeDesbloquear(pos);
     }
 
     //Destroy the message
@@ -158,6 +186,8 @@ class tiendaPersonajesScene extends Phaser.Scene{
             personajesButton[i].setInteractive();
         }
         personajesButton[pos].clearTint();
+        this.spriteDerecha.setInteractive();
+        this.spriteIzquierda.setInteractive();
         this.mensajeDesbloquear.destroy();
         this.spriteDesbloquearNo.destroy();
         this.spriteDesbloquearSi.destroy();
