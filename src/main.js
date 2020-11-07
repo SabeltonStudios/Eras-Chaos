@@ -18,14 +18,14 @@
         physics: {
             default: 'arcade',
             arcade: {
-                debug: true,
+                debug: false,
                 gravity: { y: 200 }
             }
         },
         backgroudColor: 0x000000,
         autoCenter: 1,
         scaleMode: 3,
-        scene: [bootScene, menuPrincipalScene, prehistoriaScene,egiptoScene, multijugadorSeleccionScene,
+        scene: [bootScene, menuPrincipalScene, selectNivelHistoria, prehistoriaScene,egiptoScene,mediaScene, multijugadorSeleccionScene,
              tiendaScene,tiendaMapasScene,tiendaPersonajesScene,tiendaArmasScene,
              tiendaPaquetesScene,tiendaRecargarScene, creditosScene]
     }

@@ -75,8 +75,10 @@ class egiptoScene extends Phaser.Scene {
 
         this.load.audio('egiMusic', ['assets/Música/PrehistoriaFinal.mp3']);//, 'assets/Música/PrehistoriaFinal.ogg']);
 
-        this.load.spritesheet('dude', 'assets/Interfaz/dude.png', { frameWidth: 32, frameHeight: 48 });
-        this.load.image('bullet', 'assets/Interfaz/Bullet.png');
+        //this.load.spritesheet('dude', 'assets/Interfaz/dude.png', { frameWidth: 32, frameHeight: 48 });
+        this.load.image('egiPlayer', 'assets/Personajes/2.AntiguoEgipto/BasicoEgipto.png');
+        //this.load.image('bullet', 'assets/Interfaz/Bullet.png');
+        this.load.spritesheet('axe', 'assets/Armas/ArmaEgipto.png', { frameWidth: 235, frameHeight: 235 });
     }
 
     create() {
@@ -118,30 +120,25 @@ class egiptoScene extends Phaser.Scene {
         this.aux[3].body.setSize(gameConfig.scale.width / 3, 0.16 * gameConfig.scale.height, false);
         this.aux[3].body.setOffset(-gameConfig.scale.width / 3 + 65, 0);
 
-        this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'dude');
+        this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'egiPlayer').setScale(0.07)// * gameConfig.scale.width/800 );
         this.player.body.immovable = true;
-        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 2, 'dude');
+        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 2, 'egiPlayer').setScale(0.07)// * gameConfig.scale.width/800);
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
         this.anims.create({
-            key: 'walk',
-            frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
-            frameRate: 10,
+            key: 'shoot',
+            frames: this.anims.generateFrameNumbers('axe', { start: 0, end: 7 }),
+            frameRate: 20,
             repeat: -1
         });
-        this.player.anims.play('walk', true);
-        this.player.setVelocity(0, -200);
+        /*this.player.anims.play('walk', true);*/
+        this.player.setVelocity(0, -250);
         this.player.setBounce(1);
         this.player.body.setAllowGravity(false);
         this.player.setCollideWorldBounds(true);
-        this.player.anims.play('walk', true);
-        this.player.setVelocity(0, -300);
-        this.player.setBounce(1);
-        this.player.body.setAllowGravity(false);
-        this.player.setCollideWorldBounds(true)
 
-        this.enemy.anims.play('walk', true);
-        this.enemy.setVelocity(0, 240);
+        //this.enemy.anims.play('walk', true);
+        this.enemy.setVelocity(0, 290);
         this.enemy.setBounce(1);
         this.enemy.body.setAllowGravity(false);
         this.enemy.setCollideWorldBounds(true);
@@ -177,23 +174,23 @@ class egiptoScene extends Phaser.Scene {
         this.obstacles = this.physics.add.group(this.ObstaclesConfig);
         this.obstacles.setOrigin(0.5, 0.5);
         this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'egiCat').setScale(0.1).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, 'egiCup').setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, 'egiCup').setScale(0.10).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
         this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, 'egiPyr').setScale(0.2).body.setCircle(120, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'egiCat').setScale(0.2).body.setCircle(120, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, 'egiPyr').setScale(0.2).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'egiCat').setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, 'egiPyr').setScale(0.15).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
         this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.62, 'egiCat').setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'egiCup').setScale(0.2).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'egiCup').setScale(0.15).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, 'egiPyr').setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.31, gameConfig.scale.height * 0.7, 'egiCup').setScale(0.1).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.32, 'egiPyr').setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.7, 'egiCup').setScale(0.20).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, 'egiPyr').setScale(0.10).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.31, gameConfig.scale.height * 0.7, 'egiCup').setScale(0.10).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.32, 'egiPyr').setScale(0.10).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.7, 'egiCup').setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'egiCat').setScale(0.25).body.setCircle(125, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, 'egiCup').setScale(0.25).body.setCircle(125, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'egiPyr').setScale(0.30).body.setCircle(130, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'egiCat').setScale(0.25).body.setCircle(125, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'egiCat').setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, 'egiCup').setScale(0.15).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'egiPyr').setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'egiCat').setScale(0.15).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
 
         this.physics.add.collider(wallR, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallL, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
@@ -217,8 +214,8 @@ class egiptoScene extends Phaser.Scene {
 
         this.spriteParar = this.add.sprite(gameConfig.scale.width * 2.2 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
         this.spriteParar.setInteractive().on('pointerdown', () => this.player.body.moves = false /*cambiar a iddle */)
-            .on('pointerup', () => this.player.body.moves = true, this.player.anims.play('walk', true))
-            .on('pointerout', () => this.player.body.moves = true, this.player.anims.play('walk', true))
+            .on('pointerup', () => this.player.body.moves = true)//, this.player.anims.play('walk', true))
+            .on('pointerout', () => this.player.body.moves = true)//, this.player.anims.play('walk', true))
             .on('pointerdown', () => this.spriteParar.setTexture('FreezeBOFF'))
             .on('pointerup', () => this.spriteParar.setTexture('FreezeBON'))
             .on('pointerout', () => this.spriteParar.setTexture('FreezeBON'));
@@ -232,8 +229,8 @@ class egiptoScene extends Phaser.Scene {
         this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.3 / 16, gameConfig.scale.height / 13, 'PauseBON').setScale(0.07 * gameConfig.scale.width / 800);
         this.spritePausar.setInteractive().on('pointerdown', () => this.is_paused = !this.is_paused)
             .on('pointerdown', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
-            .on('pointerdown', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
-            .on('pointerdown', () => !this.is_paused ? this.enemy.anims.play('walk', true) : this.enemy.anims.stop())
+            //.on('pointerdown', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
+            //.on('pointerdown', () => !this.is_paused ? this.enemy.anims.play('walk', true) : this.enemy.anims.stop())
             .on('pointerdown', () => this.spritePausar.setTexture('PauseBOFF'))
             .on('pointerdown', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
             .on('pointerup', () => this.spritePausar.setTexture('PauseBON'))
@@ -242,7 +239,7 @@ class egiptoScene extends Phaser.Scene {
 
         this.freezeInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         this.freezeInput.on('down', () => this.player.body.moves = false /*cambiar a iddle */)
-            .on('up', () => this.player.body.moves = true, this.player.anims.play('walk', true))
+            .on('up', () => this.player.body.moves = true)//, this.player.anims.play('walk', true))
             .on('down', () => this.spriteParar.setTexture('FreezeBOFF'))
             .on('up', () => this.spriteParar.setTexture('FreezeBON'));
 
@@ -253,8 +250,8 @@ class egiptoScene extends Phaser.Scene {
 
         this.input.keyboard.on('keydown-' + 'ESC', () => this.is_paused = !this.is_paused)
             .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
-            .on('keydown-' + 'ESC', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
-            .on('keydown-' + 'ESC', () => !this.is_paused ? this.enemy.anims.play('walk', true) : this.enemy.anims.stop())
+            //.on('keydown-' + 'ESC', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
+            //.on('keydown-' + 'ESC', () => !this.is_paused ? this.enemy.anims.play('walk', true) : this.enemy.anims.stop())
             .on('keydown-' + 'ESC', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
             .on('keydown-' + 'ESC', () => this.spritePausar.setTexture('PauseBOFF'))
             .on('keyup-' + 'ESC', () => this.spritePausar.setTexture('PauseBON'));
@@ -264,10 +261,13 @@ class egiptoScene extends Phaser.Scene {
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
-                this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'bullet').setScale(0.1, 0.05);
+                this.bomb = this.physics.add.sprite(this.enemy.x - 10, this.enemy.y, "axe").setScale(0.15).setFlip(true,false);
+                this.bulletsEnemy.add(this.bomb);
+                this.bomb.play("shoot");
+                //this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'axe').setScale(0.2).setFlip(true,false).play('shoot', true);
                 this.bomb.body.setAllowGravity(false);
-                this.bomb.body.setCircle(120, -10, 80);
-                this.bomb.angle = 270;
+                this.bomb.body.setCircle(100, 30, 30);
+                //this.bomb.angle = 270;
             }
         }, 750);
 
@@ -307,7 +307,7 @@ class egiptoScene extends Phaser.Scene {
             clearInterval(this.inter);
             this.music.stop();
             this.scene.stop();
-            this.scene.start("EgiptoScene");
+            this.scene.start("MediaScene");
         }
     }
     pauseGame(spriteParar, spriteDisparar, f, s) {
@@ -318,9 +318,11 @@ class egiptoScene extends Phaser.Scene {
             this.enemy.body.moves = true;
             for (let i = 0; i < this.bulls.length; i++) {
                 this.bulls[i].body.moves = true;
+                this.bulls[i].anims.play("shoot");
             }
             for (let i = 0; i < this.ebulls.length; i++) {
                 this.ebulls[i].body.moves = true;
+                this.ebulls[i].anims.play("shoot");
             }
             spriteParar.setInteractive();
             spriteDisparar.setInteractive();
@@ -333,9 +335,11 @@ class egiptoScene extends Phaser.Scene {
             this.enemy.body.moves = false;
             for (let i = 0; i < this.bulls.length; i++) {
                 this.bulls[i].body.moves = false;
+                this.bulls[i].anims.stop();
             }
             for (let i = 0; i < this.ebulls.length; i++) {
                 this.ebulls[i].body.moves = false;
+                this.ebulls[i].anims.stop();
             }
             f.enabled = false;
             s.enabled = false;
@@ -349,10 +353,13 @@ class egiptoScene extends Phaser.Scene {
             //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();
         }
-        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, 'bullet').setScale(0.1, 0.05);
+        var bomb = this.physics.add.sprite(this.player.x + 10, this.player.y, "axe").setScale(0.15);
+        //this.bulletsPre.create(this.player.x + 10, this.player.y, 'axe').setScale(0.2);
+        this.bulletsPre.add(bomb);
+        bomb.play("shoot");
         //bomb.setOrigin(0,1);
         bomb.body.setAllowGravity(false);
-        bomb.body.setCircle(120, -10, 80);
+        bomb.body.setCircle(100, 30, 30);
         bomb.angle = 90;
     }
 }

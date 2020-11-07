@@ -6,7 +6,7 @@ class tiendaScene extends Phaser.Scene{
     }
 
     preload(){
-        this.load.image('fondoTienda','assets/Interfaz/Tienda/fondoTienda.png');
+        //this.load.image('fondoTienda','assets/Interfaz/Tienda/fondoTienda.png');
         this.load.image('tituloTienda','assets/Interfaz/Tienda/tituloTienda.png');
         this.load.image('botonMapas', 'assets/Interfaz/Tienda/botonMapas.png');
         this.load.image('botonPersonajes', 'assets/Interfaz/Tienda/botonPersonajes.png');
