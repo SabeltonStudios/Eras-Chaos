@@ -1,19 +1,37 @@
+let completedLevel=[
+{
+    "completado": false
+},
+{
+    "completado": false
+},
+{
+    "completado": false
+},
+{
+    "completado": false
+},
+{
+    "completado": false
+}
+
+]
 class selectNivelHistoria extends Phaser.Scene {
     constructor() {
         super("SelectNivelHistoria");
     }
+    mapasButton = [];
     create() {
-        mapasPosicion = 0;
-
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
 
         if (espanol) {
             this.spriteTituloMapas = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height / 7, 'tituloMapas');
             var i;
-            for (i = 0; i < mapas.length; i++) {
-                if (mapas[i].bloqueado) {
-                    mapas[i].sprite = mapas[i].spriteBloqueado;
+            mapas[0].sprite = mapas[0].spriteDesbloqueado;
+            for (i = 1; i < mapas.length; i++) {
+                if (!completedLevel[i-1].completado) {
+                    mapas[i].sprite = mapas[i].spriteSelectBloq;
                 } else {
                     mapas[i].sprite = mapas[i].spriteDesbloqueado;
                 }
@@ -21,9 +39,10 @@ class selectNivelHistoria extends Phaser.Scene {
         } else {
             this.spriteTituloMapas = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height / 7, 'tituloMapasi');
             var i;
-            for (i = 0; i < mapas.length; i++) {
-                if (mapas[i].bloqueado) {
-                    mapas[i].sprite = mapas[i].spriteBloqueadoi;
+            mapas[0].sprite = mapas[0].spriteDesbloqueadoi;
+            for (i = 1; i < mapas.length; i++) {
+                if (!completedLevel[i-1].completado) {
+                    mapas[i].sprite = mapas[i].spriteSelectBloqi;
                 } else {
                     mapas[i].sprite = mapas[i].spriteDesbloqueadoi;
                 }
@@ -31,20 +50,20 @@ class selectNivelHistoria extends Phaser.Scene {
         }
 
         //Asignamos los botones a cinco mapas
-        mapasButton[0] = this.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height * 1.5 / 3, mapas[0].sprite);
-        mapasButton[0].setInteractive().on('pointerdown', () => this.scene.start("PrehistoriaScene"));
+        this.mapasButton[0] = this.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height * 1.5 / 3, mapas[0].sprite);
+        this.mapasButton[0].setInteractive().on('pointerdown', () => this.scene.start("PrehistoriaScene"));
 
-        mapasButton[1] = this.add.sprite((gameConfig.scale.width / 6) * 2, gameConfig.scale.height * 1.5 / 3, mapas[1].sprite);
-        mapasButton[1].setInteractive().on('pointerdown', ()=>!mapas[1].bloqueado? this.scene.start("EgiptoScene"): console.log("bloqueado"));
+        this.mapasButton[1] = this.add.sprite((gameConfig.scale.width / 6) * 2, gameConfig.scale.height * 1.5 / 3, mapas[1].sprite);
+        this.mapasButton[1].setInteractive().on('pointerdown', ()=>completedLevel[0].completado? this.scene.start("EgiptoScene"): console.log("no has completado el nivel anterior"));
 
-        mapasButton[2] = this.add.sprite((gameConfig.scale.width / 6) * 3, gameConfig.scale.height * 1.5 / 3, mapas[2].sprite);
-        mapasButton[2].setInteractive().on('pointerdown', ()=>!mapas[2].bloqueado? this.scene.start("MediaScene"): console.log("bloqueado"));
+        this.mapasButton[2] = this.add.sprite((gameConfig.scale.width / 6) * 3, gameConfig.scale.height * 1.5 / 3, mapas[2].sprite);
+        this.mapasButton[2].setInteractive().on('pointerdown', ()=>completedLevel[1].completado? this.scene.start("MediaScene"): console.log("no has completado el nivel anterior"));
 
-        mapasButton[3] = this.add.sprite((gameConfig.scale.width / 6) * 4, gameConfig.scale.height * 1.5 / 3, mapas[3].sprite);
-        mapasButton[3].setInteractive().on('pointerdown', () => this.desbloquear(mapas[3 + mapasPosicion], dinero, 3));
+        this.mapasButton[3] = this.add.sprite((gameConfig.scale.width / 6) * 4, gameConfig.scale.height * 1.5 / 3, mapas[3].sprite);
+        this.mapasButton[3].setInteractive().on('pointerdown', () => this.desbloquear(mapas[3 + mapasPosicion], dinero, 3));
 
-        mapasButton[4] = this.add.sprite((gameConfig.scale.width / 6) * 5, gameConfig.scale.height * 1.5 / 3, mapas[4].sprite);
-        mapasButton[4].setInteractive().on('pointerdown', () => this.desbloquear(mapas[4 + mapasPosicion], dinero, 4));
+        this.mapasButton[4] = this.add.sprite((gameConfig.scale.width / 6) * 5, gameConfig.scale.height * 1.5 / 3, mapas[4].sprite);
+        this.mapasButton[4].setInteractive().on('pointerdown', () => this.desbloquear(mapas[4 + mapasPosicion], dinero, 4));
 
         //Botón de salir
         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15, (gameConfig.scale.height / 8) * 7.5, 'botonSalir').setScale(0.1);

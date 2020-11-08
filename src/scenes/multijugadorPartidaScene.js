@@ -1,12 +1,13 @@
-class mediaScene extends Phaser.Scene {
+class multijugadorPartidaScene extends Phaser.Scene {
     bulletsPre;
     bulletsEnemy;
     obstacles;
     player;
     enemy;
-    gameOver;
     win;
     music;
+    weapon1;
+    weapon2;
     configPre = {
         classType: Phaser.GameObjects.Image,
         defaultKey: 'stone',
@@ -46,11 +47,11 @@ class mediaScene extends Phaser.Scene {
         immovable: true,
     }
     constructor() {
-        super("MediaScene");
+        super("MultijugadorPartidaScene");
     }
 
     preload() {
-        this.load.image('mapaMed', 'assets/Fondos/3.EdadMedia/Background.png');
+        /*this.load.image('mapaMed', 'assets/Fondos/3.EdadMedia/Background.png');
 
         this.load.image('medApl', 'assets/Objetos/3.EdadMedia/object_apples.png');
         this.load.image('medBar', 'assets/Objetos/3.EdadMedia/object_barrel.png');
@@ -60,30 +61,114 @@ class mediaScene extends Phaser.Scene {
 
         //this.load.spritesheet('dude', 'assets/Interfaz/dude.png', { frameWidth: 32, frameHeight: 48 });
         this.load.image('medPlayer','assets/Personajes/3.EdadMedia/BasicoEdadMedia.png');
-        this.load.image('stone', 'assets/Armas/ArmaPrehistoria.png');
+        this.load.image('stone', 'assets/Armas/ArmaPrehistoria.png');*/
 
     }
     create() {
-        if (this.music==null) {
-            this.music = this.sound.add('medMusic');  
-        }
-        if (!this.gameOver) {
-            this.music.play(this.mConfig);
-        }
-        this.gameOver = false;
         this.win = false;
         this.is_paused = false;
         //this.cameras.main.zoom= 1.3;
         this.cameras.main.zoomTo(1.05, 1000);
         this.physics.world.bounds.setTo(92.5, 69.5, 615, 461);
         this.physics.world.setBoundsCollision(false, false, true, true);
-        
-        this.Mapa = this.add.image(0, 0, 'mapaMed').setOrigin(0)
-        this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
+        switch (selectedWeapon1) {
+            case 0:
+                this.weapon1 = 'preWeapon';
+                break;
+            case 1:
+                this.weapon1 = 'egiWeapon';
+                this.anims.create({
+                    key: 'shoot',
+                    frames: this.anims.generateFrameNumbers('egiWeapon', { start: 0, end: 7 }),
+                    frameRate: 20,
+                    repeat: -1
+                });
+                break;
+        }
+        switch (selectedWeapon2) {
+            case 0:
+                this.weapon2 = 'preWeapon';
+                break;
+            case 1:
+                this.weapon2 = 'egiWeapon';
+                this.anims.create({
+                    key: 'shoot',
+                    frames: this.anims.generateFrameNumbers('egiWeapon', { start: 0, end: 7 }),
+                    frameRate: 20,
+                    repeat: -1
+                });
+                break;
+        }
+        switch (selectedMap) {
+            case 0:
+                this.Mapa = this.add.image(0, 0, 'preMap').setOrigin(0);
+                this.selectedMusic = 'preMusic';
+                this.obs1 = 'preLog';
+                this.obs2 = 'preSkull';
+                this.obs3 = 'preStone';
+                break;
+            case 1:
+                this.Mapa = this.add.image(0, 0, 'egiMap').setOrigin(0);
+                this.selectedMusic = 'egiMusic';
+                this.obs1 = 'egiCat';
+                this.obs2 = 'egiCup';
+                this.obs3 = 'egiPyr';
+                break;
+            case 2:
+                this.Mapa = this.add.image(0, 0, 'mapaMed').setOrigin(0);
+                this.obs1 = 'medApl';
+                this.obs2 = 'medBar';
+                this.obs3 = 'medVas';
+                break;
+            case 3:
+                this.Mapa = this.add.image(0, 0, 'mapaInd').setOrigin(0)
+                break;
+            case 4:
+                this.Mapa = this.add.image(0, 0, 'mapaCont').setOrigin(0)
+                break;
+        }
 
-        this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'medPlayer').setScale(0.07)//*800/gameConfig.scale.width);
+        this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
+        switch (selectedChar1) {
+            case 0:
+                this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'prePlayer').setScale(0.07)
+                break;
+            case 1:
+                this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'egiPlayer').setScale(0.07)
+                break;
+            case 2:
+                this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'medPlayer').setScale(0.07)
+                break;
+            case 3:
+                this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'indPlayer').setScale(0.07)
+                break;
+            case 4:
+                this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'contPlayer').setScale(0.07)
+                break;
+        }
+        switch (selectedChar2) {
+            case 0:
+                this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 2, 'prePlayer').setScale(0.07)
+                break;
+            case 1:
+                this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 2, 'egiPlayer').setScale(0.07)
+                break;
+            case 2:
+                this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 2, 'medPlayer').setScale(0.07)
+                break;
+            case 3:
+                this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'indPlayer').setScale(0.07)
+                break;
+            case 4:
+                this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'contPlayer').setScale(0.07)
+                break;
+        }
+        if (this.music == null) {
+            this.music = this.sound.add(this.selectedMusic);
+        }
+        //*800/gameConfig.scale.width);
         this.player.body.immovable = true;
-        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 2, 'medPlayer').setScale(0.07)//*800/gameConfig.scale.width);
+        //*800/gameConfig.scale.width);
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
         /*this.anims.create({
@@ -114,10 +199,10 @@ class mediaScene extends Phaser.Scene {
         wallL.body.setAllowGravity(false);
         wallL.body.setSize(20, gameConfig.scale.width);
         wallL.body.immovable = true;
-        var wallU = this.add.rectangle(gameConfig.scale.width / 2, 0, gameConfig.scale.width, 120);
+        var wallU = this.add.rectangle(gameConfig.scale.width / 2, -20, gameConfig.scale.width, 20);
         this.physics.add.existing(wallU);
         wallU.body.setAllowGravity(false);
-        wallU.body.setSize(gameConfig.scale.width, 120);
+        wallU.body.setSize(gameConfig.scale.height, 20);
         wallU.body.immovable = true;
         var wallD = this.add.rectangle(gameConfig.scale.width / 2, gameConfig.scale.height + 20, gameConfig.scale.width, 20);
         this.physics.add.existing(wallD);
@@ -134,37 +219,38 @@ class mediaScene extends Phaser.Scene {
 
         this.obstacles = this.physics.add.group(this.ObstaclesConfig);
         this.obstacles.setOrigin(0.5, 0.5);
-        this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'medBar').setScale(0.2).setFlip(true,false).body.setCircle(120, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, 'medBar').setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, 'medVas').setScale(0.2).setFlip(true,false).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, this.obs2).setScale(0.2).setFlip(true, false).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, this.obs2).setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, this.obs3).setScale(0.2).setFlip(true, false).body.setCircle(120, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'medApl').setScale(0.2).body.setCircle(120, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, 'medVas').setScale(0.2).body.setCircle(120, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.59, 'medApl').setScale(0.15).setFlip(true,false).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'medBar').setScale(0.2).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, this.obs1).setScale(0.2).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, this.obs3).setScale(0.2).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.59, this.obs1).setScale(0.15).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, this.obs2).setScale(0.2).body.setCircle(120, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, 'medVas').setScale(0.15).setFlip(true,false).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.29, gameConfig.scale.height * 0.73, 'medApl').setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.29, 'medVas').setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.75, 'medBar').setScale(0.20).setFlip(true,false).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, this.obs3).setScale(0.15).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.29, gameConfig.scale.height * 0.73, this.obs1).setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.29, this.obs3).setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.75, this.obs2).setScale(0.20).setFlip(true, false).body.setCircle(120, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'medApl').setScale(0.25).body.setCircle(125, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, 'medBar').setScale(0.25).setFlip(true,false).body.setCircle(125, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'medVas').setScale(0.30).body.setCircle(130, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'medApl').setScale(0.25).body.setCircle(125, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, this.obs1).setScale(0.25).body.setCircle(125, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, this.obs2).setScale(0.25).setFlip(true, false).body.setCircle(125, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, this.obs3).setScale(0.30).body.setCircle(130, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, this.obs1).setScale(0.25).body.setCircle(125, 40, 20).setAllowGravity(false);
 
         this.physics.add.collider(wallR, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallL, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
-        this.physics.add.collider(wallU, this.bulletsPre);
+        this.physics.add.collider(wallU, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallD, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallR, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallL, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
-        this.physics.add.collider(wallU, this.bulletsEnemy);
+        this.physics.add.collider(wallU, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallD, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
 
-        this.physics.add.collider(this.player, this.bulletsPre, () => this.gameOver = true);
-        this.physics.add.collider(this.player, this.bulletsEnemy, () => this.gameOver = true);
+        this.physics.add.collider(this.player, this.bulletsPre, () => this.win = true);
+        this.physics.add.collider(this.player, this.bulletsEnemy, () => this.win = true);
         this.physics.add.collider(this.enemy, this.bulletsPre, () => this.win = true);
+        this.physics.add.collider(this.enemy, this.bulletsEnemy, () => this.win = true);
         this.physics.add.collider(this.bulletsPre, this.bulletsPre);
         this.physics.add.collider(this.bulletsEnemy, this.bulletsEnemy);
         this.physics.add.collider(this.bulletsPre, this.bulletsEnemy);
@@ -187,6 +273,21 @@ class mediaScene extends Phaser.Scene {
             .on('pointerup', () => this.spriteDisparar.setTexture('ShootBON'))
             .on('pointerout', () => this.spriteDisparar.setTexture('ShootBON'));
 
+        //Player 2
+        this.spriteParar2 = this.add.sprite(gameConfig.scale.width * 69 / 80, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
+        this.spriteParar2.setInteractive().on('pointerdown', () => this.enemy.body.moves = false /*cambiar a iddle */)
+            .on('pointerup', () => this.enemy.body.moves = true)//,this.player.anims.play('walk', true))
+            .on('pointerout', () => this.enemy.body.moves = true)//, this.player.anims.play('walk', true))
+            .on('pointerdown', () => this.spriteParar2.setTexture('FreezeBOFF'))
+            .on('pointerup', () => this.spriteParar2.setTexture('FreezeBON'))
+            .on('pointerout', () => this.spriteParar2.setTexture('FreezeBON'));
+
+        this.spriteDisparar2 = this.add.sprite(gameConfig.scale.width * 15 / 16, gameConfig.scale.height * 11 / 12, 'ShootBON').setScale(0.1 * gameConfig.scale.width / 800);
+        this.spriteDisparar2.setInteractive().on('pointerdown', () => this.fire2() /*animar disparo */)
+            .on('pointerdown', () => this.spriteDisparar2.setTexture('ShootBOFF'))
+            .on('pointerup', () => this.spriteDisparar2.setTexture('ShootBON'))
+            .on('pointerout', () => this.spriteDisparar2.setTexture('ShootBON'));
+
         this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.3 / 16, gameConfig.scale.height / 13, 'PauseBON').setScale(0.07 * gameConfig.scale.width / 800);
         this.spritePausar.setInteractive().on('pointerdown', () => this.is_paused = !this.is_paused)
             .on('pointerdown', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
@@ -208,6 +309,17 @@ class mediaScene extends Phaser.Scene {
         this.shootInput.on('down', () => this.fire())
             .on('down', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('up', () => this.spriteDisparar.setTexture('ShootBON'));
+        //Player 2
+        this.freezeInput2 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.O);
+        this.freezeInput2.on('down', () => this.enemy.body.moves = false /*cambiar a iddle */)
+            .on('up', () => this.enemy.body.moves = true)//, this.player.anims.play('walk', true))
+            .on('down', () => this.spriteParar2.setTexture('FreezeBOFF'))
+            .on('up', () => this.spriteParar2.setTexture('FreezeBON'));
+
+        this.shootInput2 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+        this.shootInput2.on('down', () => this.fire2())
+            .on('down', () => this.spriteDisparar2.setTexture('ShootBOFF'))
+            .on('up', () => this.spriteDisparar2.setTexture('ShootBON'));
 
         this.input.keyboard.on('keydown-' + 'ESC', () => this.is_paused = !this.is_paused)
             .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
@@ -216,18 +328,6 @@ class mediaScene extends Phaser.Scene {
             .on('keydown-' + 'ESC', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
             .on('keydown-' + 'ESC', () => this.spritePausar.setTexture('PauseBOFF'))
             .on('keyup-' + 'ESC', () => this.spritePausar.setTexture('PauseBON'));
-
-        this.inter = setInterval(() => {
-            if (!this.is_paused) {
-                if (this.bulletsEnemy.isFull()) {
-                    this.bulletsEnemy.getFirst(true).destroy();
-                }
-                this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'stone').setScale(0.2);
-                this.bomb.body.setAllowGravity(false);
-                this.bomb.body.setCircle(50, 0, 0);
-                this.bomb.angle = 270;
-            }
-        }, 750);
     }
     mostrarMenu(t) {
         this.music.setVolume(0.05);
@@ -252,23 +352,12 @@ class mediaScene extends Phaser.Scene {
         t.BotonMenu.destroy();
     }
     update() {
-        if (this.gameOver) {
-            clearInterval(this.inter);
-            this.shootInput.destroy();
-            //this.music.destroy();
-            this.scene.sleep();
-            this.scene.setActive(false);
-            this.scene.restart();
-        }
         if (this.win) {
-            clearInterval(this.inter);
-            completedLevel[2].completado=true;
-            mapas[2].bloqueado=false;
-            personajes[2].bloqueado=false;
-            armas[2].bloqueado=false;
+            this.shootInput.destroy();
+            this.shootInput2.destroy();
             this.music.stop();
             this.scene.stop();
-            this.scene.start("MediaScene");
+            this.scene.start("MultijugadorSeleccionScene");
         }
     }
     pauseGame(spriteParar, spriteDisparar, f, s) {
@@ -310,10 +399,19 @@ class mediaScene extends Phaser.Scene {
             //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();
         }
-        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, 'stone').setScale(0.2);
+        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, this.weapon1).setScale(0.2);
         //bomb.setOrigin(0,1);
         bomb.body.setAllowGravity(false);
         bomb.body.setCircle(50, 0, 0);
         bomb.angle = 90;
+    }
+    fire2() {
+        if (this.bulletsEnemy.isFull()) {
+            this.bulletsEnemy.getFirst(true).destroy();
+        }
+        this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, this.weapon2).setScale(0.2);
+        this.bomb.body.setAllowGravity(false);
+        this.bomb.body.setCircle(50, 0, 0);
+        this.bomb.angle = 270;
     }
 }

@@ -58,15 +58,14 @@ let personajes=[
     }
 ];
 
-let personajesButton = [];
-var personajesPosicion = 0;
 class tiendaPersonajesScene extends Phaser.Scene{
     personajesPosicion = 0;
+    personajesButton=[];
     constructor(){
         super("TiendaPersonajesScene");
     }
     preload(){
-        //Assets de tienda
+       /* //Assets de tienda
         this.load.image('flechaDerecha', 'assets/Interfaz/Tienda/flechaDerecha.png');
         this.load.image('flechaIzquierda', 'assets/Interfaz/Tienda/flechaIzquierda.png');
         this.load.image('botonDesbloquearNo', 'assets/Interfaz/Tienda/botonDesbloquearNo.png');
@@ -93,7 +92,7 @@ class tiendaPersonajesScene extends Phaser.Scene{
 
         //Assets ingles
         this.load.image('tituloPersonajesi', 'assets/Interfaz/Tienda/Personajes/tituloPersonajesi.png');
-        this.load.image('mensajeDesbloqueari', 'assets/Interfaz/Tienda/mensajeDesbloqueari.png');
+        this.load.image('mensajeDesbloqueari', 'assets/Interfaz/Tienda/mensajeDesbloqueari.png');*/
     }
 
     create(){
@@ -109,20 +108,20 @@ class tiendaPersonajesScene extends Phaser.Scene{
         }
 
         //Asignamos los botones a cinco personajes
-        personajesButton[0] = this.add.sprite(gameConfig.scale.width / 6,gameConfig.scale.height*1.5/3,personajes[0].sprite);
-        personajesButton[0].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[0+personajesPosicion],dinero,0));
+        this.personajesButton[0] = this.add.sprite(gameConfig.scale.width / 6,gameConfig.scale.height*1.5/3,personajes[0].sprite);
+        this.personajesButton[0].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[0+this.personajesPosicion],dinero,0));
 
-        personajesButton[1] = this.add.sprite((gameConfig.scale.width / 6)*2,gameConfig.scale.height*1.5/3,personajes[1].sprite);
-        personajesButton[1].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[1+personajesPosicion],dinero,1));
+        this.personajesButton[1] = this.add.sprite((gameConfig.scale.width / 6)*2,gameConfig.scale.height*1.5/3,personajes[1].sprite);
+        this.personajesButton[1].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[1+this.personajesPosicion],dinero,1));
 
-        personajesButton[2] = this.add.sprite((gameConfig.scale.width / 6)*3,gameConfig.scale.height*1.5/3,personajes[2].sprite);
-        personajesButton[2].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[2+personajesPosicion],dinero,2));
+        this.personajesButton[2] = this.add.sprite((gameConfig.scale.width / 6)*3,gameConfig.scale.height*1.5/3,personajes[2].sprite);
+        this.personajesButton[2].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[2+this.personajesPosicion],dinero,2));
 
-        personajesButton[3] = this.add.sprite((gameConfig.scale.width / 6)*4,gameConfig.scale.height*1.5/3,personajes[3].sprite);
-        personajesButton[3].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[3+personajesPosicion],dinero,3));
+        this.personajesButton[3] = this.add.sprite((gameConfig.scale.width / 6)*4,gameConfig.scale.height*1.5/3,personajes[3].sprite);
+        this.personajesButton[3].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[3+this.personajesPosicion],dinero,3));
 
-        personajesButton[4] = this.add.sprite((gameConfig.scale.width / 6)*5,gameConfig.scale.height*1.5/3,personajes[4].sprite);
-        personajesButton[4].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[4+personajesPosicion],dinero,4));
+        this.personajesButton[4] = this.add.sprite((gameConfig.scale.width / 6)*5,gameConfig.scale.height*1.5/3,personajes[4].sprite);
+        this.personajesButton[4].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[4+this.personajesPosicion],dinero,4));
 
         //Flechas derecha e izquierda
         this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 25,gameConfig.scale.height*1.5/3,'flechaIzquierda').setScale(0.4);
@@ -142,11 +141,11 @@ class tiendaPersonajesScene extends Phaser.Scene{
         this.spriteDerecha.disableInteractive();
         this.spriteIzquierda.disableInteractive();
         var i;
-        for (i = 0; i < personajesButton.length; i++) {
-            personajesButton[i].disableInteractive();
+        for (i = 0; i < this.personajesButton.length; i++) {
+            this.personajesButton[i].disableInteractive();
         }
         if(personaje.bloqueado){
-            personajesButton[pos].setTint(0xDEDE7C);
+            this.personajesButton[pos].setTint(0xDEDE7C);
             if(espanol){
                 this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloquear');
             }else{
@@ -167,7 +166,7 @@ class tiendaPersonajesScene extends Phaser.Scene{
         if(coins >= personaje.coins){
             //Change sprite, set new texture and update coins
             personaje.sprite = personaje.spriteDesbloqueado;
-            personajesButton[pos].setTexture(personaje.sprite);
+            this.personajesButton[pos].setTexture(personaje.sprite);
             personaje.bloqueado = false;
             coins = coins-personaje.coins;
             dinero.setText(coins);
@@ -182,10 +181,10 @@ class tiendaPersonajesScene extends Phaser.Scene{
     //Destroy the message
     cerrarMensajeDesbloquear(pos){
         var i;
-        for (i = 0; i < personajesButton.length; i++) {
-            personajesButton[i].setInteractive();
+        for (i = 0; i < this.personajesButton.length; i++) {
+            this.personajesButton[i].setInteractive();
         }
-        personajesButton[pos].clearTint();
+        this.personajesButton[pos].clearTint();
         this.spriteDerecha.setInteractive();
         this.spriteIzquierda.setInteractive();
         this.mensajeDesbloquear.destroy();
@@ -195,11 +194,11 @@ class tiendaPersonajesScene extends Phaser.Scene{
 
     //Mueve los personajes para que se vean los de la izquierda
     trasladarIzquierda(){
-        if(personajesPosicion>0){
-            personajesPosicion--;
+        if(this.personajesPosicion>0){
+            this.personajesPosicion--;
             var i;
-            for (i = 0; i < personajesButton.length; i++) {
-                personajesButton[i].setTexture(personajes[personajesPosicion+i].sprite);
+            for (i = 0; i < this.personajesButton.length; i++) {
+                this.personajesButton[i].setTexture(personajes[this.personajesPosicion+i].sprite);
             }
         }
     }
@@ -207,11 +206,11 @@ class tiendaPersonajesScene extends Phaser.Scene{
     //Mueve los personajes para que se vean los de la derecha
     trasladarDerecha(){
         console.log("trasladando derecha");
-        if((personajesPosicion+5)<personajes.length){
-            personajesPosicion++;
+        if((this.personajesPosicion+5)<personajes.length){
+            this.personajesPosicion++;
             var i;
-            for (i = 0; i < personajesButton.length; i++) {
-                personajesButton[i].setTexture(personajes[personajesPosicion+i].sprite);
+            for (i = 0; i < this.personajesButton.length; i++) {
+                this.personajesButton[i].setTexture(personajes[this.personajesPosicion+i].sprite);
             }
         }
         

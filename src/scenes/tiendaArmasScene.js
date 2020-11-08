@@ -1,3 +1,61 @@
+let armas=[
+    {
+        "bloqueado":false,
+        "coins" : 0,
+        "sprite": 'Unvaar',
+        "spriteDesbloqueado": 'Unvaar',
+        "spriteBloqueado": 'Unvaar'
+    },
+    {
+        "bloqueado":false,
+        "coins" : 250,
+        "sprite": 'NahibB',
+        "spriteDesbloqueado": 'Nahib',
+        "spriteBloqueado": 'NahibB'
+    },
+    {
+        "bloqueado":true,
+        "coins" : 300,
+        "sprite": 'LamberB',
+        "spriteDesbloqueado": 'Lamber',
+        "spriteBloqueado": 'LamberB'
+    },
+    {
+        "bloqueado":true,
+        "coins" : 400,
+        "sprite": 'ThomasB',
+        "spriteDesbloqueado": 'Thomas',
+        "spriteBloqueado": 'ThomasB'
+    },
+    {
+        "bloqueado":true,
+        "coins" : 500,
+        "sprite": 'ThomasB',
+        "spriteDesbloqueado": 'Thomas',
+        "spriteBloqueado": 'ThomasB'
+    },
+    {
+        "bloqueado":true,
+        "coins" : 650,
+        "sprite": 'GaardB',
+        "spriteDesbloqueado": 'Gaard',
+        "spriteBloqueado": 'GaardB'
+    },
+    {
+        "bloqueado":true,
+        "coins" : 650,
+        "sprite": 'CleopatraB',
+        "spriteDesbloqueado": 'Cleopatra',
+        "spriteBloqueado": 'CleopatraB'
+    },
+    {
+        "bloqueado":true,
+        "coins" : 650,
+        "sprite": 'SirRodrickB',
+        "spriteDesbloqueado": 'SirRodrick',
+        "spriteBloqueado": 'SirRodrickB'
+    }
+];
 class tiendaArmasScene extends Phaser.Scene{
     constructor(){
         super("TiendaArmasScene");

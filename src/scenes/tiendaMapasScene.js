@@ -7,7 +7,7 @@ let mapas=[
         "spriteDesbloqueado": 'prehistoriaDesbloqueado',
         "spriteBloqueado": 'prehistoriaDesbloqueado',
         "spriteDesbloqueadoi": 'prehistoriaDesbloqueadoi',
-        "spriteBloqueadoi": 'prehistoriaDesbloqueadoi'
+        "spriteBloqueadoi": 'prehistoriaDesbloqueadoi',
     },
     {
         "bloqueado":true,
@@ -16,7 +16,9 @@ let mapas=[
         "spriteDesbloqueado": 'egiptoDesbloqueado',
         "spriteBloqueado": 'egiptoBloqueado',
         "spriteDesbloqueadoi": 'egiptoDesbloqueadoi',
-        "spriteBloqueadoi": 'egiptoBloqueadoi'
+        "spriteBloqueadoi": 'egiptoBloqueadoi',
+        "spriteSelectBloq": 'egiSelectBloq',
+        "spriteSelectBloqi": 'egiSelectBloqi'
     },
     {
         "bloqueado":true,
@@ -25,7 +27,9 @@ let mapas=[
         "spriteDesbloqueado": 'edadMediaDesbloqueado',
         "spriteBloqueado": 'edadMediaBloqueado',
         "spriteDesbloqueadoi": 'edadMediaDesbloqueadoi',
-        "spriteBloqueadoi": 'edadMediaBloqueadoi'
+        "spriteBloqueadoi": 'edadMediaBloqueadoi',
+        "spriteSelectBloq": 'medSelectBloq',
+        "spriteSelectBloqi": 'medSelectBloqi'
     },
     {
         "bloqueado":true,
@@ -34,7 +38,9 @@ let mapas=[
         "spriteDesbloqueado": 'egiptoDesbloqueado',
         "spriteBloqueado": 'egiptoBloqueado',
         "spriteDesbloqueadoi": 'egiptoDesbloqueadoi',
-        "spriteBloqueadoi": 'egiptoBloqueadoi'
+        "spriteBloqueadoi": 'egiptoBloqueadoi',
+        "spriteSelectBloq": 'egiSelectBloq',
+        "spriteSelectBloqi": 'egiSelectBloqi'
     },
     {
         "bloqueado":true,
@@ -43,7 +49,9 @@ let mapas=[
         "spriteDesbloqueado": 'egiptoDesbloqueado',
         "spriteBloqueado": 'egiptoBloqueado',
         "spriteDesbloqueadoi": 'egiptoDesbloqueadoi',
-        "spriteBloqueadoi": 'egiptoBloqueadoi'
+        "spriteBloqueadoi": 'egiptoBloqueadoi',
+        "spriteSelectBloq": 'egiSelectBloq',
+        "spriteSelectBloqi": 'egiSelectBloqi'
     },
     {
         "bloqueado":true,
@@ -51,15 +59,19 @@ let mapas=[
         "spriteDesbloqueado": 'egiptoDesbloqueado',
         "spriteBloqueado": 'egiptoBloqueado',
         "spriteDesbloqueadoi": 'egiptoDesbloqueadoi',
-        "spriteBloqueadoi": 'egiptoBloqueadoi'
+        "spriteBloqueadoi": 'egiptoBloqueadoi',
+        "spriteSelectBloq": 'egiSelectBloq',
+        "spriteSelectBloqi": 'egiSelectBloqi'
     }
 ];
 
 
-let mapasButton=[];
-var mapasPosicion = 0;
+
+
 
 class tiendaMapasScene extends Phaser.Scene{
+    mapasPosicion = 0;
+    mapasButton=[];
     constructor(){
         super("TiendaMapasScene");
     }
@@ -89,7 +101,7 @@ class tiendaMapasScene extends Phaser.Scene{
     }
 
     create(){
-        mapasPosicion=0;
+        this.mapasPosicion=0;
 
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
@@ -119,20 +131,20 @@ class tiendaMapasScene extends Phaser.Scene{
         var dinero = this.add.text(gameConfig.scale.width*7.35/16,gameConfig.scale.height/4,coins, { fill: '#fff' });
 
         //Asignamos los botones a cinco mapas
-        mapasButton[0] = this.add.sprite(gameConfig.scale.width / 6,gameConfig.scale.height*1.5/3,mapas[0].sprite);
-        mapasButton[0].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[0+mapasPosicion],dinero,0));
+        this.mapasButton[0] = this.add.sprite(gameConfig.scale.width / 6,gameConfig.scale.height*1.5/3,mapas[0].sprite);
+        this.mapasButton[0].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[0+this.mapasPosicion],dinero,0));
 
-        mapasButton[1] = this.add.sprite((gameConfig.scale.width / 6)*2,gameConfig.scale.height*1.5/3,mapas[1].sprite);
-        mapasButton[1].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[1+mapasPosicion],dinero,1));
+        this.mapasButton[1] = this.add.sprite((gameConfig.scale.width / 6)*2,gameConfig.scale.height*1.5/3,mapas[1].sprite);
+        this.mapasButton[1].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[1+this.mapasPosicion],dinero,1));
 
-        mapasButton[2] = this.add.sprite((gameConfig.scale.width / 6)*3,gameConfig.scale.height*1.5/3,mapas[2].sprite);
-        mapasButton[2].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[2+mapasPosicion],dinero,2));
+        this.mapasButton[2] = this.add.sprite((gameConfig.scale.width / 6)*3,gameConfig.scale.height*1.5/3,mapas[2].sprite);
+        this.mapasButton[2].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[2+this.mapasPosicion],dinero,2));
 
-        mapasButton[3] = this.add.sprite((gameConfig.scale.width / 6)*4,gameConfig.scale.height*1.5/3,mapas[3].sprite);
-        mapasButton[3].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[3+mapasPosicion],dinero,3));
+        this.mapasButton[3] = this.add.sprite((gameConfig.scale.width / 6)*4,gameConfig.scale.height*1.5/3,mapas[3].sprite);
+        this.mapasButton[3].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[3+this.mapasPosicion],dinero,3));
 
-        mapasButton[4] = this.add.sprite((gameConfig.scale.width / 6)*5,gameConfig.scale.height*1.5/3,mapas[4].sprite);
-        mapasButton[4].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[4+mapasPosicion],dinero,4));
+        this.mapasButton[4] = this.add.sprite((gameConfig.scale.width / 6)*5,gameConfig.scale.height*1.5/3,mapas[4].sprite);
+        this.mapasButton[4].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[4+this.mapasPosicion],dinero,4));
 
         //Flechas derecha e izquierda
         this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 25,gameConfig.scale.height*1.5/3,'flechaIzquierda').setScale(0.4);
@@ -151,12 +163,12 @@ class tiendaMapasScene extends Phaser.Scene{
         this.spriteDerecha.disableInteractive();
         this.spriteIzquierda.disableInteractive();
         var i;
-        for (i = 0; i < mapasButton.length; i++) {
-            mapasButton[i].disableInteractive();
+        for (i = 0; i < this.mapasButton.length; i++) {
+            this.mapasButton[i].disableInteractive();
         }
         
         if(mapa.bloqueado){
-            mapasButton[pos].setTint(0xDEDE7C);
+            this.mapasButton[pos].setTint(0xDEDE7C);
             if(espanol){
                 this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloquear');
             }else{
@@ -182,7 +194,7 @@ class tiendaMapasScene extends Phaser.Scene{
                 mapa.sprite = mapa.spriteDesbloqueadoi;
             }
             
-            mapasButton[pos].setTexture(mapa.sprite);
+            this.mapasButton[pos].setTexture(mapa.sprite);
             mapa.bloqueado = false;
             coins = coins-mapa.coins;
             dinero.setText(coins);
@@ -197,10 +209,10 @@ class tiendaMapasScene extends Phaser.Scene{
     //Destroy the message
     cerrarMensajeDesbloquear(pos){
         var i;
-        for (i = 0; i < mapasButton.length; i++) {
-            mapasButton[i].setInteractive();
+        for (i = 0; i < this.mapasButton.length; i++) {
+            this.mapasButton[i].setInteractive();
         }
-        mapasButton[pos].clearTint();
+        this.mapasButton[pos].clearTint();
         this.spriteDerecha.setInteractive();
         this.spriteIzquierda.setInteractive();
         this.mensajeDesbloquear.destroy();
@@ -210,25 +222,23 @@ class tiendaMapasScene extends Phaser.Scene{
 
     //Mueve los mapas para que se vean los de la izquierda
     trasladarIzquierda(){
-        if(mapasPosicion>0){
-            mapasPosicion--;
+        if(this.mapasPosicion>0){
+            this.mapasPosicion--;
             var i;
-            for (i = 0; i < mapasButton.length; i++) {
-                mapasButton[i].setTexture(mapas[mapasPosicion+i].sprite);
+            for (i = 0; i < this.mapasButton.length; i++) {
+                this.mapasButton[i].setTexture(mapas[this.mapasPosicion+i].sprite);
             }
         }
     }
 
     //Mueve los mapas para que se vean los de la derecha
     trasladarDerecha(){
-        if((mapasPosicion+5)<mapas.length){
-            mapasPosicion++;
+        if((this.mapasPosicion+5)<mapas.length){
+            this.mapasPosicion++;
             var i;
-            for (i = 0; i < mapasButton.length; i++) {
-                mapasButton[i].setTexture(mapas[mapasPosicion+i].sprite);
+            for (i = 0; i < this.mapasButton.length; i++) {
+                this.mapasButton[i].setTexture(mapas[this.mapasPosicion+i].sprite);
             }
         }
-        
     }
-
 }

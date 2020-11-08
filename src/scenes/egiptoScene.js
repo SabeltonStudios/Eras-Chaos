@@ -50,7 +50,7 @@ class egiptoScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('mapaEgipto', 'assets/Fondos/2.AntiguoEgipto/BackgroundNoColumns.png');
+        /*this.load.image('mapaEgipto', 'assets/Fondos/2.AntiguoEgipto/BackgroundNoColumns.png');
         this.load.image('rectanguloEgipto', 'assets/Fondos/2.AntiguoEgipto/RectanguloCentral.png');
         this.load.image('columnaC', 'assets/Fondos/2.AntiguoEgipto/ColumnUp.png');
         this.load.image('columnaD', 'assets/Fondos/2.AntiguoEgipto/ColumnRight.png');
@@ -78,7 +78,7 @@ class egiptoScene extends Phaser.Scene {
         //this.load.spritesheet('dude', 'assets/Interfaz/dude.png', { frameWidth: 32, frameHeight: 48 });
         this.load.image('egiPlayer', 'assets/Personajes/2.AntiguoEgipto/BasicoEgipto.png');
         //this.load.image('bullet', 'assets/Interfaz/Bullet.png');
-        this.load.spritesheet('axe', 'assets/Armas/ArmaEgipto.png', { frameWidth: 235, frameHeight: 235 });
+        this.load.spritesheet('axe', 'assets/Armas/ArmaEgipto.png', { frameWidth: 235, frameHeight: 235 });*/
     }
 
     create() {
@@ -96,7 +96,7 @@ class egiptoScene extends Phaser.Scene {
         this.physics.world.bounds.setTo(92.5, 69.5, 615, 461);
         this.physics.world.setBoundsCollision(false, false, true, true);
 
-        this.Mapa = this.add.image(0, 0, 'mapaEgipto').setOrigin(0)
+        this.Mapa = this.add.image(0, 0, 'egiMap').setOrigin(0)
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
 
         this.RectanguloMapa = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'rectanguloEgipto');
@@ -127,7 +127,7 @@ class egiptoScene extends Phaser.Scene {
         this.enemy.body.immovable = true;
         this.anims.create({
             key: 'shoot',
-            frames: this.anims.generateFrameNumbers('axe', { start: 0, end: 7 }),
+            frames: this.anims.generateFrameNumbers('egiWeapon', { start: 0, end: 7 }),
             frameRate: 20,
             repeat: -1
         });
@@ -261,7 +261,7 @@ class egiptoScene extends Phaser.Scene {
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
-                this.bomb = this.physics.add.sprite(this.enemy.x - 10, this.enemy.y, "axe").setScale(0.15).setFlip(true,false);
+                this.bomb = this.physics.add.sprite(this.enemy.x - 10, this.enemy.y, "egiWeapon").setScale(0.15).setFlip(true,false);
                 this.bulletsEnemy.add(this.bomb);
                 this.bomb.play("shoot");
                 //this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'axe').setScale(0.2).setFlip(true,false).play('shoot', true);
@@ -305,6 +305,10 @@ class egiptoScene extends Phaser.Scene {
         }
         if (this.win) {
             clearInterval(this.inter);
+            completedLevel[1].completado=true;
+            mapas[1].bloqueado=false;
+            personajes[1].bloqueado=false;
+            armas[1].bloqueado=false;
             this.music.stop();
             this.scene.stop();
             this.scene.start("MediaScene");
@@ -353,7 +357,7 @@ class egiptoScene extends Phaser.Scene {
             //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();
         }
-        var bomb = this.physics.add.sprite(this.player.x + 10, this.player.y, "axe").setScale(0.15);
+        var bomb = this.physics.add.sprite(this.player.x + 10, this.player.y, "egiWeapon").setScale(0.15);
         //this.bulletsPre.create(this.player.x + 10, this.player.y, 'axe').setScale(0.2);
         this.bulletsPre.add(bomb);
         bomb.play("shoot");

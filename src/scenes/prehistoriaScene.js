@@ -50,7 +50,7 @@ class prehistoriaScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('mapaPre', 'assets/Fondos/1.Prehistoria/Background.png');
+        /*this.load.image('mapaPre', 'assets/Fondos/1.Prehistoria/Background.png');
 
         this.load.image('FreezeBON', 'assets/Interfaz/FreezeButton.png');
         this.load.image('FreezeBOFF', 'assets/Interfaz/FreezeButtonOFF.png');
@@ -77,7 +77,7 @@ class prehistoriaScene extends Phaser.Scene {
 
         //this.load.spritesheet('dude', 'assets/Interfaz/dude.png', { frameWidth: 32, frameHeight: 48 });
         this.load.image('prePlayer','assets/Personajes/1.Prehistoria/BasicoPrehistoria.png');
-        this.load.image('stone', 'assets/Armas/ArmaPrehistoria.png');
+        this.load.image('stone', 'assets/Armas/ArmaPrehistoria.png');*/
 
     }
     create() {
@@ -95,7 +95,7 @@ class prehistoriaScene extends Phaser.Scene {
         this.physics.world.bounds.setTo(92.5, 69.5, 615, 461);
         this.physics.world.setBoundsCollision(false, false, true, true);
         
-        this.Mapa = this.add.image(0, 0, 'mapaPre').setOrigin(0)
+        this.Mapa = this.add.image(0, 0, 'preMap').setOrigin(0)
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
 
         this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'prePlayer').setScale(0.07)//*800/gameConfig.scale.width);
@@ -255,7 +255,7 @@ class prehistoriaScene extends Phaser.Scene {
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
-                this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'stone').setScale(0.2);
+                this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'preWeapon').setScale(0.2);
                 this.bomb.body.setAllowGravity(false);
                 this.bomb.body.setCircle(50, 0, 0);
                 this.bomb.angle = 270;
@@ -295,6 +295,7 @@ class prehistoriaScene extends Phaser.Scene {
         }
         if (this.win) {
             clearInterval(this.inter);
+            completedLevel[0].completado=true;
             this.music.stop();
             this.scene.stop();
             this.scene.start("EgiptoScene");
@@ -339,7 +340,7 @@ class prehistoriaScene extends Phaser.Scene {
             //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();
         }
-        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, 'stone').setScale(0.2);
+        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, 'preWeapon').setScale(0.2);
         //bomb.setOrigin(0,1);
         bomb.body.setAllowGravity(false);
         bomb.body.setCircle(50, 0, 0);
