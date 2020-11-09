@@ -5,6 +5,10 @@ class bootScene extends Phaser.Scene {
 
     preload() {
         //Selección nivel
+        this.load.image('niveles','assets/Interfaz/SeleccionNivel/Niveles.png');
+        this.load.image('nivelesi','assets/Interfaz/SeleccionNivel/Nivelesi.png');
+        this.load.image('tutorialHistoria', 'assets/Interfaz/SeleccionNivel/tutorialHistoria.png');
+        this.load.image('tutorialHistoriai', 'assets/Interfaz/SeleccionNivel/tutorialHistoriai.png');
         this.load.image('egiSelectBloq', 'assets/Interfaz/SeleccionNivel/mapaEgiptoB.png');
         this.load.image('egiSelectBloqi', 'assets/Interfaz/SeleccionNivel/mapaEgiptoBi.png');
         this.load.image('medSelectBloq', 'assets/Interfaz/SeleccionNivel/mapaEdadMediaB.png');
@@ -33,6 +37,7 @@ class bootScene extends Phaser.Scene {
         //this.load.image('bullet', 'assets/Interfaz/Bullet.png');
         this.load.spritesheet('egiWeapon', 'assets/Armas/ArmaEgipto.png', { frameWidth: 235, frameHeight: 235 });
         //Assets Juego
+        this.load.image('CloseB','assets/Interfaz/CloseButton.png')
         this.load.image('FreezeBON', 'assets/Interfaz/FreezeButton.png');
         this.load.image('FreezeBOFF', 'assets/Interfaz/FreezeButtonOFF.png');
 

@@ -162,7 +162,7 @@ class mediaScene extends Phaser.Scene {
         this.physics.add.collider(wallU, this.bulletsEnemy);
         this.physics.add.collider(wallD, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
 
-        this.physics.add.collider(this.player, this.bulletsPre, () => this.gameOver = true);
+        //this.physics.add.collider(this.player, this.bulletsPre, () => this.gameOver = true);
         this.physics.add.collider(this.player, this.bulletsEnemy, () => this.gameOver = true);
         this.physics.add.collider(this.enemy, this.bulletsPre, () => this.win = true);
         this.physics.add.collider(this.bulletsPre, this.bulletsPre);
@@ -223,6 +223,7 @@ class mediaScene extends Phaser.Scene {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
                 this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'stone').setScale(0.2);
+                this.bomb.setTint(0xa62c2b);
                 this.bomb.body.setAllowGravity(false);
                 this.bomb.body.setCircle(50, 0, 0);
                 this.bomb.angle = 270;
@@ -235,7 +236,8 @@ class mediaScene extends Phaser.Scene {
         t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7);
         t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonMenuPral');
         t.BotonMenu.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.stop(); t.scene.start("MenuPrincipalScene") });
-
+        t.BotonCerrar= t.add.sprite(gameConfig.scale.width *0.75, gameConfig.scale.height * 0.36, 'CloseB').setScale(0.1 * gameConfig.scale.width / 800);
+        t.BotonCerrar.setInteractive().on('pointerdown', () => {this.is_paused = !this.is_paused;t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput);this.ocultarMenu(this)});
         t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda');
         t.BotonTienda.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.stop(); t.scene.start("TiendaScene") });
         if (!espanol) {
@@ -250,6 +252,7 @@ class mediaScene extends Phaser.Scene {
         t.PauseTitle.destroy();
         t.BotonTienda.destroy();
         t.BotonMenu.destroy();
+        t.BotonCerrar.destroy();
     }
     update() {
         if (this.gameOver) {
@@ -311,6 +314,7 @@ class mediaScene extends Phaser.Scene {
             this.bulletsPre.getFirst(true).destroy();
         }
         var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, 'stone').setScale(0.2);
+        bomb.setTint(0x32527b );
         //bomb.setOrigin(0,1);
         bomb.body.setAllowGravity(false);
         bomb.body.setCircle(50, 0, 0);

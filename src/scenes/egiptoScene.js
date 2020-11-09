@@ -202,7 +202,7 @@ class egiptoScene extends Phaser.Scene {
         this.physics.add.collider(wallD, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(this.bulletsPre, this.columnas);
         this.physics.add.collider(this.bulletsEnemy, this.columnas);
-        this.physics.add.collider(this.player, this.bulletsPre, () => this.gameOver = true);
+        //this.physics.add.collider(this.player, this.bulletsPre, () => this.gameOver = true);
         this.physics.add.collider(this.player, this.bulletsEnemy, () => this.gameOver = true);
         this.physics.add.collider(this.enemy, this.bulletsPre, () => this.win = true);
         this.physics.add.collider(this.bulletsPre, this.bulletsPre);
@@ -262,6 +262,7 @@ class egiptoScene extends Phaser.Scene {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
                 this.bomb = this.physics.add.sprite(this.enemy.x - 10, this.enemy.y, "egiWeapon").setScale(0.15).setFlip(true,false);
+                this.bomb.setTint(0xa62c2b);
                 this.bulletsEnemy.add(this.bomb);
                 this.bomb.play("shoot");
                 //this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'axe').setScale(0.2).setFlip(true,false).play('shoot', true);
@@ -278,7 +279,8 @@ class egiptoScene extends Phaser.Scene {
         t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7);
         t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonMenuPral');
         t.BotonMenu.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.stop(); t.scene.start("MenuPrincipalScene") });
-
+        t.BotonCerrar= t.add.sprite(gameConfig.scale.width *0.75, gameConfig.scale.height * 0.36, 'CloseB').setScale(0.1 * gameConfig.scale.width / 800);
+        t.BotonCerrar.setInteractive().on('pointerdown', () => {this.is_paused = !this.is_paused;t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput);this.ocultarMenu(this)});
         t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda');
         t.BotonTienda.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.stop(); t.scene.start("TiendaScene") });
         if (!espanol) {
@@ -293,6 +295,7 @@ class egiptoScene extends Phaser.Scene {
         t.PauseTitle.destroy();
         t.BotonTienda.destroy();
         t.BotonMenu.destroy();
+        t.BotonCerrar.destroy();
     }
     update() {
         if (this.gameOver) {
@@ -359,6 +362,7 @@ class egiptoScene extends Phaser.Scene {
         }
         var bomb = this.physics.add.sprite(this.player.x + 10, this.player.y, "egiWeapon").setScale(0.15);
         //this.bulletsPre.create(this.player.x + 10, this.player.y, 'axe').setScale(0.2);
+        bomb.setTint(0x32527b );
         this.bulletsPre.add(bomb);
         bomb.play("shoot");
         //bomb.setOrigin(0,1);
