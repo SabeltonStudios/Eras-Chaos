@@ -135,8 +135,8 @@ class bootScene extends Phaser.Scene {
     create() {
         if (this.sys.game.device.os.desktop) {
             //this.game.Scale = Phaser.Scale.RESIZE;
-            //this.game.scale.setGameSize(1920, 1920*3/4);
-            this.game.scale.setGameSize(800, 600);
+            this.game.scale.setGameSize(1920, 1920*3/4);
+            //this.game.scale.setGameSize(800, 600);
             this.game.scale.scaleMode = Phaser.Scale.SHOW_ALL;
             this.game.scale.pageAlignHorizontally = true;
             this.game.scale.pageAlignVertically = true;
