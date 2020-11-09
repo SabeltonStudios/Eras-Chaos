@@ -1,0 +1,17 @@
+w = width (ancho de cada frame)
+h = height (alto de cada frame)
+run spritesheet:
+w = 650
+h = 543
+
+idle spritesheet:
+w = 531
+h = 477
+
+honda idle:
+w = 722
+h = 924
+
+honda attack:
+w = 1662
+h = 990
