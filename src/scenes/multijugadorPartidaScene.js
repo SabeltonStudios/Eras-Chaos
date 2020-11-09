@@ -247,8 +247,8 @@ class multijugadorPartidaScene extends Phaser.Scene {
         this.physics.add.collider(wallU, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallD, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
 
-        this.physics.add.collider(this.player, this.bulletsPre, () => this.win = true);
-        this.physics.add.collider(this.player, this.bulletsEnemy, () => this.win = true);
+        /*this.physics.add.collider(this.player, this.bulletsPre, () => this.win = true);
+        this.physics.add.collider(this.player, this.bulletsEnemy, () => this.win = true);*/
         this.physics.add.collider(this.enemy, this.bulletsPre, () => this.win = true);
         this.physics.add.collider(this.enemy, this.bulletsEnemy, () => this.win = true);
         this.physics.add.collider(this.bulletsPre, this.bulletsPre);
@@ -402,10 +402,10 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.bulletsPre.getFirst(true).destroy();
         }
         var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, this.weapon1).setScale(0.15 * gameConfig.scale.height / 600);
-        bomb.body.setTint(0xff7e7d);
+        bomb.setTint(0x85baff);
         //bomb.setOrigin(0,1);
         bomb.body.setAllowGravity(false);
-        bomb.body.setVelocity(-500 * gameConfig.scale.height / 600, 0);
+        bomb.body.setVelocity(500 * gameConfig.scale.height / 600, 0);
         bomb.body.setCircle(50, 0, 0);
         bomb.angle = 90;
     }
@@ -414,7 +414,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.bulletsEnemy.getFirst(true).destroy();
         }
         this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, this.weapon2).setScale(0.15 * gameConfig.scale.height / 600);
-        this.bomb.setTint(0x85baff);
+        this.bomb.setTint(0xff7e7d);
         this.bomb.body.setAllowGravity(false);
         this.bomb.body.setVelocity(-500 * gameConfig.scale.height / 600, 0);
         this.bomb.body.setCircle(50, 0, 0);

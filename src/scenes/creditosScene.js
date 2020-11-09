@@ -27,7 +27,7 @@ class creditosScene extends Phaser.Scene{
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
 
         if(espanol){
-            this.spriteTituloTienda = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloCreditos');
+            this.spriteTituloTienda = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloCreditos').setScale(gameConfig.scale.height / 600);
 
             this.spriteDesarrolladores = this.add.sprite(gameConfig.scale.width*1.2/4,gameConfig.scale.height*1.7/3,'desarrolladores').setScale(0.9 * gameConfig.scale.height / 600);
             this.spriteContacto = this.add.sprite(gameConfig.scale.width*2.8/4,gameConfig.scale.height*1.7/3,'contacto').setScale(0.9 * gameConfig.scale.height / 600);

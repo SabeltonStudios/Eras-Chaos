@@ -5,6 +5,8 @@ class bootScene extends Phaser.Scene {
 
     preload() {
         //Assets menu principal
+        this.load.image('botonPuntuaciones','assets/Interfaz/Menu/BotonPuntuaciones.png');
+        this.load.image('botonPuntuacionesi','assets/Interfaz/Menu/BotonPuntuacionesi.png');
         this.load.image('botonEspanolOn', 'assets/Interfaz/Menu/botonEspanolOn.png');
         this.load.image('botonInglesOn', 'assets/Interfaz/Menu/botonInglesOn.png');
         this.load.image('botonEspanolOff', 'assets/Interfaz/Menu/botonEspanolOff.png');
