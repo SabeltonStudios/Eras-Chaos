@@ -4,6 +4,29 @@ class bootScene extends Phaser.Scene {
     }
 
     preload() {
+        //Assets menu principal
+        this.load.image('botonEspanolOn', 'assets/Interfaz/Menu/botonEspanolOn.png');
+        this.load.image('botonInglesOn', 'assets/Interfaz/Menu/botonInglesOn.png');
+        this.load.image('botonEspanolOff', 'assets/Interfaz/Menu/botonEspanolOff.png');
+        this.load.image('botonInglesOff', 'assets/Interfaz/Menu/botonInglesOff.png');
+        this.load.image('fondo', 'assets/Interfaz/Menu/fondoMenuPrincipal.png')
+        this.load.image('fondoBlanco', 'assets/Interfaz/Menu/fondoBlanco.png')
+        this.load.image('titulo','assets/Interfaz/Menu/titulo.png')
+
+        //Assets en español
+        this.load.image('botonHistoria', 'assets/Interfaz/Menu/botonHistoria.png');
+        this.load.image('boton2Jugadores', 'assets/Interfaz/Menu/boton2Jugadores.png');
+        this.load.image('botonTienda', 'assets/Interfaz/Menu/botonTienda.png');
+        this.load.image('botonCreditos', 'assets/Interfaz/Menu/botonCreditos.png');
+        this.load.image('botonPuntuaciones', 'assets/Interfaz/Menu/botonPuntuaciones.png');
+
+        //Assets en ingles
+        this.load.image('botonHistoriai','assets/Interfaz/Menu/botonHistoriai.png');
+        this.load.image('boton2Jugadoresi','assets/Interfaz/Menu/boton2Jugadoresi.png');
+        this.load.image('botonTiendai','assets/Interfaz/Menu/botonTiendai.png');
+        this.load.image('botonCreditosi','assets/Interfaz/Menu/botonCreditosi.png');
+        this.load.image('botonPuntuacionesi', 'assets/Interfaz/Menu/botonPuntuacionesi.png');
+
         //Selección nivel
         this.load.image('niveles','assets/Interfaz/SeleccionNivel/Niveles.png');
         this.load.image('nivelesi','assets/Interfaz/SeleccionNivel/Nivelesi.png');

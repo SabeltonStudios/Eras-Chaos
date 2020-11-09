@@ -6,26 +6,7 @@ class menuPrincipalScene extends Phaser.Scene{
     }
     
     preload(){
-        //Assets en general
-        this.load.image('botonEspanolOn', 'assets/Interfaz/Menu/botonEspanolOn.png');
-        this.load.image('botonInglesOn', 'assets/Interfaz/Menu/botonInglesOn.png');
-        this.load.image('botonEspanolOff', 'assets/Interfaz/Menu/botonEspanolOff.png');
-        this.load.image('botonInglesOff', 'assets/Interfaz/Menu/botonInglesOff.png');
-        this.load.image('fondo', 'assets/Interfaz/Menu/fondoMenuPrincipal.png')
-        this.load.image('fondoBlanco', 'assets/Interfaz/Menu/fondoBlanco.png')
-        this.load.image('titulo','assets/Interfaz/Menu/titulo.png')
-
-        //Assets en español
-        this.load.image('botonHistoria', 'assets/Interfaz/Menu/botonHistoria.png');
-        this.load.image('boton2Jugadores', 'assets/Interfaz/Menu/boton2Jugadores.png');
-        this.load.image('botonTienda', 'assets/Interfaz/Menu/botonTienda.png');
-        this.load.image('botonCreditos', 'assets/Interfaz/Menu/botonCreditos.png');
-
-        //Assets en ingles
-        this.load.image('botonHistoriai','assets/Interfaz/Menu/botonHistoriai.png');
-        this.load.image('boton2Jugadoresi','assets/Interfaz/Menu/boton2Jugadoresi.png');
-        this.load.image('botonTiendai','assets/Interfaz/Menu/botonTiendai.png');
-        this.load.image('botonCreditosi','assets/Interfaz/Menu/botonCreditosi.png');
+        
     }
 
     create(){
@@ -39,27 +20,29 @@ class menuPrincipalScene extends Phaser.Scene{
 
         //Si el idioma es español se cargan los botones en español
         if(espanol){
-            this.spriteHistoria = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/9)*4,'botonHistoria');
-            this.spriteMultijugadorSeleccion = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/9)*5,'boton2Jugadores');
-            this.spriteTienda = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/9)*6,'botonTienda');
-            this.spriteCreditos = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/9)*7,'botonCreditos');
+            this.spriteHistoria = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/10)*4,'botonHistoria');
+            this.spriteMultijugadorSeleccion = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/10)*5,'boton2Jugadores');
+            this.spritePuntuaciones = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/10)*6,'botonPuntuaciones');
+            this.spriteTienda = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/10)*7,'botonTienda');
+            this.spriteCreditos = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/10)*8,'botonCreditos');
             this.spriteEspanol = this.add.sprite(gameConfig.scale.width*14/16,gameConfig.scale.height*2/14,'botonEspanolOn');
             this.spriteIngles = this.add.sprite(gameConfig.scale.width*14/16,gameConfig.scale.height*3/14,'botonInglesOff');
 
         //Si el idioma es ingles se cargan los botones en ingles
         }else{
-            this.spriteHistoria = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/9)*4,'botonHistoriai');
-            this.spriteMultijugadorSeleccion = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/9)*5,'boton2Jugadoresi');
-            this.spriteTienda = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/9)*6,'botonTiendai');
-            this.spriteCreditos = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/9)*7,'botonCreditosi');
+            this.spriteHistoria = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/10)*4,'botonHistoriai');
+            this.spriteMultijugadorSeleccion = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/10)*5,'boton2Jugadoresi');
+            this.spritePuntuaciones = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/10)*6,'botonPuntuaciones');
+            this.spriteTienda = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/10)*7,'botonTiendai');
+            this.spriteCreditos = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/10)*8,'botonCreditosi');
             this.spriteEspanol = this.add.sprite(gameConfig.scale.width*14/16,gameConfig.scale.height*2/14,'botonEspanolOff');
             this.spriteIngles = this.add.sprite(gameConfig.scale.width*14/16,gameConfig.scale.height*3/14,'botonInglesOn');
         }
         
         //Interactividad de los botones
         this.spriteHistoria.setInteractive().on('pointerdown', () => this.scene.start("SelectNivelHistoria"))
-           
         this.spriteMultijugadorSeleccion.setInteractive().on('pointerdown', () => this.scene.start("MultijugadorSeleccionScene"))
+        this.spritePuntuaciones.setInteractive().on('pointerdown',() => this.scene.start("PuntuacionesScene"))
         this.spriteTienda.setInteractive().on('pointerdown', () => this.scene.start("TiendaScene"));
         this.spriteCreditos.setInteractive().on('pointerdown', () => this.scene.start("CreditosScene"));
         this.spriteIngles.setInteractive().on('pointerdown', () =>this.cambiarIdiomaIngles());

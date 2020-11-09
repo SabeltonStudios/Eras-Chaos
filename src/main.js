@@ -27,7 +27,7 @@
         scaleMode: 3,
         scene: [bootScene, menuPrincipalScene, selectNivelHistoria, prehistoriaScene,egiptoScene,mediaScene, multijugadorSeleccionScene, multijugadorPartidaScene,
              tiendaScene,tiendaMapasScene,tiendaPersonajesScene,tiendaArmasScene,
-             tiendaPaquetesScene,tiendaRecargarScene, creditosScene]
+             tiendaPaquetesScene,tiendaRecargarScene, creditosScene,puntuacionesScene]
     }
 
 window.onload = function () {
