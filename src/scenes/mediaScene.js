@@ -75,15 +75,15 @@ class mediaScene extends Phaser.Scene {
         this.is_paused = false;
         //this.cameras.main.zoom= 1.3;
         this.cameras.main.zoomTo(1.05, 1000);
-        this.physics.world.bounds.setTo(92.5, 69.5, 615, 461);
+        this.physics.world.bounds.setTo(92.5 * gameConfig.scale.width / 800, 69.5 * gameConfig.scale.width / 800, 615 * gameConfig.scale.height / 600, 461 * gameConfig.scale.height / 600);
         this.physics.world.setBoundsCollision(false, false, true, true);
         
         this.Mapa = this.add.image(0, 0, 'mapaMed').setOrigin(0)
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
 
-        this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'medPlayer').setScale(0.07)//*800/gameConfig.scale.width);
+        this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'medPlayer').setScale(0.07 * gameConfig.scale.height / 600)//*800/gameConfig.scale.width);
         this.player.body.immovable = true;
-        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 2, 'medPlayer').setScale(0.07)//*800/gameConfig.scale.width);
+        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 2, 'medPlayer').setScale(0.07 * gameConfig.scale.height / 600)//*800/gameConfig.scale.width);
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
         /*this.anims.create({
@@ -93,13 +93,13 @@ class mediaScene extends Phaser.Scene {
             repeat: -1
         });
         this.player.anims.play('walk', true);*/
-        this.player.setVelocity(0, -200);
+        this.player.setVelocity(0, -200 * gameConfig.scale.height / 600);
         this.player.setBounce(1);
         this.player.body.setAllowGravity(false);
         this.player.setCollideWorldBounds(true);
 
         //this.enemy.anims.play('walk', true);
-        this.enemy.setVelocity(0, 240);
+        this.enemy.setVelocity(0, 240 * gameConfig.scale.height / 600);
         this.enemy.setBounce(1);
         this.enemy.body.setAllowGravity(false);
         this.enemy.setCollideWorldBounds(true);
@@ -134,24 +134,24 @@ class mediaScene extends Phaser.Scene {
 
         this.obstacles = this.physics.add.group(this.ObstaclesConfig);
         this.obstacles.setOrigin(0.5, 0.5);
-        this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'medBar').setScale(0.2).setFlip(true,false).body.setCircle(120, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, 'medBar').setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, 'medVas').setScale(0.2).setFlip(true,false).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'medBar').setScale(0.2 * gameConfig.scale.height / 600).setFlip(true,false).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, 'medBar').setScale(0.15 * gameConfig.scale.height / 600).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, 'medVas').setScale(0.2 * gameConfig.scale.height / 600).setFlip(true,false).body.setCircle(120, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'medApl').setScale(0.2).body.setCircle(120, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, 'medVas').setScale(0.2).body.setCircle(120, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.59, 'medApl').setScale(0.15).setFlip(true,false).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'medBar').setScale(0.2).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'medApl').setScale(0.2 * gameConfig.scale.height / 600).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, 'medVas').setScale(0.2 * gameConfig.scale.height / 600).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.59, 'medApl').setScale(0.15 * gameConfig.scale.height / 600).setFlip(true,false).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'medBar').setScale(0.2 * gameConfig.scale.height / 600).body.setCircle(120, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, 'medVas').setScale(0.15).setFlip(true,false).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.29, gameConfig.scale.height * 0.73, 'medApl').setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.29, 'medVas').setScale(0.15).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.75, 'medBar').setScale(0.20).setFlip(true,false).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, 'medVas').setScale(0.15 * gameConfig.scale.height / 600).setFlip(true,false).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.29, gameConfig.scale.height * 0.73, 'medApl').setScale(0.15 * gameConfig.scale.height / 600).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.29, 'medVas').setScale(0.15 * gameConfig.scale.height / 600).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.75, 'medBar').setScale(0.20 * gameConfig.scale.height / 600).setFlip(true,false).body.setCircle(120, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'medApl').setScale(0.25).body.setCircle(125, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, 'medBar').setScale(0.25).setFlip(true,false).body.setCircle(125, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'medVas').setScale(0.30).body.setCircle(130, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'medApl').setScale(0.25).body.setCircle(125, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'medApl').setScale(0.25 * gameConfig.scale.height / 600).body.setCircle(125, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, 'medBar').setScale(0.25 * gameConfig.scale.height / 600).setFlip(true,false).body.setCircle(125, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'medVas').setScale(0.30 * gameConfig.scale.height / 600).body.setCircle(130, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'medApl').setScale(0.25 * gameConfig.scale.height / 600).body.setCircle(125, 40, 20).setAllowGravity(false);
 
         this.physics.add.collider(wallR, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallL, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
@@ -222,8 +222,9 @@ class mediaScene extends Phaser.Scene {
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
-                this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'stone').setScale(0.2);
-                this.bomb.setTint(0xa62c2b);
+                this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'stone').setScale(0.15 * gameConfig.scale.height / 600);
+                this.bomb.setTint(0xff7e7d);
+                this.bomb.body.setVelocity(-500 * gameConfig.scale.height / 600, 0);
                 this.bomb.body.setAllowGravity(false);
                 this.bomb.body.setCircle(50, 0, 0);
                 this.bomb.angle = 270;
@@ -232,8 +233,8 @@ class mediaScene extends Phaser.Scene {
     }
     mostrarMenu(t) {
         this.music.setVolume(0.05);
-        t.Menu = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'PauseMenu').setScale(0.5);
-        t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7);
+        t.Menu = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'PauseMenu').setScale(0.5 * gameConfig.scale.height / 600);
+        t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7 * gameConfig.scale.height / 600);
         t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonMenuPral');
         t.BotonMenu.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.stop(); t.scene.start("MenuPrincipalScene") });
         t.BotonCerrar= t.add.sprite(gameConfig.scale.width *0.75, gameConfig.scale.height * 0.36, 'CloseB').setScale(0.1 * gameConfig.scale.width / 800);
@@ -265,6 +266,7 @@ class mediaScene extends Phaser.Scene {
         }
         if (this.win) {
             clearInterval(this.inter);
+            this.shootInput.destroy();
             completedLevel[2].completado=true;
             mapas[2].bloqueado=false;
             personajes[2].bloqueado=false;
@@ -313,8 +315,9 @@ class mediaScene extends Phaser.Scene {
             //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();
         }
-        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, 'stone').setScale(0.2);
-        bomb.setTint(0x32527b );
+        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, 'stone').setScale(0.15 * gameConfig.scale.height / 600);
+        bomb.setTint(0x85baff);
+        bomb.body.setVelocity(500 * gameConfig.scale.height / 600, 0);
         //bomb.setOrigin(0,1);
         bomb.body.setAllowGravity(false);
         bomb.body.setCircle(50, 0, 0);

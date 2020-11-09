@@ -15,7 +15,7 @@ class prehistoriaScene extends Phaser.Scene {
         maxSize: 5,
         bounceX: 1,
         bounceY: 1,
-        velocityX: 500 * gameConfig.scale.height / 600,
+        velocityX: 500,
         velocityY: 0,
     }
     EnemyConfigPre = {
@@ -26,7 +26,7 @@ class prehistoriaScene extends Phaser.Scene {
         maxSize: 5,
         bounceX: 1,
         bounceY: 1,
-        velocityX: -500 * gameConfig.scale.height / 600,
+        velocityX: -500,
         velocityY: 0,
     }
     mConfig = {
@@ -255,8 +255,9 @@ class prehistoriaScene extends Phaser.Scene {
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
-                this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'preWeapon').setScale(0.2 * gameConfig.scale.height / 600);
-                this.bomb.setTint(0xa62c2b);
+                this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'preWeapon').setScale(0.15 * gameConfig.scale.height / 600);
+                this.bomb.setTint(0xff7e7d);
+                this.bomb.body.setVelocity(-500 * gameConfig.scale.height / 600, 0);
                 this.bomb.body.setAllowGravity(false);
                 this.bomb.body.setCircle(50, 0, 0);
                 this.bomb.angle = 270;
@@ -298,6 +299,7 @@ class prehistoriaScene extends Phaser.Scene {
         }
         if (this.win) {
             clearInterval(this.inter);
+            this.shootInput.destroy();
             completedLevel[0].completado = true;
             this.music.stop();
             this.scene.stop();
@@ -343,9 +345,10 @@ class prehistoriaScene extends Phaser.Scene {
             //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();
         }
-        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, 'preWeapon').setScale(0.2 * gameConfig.scale.height / 600);
-        bomb.setTint(0x32527b);
+        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, 'preWeapon').setScale(0.15 * gameConfig.scale.height / 600);
+        bomb.setTint(0x85baff);
         //bomb.setOrigin(0,1);
+        bomb.body.setVelocity(500 * gameConfig.scale.height / 600, 0)
         bomb.body.setAllowGravity(false);
         bomb.body.setCircle(50, 0, 0);
         bomb.angle = 90;
