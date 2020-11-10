@@ -92,7 +92,7 @@ class prehistoriaScene extends Phaser.Scene {
         this.is_paused = false;
         //this.cameras.main.zoom= 1.3;
         this.cameras.main.zoomTo(1.05, 1000);
-        this.cameras.main.fadeIn(1000);
+
         this.physics.world.bounds.setTo(92.5 * gameConfig.scale.width / 800, 69.5 * gameConfig.scale.width / 800, 615 * gameConfig.scale.height / 600, 461 * gameConfig.scale.height / 600);
         this.physics.world.setBoundsCollision(false, false, true, true);
 
@@ -207,7 +207,7 @@ class prehistoriaScene extends Phaser.Scene {
         this.physics.add.collider(this.bulletsPre, this.obstacles);
 
 
-        this.spriteParar = this.add.sprite(gameConfig.scale.width * 2.2 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
+        this.spriteParar = this.add.sprite(gameConfig.scale.width * 15 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
         this.spriteParar.setInteractive().on('pointerdown', () => this.player.body.moves = false /*cambiar a iddle */)
             .on('pointerup', () => this.player.body.moves = true)//,this.player.anims.play('walk', true))
             .on('pointerout', () => this.player.body.moves = true)//, this.player.anims.play('walk', true))
@@ -302,7 +302,7 @@ class prehistoriaScene extends Phaser.Scene {
         });
 
         this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width * 0.9 / 2, (gameConfig.scale.height / 3) * 2.6, 'botonDesbloquearSi').setScale(0.5 * gameConfig.scale.height / 600);
-        this.spriteDesbloquearSi.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.stop(); this.scene.start(salir) });
+        this.spriteDesbloquearSi.setInteractive().on('pointerdown', () => this.rendirse(salir));
     }
     ocultarMenu(t) {
         this.music.setVolume(0.2);
@@ -312,10 +312,45 @@ class prehistoriaScene extends Phaser.Scene {
         t.BotonMenu.destroy();
         t.BotonCerrar.destroy();
     }
+    rendirse(escena) {
+        this.shootInput.destroy();
+        clearInterval(this.inter);
+        this.ocultarMenu(this);
+        this.mensajeSeguro.destroy();
+        this.spriteDesbloquearNo.destroy();
+        this.spriteDesbloquearSi.destroy();
+        this.tweens.add({
+            targets: this.music,
+            volume: 0,
+            duration: 500
+        }, this);
+        this.is_paused = true;
+        this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput);
+        this.fondo = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondo').setScale(gameConfig.scale.height / 600).setTint(0x000000);
+        this.fondo.alpha = 0;
+        this.tweens.add({
+            targets: this.fondo,
+            alpha: 1,
+            duration: 500,
+        }, this);
+        if (espanol) {
+            this.lastima = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Lastima').setScale(gameConfig.scale.height / 600);
+            this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarB').setScale(0.6*gameConfig.scale.height / 600);;
+        } else {
+            this.lastima = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Lastimai').setScale(gameConfig.scale.height / 600);
+            this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6*gameConfig.scale.height / 600);;
+        }
+        this.continuar.setInteractive().on('pointerdown', () => {
+            this.music.stop();
+            this.scene.stop();
+            this.scene.start(escena);
+        })
+    }
     update() {
         if (this.gameOver) {
             clearInterval(this.inter);
             this.shootInput.destroy();
+            this.cameras.main.fadeIn(500, 180, 50, 50);
             //this.music.destroy();
             this.scene.sleep();
             this.scene.setActive(false);
@@ -323,11 +358,37 @@ class prehistoriaScene extends Phaser.Scene {
         }
         if (this.win) {
             clearInterval(this.inter);
+            //this.music.setVolume(0.05);
             this.shootInput.destroy();
             completedLevel[0].completado = true;
-            this.music.stop();
-            this.scene.stop();
-            this.scene.start("EgiptoScene");
+            this.tweens.add({
+                targets: this.music,
+                volume: 0,
+                duration: 500
+            }, this);
+            this.is_paused = true;
+            this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput);
+            this.fondo = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondo').setScale(gameConfig.scale.height / 600).setTint(0x000000);
+            this.fondo.alpha = 0;
+            this.tweens.add({
+                targets: this.fondo,
+                alpha: 1,
+                duration: 1000,
+            }, this);
+            
+            if (espanol) {
+                this.enhorabuena = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Enhorabuena').setScale(gameConfig.scale.height / 600);
+                this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarB').setScale(0.6*gameConfig.scale.height / 600);
+            } else {
+                this.enhorabuena = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Enhorabuenai').setScale(gameConfig.scale.height / 600);
+                this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6*gameConfig.scale.height / 600);
+            }
+            this.continuar.setInteractive().on('pointerdown', () => {
+                this.music.stop();
+                this.scene.stop();
+                this.scene.start("EgiptoScene");
+            })
+
         }
     }
     pauseGame(spriteParar, spriteDisparar, f, s) {

@@ -55,15 +55,22 @@ class bootScene extends Phaser.Scene {
         this.load.image('egiCat', 'assets/Objetos/2.AntiguoEgipto/object_cats.png');
         this.load.image('egiCup', 'assets/Objetos/2.AntiguoEgipto/object_cup.png');
         this.load.image('egiPyr', 'assets/Objetos/2.AntiguoEgipto/object_pyramid.png');
-        this.load.audio('egiMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
+        this.load.audio('egiMusic', ['assets/Música/Egipto.mp3', 'assets/Música/Egipto.ogg']);
         //this.load.spritesheet('dude', 'assets/Interfaz/dude.png', { frameWidth: 32, frameHeight: 48 });
         this.load.image('egiPlayer', 'assets/Personajes/2.AntiguoEgipto/BasicoEgipto.png');
         //this.load.image('bullet', 'assets/Interfaz/Bullet.png');
         this.load.spritesheet('egiWeapon', 'assets/Armas/ArmaEgipto.png', { frameWidth: 235, frameHeight: 235 });
+        
         //Assets Juego
         this.load.image('CloseB','assets/Interfaz/CloseButton.png')
         this.load.image('FreezeBON', 'assets/Interfaz/FreezeButton.png');
         this.load.image('FreezeBOFF', 'assets/Interfaz/FreezeButtonOFF.png');
+        this.load.image('Enhorabuena', 'assets/Interfaz/NivelSuperadoTexto.png');
+        this.load.image('Enhorabuenai', 'assets/Interfaz/NivelSuperadoTextoi.png');
+        this.load.image('ContinuarB', 'assets/Interfaz/ContinuarButton.png');
+        this.load.image('ContinuarBi', 'assets/Interfaz/ContinuarButtoni.png');
+        this.load.image('Lastima', 'assets/Interfaz/RendidoTexto.png');
+        this.load.image('Lastimai', 'assets/Interfaz/RendidoTextoi.png');
 
         this.load.image('ShootBON', 'assets/Interfaz/ShootButton.png');
         this.load.image('ShootBOFF', 'assets/Interfaz/ShootButtonOFF.png');
@@ -74,8 +81,8 @@ class bootScene extends Phaser.Scene {
         this.load.image('PauseMenu', 'assets/Interfaz/Menu/fondoBlanco.png');
         this.load.image('PauseTitle', 'assets/Interfaz/Menu/tituloPaused.png');
         this.load.image('PauseTitlei', 'assets/Interfaz/Menu/tituloPausedi.png');
-        this.load.image('botonRendirse', 'assets/Interfaz/Rendirse.png');
-        this.load.image('botonRendirsei', 'assets/Interfaz/Rendirsei.png');
+        this.load.image('botonRendirse', 'assets/Interfaz//Menu/MainMenu.png');
+        this.load.image('botonRendirsei', 'assets/Interfaz//Menu/MainMenui.png');
         this.load.image('confirmarRendirse', 'assets/Interfaz/ConfirmarRendir.png');
         this.load.image('confirmarRendirsei', 'assets/Interfaz/ConfirmarRendiri.png');
         this.load.image('botonTienda', 'assets/Interfaz/Menu/botonTienda.png');
