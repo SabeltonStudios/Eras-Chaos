@@ -118,7 +118,7 @@ class egiptoScene extends Phaser.Scene {
         this.aux[1].flipX = true;
         this.aux[2].body.setSize(gameConfig.scale.width / 3, 0.16 * gameConfig.scale.height, false);
         this.aux[3].body.setSize(gameConfig.scale.width / 3, 0.16 * gameConfig.scale.height, false);
-        this.aux[3].body.setOffset(-gameConfig.scale.width / 3 + 65, 0);
+        this.aux[3].body.setOffset(-gameConfig.scale.width / 3 + 65* gameConfig.scale.height / 600, 0);
 
         this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'egiPlayer').setScale(0.07 * gameConfig.scale.height / 600)// * gameConfig.scale.width/800 );
         this.player.body.immovable = true;
@@ -132,13 +132,13 @@ class egiptoScene extends Phaser.Scene {
             repeat: -1
         });
         /*this.player.anims.play('walk', true);*/
-        this.player.setVelocity(0, -250 * gameConfig.scale.height / 600);
+        this.player.setVelocity(0, -270 * gameConfig.scale.height / 600);
         this.player.setBounce(1);
         this.player.body.setAllowGravity(false);
         this.player.setCollideWorldBounds(true);
 
         //this.enemy.anims.play('walk', true);
-        this.enemy.setVelocity(0, 290 * gameConfig.scale.height / 600);
+        this.enemy.setVelocity(0, 300 * gameConfig.scale.height / 600);
         this.enemy.setBounce(1);
         this.enemy.body.setAllowGravity(false);
         this.enemy.setCollideWorldBounds(true);
@@ -365,7 +365,7 @@ class egiptoScene extends Phaser.Scene {
         var bomb = this.physics.add.sprite(this.player.x + 10, this.player.y, "egiWeapon").setScale(0.1 * gameConfig.scale.height / 600);
         //this.bulletsPre.create(this.player.x + 10, this.player.y, 'axe').setScale(0.2);
         bomb.setTint(0x85baff);
-        this.bomb.body.setVelocity(500 * gameConfig.scale.height / 600, 0);
+        bomb.body.setVelocity(500 * gameConfig.scale.height / 600, 0);
         this.bulletsPre.add(bomb);
         bomb.play("shoot");
         //bomb.setOrigin(0,1);

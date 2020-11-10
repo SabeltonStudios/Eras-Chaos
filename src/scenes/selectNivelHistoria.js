@@ -24,7 +24,7 @@ class selectNivelHistoria extends Phaser.Scene {
     create() {
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0);
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
-
+        completedLevel[0].completado = true;
         if (espanol) {
             this.spriteTituloMapas = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height / 7, 'niveles').setScale(gameConfig.scale.height / 600);
             this.spriteTutorial= this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height *5/ 7, 'tutorialHistoria').setScale(gameConfig.scale.height / 600);
@@ -51,6 +51,7 @@ class selectNivelHistoria extends Phaser.Scene {
             }
         }
 
+        
         //Asignamos los botones a cinco mapas
         this.mapasButton[0] = this.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 3, mapas[0].sprite).setScale(gameConfig.scale.height / 600);
         this.mapasButton[0].setInteractive().on('pointerdown', () => this.scene.start("PrehistoriaScene"));

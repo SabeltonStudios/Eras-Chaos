@@ -191,11 +191,11 @@ class prehistoriaScene extends Phaser.Scene {
         this.physics.add.existing(this.house);
         this.physics.add.existing(this.rock);
         this.rock.body.setAllowGravity(false);
-        this.rock.body.setCircle(100, 0, 0);
+        this.rock.body.setCircle(100* gameConfig.scale.height / 600, 0, 0);
         this.rock.body.immovable = true;
         this.house.body.immovable = true;
         this.house.body.setAllowGravity(false);
-        this.house.body.setCircle(125, 0, 0);
+        this.house.body.setCircle(125* gameConfig.scale.height / 600, 0,0);
 
         this.physics.add.collider(this.bulletsEnemy, this.rock);
         this.physics.add.collider(this.bulletsEnemy, this.house);
@@ -268,17 +268,40 @@ class prehistoriaScene extends Phaser.Scene {
         this.music.setVolume(0.05);
         t.Menu = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'PauseMenu').setScale(0.5 * gameConfig.scale.height / 600);
         t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7 * gameConfig.scale.height / 600);
-        t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonMenuPral').setScale(gameConfig.scale.height / 600);
-        t.BotonMenu.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.stop(); t.scene.start("MenuPrincipalScene") });
-        t.BotonCerrar= t.add.sprite(gameConfig.scale.width *0.75, gameConfig.scale.height * 0.36, 'CloseB').setScale(0.1 * gameConfig.scale.height / 600);
-        t.BotonCerrar.setInteractive().on('pointerdown', () => {this.is_paused = !this.is_paused;t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput);this.ocultarMenu(this)});
+        t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonRendirse').setScale(gameConfig.scale.height / 600);
+        t.BotonMenu.setInteractive().on('pointerdown', () => this.confirmarSalir("MenuPrincipalScene"));
+        t.BotonCerrar = t.add.sprite(gameConfig.scale.width * 0.75, gameConfig.scale.height * 0.36, 'CloseB').setScale(0.1 * gameConfig.scale.height / 600);
+        t.BotonCerrar.setInteractive().on('pointerdown', () => { this.is_paused = !this.is_paused; t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput); this.ocultarMenu(this) });
         t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda').setScale(gameConfig.scale.height / 600);
-        t.BotonTienda.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.stop(); t.scene.start("TiendaScene") });
+        t.BotonTienda.setInteractive().on('pointerdown', () => this.confirmarSalir("TiendaScene"));
         if (!espanol) {
             t.PauseTitle.setTexture('PauseTitlei');
-            t.BotonMenu.setTexture('botonMenuPrali');
+            t.BotonMenu.setTexture('botonRendirsei');
             t.BotonTienda.setTexture('botonTiendai');
         }
+    }
+    confirmarSalir(salir) {
+        this.BotonTienda.setTint(0x888888);
+        this.BotonMenu.setTint(0x888888);
+        this.BotonMenu.disableInteractive();
+        this.BotonTienda.disableInteractive();
+        this.mensajeSeguro = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2.5 / 3, 'confirmarRendirse').setScale(0.7 * gameConfig.scale.height / 600, 0.6 * gameConfig.scale.height / 600);
+        if (!espanol) {
+            this.mensajeSeguro.setTexture('confirmarRendirsei');
+        }
+        this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width * 1.1 / 2, (gameConfig.scale.height / 3) * 2.6, 'botonDesbloquearNo').setScale(0.5 * gameConfig.scale.height / 600);
+        this.spriteDesbloquearNo.setInteractive().on('pointerdown', () => {
+            this.mensajeSeguro.destroy();
+            this.spriteDesbloquearNo.destroy();
+            this.spriteDesbloquearSi.destroy();
+            this.BotonMenu.setInteractive();
+            this.BotonTienda.setInteractive();
+            this.BotonTienda.clearTint();
+            this.BotonMenu.clearTint()
+        });
+
+        this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width * 0.9 / 2, (gameConfig.scale.height / 3) * 2.6, 'botonDesbloquearSi').setScale(0.5 * gameConfig.scale.height / 600);
+        this.spriteDesbloquearSi.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.stop(); this.scene.start(salir) });
     }
     ocultarMenu(t) {
         this.music.setVolume(0.2);

@@ -107,7 +107,7 @@ class tiendaMapasScene extends Phaser.Scene{
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
 
         if(espanol){
-            this.spriteTituloMapas = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloMapas');
+            this.spriteTituloMapas = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloMapas').setScale(gameConfig.scale.height / 600);
             var i;
             for (i = 0; i < mapas.length; i++) {
                 if(mapas[i].bloqueado){
@@ -117,7 +117,7 @@ class tiendaMapasScene extends Phaser.Scene{
                 }
             }
         }else{
-            this.spriteTituloMapas = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloMapasi');
+            this.spriteTituloMapas = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloMapasi').setScale(gameConfig.scale.height / 600);
             var i;
             for (i = 0; i < mapas.length; i++) {
                 if(mapas[i].bloqueado){
@@ -128,33 +128,33 @@ class tiendaMapasScene extends Phaser.Scene{
             }
         }
         
-        var dinero = this.add.text(gameConfig.scale.width*7.35/16,gameConfig.scale.height/4,coins, { fill: '#fff' });
+        var dinero = this.add.text(gameConfig.scale.width*7.35/16,gameConfig.scale.height/4,coins, { fill: '#fff' }).setScale(gameConfig.scale.height / 600);
 
         //Asignamos los botones a cinco mapas
-        this.mapasButton[0] = this.add.sprite(gameConfig.scale.width / 6,gameConfig.scale.height*1.5/3,mapas[0].sprite);
+        this.mapasButton[0] = this.add.sprite(gameConfig.scale.width / 6,gameConfig.scale.height*1.5/3,mapas[0].sprite).setScale(gameConfig.scale.height / 600);
         this.mapasButton[0].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[0+this.mapasPosicion],dinero,0));
 
-        this.mapasButton[1] = this.add.sprite((gameConfig.scale.width / 6)*2,gameConfig.scale.height*1.5/3,mapas[1].sprite);
+        this.mapasButton[1] = this.add.sprite((gameConfig.scale.width / 6)*2,gameConfig.scale.height*1.5/3,mapas[1].sprite).setScale(gameConfig.scale.height / 600);
         this.mapasButton[1].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[1+this.mapasPosicion],dinero,1));
 
-        this.mapasButton[2] = this.add.sprite((gameConfig.scale.width / 6)*3,gameConfig.scale.height*1.5/3,mapas[2].sprite);
+        this.mapasButton[2] = this.add.sprite((gameConfig.scale.width / 6)*3,gameConfig.scale.height*1.5/3,mapas[2].sprite).setScale(gameConfig.scale.height / 600);
         this.mapasButton[2].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[2+this.mapasPosicion],dinero,2));
 
-        this.mapasButton[3] = this.add.sprite((gameConfig.scale.width / 6)*4,gameConfig.scale.height*1.5/3,mapas[3].sprite);
+        this.mapasButton[3] = this.add.sprite((gameConfig.scale.width / 6)*4,gameConfig.scale.height*1.5/3,mapas[3].sprite).setScale(gameConfig.scale.height / 600);
         this.mapasButton[3].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[3+this.mapasPosicion],dinero,3));
 
-        this.mapasButton[4] = this.add.sprite((gameConfig.scale.width / 6)*5,gameConfig.scale.height*1.5/3,mapas[4].sprite);
+        this.mapasButton[4] = this.add.sprite((gameConfig.scale.width / 6)*5,gameConfig.scale.height*1.5/3,mapas[4].sprite).setScale(gameConfig.scale.height / 600);
         this.mapasButton[4].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[4+this.mapasPosicion],dinero,4));
 
         //Flechas derecha e izquierda
-        this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 25,gameConfig.scale.height*1.5/3,'flechaIzquierda').setScale(0.4);
+        this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 25,gameConfig.scale.height*1.5/3,'flechaIzquierda').setScale(0.4*gameConfig.scale.height / 600);
         this.spriteIzquierda.setInteractive().on('pointerdown', () =>this.trasladarIzquierda());
 
-        this.spriteDerecha = this.add.sprite(gameConfig.scale.width*24/25,gameConfig.scale.height*1.5/3,'flechaDerecha').setScale(0.4);
+        this.spriteDerecha = this.add.sprite(gameConfig.scale.width*24/25,gameConfig.scale.height*1.5/3,'flechaDerecha').setScale(0.4*gameConfig.scale.height / 600);
         this.spriteDerecha.setInteractive().on('pointerdown', () =>this.trasladarDerecha());
 
         //Botón de salir
-        this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15,(gameConfig.scale.height/8)*7.5,'botonSalir').setScale(0.1);
+        this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15,(gameConfig.scale.height/8)*7.5,'botonSalir').setScale(0.1*gameConfig.scale.height / 600);
         this.spriteSalir.setInteractive().on('pointerdown', () => this.scene.start("TiendaScene"));
     }
 
@@ -170,16 +170,16 @@ class tiendaMapasScene extends Phaser.Scene{
         if(mapa.bloqueado){
             this.mapasButton[pos].setTint(0xDEDE7C);
             if(espanol){
-                this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloquear');
+                this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloquear').setScale(gameConfig.scale.height / 600);
             }else{
-                this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloqueari');
+                this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloqueari').setScale(gameConfig.scale.height / 600);
             }
             
 
-            this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width*1.2 / 2,(gameConfig.scale.height/3)*2.6,'botonDesbloquearNo');
+            this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width*1.2 / 2,(gameConfig.scale.height/3)*2.6,'botonDesbloquearNo').setScale(gameConfig.scale.height / 600);
             this.spriteDesbloquearNo.setInteractive().on('pointerdown',()=> this.cerrarMensajeDesbloquear(pos));
 
-            this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width*0.8 / 2,(gameConfig.scale.height/3)*2.6,'botonDesbloquearSi');
+            this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width*0.8 / 2,(gameConfig.scale.height/3)*2.6,'botonDesbloquearSi').setScale(gameConfig.scale.height / 600);
             this.spriteDesbloquearSi.setInteractive().on('pointerdown',()=> this.comprarMapa(mapa,dinero,pos));
         }
         

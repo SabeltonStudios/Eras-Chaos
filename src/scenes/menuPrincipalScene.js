@@ -32,7 +32,7 @@ class menuPrincipalScene extends Phaser.Scene{
         }else{
             this.spriteHistoria = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/10)*4,'botonHistoriai').setScale(gameConfig.scale.height / 600);
             this.spriteMultijugadorSeleccion = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/10)*5,'boton2Jugadoresi').setScale(gameConfig.scale.height / 600);
-            this.spritePuntuaciones = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/10)*6,'botonPuntuaciones').setScale(gameConfig.scale.height / 600);
+            this.spritePuntuaciones = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/10)*6,'botonPuntuacionesi').setScale(gameConfig.scale.height / 600);
             this.spriteTienda = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/10)*7,'botonTiendai').setScale(gameConfig.scale.height / 600);
             this.spriteCreditos = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/10)*8,'botonCreditosi').setScale(gameConfig.scale.height / 600);
             this.spriteEspanol = this.add.sprite(gameConfig.scale.width*14/16,gameConfig.scale.height*2/14,'botonEspanolOff').setScale(gameConfig.scale.height / 600);
