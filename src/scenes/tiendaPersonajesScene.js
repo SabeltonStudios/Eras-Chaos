@@ -5,56 +5,72 @@ let personajes=[
         "coins" : 0,
         "sprite": 'Unvaar',
         "spriteDesbloqueado": 'Unvaar',
-        "spriteBloqueado": 'Unvaar'
+        "spriteBloqueado": 'Unvaar',
+        "seleccionDesbloqueado": 'UnvaarS',
+        "seleccionBloqueado": 'UnvaarBS'
     },
     {
         "bloqueado":true,
         "coins" : 250,
         "sprite": 'NahibB',
         "spriteDesbloqueado": 'Nahib',
-        "spriteBloqueado": 'NahibB'
+        "spriteBloqueado": 'NahibB',
+        "seleccionDesbloqueado": 'NahibS',
+        "seleccionBloqueado": 'NahibBS'
     },
     {
         "bloqueado":true,
         "coins" : 300,
         "sprite": 'LamberB',
         "spriteDesbloqueado": 'Lamber',
-        "spriteBloqueado": 'LamberB'
+        "spriteBloqueado": 'LamberB',
+        "seleccionDesbloqueado": 'LamberS',
+        "seleccionBloqueado": 'LamberBS'
     },
     {
         "bloqueado":true,
         "coins" : 400,
         "sprite": 'ThomasB',
         "spriteDesbloqueado": 'Thomas',
-        "spriteBloqueado": 'ThomasB'
+        "spriteBloqueado": 'ThomasB',
+        "seleccionDesbloqueado": 'ThomasS',
+        "seleccionBloqueado": 'ThomasBS'
     },
     {
         "bloqueado":true,
         "coins" : 500,
         "sprite": 'ThomasB',
         "spriteDesbloqueado": 'Thomas',
-        "spriteBloqueado": 'ThomasB'
+        "spriteBloqueado": 'ThomasB',
+        "seleccionDesbloqueado": 'ThomasS',
+        "seleccionBloqueado": 'ThomasBS'
     },
     {
         "bloqueado":true,
         "coins" : 650,
         "sprite": 'GaardB',
         "spriteDesbloqueado": 'Gaard',
-        "spriteBloqueado": 'GaardB'
+        "spriteBloqueado": 'GaardB',
+        "seleccionDesbloqueado": 'Gaard',
+        "seleccionBloqueado": 'GaardBS'
     },
     {
         "bloqueado":true,
         "coins" : 650,
         "sprite": 'CleopatraB',
         "spriteDesbloqueado": 'Cleopatra',
-        "spriteBloqueado": 'CleopatraB'
+        "spriteBloqueado": 'CleopatraB',
+        "seleccionDesbloqueado": 'CleopatraS',
+        "seleccionBloqueado": 'CleopatraBS'
     },
     {
         "bloqueado":true,
         "coins" : 650,
         "sprite": 'SirRodrickB',
         "spriteDesbloqueado": 'SirRodrick',
-        "spriteBloqueado": 'SirRodrickB'
+        "spriteBloqueado": 'SirRodrickB',
+        "seleccionDesbloqueado": 'SirRodrickS',
+        "seleccionBloqueado": 'SirRodrickBS'
     }
 ];
 
@@ -102,36 +118,36 @@ class tiendaPersonajesScene extends Phaser.Scene{
         var dinero = this.add.text(gameConfig.scale.width*7.35/16,gameConfig.scale.height/4,coins, { fill: '#fff' });
 
         if(espanol){
-            this.spriteTituloPersonajes = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloPersonajes');
+            this.spriteTituloPersonajes = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloPersonajes').setScale(gameConfig.scale.height / 600);
         }else{
-            this.spriteTituloPersonajes = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloPersonajesi');
+            this.spriteTituloPersonajes = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloPersonajesi').setScale(gameConfig.scale.height / 600);
         }
 
         //Asignamos los botones a cinco personajes
-        this.personajesButton[0] = this.add.sprite(gameConfig.scale.width / 6,gameConfig.scale.height*1.5/3,personajes[0].sprite);
+        this.personajesButton[0] = this.add.sprite(gameConfig.scale.width / 6,gameConfig.scale.height*1.5/3,personajes[0].sprite).setScale(gameConfig.scale.height / 600);
         this.personajesButton[0].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[0+this.personajesPosicion],dinero,0));
 
-        this.personajesButton[1] = this.add.sprite((gameConfig.scale.width / 6)*2,gameConfig.scale.height*1.5/3,personajes[1].sprite);
+        this.personajesButton[1] = this.add.sprite((gameConfig.scale.width / 6)*2,gameConfig.scale.height*1.5/3,personajes[1].sprite).setScale(gameConfig.scale.height / 600);
         this.personajesButton[1].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[1+this.personajesPosicion],dinero,1));
 
-        this.personajesButton[2] = this.add.sprite((gameConfig.scale.width / 6)*3,gameConfig.scale.height*1.5/3,personajes[2].sprite);
+        this.personajesButton[2] = this.add.sprite((gameConfig.scale.width / 6)*3,gameConfig.scale.height*1.5/3,personajes[2].sprite).setScale(gameConfig.scale.height / 600);
         this.personajesButton[2].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[2+this.personajesPosicion],dinero,2));
 
-        this.personajesButton[3] = this.add.sprite((gameConfig.scale.width / 6)*4,gameConfig.scale.height*1.5/3,personajes[3].sprite);
+        this.personajesButton[3] = this.add.sprite((gameConfig.scale.width / 6)*4,gameConfig.scale.height*1.5/3,personajes[3].sprite).setScale(gameConfig.scale.height / 600);
         this.personajesButton[3].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[3+this.personajesPosicion],dinero,3));
 
-        this.personajesButton[4] = this.add.sprite((gameConfig.scale.width / 6)*5,gameConfig.scale.height*1.5/3,personajes[4].sprite);
+        this.personajesButton[4] = this.add.sprite((gameConfig.scale.width / 6)*5,gameConfig.scale.height*1.5/3,personajes[4].sprite).setScale(gameConfig.scale.height / 600);
         this.personajesButton[4].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[4+this.personajesPosicion],dinero,4));
 
         //Flechas derecha e izquierda
-        this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 25,gameConfig.scale.height*1.5/3,'flechaIzquierda').setScale(0.4);
+        this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 25,gameConfig.scale.height*1.5/3,'flechaIzquierda').setScale(gameConfig.scale.height *0.4/ 600);
         this.spriteIzquierda.setInteractive().on('pointerdown', () =>this.trasladarIzquierda());
 
-        this.spriteDerecha = this.add.sprite(gameConfig.scale.width*24/25,gameConfig.scale.height*1.5/3,'flechaDerecha').setScale(0.4);
+        this.spriteDerecha = this.add.sprite(gameConfig.scale.width*24/25,gameConfig.scale.height*1.5/3,'flechaDerecha').setScale(gameConfig.scale.height *0.4/ 600);
         this.spriteDerecha.setInteractive().on('pointerdown', () =>this.trasladarDerecha());
 
         //Botón de salir
-        this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15,(gameConfig.scale.height/8)*7.5,'botonSalir').setScale(0.1);
+        this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15,(gameConfig.scale.height/8)*7.5,'botonSalir').setScale(gameConfig.scale.height *0.1/ 600);
         this.spriteSalir.setInteractive().on('pointerdown', () => this.scene.start("TiendaScene"));
     }
 
@@ -147,16 +163,16 @@ class tiendaPersonajesScene extends Phaser.Scene{
         if(personaje.bloqueado){
             this.personajesButton[pos].setTint(0xDEDE7C);
             if(espanol){
-                this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloquear');
+                this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloquear').setScale(gameConfig.scale.height / 600);
             }else{
-                this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloqueari');
+                this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloqueari').setScale(gameConfig.scale.height / 600);
             }
             
 
-            this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width*1.2 / 2,(gameConfig.scale.height/3)*2.6,'botonDesbloquearNo');
+            this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width*1.2 / 2,(gameConfig.scale.height/3)*2.6,'botonDesbloquearNo').setScale(gameConfig.scale.height / 600);
             this.spriteDesbloquearNo.setInteractive().on('pointerdown',()=> this.cerrarMensajeDesbloquear(pos));
 
-            this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width*0.8 / 2,(gameConfig.scale.height/3)*2.6,'botonDesbloquearSi');
+            this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width*0.8 / 2,(gameConfig.scale.height/3)*2.6,'botonDesbloquearSi').setScale(gameConfig.scale.height / 600);
             this.spriteDesbloquearSi.setInteractive().on('pointerdown',()=> this.comprarPersonaje(personaje,dinero,pos));
         }
         

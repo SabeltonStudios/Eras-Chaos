@@ -57,6 +57,15 @@ class multijugadorSeleccionScene extends Phaser.Scene {
         this.mapasButton[4] = this.add.sprite((gameConfig.scale.width / 6) * 5, gameConfig.scale.height / 4, mapas[4].sprite).setScale(0.7 * gameConfig.scale.height / 600);
         this.mapasButton[4].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 4 });
 
+        if(espanol){
+            this.spriteJugador1 = this.add.sprite(gameConfig.scale.width /5, gameConfig.scale.height /2.6, 'jugador1').setScale(0.4 * gameConfig.scale.height / 600);
+            this.spriteJugador2 = this.add.sprite(gameConfig.scale.width *4/5, gameConfig.scale.height /2.6, 'jugador2').setScale(0.4 * gameConfig.scale.height / 600);
+        }else{
+            this.spriteJugador1 = this.add.sprite(gameConfig.scale.width /5, gameConfig.scale.height /2.6, 'jugador1i').setScale(0.4 * gameConfig.scale.height / 600);
+            this.spriteJugador2 = this.add.sprite(gameConfig.scale.width *4/5, gameConfig.scale.height /2.6, 'jugador2i').setScale(0.4 * gameConfig.scale.height / 600);
+    
+        }
+        
         //Flechas derecha e izquierda
         this.spriteIzquierdaMapa = this.add.sprite(gameConfig.scale.width / 25, gameConfig.scale.height / 4, 'flechaIzquierda').setScale(0.28 * gameConfig.scale.height / 600);
         this.spriteIzquierdaMapa.setInteractive().on('pointerdown', () => this.trasladarIzquierda(0));
@@ -65,19 +74,39 @@ class multijugadorSeleccionScene extends Phaser.Scene {
         this.spriteDerechaMapa.setInteractive().on('pointerdown', () => this.trasladarDerecha(0));
 
         //personajes 1
-        this.personajesButton[0] = this.add.sprite(gameConfig.scale.width / 8, gameConfig.scale.height / 2, personajes[0].sprite).setScale(0.4 * gameConfig.scale.height / 600);
+        if(personajes[0].bloqueado){
+            this.personajesButton[0] = this.add.sprite(gameConfig.scale.width / 8, gameConfig.scale.height / 2, personajes[0].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        }else{
+            this.personajesButton[0] = this.add.sprite(gameConfig.scale.width / 8, gameConfig.scale.height / 2, personajes[0].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        }
         this.personajesButton[0].setInteractive().on('pointerdown', () => { if (!personajes[0].bloqueado) selectedChar1 = 0 });
 
-        this.personajesButton[1] = this.add.sprite((gameConfig.scale.width / 8) +60, gameConfig.scale.height / 2, personajes[1].sprite).setScale(0.4 * gameConfig.scale.height / 600);
+        if(personajes[1].bloqueado){
+            this.personajesButton[1] = this.add.sprite((gameConfig.scale.width / 8) +120, gameConfig.scale.height / 2, personajes[1].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        }else{
+            this.personajesButton[1] = this.add.sprite((gameConfig.scale.width / 8) +120, gameConfig.scale.height / 2, personajes[1].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        }
         this.personajesButton[1].setInteractive().on('pointerdown', () => { if (!personajes[1].bloqueado) selectedChar1 = 1 });
 
-        this.personajesButton[2] = this.add.sprite((gameConfig.scale.width / 8) +120, gameConfig.scale.height / 2, personajes[2].sprite).setScale(0.4 * gameConfig.scale.height / 600);
+        if(personajes[2].bloqueado){
+            this.personajesButton[2] = this.add.sprite((gameConfig.scale.width / 8) +240, gameConfig.scale.height / 2, personajes[2].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        }else{
+            this.personajesButton[2] = this.add.sprite((gameConfig.scale.width / 8) +240, gameConfig.scale.height / 2, personajes[2].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        }
         this.personajesButton[2].setInteractive().on('pointerdown', () => { if (!personajes[2].bloqueado) selectedChar1 = 2 });
 
-        this.personajesButton[3] = this.add.sprite((gameConfig.scale.width / 8), gameConfig.scale.height / 1.5, personajes[3].sprite).setScale(0.4 * gameConfig.scale.height / 600);
+        if(personajes[3].bloqueado){
+            this.personajesButton[3] = this.add.sprite((gameConfig.scale.width / 8), gameConfig.scale.height / 1.5, personajes[3].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        }else{
+            this.personajesButton[3] = this.add.sprite((gameConfig.scale.width / 8), gameConfig.scale.height / 1.5, personajes[3].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        }
         this.personajesButton[3].setInteractive().on('pointerdown', () => { if (!personajes[3].bloqueado) selectedChar1 = 3 });
 
-        this.personajesButton[4] = this.add.sprite((gameConfig.scale.width / 8) +60, gameConfig.scale.height / 1.5, personajes[4].sprite).setScale(0.4 * gameConfig.scale.height / 600);
+        if(personajes[4].bloqueado){
+            this.personajesButton[4] = this.add.sprite((gameConfig.scale.width / 8) +120, gameConfig.scale.height / 1.5, personajes[4].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        }else{
+            this.personajesButton[4] = this.add.sprite((gameConfig.scale.width / 8) +120, gameConfig.scale.height / 1.5, personajes[4].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        }
         this.personajesButton[4].setInteractive().on('pointerdown', () => { if (!personajes[4].bloqueado) selectedChar1 = 4 });
 
         //Flechas derecha e izquierda
@@ -114,7 +143,7 @@ class multijugadorSeleccionScene extends Phaser.Scene {
         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15, (gameConfig.scale.height / 8) * 7.5, 'botonSalir').setScale(0.1 * gameConfig.scale.height / 600);
         this.spriteSalir.setInteractive().on('pointerdown', () => this.scene.start("MenuPrincipalScene"));
 
-        this.spriteJugar = this.add.sprite(gameConfig.scale.width / 2, (gameConfig.scale.height / 8) * 7.5, 'botonSalir').setScale(0.1 * gameConfig.scale.height / 600);
+        this.spriteJugar = this.add.sprite(gameConfig.scale.width / 2, (gameConfig.scale.height / 8) * 7.5, 'botonPlay').setScale(0.4 *gameConfig.scale.height / 600);
         this.spriteJugar.setInteractive().on('pointerdown', () => this.scene.start("MultijugadorPartidaScene"));
     }
     trasladarIzquierda(variable) {

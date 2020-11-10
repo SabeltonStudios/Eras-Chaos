@@ -11,10 +11,10 @@ class bootScene extends Phaser.Scene {
         this.load.image('botonInglesOn', 'assets/Interfaz/Menu/botonInglesOn.png');
         this.load.image('botonEspanolOff', 'assets/Interfaz/Menu/botonEspanolOff.png');
         this.load.image('botonInglesOff', 'assets/Interfaz/Menu/botonInglesOff.png');
-        this.load.image('fondo', 'assets/Interfaz/Menu/fondoMenuPrincipal.png')
-        this.load.image('fondoBlanco', 'assets/Interfaz/Menu/fondoBlanco.png')
-        this.load.image('titulo','assets/Interfaz/Menu/titulo.png')
-
+        this.load.image('fondo', 'assets/Interfaz/Menu/fondoMenuPrincipal.png');
+        this.load.image('fondoBlanco', 'assets/Interfaz/Menu/fondoBlanco.png');
+        this.load.image('titulo','assets/Interfaz/Menu/titulo.png');
+        this.load.image('botonPlay','assets/Interfaz/SeleccionNivel/play.png');
         //Assets en español
         this.load.image('botonHistoria', 'assets/Interfaz/Menu/botonHistoria.png');
         this.load.image('boton2Jugadores', 'assets/Interfaz/Menu/boton2Jugadores.png');
@@ -60,6 +60,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('egiPlayer', 'assets/Personajes/2.AntiguoEgipto/BasicoEgipto.png');
         //this.load.image('bullet', 'assets/Interfaz/Bullet.png');
         this.load.spritesheet('egiWeapon', 'assets/Armas/ArmaEgipto.png', { frameWidth: 235, frameHeight: 235 });
+        
         
         //Assets Juego
         this.load.image('CloseB','assets/Interfaz/CloseButton.png')
@@ -133,6 +134,19 @@ class bootScene extends Phaser.Scene {
         this.load.image('Thomas', 'assets/Interfaz/Tienda/Personajes/Thomas.png');
         this.load.image('ThomasB', 'assets/Interfaz/Tienda/Personajes/ThomasB.png');
 
+        this.load.image('UnvaarS', 'assets/Interfaz/SeleccionNivel/Unvaar.png');
+        this.load.image('GaardS', 'assets/Interfaz/SeleccionNivel/Gaard.png');
+        this.load.image('GaardBS', 'assets/Interfaz/SeleccionNivel/GaardB.png');
+        this.load.image('NahibS', 'assets/Interfaz/SeleccionNivel/Nahib.png');
+        this.load.image('NahibBS', 'assets/Interfaz/SeleccionNivel/NahibB.png');
+        this.load.image('CleopatraS', 'assets/Interfaz/SeleccionNivel/Cleopatra.png');
+        this.load.image('CleopatraBS', 'assets/Interfaz/SeleccionNivel/CleopatraB.png');
+        this.load.image('LamberS', 'assets/Interfaz/SeleccionNivel/Lamber.png');
+        this.load.image('LamberBS', 'assets/Interfaz/SeleccionNivel/LamberB.png');
+        this.load.image('SirRodrickS', 'assets/Interfaz/SeleccionNivel/SirRodrick.png');
+        this.load.image('SirRodrickBS', 'assets/Interfaz/SeleccionNivel/SirRodrickB.png');
+        this.load.image('ThomasS', 'assets/Interfaz/SeleccionNivel/Thomas.png');
+        this.load.image('ThomasBS', 'assets/Interfaz/SeleccionNivel/ThomasB.png');
         //Assets español
         this.load.image('tituloPersonajes', 'assets/Interfaz/Tienda/Personajes/tituloPersonajes.png');
         this.load.image('mensajeDesbloquear', 'assets/Interfaz/Tienda/mensajeDesbloquear.png');
@@ -140,6 +154,12 @@ class bootScene extends Phaser.Scene {
         //Assets ingles
         this.load.image('tituloPersonajesi', 'assets/Interfaz/Tienda/Personajes/tituloPersonajesi.png');
         this.load.image('mensajeDesbloqueari', 'assets/Interfaz/Tienda/mensajeDesbloqueari.png');
+
+        this.load.image('jugador1', 'assets/Interfaz/SeleccionNivel/Jugador1.png');
+        this.load.image('jugador1i', 'assets/Interfaz/SeleccionNivel/Jugador1i.png');
+        this.load.image('jugador2', 'assets/Interfaz/SeleccionNivel/Jugador2.png');
+        this.load.image('jugador2i', 'assets/Interfaz/SeleccionNivel/Jugador2.png');
+
     }
 
     create() {
