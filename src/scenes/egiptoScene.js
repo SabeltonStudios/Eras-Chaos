@@ -118,11 +118,11 @@ class egiptoScene extends Phaser.Scene {
         this.aux[1].flipX = true;
         this.aux[2].body.setSize(gameConfig.scale.width / 3, 0.16 * gameConfig.scale.height, false);
         this.aux[3].body.setSize(gameConfig.scale.width / 3, 0.16 * gameConfig.scale.height, false);
-        this.aux[3].body.setOffset(-gameConfig.scale.width / 3 + 65* gameConfig.scale.height / 600, 0);
+        this.aux[3].body.setOffset(-gameConfig.scale.width / 3 + 65* gameConfig.scale.width / 800, 0);
 
-        this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'egiPlayer').setScale(0.07 * gameConfig.scale.height / 600)// * gameConfig.scale.width/800 );
+        this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'egiPlayer').setScale(0.07 * gameConfig.scale.width / 800)// * gameConfig.scale.width/800 );
         this.player.body.immovable = true;
-        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 2, 'egiPlayer').setScale(0.07 * gameConfig.scale.height / 600)// * gameConfig.scale.width/800);
+        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 2, 'egiPlayer').setScale(0.07 * gameConfig.scale.width / 800)// * gameConfig.scale.width/800);
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
         this.anims.create({
@@ -173,24 +173,24 @@ class egiptoScene extends Phaser.Scene {
 
         this.obstacles = this.physics.add.group(this.ObstaclesConfig);
         this.obstacles.setOrigin(0.5, 0.5);
-        this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'egiCat').setScale(0.1 * gameConfig.scale.height / 600).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, 'egiCup').setScale(0.10 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, 'egiPyr').setScale(0.2 * gameConfig.scale.height / 600).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'egiCat').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, 'egiCup').setScale(0.10 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, 'egiPyr').setScale(0.2 * gameConfig.scale.width / 800).body.setCircle(120, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'egiCat').setScale(0.15 * gameConfig.scale.height / 600).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, 'egiPyr').setScale(0.15 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.62, 'egiCat').setScale(0.15 * gameConfig.scale.height / 600).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'egiCup').setScale(0.15 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'egiCat').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, 'egiPyr').setScale(0.15 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.62, 'egiCat').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'egiCup').setScale(0.15 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, 'egiPyr').setScale(0.10 * gameConfig.scale.height / 600).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.31, gameConfig.scale.height * 0.7, 'egiCup').setScale(0.10 * gameConfig.scale.height / 600).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.32, 'egiPyr').setScale(0.10 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.7, 'egiCup').setScale(0.15 * gameConfig.scale.height / 600).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, 'egiPyr').setScale(0.10 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.31, gameConfig.scale.height * 0.7, 'egiCup').setScale(0.10 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.32, 'egiPyr').setScale(0.10 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.7, 'egiCup').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'egiCat').setScale(0.15 * gameConfig.scale.height / 600).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, 'egiCup').setScale(0.15 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'egiPyr').setScale(0.15 * gameConfig.scale.height / 600).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'egiCat').setScale(0.15 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'egiCat').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, 'egiCup').setScale(0.15 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'egiPyr').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'egiCat').setScale(0.15 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
 
         this.physics.add.collider(wallR, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallL, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
@@ -261,11 +261,12 @@ class egiptoScene extends Phaser.Scene {
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
-                this.bomb = this.physics.add.sprite(this.enemy.x - 10, this.enemy.y, "egiWeapon").setScale(0.1 * gameConfig.scale.height / 600).setFlip(true,false);
+                this.bomb = this.physics.add.sprite(this.enemy.x - 10, this.enemy.y, "egiWeapon").setScale(0.15 * gameConfig.scale.width / 800).setFlip(true,false);
                 this.bomb.setTint(0xff7e7d);
-                this.bomb.body.setVelocity(-500 * gameConfig.scale.height / 600, 0);
+                
                 this.bulletsEnemy.add(this.bomb);
                 this.bomb.play("shoot");
+                this.bomb.body.setVelocity(-500 * gameConfig.scale.height / 600, 0);
                 //this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'axe').setScale(0.2).setFlip(true,false).play('shoot', true);
                 this.bomb.body.setAllowGravity(false);
                 this.bomb.body.setCircle(100, 30, 30);
@@ -362,12 +363,13 @@ class egiptoScene extends Phaser.Scene {
             //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();
         }
-        var bomb = this.physics.add.sprite(this.player.x + 10, this.player.y, "egiWeapon").setScale(0.1 * gameConfig.scale.height / 600);
+        var bomb = this.physics.add.sprite(this.player.x + 10, this.player.y, "egiWeapon").setScale(0.15 * gameConfig.scale.width / 800);
         //this.bulletsPre.create(this.player.x + 10, this.player.y, 'axe').setScale(0.2);
         bomb.setTint(0x85baff);
-        bomb.body.setVelocity(500 * gameConfig.scale.height / 600, 0);
+        
         this.bulletsPre.add(bomb);
         bomb.play("shoot");
+        bomb.body.setVelocity(500 * gameConfig.scale.height / 600, 0);
         //bomb.setOrigin(0,1);
         bomb.body.setAllowGravity(false);
         bomb.body.setCircle(100, 30, 30);
