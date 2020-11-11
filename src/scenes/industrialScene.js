@@ -162,7 +162,7 @@ class industrialScene extends Phaser.Scene {
 
         //this.physics.add.collider(this.player, this.bulletsPre, () => this.gameOver = true);
         this.physics.add.collider(this.player, this.bulletsEnemy, () => this.gameOver = true);
-        this.physics.add.collider(this.enemy, this.bulletsPre, () => this.win = true);
+        this.physics.add.collider(this.enemy, this.bulletsPre, () => {this.bulletsPre.clear(); this.win = true});
         this.physics.add.collider(this.bulletsPre, this.bulletsPre);
         this.physics.add.collider(this.bulletsEnemy, this.bulletsEnemy);
         this.physics.add.collider(this.bulletsPre, this.bulletsEnemy);
@@ -323,9 +323,10 @@ class industrialScene extends Phaser.Scene {
             this.scene.restart();
         }
         if (this.win) {
+            
+            clearInterval(this.inter);
             this.win = false;
             sortResults("Revolucion Industrial",this.contMuertes);
-            clearInterval(this.inter);
             this.shootInput.destroy();
             this.tweens.add({
                 targets: this.music,
