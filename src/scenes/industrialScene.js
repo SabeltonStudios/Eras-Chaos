@@ -12,7 +12,7 @@ class industrialScene extends Phaser.Scene {
         defaultKey: 'stone',
         defaultFrame: null,
         active: true,
-        maxSize: 5,
+        maxSize: 2,
         bounceX: 1,
         bounceY: 1,
         velocityX: 500,
@@ -24,8 +24,8 @@ class industrialScene extends Phaser.Scene {
         defaultFrame: null,
         active: true,
         maxSize: 5,
-        bounceX: 1,
-        bounceY: 1,
+        bounceX: 1.2,
+        bounceY: 1.2,
         velocityX: -500,
         velocityY: 0,
     }
@@ -90,36 +90,36 @@ class industrialScene extends Phaser.Scene {
             repeat: -1
         });
         this.player.anims.play('walk', true);*/
-        this.player.setVelocity(0, -200 * gameConfig.scale.height / 600);
+        this.player.setVelocity(0, -330 * gameConfig.scale.height / 600);
         this.player.setBounce(1);
         this.player.body.setAllowGravity(false);
         this.player.setCollideWorldBounds(true);
 
         //this.enemy.anims.play('walk', true);
-        this.enemy.setVelocity(0, 240 * gameConfig.scale.height / 600);
+        this.enemy.setVelocity(0, 200 * gameConfig.scale.height / 600);
         this.enemy.setBounce(1);
         this.enemy.body.setAllowGravity(false);
         this.enemy.setCollideWorldBounds(true);
 
-        var wallR = this.add.rectangle(gameConfig.scale.width + 20, gameConfig.scale.height / 2, 20, gameConfig.scale.height);
+        var wallR = this.add.rectangle(gameConfig.scale.width-30, gameConfig.scale.height / 2, 50*gameConfig.scale.height/600, gameConfig.scale.height);
         this.physics.add.existing(wallR);
         wallR.body.setAllowGravity(false);
-        wallR.body.setSize(20, gameConfig.scale.width);
+        wallR.body.setSize(50*gameConfig.scale.height/600, gameConfig.scale.height);
         wallR.body.immovable = true;
-        var wallL = this.add.rectangle(-20, gameConfig.scale.height / 2, 20, gameConfig.scale.height);
+        var wallL = this.add.rectangle(30, gameConfig.scale.height / 2, 50*gameConfig.scale.height/600, gameConfig.scale.height);
         this.physics.add.existing(wallL);
         wallL.body.setAllowGravity(false);
-        wallL.body.setSize(20, gameConfig.scale.width);
+        wallL.body.setSize(50*gameConfig.scale.height/600, gameConfig.scale.height);
         wallL.body.immovable = true;
-        var wallU = this.add.rectangle(gameConfig.scale.width / 2, 0, gameConfig.scale.width, 120*gameConfig.scale.height/600);
+        var wallU = this.add.rectangle(gameConfig.scale.width / 2, 0, 550*gameConfig.scale.width/800, 170*gameConfig.scale.height/600);
         this.physics.add.existing(wallU);
         wallU.body.setAllowGravity(false);
-        wallU.body.setSize(gameConfig.scale.width, 120*gameConfig.scale.height/600);
+        wallU.body.setSize(550*gameConfig.scale.width/800, 170*gameConfig.scale.height/600);
         wallU.body.immovable = true;
-        var wallD = this.add.rectangle(gameConfig.scale.width / 2, gameConfig.scale.height + 20, gameConfig.scale.width, 20);
+        var wallD = this.add.rectangle(gameConfig.scale.width / 2, gameConfig.scale.height+20, gameConfig.scale.width, 50*gameConfig.scale.height/600);
         this.physics.add.existing(wallD);
         wallD.body.setAllowGravity(false);
-        wallD.body.setSize(gameConfig.scale.height, 20);
+        wallD.body.setSize(gameConfig.scale.width, 50*gameConfig.scale.height/600);
         wallD.body.immovable = true;
 
         this.bulletsPre = this.physics.add.group(this.configPre);
@@ -150,14 +150,14 @@ class industrialScene extends Phaser.Scene {
         this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'indWheel').setScale(0.17 * gameConfig.scale.width / 800).body.setCircle(117, 40, 20).setAllowGravity(false);
         this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'indTool').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
 
-        this.physics.add.collider(wallR, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
-        this.physics.add.collider(wallL, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallR, this.bulletsPre);//, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallL, this.bulletsPre);//, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallU, this.bulletsPre);
-        this.physics.add.collider(wallD, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
-        this.physics.add.collider(wallR, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
-        this.physics.add.collider(wallL, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallD, this.bulletsPre);//, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallR, this.bulletsEnemy);//, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallL, this.bulletsEnemy);//, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallU, this.bulletsEnemy);
-        this.physics.add.collider(wallD, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
+        this.physics.add.collider(wallD, this.bulletsEnemy);//, function (wall, bullet) { bullet.destroy(); });
 
         //this.physics.add.collider(this.player, this.bulletsPre, () => this.gameOver = true);
         this.physics.add.collider(this.player, this.bulletsEnemy, () => this.gameOver = true);
@@ -226,7 +226,7 @@ class industrialScene extends Phaser.Scene {
                 this.bomb.body.setCircle(50, 0, 0);
                 this.bomb.angle = 270;
             }
-        }, 1000);
+        }, 750);
     }
     mostrarMenu(t) {
         this.music.setVolume(0.05);

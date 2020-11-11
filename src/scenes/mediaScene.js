@@ -90,13 +90,13 @@ class mediaScene extends Phaser.Scene {
             repeat: -1
         });
         this.player.anims.play('walk', true);*/
-        this.player.setVelocity(0, -200 * gameConfig.scale.height / 600);
+        this.player.setVelocity(0, -300 * gameConfig.scale.height / 600);
         this.player.setBounce(1);
         this.player.body.setAllowGravity(false);
         this.player.setCollideWorldBounds(true);
 
         //this.enemy.anims.play('walk', true);
-        this.enemy.setVelocity(0, 240 * gameConfig.scale.height / 600);
+        this.enemy.setVelocity(0, 220 * gameConfig.scale.height / 600);
         this.enemy.setBounce(1);
         this.enemy.body.setAllowGravity(false);
         this.enemy.setCollideWorldBounds(true);
@@ -104,12 +104,12 @@ class mediaScene extends Phaser.Scene {
         var wallR = this.add.rectangle(gameConfig.scale.width + 20, gameConfig.scale.height / 2, 20, gameConfig.scale.height);
         this.physics.add.existing(wallR);
         wallR.body.setAllowGravity(false);
-        wallR.body.setSize(20, gameConfig.scale.width);
+        wallR.body.setSize(20, gameConfig.scale.height);
         wallR.body.immovable = true;
         var wallL = this.add.rectangle(-20, gameConfig.scale.height / 2, 20, gameConfig.scale.height);
         this.physics.add.existing(wallL);
         wallL.body.setAllowGravity(false);
-        wallL.body.setSize(20, gameConfig.scale.width);
+        wallL.body.setSize(20, gameConfig.scale.height);
         wallL.body.immovable = true;
         var wallU = this.add.rectangle(gameConfig.scale.width / 2, 0, gameConfig.scale.width, 120*gameConfig.scale.height/600);
         this.physics.add.existing(wallU);
@@ -119,7 +119,7 @@ class mediaScene extends Phaser.Scene {
         var wallD = this.add.rectangle(gameConfig.scale.width / 2, gameConfig.scale.height + 20, gameConfig.scale.width, 20);
         this.physics.add.existing(wallD);
         wallD.body.setAllowGravity(false);
-        wallD.body.setSize(gameConfig.scale.height, 20);
+        wallD.body.setSize(gameConfig.scale.width, 20);
         wallD.body.immovable = true;
 
         this.bulletsPre = this.physics.add.group(this.configPre);
@@ -137,17 +137,17 @@ class mediaScene extends Phaser.Scene {
 
         this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'medApl').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
         this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, 'medVas').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.59, 'medApl').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
+        //this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.59, 'medApl').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
         this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'medBar').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
 
         this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, 'medVas').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
         this.obstacles.create(gameConfig.scale.width * 0.29, gameConfig.scale.height * 0.73, 'medApl').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.29, 'medVas').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+        //this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.29, 'medVas').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
         this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.75, 'medBar').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'medApl').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
+       //this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'medApl').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
         this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, 'medBar').setScale(0.15 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'medVas').setScale(0.17 * gameConfig.scale.width / 800).body.setCircle(117, 40, 20).setAllowGravity(false);
+        //this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'medVas').setScale(0.17 * gameConfig.scale.width / 800).body.setCircle(117, 40, 20).setAllowGravity(false);
         this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'medApl').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
 
         this.physics.add.collider(wallR, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
@@ -226,7 +226,7 @@ class mediaScene extends Phaser.Scene {
                 this.bomb.body.setCircle(50, 0, 0);
                 this.bomb.angle = 270;
             }
-        }, 1000);
+        }, 750);
     }
     mostrarMenu(t) {
         this.music.setVolume(0.05);
