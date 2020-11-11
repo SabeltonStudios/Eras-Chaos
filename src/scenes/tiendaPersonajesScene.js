@@ -123,6 +123,15 @@ class tiendaPersonajesScene extends Phaser.Scene{
             this.spriteTituloPersonajes = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloPersonajesi').setScale(gameConfig.scale.height / 600);
         }
 
+        var i;
+        for (i = 0; i < mapas.length; i++) {
+            if(personajes[i].bloqueado){
+                personajes[i].sprite = personajes[i].spriteBloqueado;
+            }else{
+                personajes[i].sprite = personajes[i].spriteDesbloqueado;
+            }
+        }
+
         //Asignamos los botones a cinco personajes
         this.personajesButton[0] = this.add.sprite(gameConfig.scale.width / 6,gameConfig.scale.height*1.5/3,personajes[0].sprite).setScale(gameConfig.scale.height / 600);
         this.personajesButton[0].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[0+this.personajesPosicion],dinero,0));
