@@ -284,12 +284,12 @@ class mediaScene extends Phaser.Scene {
         this.spriteDesbloquearSi.destroy();
         this.tweens.add({
             targets: this.music,
-            volume: 0,
+            volume: {from: 0.05, to: 0},
             duration: 500
         }, this);
         this.is_paused = true;
         this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput);
-        this.fondo = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondo').setScale(gameConfig.scale.height / 600).setTint(0x000000);
+        this.fondo = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondo').setScale(gameConfig.scale.width / 800).setTint(0x000000);
         this.fondo.alpha = 0;
         this.tweens.add({
             targets: this.fondo,
@@ -340,7 +340,7 @@ class mediaScene extends Phaser.Scene {
                 armas[2].bloqueado = false;
                 this.is_paused = true;
                 this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput);
-                this.fondo = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondo').setScale(gameConfig.scale.height / 600).setTint(0x000000);
+                this.fondo = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondo').setScale(gameConfig.scale.width / 800).setTint(0x000000);
                 this.fondo.alpha = 0;
                 this.tweens.add({
                     targets: this.fondo,

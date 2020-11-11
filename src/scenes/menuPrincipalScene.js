@@ -1,4 +1,43 @@
-
+let results=[
+    {"Mapa":"",
+    "Muertes" : 100},
+    {"Mapa":"",
+    "Muertes" : 100},
+    {"Mapa":"",
+    "Muertes" : 100},
+    {"Mapa":"",
+    "Muertes" : 100},
+    {"Mapa":"",
+    "Muertes" : 100},
+    {"Mapa":"",
+    "Muertes" : 100},
+    {"Mapa":"",
+    "Muertes" : 100},
+    {"Mapa":"",
+    "Muertes" : 100},
+    {"Mapa":"",
+    "Muertes" : 100},
+    {"Mapa":"",
+    "Muertes" : 100}
+]
+function sortResults(mapa,nuevoValor){
+    for(let i=0; i<results.length; i++){
+        
+        if(nuevoValor<=results[i].Muertes){
+            var aux= results[i];
+            results[i].Muertes=nuevoValor;
+            results[i].Mapa= mapa;
+            results[i+1]= aux;
+            for(let j=results.length-1; j>i+1;j--){
+                results[j]= results[j-1];
+            }
+            break;
+        }
+    }
+    for(let i=0; i<results.length; i++){
+        console.log(results[i].mapa, results[i].Muertes);
+    }
+}
 class menuPrincipalScene extends Phaser.Scene{
     
     constructor(){

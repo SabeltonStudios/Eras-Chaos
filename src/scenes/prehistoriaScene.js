@@ -1,4 +1,5 @@
 class prehistoriaScene extends Phaser.Scene {
+    contMuertes=0;
     bulletsPre;
     bulletsEnemy;
     obstacles;
@@ -334,12 +335,12 @@ class prehistoriaScene extends Phaser.Scene {
         this.spriteDesbloquearSi.destroy();
         this.tweens.add({
             targets: this.music,
-            volume: 0,
+            volume: {from: 0.05, to: 0},
             duration: 500
         }, this);
         this.is_paused = true;
         this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput);
-        this.fondo = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondo').setScale(gameConfig.scale.height / 600).setTint(0x000000);
+        this.fondo = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondo').setScale(gameConfig.scale.width / 800).setTint(0x000000);
         this.fondo.alpha = 0;
         this.tweens.add({
             targets: this.fondo,
@@ -361,6 +362,8 @@ class prehistoriaScene extends Phaser.Scene {
     }
     update() {
         if (this.gameOver) {
+            this.gameOver=false;
+            this.contMuertes++;
             clearInterval(this.inter);
             this.shootInput.destroy();
             this.cameras.main.fadeIn(500, 180, 50, 50);
@@ -371,6 +374,7 @@ class prehistoriaScene extends Phaser.Scene {
         }
         if (this.win) {
             this.win = false;
+            sortResults("Prehistoria",this.contMuertes);
             clearInterval(this.inter);
             //this.music.setVolume(0.05);
             this.shootInput.destroy();
@@ -391,7 +395,7 @@ class prehistoriaScene extends Phaser.Scene {
                 completedLevel[0].completado = true;
                 this.is_paused = true;
                 this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput);
-                this.fondo = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondo').setScale(gameConfig.scale.height / 600).setTint(0x000000);
+                this.fondo = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondo').setScale(gameConfig.scale.width / 800).setTint(0x000000);
                 this.fondo.alpha = 0;
                 this.tweens.add({
                     targets: this.fondo,
