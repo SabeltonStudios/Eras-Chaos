@@ -85,7 +85,7 @@ class prehistoriaScene extends Phaser.Scene {
         if (this.music == null) {
             this.music = this.sound.add('preMusic');
         }
-        if (!this.gameOver) {
+        if (this.contMuertes==0) {
             this.music.play(this.mConfig);
         }
         this.gameOver = false;
@@ -169,17 +169,17 @@ class prehistoriaScene extends Phaser.Scene {
         //this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, 'preLog').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
         this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, 'preSkull').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(120, 40, 20).setAllowGravity(false);
 
-        //this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'preStone').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, 'preSkull').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'preStone').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+        //this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, 'preSkull').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
         //.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.62, 'preStone').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
         this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'preLog').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
 
         this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, 'preSkull').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
         //this.obstacles.create(gameConfig.scale.width * 0.31, gameConfig.scale.height * 0.7, 'preLog').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
-        //.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.32, 'preSkull').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        //this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.32, 'preSkull').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
         this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.7, 'preLog').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
 
-        //this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'preStone').setScale(0.12 * gameConfig.scale.height / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'preStone').setScale(0.12 * gameConfig.scale.height / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
         //this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, 'preLog').setScale(0.1 * gameConfig.scale.height / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
         //this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'preSkull').setScale(0.12 * gameConfig.scale.height / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
         this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'preStone').setScale(0.1 * gameConfig.scale.height / 800).body.setCircle(110, 40, 20).setAllowGravity(false);

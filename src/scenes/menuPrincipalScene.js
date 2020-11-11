@@ -24,18 +24,22 @@ function sortResults(mapa,nuevoValor){
     for(let i=0; i<results.length; i++){
         
         if(nuevoValor<=results[i].Muertes){
-            var aux= results[i];
+            var MapaAux= results[i].Mapa;
+            var MuertesAux= results[i].Muertes;
             results[i].Muertes=nuevoValor;
             results[i].Mapa= mapa;
-            results[i+1]= aux;
+            
             for(let j=results.length-1; j>i+1;j--){
-                results[j]= results[j-1];
+                results[j].Mapa= results[j-1].Mapa;
+                results[j].Muertes= results[j-1].Muertes;
             }
+            results[i+1].Mapa= MapaAux;
+            results[i+1].Muertes= MuertesAux;
             break;
         }
     }
     for(let i=0; i<results.length; i++){
-        console.log(results[i].mapa, results[i].Muertes);
+        console.log(results[i].Mapa, results[i].Muertes);
     }
 }
 class menuPrincipalScene extends Phaser.Scene{

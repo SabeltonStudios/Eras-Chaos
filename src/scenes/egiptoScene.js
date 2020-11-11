@@ -1,4 +1,5 @@
 class egiptoScene extends Phaser.Scene {
+    contMuertes=0;
     bulletsPre;
     bulletsEnemy;
     obstacles;
@@ -12,7 +13,7 @@ class egiptoScene extends Phaser.Scene {
         defaultKey: 'bullet',
         defaultFrame: null,
         active: true,
-        maxSize: 5,
+        maxSize: 3,
         bounceX: 1,
         bounceY: 1,
         velocityX: 500,
@@ -85,7 +86,7 @@ class egiptoScene extends Phaser.Scene {
         if (this.music == null) {
             this.music = this.sound.add('egiMusic');
         }
-        if (!this.gameOver) {
+        if (this.contMuertes==0) {
             this.music.play(this.mConfig);
         }
         this.gameOver = false;
@@ -358,6 +359,8 @@ class egiptoScene extends Phaser.Scene {
     }
     update() {
         if (this.gameOver) {
+            this.gameOver=false;
+            this.contMuertes++;
             clearInterval(this.inter);
             this.shootInput.destroy();
             this.cameras.main.fadeIn(500, 180, 50, 50);
@@ -368,6 +371,7 @@ class egiptoScene extends Phaser.Scene {
         }
         if (this.win) {
             this.win=false;
+            sortResults("Egipto",this.contMuertes);
             clearInterval(this.inter);
             this.shootInput.destroy();
             this.tweens.add({

@@ -1,4 +1,5 @@
 class mediaScene extends Phaser.Scene {
+    contMuertes=0;
     bulletsPre;
     bulletsEnemy;
     obstacles;
@@ -23,7 +24,7 @@ class mediaScene extends Phaser.Scene {
         defaultKey: 'stone',
         defaultFrame: null,
         active: true,
-        maxSize: 5,
+        maxSize: 4,
         bounceX: 1,
         bounceY: 1,
         velocityX: -500,
@@ -64,7 +65,7 @@ class mediaScene extends Phaser.Scene {
         if (this.music == null) {
             this.music = this.sound.add('medMusic');
         }
-        if (!this.gameOver) {
+        if (this.contMuertes==0) {
             this.music.play(this.mConfig);
         }
         this.gameOver = false;
@@ -311,6 +312,8 @@ class mediaScene extends Phaser.Scene {
     }
     update() {
         if (this.gameOver) {
+            this.gameOver=false;
+            this.contMuertes++;
             clearInterval(this.inter);
             this.shootInput.destroy();
             this.cameras.main.fadeIn(500, 180, 50, 50);
@@ -321,6 +324,7 @@ class mediaScene extends Phaser.Scene {
         }
         if (this.win) {
             this.win = false;
+            sortResults("Edad Media",this.contMuertes);
             clearInterval(this.inter);
             this.shootInput.destroy();
             this.tweens.add({

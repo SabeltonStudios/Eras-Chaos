@@ -1,4 +1,5 @@
 class industrialScene extends Phaser.Scene {
+    contMuertes=0;
     bulletsPre;
     bulletsEnemy;
     obstacles;
@@ -12,7 +13,7 @@ class industrialScene extends Phaser.Scene {
         defaultKey: 'stone',
         defaultFrame: null,
         active: true,
-        maxSize: 2,
+        maxSize: 3,
         bounceX: 1,
         bounceY: 1,
         velocityX: 500,
@@ -64,7 +65,7 @@ class industrialScene extends Phaser.Scene {
         if (this.music == null) {
             this.music = this.sound.add('indMusic');
         }
-        if (!this.gameOver) {
+        if (this.contMuertes==0) {
             this.music.play(this.mConfig);
         }
         this.gameOver = false;
@@ -148,7 +149,7 @@ class industrialScene extends Phaser.Scene {
         this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'indTool').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
         this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, 'indGear').setScale(0.15 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
         this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'indWheel').setScale(0.17 * gameConfig.scale.width / 800).body.setCircle(117, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'indTool').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.82, 'indTool').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
 
         this.physics.add.collider(wallR, this.bulletsPre);//, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallL, this.bulletsPre);//, function (wall, bullet) { bullet.destroy(); });
@@ -311,6 +312,8 @@ class industrialScene extends Phaser.Scene {
     }
     update() {
         if (this.gameOver) {
+            this.gameOver=false;
+            this.contMuertes++;
             clearInterval(this.inter);
             this.shootInput.destroy();
             this.cameras.main.fadeIn(500, 180, 50, 50);
@@ -321,6 +324,7 @@ class industrialScene extends Phaser.Scene {
         }
         if (this.win) {
             this.win = false;
+            sortResults("Revolucion Industrial",this.contMuertes);
             clearInterval(this.inter);
             this.shootInput.destroy();
             this.tweens.add({
