@@ -46,7 +46,13 @@ class bootScene extends Phaser.Scene {
         this.load.audio('preMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
         this.load.image('preWeapon', 'assets/Armas/ArmaPrehistoria.png');
         this.load.image('prePlayer','assets/Personajes/1.Prehistoria/BasicoPrehistoria.png');
-        
+        this.load.spritesheet('preEnemy', 'assets/Animaciones/Spritesheets/Prehistoria/Enemigo/enemigo_prehistoria_honda_idle_moving_spritesheet.png',
+        { frameWidth: 736, frameHeight: 1039 });
+        this.load.spritesheet('preEnemyAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Enemigo/enemigo_prehistoria_honda_attack_static_spritesheet.png',
+        { frameWidth: 1654, frameHeight: 1021 });
+        this.load.spritesheet('preEnemyDie','assets/Animaciones/Spritesheets/Prehistoria/Enemigo/prehistoria_enemigo_game_over_spritesheet.png',
+        { frameWidth: 1228, frameHeight: 1136 })
+
         //Assets Egipto
         this.load.image('egiMap', 'assets/Fondos/2.AntiguoEgipto/BackgroundNoColumns.png');
         this.load.image('rectanguloEgipto', 'assets/Fondos/2.AntiguoEgipto/RectanguloCentral.png');
@@ -61,6 +67,21 @@ class bootScene extends Phaser.Scene {
         //this.load.image('bullet', 'assets/Interfaz/Bullet.png');
         this.load.spritesheet('egiWeapon', 'assets/Armas/ArmaEgipto.png', { frameWidth: 235, frameHeight: 235 });
         
+        //Assets Edad Media
+        this.load.image('mapaMed', 'assets/Fondos/3.EdadMedia/Background.png');
+        this.load.image('medApl', 'assets/Objetos/3.EdadMedia/object_apples.png');
+        this.load.image('medBar', 'assets/Objetos/3.EdadMedia/object_barrel.png');
+        this.load.image('medVas', 'assets/Objetos/3.EdadMedia/object_vase.png');
+        this.load.audio('medMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
+        this.load.image('medPlayer','assets/Personajes/3.EdadMedia/BasicoEdadMedia.png');
+        
+        //Assets Revolución Industrial
+        this.load.image('mapaInd', 'assets/Fondos/4.RevolucionIndustrial/Background.png');
+        this.load.image('indGear', 'assets/Objetos/4.RevolucionIndustrial/object_gear.png');
+        this.load.image('indTool', 'assets/Objetos/4.RevolucionIndustrial/object_toolbox.png');
+        this.load.image('indWheel', 'assets/Objetos/4.RevolucionIndustrial/object_wheel.png');
+        this.load.audio('indMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
+        this.load.image('indPlayer','assets/Personajes/4.RevIndustrial/BasicoRevIndustrial.png');
         
         //Assets Juego
         this.load.image('CloseB','assets/Interfaz/CloseButton.png')

@@ -22,6 +22,7 @@ class selectNivelHistoria extends Phaser.Scene {
     }
     mapasButton = [];
     create() {
+        completedLevel[2].completado=true;
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0);
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
         if (espanol) {
@@ -62,10 +63,10 @@ class selectNivelHistoria extends Phaser.Scene {
         this.mapasButton[2].setInteractive().on('pointerdown', ()=>completedLevel[1].completado? this.scene.start("MediaScene"): console.log("no has completado el nivel anterior"));
 
         this.mapasButton[3] = this.add.sprite((gameConfig.scale.width / 6) * 4, gameConfig.scale.height / 3, mapas[3].sprite).setScale(gameConfig.scale.height / 600);
-        this.mapasButton[3].setInteractive().on('pointerdown', () => this.desbloquear(mapas[3 + mapasPosicion], dinero, 3));
+        this.mapasButton[3].setInteractive().on('pointerdown', () => completedLevel[2].completado? this.scene.start("IndustrialScene"): console.log("no has completado el nivel anterior"));
 
         this.mapasButton[4] = this.add.sprite((gameConfig.scale.width / 6) * 5, gameConfig.scale.height / 3, mapas[4].sprite).setScale(gameConfig.scale.height / 600);
-        this.mapasButton[4].setInteractive().on('pointerdown', () => this.desbloquear(mapas[4 + mapasPosicion], dinero, 4));
+        this.mapasButton[4].setInteractive().on('pointerdown', () => completedLevel[3].completado? this.scene.start("ContempScene"): console.log("no has completado el nivel anterior"));
 
         //Botón de salir
         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15, (gameConfig.scale.height / 8) * 7.5, 'botonSalir').setScale(0.1*gameConfig.scale.height / 600);

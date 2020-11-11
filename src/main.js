@@ -15,17 +15,22 @@
             width: DEFAULT_WIDTH,
             height: DEFAULT_HEIGHT
         },
+        input: {
+            activePointers: 3,
+            // ...
+        },
         physics: {
             default: 'arcade',
             arcade: {
-                debug: false,
+                debug: true,
                 gravity: { y: 200 }
             }
         },
         backgroudColor: 0x000000,
         autoCenter: 1,
         scaleMode: 3,
-        scene: [bootScene, menuPrincipalScene, selectNivelHistoria, prehistoriaScene, egiptoScene, mediaScene, multijugadorSeleccionScene, multijugadorPartidaScene,
+        scene: [bootScene, menuPrincipalScene, selectNivelHistoria, prehistoriaScene, egiptoScene, mediaScene, industrialScene, 
+             multijugadorSeleccionScene, multijugadorPartidaScene,
              tiendaScene,tiendaMapasScene,tiendaPersonajesScene,tiendaArmasScene,
              tiendaPaquetesScene,tiendaRecargarScene, creditosScene,puntuacionesScene]
     }

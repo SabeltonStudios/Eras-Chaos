@@ -50,22 +50,19 @@ class mediaScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('mapaMed', 'assets/Fondos/3.EdadMedia/Background.png');
+        /*this.load.image('mapaMed', 'assets/Fondos/3.EdadMedia/Background.png');
 
         this.load.image('medApl', 'assets/Objetos/3.EdadMedia/object_apples.png');
         this.load.image('medBar', 'assets/Objetos/3.EdadMedia/object_barrel.png');
         this.load.image('medVas', 'assets/Objetos/3.EdadMedia/object_vase.png');
 
-        this.load.audio('medMusic', ['assets/Música/PrehistoriaFinal.mp3']);//, 'assets/Música/PrehistoriaFinal.ogg']);
-
-        //this.load.spritesheet('dude', 'assets/Interfaz/dude.png', { frameWidth: 32, frameHeight: 48 });
-        this.load.image('medPlayer','assets/Personajes/3.EdadMedia/BasicoEdadMedia.png');
-        this.load.image('stone', 'assets/Armas/ArmaPrehistoria.png');
+        this.load.audio('medMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
+        this.load.image('medPlayer','assets/Personajes/3.EdadMedia/BasicoEdadMedia.png');*/
 
     }
     create() {
-        if (this.music==null) {
-            this.music = this.sound.add('medMusic');  
+        if (this.music == null) {
+            this.music = this.sound.add('medMusic');
         }
         if (!this.gameOver) {
             this.music.play(this.mConfig);
@@ -77,7 +74,7 @@ class mediaScene extends Phaser.Scene {
         this.cameras.main.zoomTo(1.05, 1000);
         this.physics.world.bounds.setTo(92.5 * gameConfig.scale.width / 800, 69.5 * gameConfig.scale.width / 800, 615 * gameConfig.scale.height / 600, 461 * gameConfig.scale.height / 600);
         this.physics.world.setBoundsCollision(false, false, true, true);
-        
+
         this.Mapa = this.add.image(0, 0, 'mapaMed').setOrigin(0)
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
 
@@ -114,10 +111,10 @@ class mediaScene extends Phaser.Scene {
         wallL.body.setAllowGravity(false);
         wallL.body.setSize(20, gameConfig.scale.width);
         wallL.body.immovable = true;
-        var wallU = this.add.rectangle(gameConfig.scale.width / 2, 0, gameConfig.scale.width, 120);
+        var wallU = this.add.rectangle(gameConfig.scale.width / 2, 0, gameConfig.scale.width, 120*gameConfig.scale.height/600);
         this.physics.add.existing(wallU);
         wallU.body.setAllowGravity(false);
-        wallU.body.setSize(gameConfig.scale.width, 120);
+        wallU.body.setSize(gameConfig.scale.width, 120*gameConfig.scale.height/600);
         wallU.body.immovable = true;
         var wallD = this.add.rectangle(gameConfig.scale.width / 2, gameConfig.scale.height + 20, gameConfig.scale.width, 20);
         this.physics.add.existing(wallD);
@@ -134,24 +131,24 @@ class mediaScene extends Phaser.Scene {
 
         this.obstacles = this.physics.add.group(this.ObstaclesConfig);
         this.obstacles.setOrigin(0.5, 0.5);
-        this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'medBar').setScale(0.2 * gameConfig.scale.height / 600).setFlip(true,false).body.setCircle(120, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, 'medBar').setScale(0.15 * gameConfig.scale.height / 600).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, 'medVas').setScale(0.2 * gameConfig.scale.height / 600).setFlip(true,false).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'medBar').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, 'medBar').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, 'medVas').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'medApl').setScale(0.2 * gameConfig.scale.height / 600).body.setCircle(120, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, 'medVas').setScale(0.2 * gameConfig.scale.height / 600).body.setCircle(120, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.59, 'medApl').setScale(0.15 * gameConfig.scale.height / 600).setFlip(true,false).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'medBar').setScale(0.2 * gameConfig.scale.height / 600).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'medApl').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, 'medVas').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.59, 'medApl').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'medBar').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, 'medVas').setScale(0.15 * gameConfig.scale.height / 600).setFlip(true,false).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.29, gameConfig.scale.height * 0.73, 'medApl').setScale(0.15 * gameConfig.scale.height / 600).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.29, 'medVas').setScale(0.15 * gameConfig.scale.height / 600).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.75, 'medBar').setScale(0.20 * gameConfig.scale.height / 600).setFlip(true,false).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, 'medVas').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.29, gameConfig.scale.height * 0.73, 'medApl').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.29, 'medVas').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.75, 'medBar').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'medApl').setScale(0.25 * gameConfig.scale.height / 600).body.setCircle(125, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, 'medBar').setScale(0.25 * gameConfig.scale.height / 600).setFlip(true,false).body.setCircle(125, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'medVas').setScale(0.30 * gameConfig.scale.height / 600).body.setCircle(130, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'medApl').setScale(0.25 * gameConfig.scale.height / 600).body.setCircle(125, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'medApl').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, 'medBar').setScale(0.15 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'medVas').setScale(0.17 * gameConfig.scale.width / 800).body.setCircle(117, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'medApl').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
 
         this.physics.add.collider(wallR, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallL, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
@@ -173,7 +170,7 @@ class mediaScene extends Phaser.Scene {
         this.physics.add.collider(this.bulletsPre, this.obstacles);
 
 
-        this.spriteParar = this.add.sprite(gameConfig.scale.width * 2.2 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
+        this.spriteParar = this.add.sprite(gameConfig.scale.width*15/ 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
         this.spriteParar.setInteractive().on('pointerdown', () => this.player.body.moves = false /*cambiar a iddle */)
             .on('pointerup', () => this.player.body.moves = true)//,this.player.anims.play('walk', true))
             .on('pointerout', () => this.player.body.moves = true)//, this.player.anims.play('walk', true))
@@ -222,30 +219,53 @@ class mediaScene extends Phaser.Scene {
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
-                this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'stone').setScale(0.15 * gameConfig.scale.height / 600);
+                this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'preWeapon').setScale(0.15 * gameConfig.scale.height / 600);
                 this.bomb.setTint(0xff7e7d);
                 this.bomb.body.setVelocity(-500 * gameConfig.scale.height / 600, 0);
                 this.bomb.body.setAllowGravity(false);
                 this.bomb.body.setCircle(50, 0, 0);
                 this.bomb.angle = 270;
             }
-        }, 750);
+        }, 1000);
     }
     mostrarMenu(t) {
         this.music.setVolume(0.05);
         t.Menu = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'PauseMenu').setScale(0.5 * gameConfig.scale.height / 600);
         t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7 * gameConfig.scale.height / 600);
-        t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonMenuPral');
-        t.BotonMenu.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.stop(); t.scene.start("MenuPrincipalScene") });
-        t.BotonCerrar= t.add.sprite(gameConfig.scale.width *0.75, gameConfig.scale.height * 0.36, 'CloseB').setScale(0.1 * gameConfig.scale.width / 800);
-        t.BotonCerrar.setInteractive().on('pointerdown', () => {this.is_paused = !this.is_paused;t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput);this.ocultarMenu(this)});
-        t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda');
-        t.BotonTienda.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.stop(); t.scene.start("TiendaScene") });
+        t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonRendirse').setScale(gameConfig.scale.height / 600);
+        t.BotonMenu.setInteractive().on('pointerdown', () => this.confirmarSalir("MenuPrincipalScene"));
+        t.BotonCerrar = t.add.sprite(gameConfig.scale.width * 0.75, gameConfig.scale.height * 0.36, 'CloseB').setScale(0.1 * gameConfig.scale.height / 600);
+        t.BotonCerrar.setInteractive().on('pointerdown', () => { this.is_paused = !this.is_paused; t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput); this.ocultarMenu(this) });
+        t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda').setScale(gameConfig.scale.height / 600);
+        t.BotonTienda.setInteractive().on('pointerdown', () => this.confirmarSalir("TiendaScene"));
         if (!espanol) {
             t.PauseTitle.setTexture('PauseTitlei');
-            t.BotonMenu.setTexture('botonMenuPrali');
+            t.BotonMenu.setTexture('botonRendirsei');
             t.BotonTienda.setTexture('botonTiendai');
         }
+    }
+    confirmarSalir(salir) {
+        this.BotonTienda.setTint(0x888888);
+        this.BotonMenu.setTint(0x888888);
+        this.BotonMenu.disableInteractive();
+        this.BotonTienda.disableInteractive();
+        this.mensajeSeguro = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2.5 / 3, 'confirmarRendirse').setScale(0.7 * gameConfig.scale.height / 600, 0.6 * gameConfig.scale.height / 600);
+        if (!espanol) {
+            this.mensajeSeguro.setTexture('confirmarRendirsei');
+        }
+        this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width * 1.1 / 2, (gameConfig.scale.height / 3) * 2.6, 'botonDesbloquearNo').setScale(0.5 * gameConfig.scale.height / 600);
+        this.spriteDesbloquearNo.setInteractive().on('pointerdown', () => {
+            this.mensajeSeguro.destroy();
+            this.spriteDesbloquearNo.destroy();
+            this.spriteDesbloquearSi.destroy();
+            this.BotonMenu.setInteractive();
+            this.BotonTienda.setInteractive();
+            this.BotonTienda.clearTint();
+            this.BotonMenu.clearTint()
+        });
+
+        this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width * 0.9 / 2, (gameConfig.scale.height / 3) * 2.6, 'botonDesbloquearSi').setScale(0.5 * gameConfig.scale.height / 600);
+        this.spriteDesbloquearSi.setInteractive().on('pointerdown', () => this.rendirse(salir));
     }
     ocultarMenu(t) {
         this.music.setVolume(0.2);
@@ -255,25 +275,92 @@ class mediaScene extends Phaser.Scene {
         t.BotonMenu.destroy();
         t.BotonCerrar.destroy();
     }
+    rendirse(escena) {
+        this.shootInput.destroy();
+        clearInterval(this.inter);
+        this.ocultarMenu(this);
+        this.mensajeSeguro.destroy();
+        this.spriteDesbloquearNo.destroy();
+        this.spriteDesbloquearSi.destroy();
+        this.tweens.add({
+            targets: this.music,
+            volume: 0,
+            duration: 500
+        }, this);
+        this.is_paused = true;
+        this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput);
+        this.fondo = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondo').setScale(gameConfig.scale.height / 600).setTint(0x000000);
+        this.fondo.alpha = 0;
+        this.tweens.add({
+            targets: this.fondo,
+            alpha: 1,
+            duration: 500,
+        }, this);
+        if (espanol) {
+            this.lastima = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Lastima').setScale(gameConfig.scale.height / 600);
+            this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarB').setScale(0.6 * gameConfig.scale.height / 600);;
+        } else {
+            this.lastima = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Lastimai').setScale(gameConfig.scale.height / 600);
+            this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);;
+        }
+        this.continuar.setInteractive().on('pointerdown', () => {
+            this.music.stop();
+            this.scene.stop();
+            this.scene.start(escena);
+        })
+    }
     update() {
         if (this.gameOver) {
             clearInterval(this.inter);
             this.shootInput.destroy();
+            this.cameras.main.fadeIn(500, 180, 50, 50);
             //this.music.destroy();
             this.scene.sleep();
             this.scene.setActive(false);
             this.scene.restart();
         }
         if (this.win) {
+            this.win = false;
             clearInterval(this.inter);
             this.shootInput.destroy();
-            completedLevel[2].completado=true;
-            mapas[2].bloqueado=false;
-            personajes[2].bloqueado=false;
-            armas[2].bloqueado=false;
-            this.music.stop();
-            this.scene.stop();
-            this.scene.start("MediaScene");
+            this.tweens.add({
+                targets: this.music,
+                volume: 0,
+                duration: 500
+            }, this);
+            if (completedLevel[2].completado) {
+                this.music.stop();
+                this.scene.stop();
+                this.scene.start("IndustrialScene");
+            }
+            else {
+                completedLevel[2].completado = true;
+                mapas[2].bloqueado = false;
+                personajes[2].bloqueado = false;
+                armas[2].bloqueado = false;
+                this.is_paused = true;
+                this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput);
+                this.fondo = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondo').setScale(gameConfig.scale.height / 600).setTint(0x000000);
+                this.fondo.alpha = 0;
+                this.tweens.add({
+                    targets: this.fondo,
+                    alpha: 1,
+                    duration: 1000,
+                }, this);
+
+                if (espanol) {
+                    this.enhorabuena = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Enhorabuena').setScale(gameConfig.scale.height / 600);
+                    this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarB').setScale(0.6 * gameConfig.scale.height / 600);
+                } else {
+                    this.enhorabuena = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Enhorabuenai').setScale(gameConfig.scale.height / 600);
+                    this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);
+                }
+                this.continuar.setInteractive().on('pointerdown', () => {
+                    this.music.stop();
+                    this.scene.stop();
+                    this.scene.start("IndustrialScene");
+                })
+            }
         }
     }
     pauseGame(spriteParar, spriteDisparar, f, s) {
@@ -315,7 +402,7 @@ class mediaScene extends Phaser.Scene {
             //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();
         }
-        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, 'stone').setScale(0.15 * gameConfig.scale.height / 600);
+        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, 'preWeapon').setScale(0.15 * gameConfig.scale.height / 600);
         bomb.setTint(0x85baff);
         bomb.body.setVelocity(500 * gameConfig.scale.height / 600, 0);
         //bomb.setOrigin(0,1);

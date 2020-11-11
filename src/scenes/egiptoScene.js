@@ -174,23 +174,23 @@ class egiptoScene extends Phaser.Scene {
         this.obstacles = this.physics.add.group(this.ObstaclesConfig);
         this.obstacles.setOrigin(0.5, 0.5);
         this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'egiCat').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, 'egiCup').setScale(0.10 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, 'egiPyr').setScale(0.2 * gameConfig.scale.width / 800).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, 'egiCup').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, 'egiPyr').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'egiCat').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, 'egiPyr').setScale(0.15 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.62, 'egiCat').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'egiCup').setScale(0.15 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'egiCat').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, 'egiPyr').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.62, 'egiCat').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'egiCup').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
 
         this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, 'egiPyr').setScale(0.10 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
         this.obstacles.create(gameConfig.scale.width * 0.31, gameConfig.scale.height * 0.7, 'egiCup').setScale(0.10 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
         this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.32, 'egiPyr').setScale(0.10 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.7, 'egiCup').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.7, 'egiCup').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'egiCat').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, 'egiCup').setScale(0.15 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'egiPyr').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'egiCat').setScale(0.15 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'egiCat').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, 'egiCup').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'egiPyr').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'egiCat').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
 
         this.physics.add.collider(wallR, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallL, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
@@ -212,7 +212,7 @@ class egiptoScene extends Phaser.Scene {
         this.physics.add.collider(this.bulletsPre, this.obstacles);
 
 
-        this.spriteParar = this.add.sprite(gameConfig.scale.width * 2.2 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
+        this.spriteParar = this.add.sprite(gameConfig.scale.width * 15 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
         this.spriteParar.setInteractive().on('pointerdown', () => this.player.body.moves = false /*cambiar a iddle */)
             .on('pointerup', () => this.player.body.moves = true)//, this.player.anims.play('walk', true))
             .on('pointerout', () => this.player.body.moves = true)//, this.player.anims.play('walk', true))
@@ -272,24 +272,47 @@ class egiptoScene extends Phaser.Scene {
                 this.bomb.body.setCircle(100, 30, 30);
                 //this.bomb.angle = 270;
             }
-        }, 750);
+        }, 1500);
 
     }
     mostrarMenu(t) {
         this.music.setVolume(0.05);
         t.Menu = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'PauseMenu').setScale(0.5 * gameConfig.scale.height / 600);
         t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7 * gameConfig.scale.height / 600);
-        t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonMenuPral');
-        t.BotonMenu.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.stop(); t.scene.start("MenuPrincipalScene") });
-        t.BotonCerrar= t.add.sprite(gameConfig.scale.width *0.75, gameConfig.scale.height * 0.36, 'CloseB').setScale(0.1 * gameConfig.scale.width / 800);
-        t.BotonCerrar.setInteractive().on('pointerdown', () => {this.is_paused = !this.is_paused;t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput);this.ocultarMenu(this)});
-        t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda');
-        t.BotonTienda.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.stop(); t.scene.start("TiendaScene") });
+        t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonRendirse').setScale(gameConfig.scale.height / 600);
+        t.BotonMenu.setInteractive().on('pointerdown', () => this.confirmarSalir("MenuPrincipalScene"));
+        t.BotonCerrar = t.add.sprite(gameConfig.scale.width * 0.75, gameConfig.scale.height * 0.36, 'CloseB').setScale(0.1 * gameConfig.scale.height / 600);
+        t.BotonCerrar.setInteractive().on('pointerdown', () => { this.is_paused = !this.is_paused; t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput); this.ocultarMenu(this) });
+        t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda').setScale(gameConfig.scale.height / 600);
+        t.BotonTienda.setInteractive().on('pointerdown', () => this.confirmarSalir("TiendaScene"));
         if (!espanol) {
             t.PauseTitle.setTexture('PauseTitlei');
-            t.BotonMenu.setTexture('botonMenuPrali');
+            t.BotonMenu.setTexture('botonRendirsei');
             t.BotonTienda.setTexture('botonTiendai');
         }
+    }
+    confirmarSalir(salir) {
+        this.BotonTienda.setTint(0x888888);
+        this.BotonMenu.setTint(0x888888);
+        this.BotonMenu.disableInteractive();
+        this.BotonTienda.disableInteractive();
+        this.mensajeSeguro = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2.5 / 3, 'confirmarRendirse').setScale(0.7 * gameConfig.scale.height / 600, 0.6 * gameConfig.scale.height / 600);
+        if (!espanol) {
+            this.mensajeSeguro.setTexture('confirmarRendirsei');
+        }
+        this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width * 1.1 / 2, (gameConfig.scale.height / 3) * 2.6, 'botonDesbloquearNo').setScale(0.5 * gameConfig.scale.height / 600);
+        this.spriteDesbloquearNo.setInteractive().on('pointerdown', () => {
+            this.mensajeSeguro.destroy();
+            this.spriteDesbloquearNo.destroy();
+            this.spriteDesbloquearSi.destroy();
+            this.BotonMenu.setInteractive();
+            this.BotonTienda.setInteractive();
+            this.BotonTienda.clearTint();
+            this.BotonMenu.clearTint()
+        });
+
+        this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width * 0.9 / 2, (gameConfig.scale.height / 3) * 2.6, 'botonDesbloquearSi').setScale(0.5 * gameConfig.scale.height / 600);
+        this.spriteDesbloquearSi.setInteractive().on('pointerdown', () => this.rendirse(salir));
     }
     ocultarMenu(t) {
         this.music.setVolume(0.2);
@@ -299,25 +322,93 @@ class egiptoScene extends Phaser.Scene {
         t.BotonMenu.destroy();
         t.BotonCerrar.destroy();
     }
+    rendirse(escena) {
+        this.shootInput.destroy();
+        clearInterval(this.inter);
+        this.ocultarMenu(this);
+        this.mensajeSeguro.destroy();
+        this.spriteDesbloquearNo.destroy();
+        this.spriteDesbloquearSi.destroy();
+        this.tweens.add({
+            targets: this.music,
+            volume: 0,
+            duration: 500
+        }, this);
+        this.is_paused = true;
+        this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput);
+        this.fondo = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondo').setScale(gameConfig.scale.height / 600).setTint(0x000000);
+        this.fondo.alpha = 0;
+        this.tweens.add({
+            targets: this.fondo,
+            alpha: 1,
+            duration: 500,
+        }, this);
+        if (espanol) {
+            this.lastima = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Lastima').setScale(gameConfig.scale.height / 600);
+            this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarB').setScale(0.6 * gameConfig.scale.height / 600);;
+        } else {
+            this.lastima = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Lastimai').setScale(gameConfig.scale.height / 600);
+            this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);;
+        }
+        this.continuar.setInteractive().on('pointerdown', () => {
+            this.music.stop();
+            this.scene.stop();
+            this.scene.start(escena);
+        })
+    }
     update() {
         if (this.gameOver) {
             clearInterval(this.inter);
             this.shootInput.destroy();
+            this.cameras.main.fadeIn(500, 180, 50, 50);
             //this.music.destroy();
             this.scene.sleep();
             this.scene.setActive(false);
             this.scene.restart();
         }
         if (this.win) {
+            this.win=false;
             clearInterval(this.inter);
-            
+            this.shootInput.destroy();
+            this.tweens.add({
+                targets: this.music,
+                volume: 0,
+                duration: 500
+            }, this);
+            if (completedLevel[1].completado) {
+
+                this.music.stop();
+                this.scene.stop();
+                this.scene.start("MediaScene");
+
+            }else{
             completedLevel[1].completado=true;
             mapas[1].bloqueado=false;
             personajes[1].bloqueado=false;
             armas[1].bloqueado=false;
-            this.music.stop();
-            this.scene.stop();
-            this.scene.start("MediaScene");
+            this.is_paused = true;
+                this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput);
+                this.fondo = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondo').setScale(gameConfig.scale.height / 600).setTint(0x000000);
+                this.fondo.alpha = 0;
+                this.tweens.add({
+                    targets: this.fondo,
+                    alpha: 1,
+                    duration: 1000,
+                }, this);
+
+                if (espanol) {
+                    this.enhorabuena = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Enhorabuena').setScale(gameConfig.scale.height / 600);
+                    this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarB').setScale(0.6 * gameConfig.scale.height / 600);
+                } else {
+                    this.enhorabuena = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Enhorabuenai').setScale(gameConfig.scale.height / 600);
+                    this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);
+                }
+                this.continuar.setInteractive().on('pointerdown', () => {
+                    this.music.stop();
+                    this.scene.stop();
+                    this.scene.start("MediaScene");
+                })
+            }
         }
     }
     pauseGame(spriteParar, spriteDisparar, f, s) {
@@ -373,7 +464,6 @@ class egiptoScene extends Phaser.Scene {
         //bomb.setOrigin(0,1);
         bomb.body.setAllowGravity(false);
         bomb.body.setCircle(100, 30, 30);
-        bomb.angle = 90;
     }
 }
 
