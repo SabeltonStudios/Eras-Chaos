@@ -45,7 +45,15 @@ class bootScene extends Phaser.Scene {
         this.load.image('preStone', 'assets/Objetos/1.Prehistoria/object_stone.png');
         this.load.audio('preMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
         this.load.image('preWeapon', 'assets/Armas/ArmaPrehistoria.png');
-        this.load.image('prePlayer','assets/Personajes/1.Prehistoria/BasicoPrehistoria.png');
+        this.load.spritesheet('prePlayer','assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basico_honda_idle_moving_spritesheet.png',
+        {frameWidth: 373, frameHeight: 541});
+        this.load.spritesheet('prePlayerIdle','assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basico_honda_idle_static_spritesheet.png',
+        {frameWidth: 373, frameHeight: 541});
+        this.load.spritesheet('prePlayerAttack','assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basic_honda_attack_moving_spritesheet.png',
+        {frameWidth: 837 , frameHeight: 557});
+        this.load.spritesheet('prePlayerAttackIdle','assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basic_honda_attack_static_spritesheet.png',
+        {frameWidth: 837 , frameHeight: 541});
+
         this.load.spritesheet('preEnemy', 'assets/Animaciones/Spritesheets/Prehistoria/Enemigo/enemigo_prehistoria_honda_idle_moving_spritesheet.png',
         { frameWidth: 736, frameHeight: 1039 });
         this.load.spritesheet('preEnemyAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Enemigo/enemigo_prehistoria_honda_attack_static_spritesheet.png',
@@ -84,6 +92,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('indPlayer','assets/Personajes/4.RevIndustrial/BasicoRevIndustrial.png');
         
         //Assets Juego
+        this.load.image('MuertesUI','assets/Interfaz/ContadorMuertes.png')
         this.load.image('CloseB','assets/Interfaz/CloseButton.png')
         this.load.image('FreezeBON', 'assets/Interfaz/FreezeButton.png');
         this.load.image('FreezeBOFF', 'assets/Interfaz/FreezeButtonOFF.png');
@@ -128,7 +137,7 @@ class bootScene extends Phaser.Scene {
         //Assets ingles
         this.load.image('tituloMapasi', 'assets/Interfaz/Tienda/Mapas/tituloMapasi.png');
 
-        this.load.image('prehistoriaDesbloqueadoi', 'assets/Interfaz/Tienda/Mapas/prehistoriaDesbloqueado.png');
+        this.load.image('prehistoriaDesbloqueadoi', 'assets/Interfaz/Tienda/Mapas/prehistoriaDesbloqueadoi.png');
         this.load.image('egiptoBloqueadoi', 'assets/Interfaz/Tienda/Mapas/egiptoBloqueadoi.png');
         this.load.image('egiptoDesbloqueadoi', 'assets/Interfaz/Tienda/Mapas/egiptoDesbloqueadoi.png');
         this.load.image('edadMediaBloqueadoi', 'assets/Interfaz/Tienda/Mapas/edadMediaBloqueadoi.png');

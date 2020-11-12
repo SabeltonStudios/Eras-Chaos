@@ -1,5 +1,5 @@
 class prehistoriaScene extends Phaser.Scene {
-    contMuertes=0;
+    contMuertes = 0;
     bulletsPre;
     bulletsEnemy;
     obstacles;
@@ -85,7 +85,7 @@ class prehistoriaScene extends Phaser.Scene {
         if (this.music == null) {
             this.music = this.sound.add('preMusic');
         }
-        if (this.contMuertes==0) {
+        if (this.contMuertes == 0) {
             this.music.play(this.mConfig);
         }
         this.gameOver = false;
@@ -99,12 +99,38 @@ class prehistoriaScene extends Phaser.Scene {
 
         this.Mapa = this.add.image(0, 0, 'preMap').setOrigin(0)
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
+        this.muertesUI = this.add.image(gameConfig.scale.width * 0.97 / 2, 53 * gameConfig.scale.height / 600, 'MuertesUI').setScale(0.45 * gameConfig.scale.width / 800);
+        this.contUI = this.add.text(gameConfig.scale.width * 1.07 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff' }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
 
-        this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'prePlayer').setScale(0.07 * gameConfig.scale.width / 800)//*800/gameConfig.scale.width);
+        this.player = this.physics.add.sprite(gameConfig.scale.width / 6.5, gameConfig.scale.height / 6, 'prePlayer').setOrigin(0,1).setScale(0.14 * gameConfig.scale.width / 800)//*800/gameConfig.scale.width);
         this.player.body.immovable = true;
-        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 2, 'preEnemy').setScale(0.08 * gameConfig.scale.width / 800)//*800/gameConfig.scale.width);
+        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5.5 / 6, gameConfig.scale.height / 2, 'preEnemy').setOrigin(1,1).setScale(0.08 * gameConfig.scale.width / 800)//*800/gameConfig.scale.width);
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
+        this.anims.create({
+            key: 'playerMoving',
+            frames: this.anims.generateFrameNumbers('prePlayer', { start: 0, end: 20 }),
+            frameRate: 30,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'playerIdle',
+            frames: this.anims.generateFrameNumbers('prePlayerIdle', { start: 0, end: 9 }),
+            frameRate: 30,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'playerAttack',
+            frames: this.anims.generateFrameNumbers('prePlayerAttack', { start: 0, end: 39 }),
+            frameRate: 55,
+            repeat: 0
+        });
+        this.anims.create({
+            key: 'playerAttackIdle',
+            frames: this.anims.generateFrameNumbers('prePlayerAttackIdle', { start: 0, end: 39 }),
+            frameRate: 55,
+            repeat: 0
+        });
         this.anims.create({
             key: 'enemyMoving',
             frames: this.anims.generateFrameNumbers('preEnemy', { start: 0, end: 20 }),
@@ -123,7 +149,7 @@ class prehistoriaScene extends Phaser.Scene {
             frameRate: 45,
             repeat: 0
         });
-        //this.player.anims.play('walk', true);
+        this.player.anims.play('playerMoving', true);
         this.player.setVelocity(0, -200 * gameConfig.scale.height / 600);
         this.player.setBounce(1);
         this.player.body.setAllowGravity(false);
@@ -195,7 +221,7 @@ class prehistoriaScene extends Phaser.Scene {
 
         //this.physics.add.collider(this.player, this.bulletsPre, () => this.gameOver = true);
         this.physics.add.collider(this.player, this.bulletsEnemy, () => this.gameOver = true);
-        this.physics.add.collider(this.enemy, this.bulletsPre, () => {this.bulletsPre.clear(); this.win = true});
+        this.physics.add.collider(this.enemy, this.bulletsPre, () => { this.bulletsPre.clear(); this.win = true });
         this.physics.add.collider(this.bulletsPre, this.bulletsPre);
         this.physics.add.collider(this.bulletsEnemy, this.bulletsEnemy);
         this.physics.add.collider(this.bulletsPre, this.bulletsEnemy);
@@ -221,15 +247,23 @@ class prehistoriaScene extends Phaser.Scene {
 
 
         this.spriteParar = this.add.sprite(gameConfig.scale.width * 15 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
-        this.spriteParar.setInteractive().on('pointerdown', () => this.player.body.moves = false /*cambiar a iddle */)
-            .on('pointerup', () => this.player.body.moves = true)//,this.player.anims.play('walk', true))
-            .on('pointerout', () => this.player.body.moves = true)//, this.player.anims.play('walk', true))
+        this.spriteParar.setInteractive().on('pointerdown', () => { this.player.body.moves = false; this.player.anims.play('playerIdle', true); })
+            .on('pointerup', () => { this.player.body.moves = true; this.player.anims.play('playerMoving', true) })
+            .on('pointerout', () => { this.player.body.moves = true; this.player.anims.play('playerMoving', true) })
             .on('pointerdown', () => this.spriteParar.setTexture('FreezeBOFF'))
             .on('pointerup', () => this.spriteParar.setTexture('FreezeBON'))
             .on('pointerout', () => this.spriteParar.setTexture('FreezeBON'));
 
         this.spriteDisparar = this.add.sprite(gameConfig.scale.width / 16, gameConfig.scale.height * 11 / 12, 'ShootBON').setScale(0.1 * gameConfig.scale.width / 800);
-        this.spriteDisparar.setInteractive().on('pointerdown', () => this.fire() /*animar disparo */)
+        this.spriteDisparar.setInteractive().on('pointerdown', () => {
+            this.fire()
+            if (this.spriteParar.isDown || this.freezeInput.isDown) {
+                this.player.anims.play('playerAttackIdle', true);
+            } else {
+                this.player.anims.play('playerAttack', true)
+                .on('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("playerMoving", true) } });
+            }
+        })
             .on('pointerdown', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('pointerup', () => this.spriteDisparar.setTexture('ShootBON'))
             .on('pointerout', () => this.spriteDisparar.setTexture('ShootBON'));
@@ -237,7 +271,7 @@ class prehistoriaScene extends Phaser.Scene {
         this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.3 / 16, gameConfig.scale.height / 13, 'PauseBON').setScale(0.07 * gameConfig.scale.width / 800);
         this.spritePausar.setInteractive().on('pointerdown', () => this.is_paused = !this.is_paused)
             .on('pointerdown', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
-            //.on('pointerdown', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
+            .on('pointerdown', () => !this.is_paused ? this.player.anims.play('playerMoving', true) : this.player.anims.stop())
             .on('pointerdown', () => !this.is_paused ? this.enemy.anims.play('enemyMoving', true) : this.enemy.anims.stop())
             .on('pointerdown', () => this.spritePausar.setTexture('PauseBOFF'))
             .on('pointerdown', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
@@ -246,24 +280,32 @@ class prehistoriaScene extends Phaser.Scene {
 
 
         this.freezeInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-        this.freezeInput.on('down', () => this.player.body.moves = false /*cambiar a iddle */)
-            .on('up', () => this.player.body.moves = true)//, this.player.anims.play('walk', true))
+        this.freezeInput.on('down', () => { this.player.body.moves = false; this.player.anims.play('playerIdle', true); })
+            .on('up', () => { this.player.body.moves = true; this.player.anims.play('playerMoving', true) })
             .on('down', () => this.spriteParar.setTexture('FreezeBOFF'))
             .on('up', () => this.spriteParar.setTexture('FreezeBON'));
 
         this.shootInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
-        this.shootInput.on('down', () => this.fire())
+        this.shootInput.on('down', () => {
+            this.fire()
+            if (this.spriteParar.isDown || this.freezeInput.isDown) {
+                this.player.anims.play('playerAttackIdle', true);
+            } else {
+                this.player.anims.play('playerAttack', true)
+                .on('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("playerMoving", true) } });
+            }
+        })
             .on('down', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('up', () => this.spriteDisparar.setTexture('ShootBON'));
-
-        this.input.keyboard.on('keydown-' + 'ESC', () => this.is_paused = !this.is_paused)
-            .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
-            //.on('keydown-' + 'ESC', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
-            .on('keydown-' + 'ESC', () => !this.is_paused ? this.enemy.anims.play('enemyMoving', true) : this.enemy.anims.stop())
-            .on('keydown-' + 'ESC', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
-            .on('keydown-' + 'ESC', () => this.spritePausar.setTexture('PauseBOFF'))
-            .on('keyup-' + 'ESC', () => this.spritePausar.setTexture('PauseBON'));
-
+        if (!this.win) {
+            this.input.keyboard.on('keydown-' + 'ESC', () => this.is_paused = !this.is_paused)
+                .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
+                .on('keydown-' + 'ESC', () => !this.is_paused ? this.player.anims.play('playerMoving', true) : this.player.anims.stop())
+                .on('keydown-' + 'ESC', () => !this.is_paused ? this.enemy.anims.play('enemyMoving', true) : this.enemy.anims.stop())
+                .on('keydown-' + 'ESC', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
+                .on('keydown-' + 'ESC', () => this.spritePausar.setTexture('PauseBOFF'))
+                .on('keyup-' + 'ESC', () => this.spritePausar.setTexture('PauseBON'));
+        }
         this.inter = setInterval(() => {
             if (!this.is_paused) {
                 if (this.bulletsEnemy.isFull()) {
@@ -275,7 +317,7 @@ class prehistoriaScene extends Phaser.Scene {
                 this.bomb.body.setAllowGravity(false);
                 this.bomb.body.setCircle(50, 0, 0);
                 this.bomb.angle = 270;
-                this.enemy.anims.play('enemyAttacking', true).on('animationcomplete', () => this.enemy.anims.play("enemyMoving", true));
+                this.enemy.anims.play('enemyAttacking', true).on('animationcomplete', () => { if (!this.is_paused) { this.enemy.anims.play("enemyMoving", true) } });
             }
         }, 2000);
     }
@@ -335,7 +377,7 @@ class prehistoriaScene extends Phaser.Scene {
         this.spriteDesbloquearSi.destroy();
         this.tweens.add({
             targets: this.music,
-            volume: {from: 0.05, to: 0},
+            volume: { from: 0.05, to: 0 },
             duration: 500
         }, this);
         this.is_paused = true;
@@ -362,7 +404,7 @@ class prehistoriaScene extends Phaser.Scene {
     }
     update() {
         if (this.gameOver) {
-            this.gameOver=false;
+            this.gameOver = false;
             this.contMuertes++;
             clearInterval(this.inter);
             this.shootInput.destroy();
@@ -375,7 +417,7 @@ class prehistoriaScene extends Phaser.Scene {
         if (this.win) {
             clearInterval(this.inter);
             this.win = false;
-            sortResults("Prehistoria",this.contMuertes);
+            sortResults("Prehistoria", "Prehistory", this.contMuertes);
             //this.music.setVolume(0.05);
             this.shootInput.destroy();
             this.tweens.add({
@@ -383,7 +425,7 @@ class prehistoriaScene extends Phaser.Scene {
                 volume: 0,
                 duration: 500
             }, this);
-            this.enemy.anims.play('enemyDying',true);
+            this.enemy.anims.play('enemyDying', true);
             if (completedLevel[0].completado) {
 
                 this.music.stop();

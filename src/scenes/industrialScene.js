@@ -1,5 +1,5 @@
 class industrialScene extends Phaser.Scene {
-    contMuertes=0;
+    contMuertes = 0;
     bulletsPre;
     bulletsEnemy;
     obstacles;
@@ -65,7 +65,7 @@ class industrialScene extends Phaser.Scene {
         if (this.music == null) {
             this.music = this.sound.add('indMusic');
         }
-        if (this.contMuertes==0) {
+        if (this.contMuertes == 0) {
             this.music.play(this.mConfig);
         }
         this.gameOver = false;
@@ -78,6 +78,8 @@ class industrialScene extends Phaser.Scene {
 
         this.Mapa = this.add.image(0, 0, 'mapaInd').setOrigin(0)
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
+        this.muertesUI = this.add.image(gameConfig.scale.width * 0.97 / 2, 53 * gameConfig.scale.height / 600, 'MuertesUI').setScale(0.45 * gameConfig.scale.width / 800);
+        this.contUI = this.add.text(gameConfig.scale.width * 1.07 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff' }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
 
         this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'indPlayer').setScale(0.07 * gameConfig.scale.height / 600)//*800/gameConfig.scale.width);
         this.player.body.immovable = true;
@@ -102,25 +104,25 @@ class industrialScene extends Phaser.Scene {
         this.enemy.body.setAllowGravity(false);
         this.enemy.setCollideWorldBounds(true);
 
-        var wallR = this.add.rectangle(gameConfig.scale.width-30, gameConfig.scale.height / 2, 50*gameConfig.scale.height/600, gameConfig.scale.height);
+        var wallR = this.add.rectangle(gameConfig.scale.width - 30, gameConfig.scale.height / 2, 50 * gameConfig.scale.height / 600, gameConfig.scale.height);
         this.physics.add.existing(wallR);
         wallR.body.setAllowGravity(false);
-        wallR.body.setSize(50*gameConfig.scale.height/600, gameConfig.scale.height);
+        wallR.body.setSize(50 * gameConfig.scale.height / 600, gameConfig.scale.height);
         wallR.body.immovable = true;
-        var wallL = this.add.rectangle(30, gameConfig.scale.height / 2, 50*gameConfig.scale.height/600, gameConfig.scale.height);
+        var wallL = this.add.rectangle(30, gameConfig.scale.height / 2, 50 * gameConfig.scale.height / 600, gameConfig.scale.height);
         this.physics.add.existing(wallL);
         wallL.body.setAllowGravity(false);
-        wallL.body.setSize(50*gameConfig.scale.height/600, gameConfig.scale.height);
+        wallL.body.setSize(50 * gameConfig.scale.height / 600, gameConfig.scale.height);
         wallL.body.immovable = true;
-        var wallU = this.add.rectangle(gameConfig.scale.width / 2, 0, 550*gameConfig.scale.width/800, 170*gameConfig.scale.height/600);
+        var wallU = this.add.rectangle(gameConfig.scale.width / 2, 0, 550 * gameConfig.scale.width / 800, 170 * gameConfig.scale.height / 600);
         this.physics.add.existing(wallU);
         wallU.body.setAllowGravity(false);
-        wallU.body.setSize(550*gameConfig.scale.width/800, 170*gameConfig.scale.height/600);
+        wallU.body.setSize(550 * gameConfig.scale.width / 800, 170 * gameConfig.scale.height / 600);
         wallU.body.immovable = true;
-        var wallD = this.add.rectangle(gameConfig.scale.width / 2, gameConfig.scale.height+20, gameConfig.scale.width, 50*gameConfig.scale.height/600);
+        var wallD = this.add.rectangle(gameConfig.scale.width / 2, gameConfig.scale.height + 20, gameConfig.scale.width, 50 * gameConfig.scale.height / 600);
         this.physics.add.existing(wallD);
         wallD.body.setAllowGravity(false);
-        wallD.body.setSize(gameConfig.scale.width, 50*gameConfig.scale.height/600);
+        wallD.body.setSize(gameConfig.scale.width, 50 * gameConfig.scale.height / 600);
         wallD.body.immovable = true;
 
         this.bulletsPre = this.physics.add.group(this.configPre);
@@ -162,7 +164,7 @@ class industrialScene extends Phaser.Scene {
 
         //this.physics.add.collider(this.player, this.bulletsPre, () => this.gameOver = true);
         this.physics.add.collider(this.player, this.bulletsEnemy, () => this.gameOver = true);
-        this.physics.add.collider(this.enemy, this.bulletsPre, () => {this.bulletsPre.clear(); this.win = true});
+        this.physics.add.collider(this.enemy, this.bulletsPre, () => { this.bulletsPre.clear(); this.win = true });
         this.physics.add.collider(this.bulletsPre, this.bulletsPre);
         this.physics.add.collider(this.bulletsEnemy, this.bulletsEnemy);
         this.physics.add.collider(this.bulletsPre, this.bulletsEnemy);
@@ -206,15 +208,15 @@ class industrialScene extends Phaser.Scene {
         this.shootInput.on('down', () => this.fire())
             .on('down', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('up', () => this.spriteDisparar.setTexture('ShootBON'));
-
-        this.input.keyboard.on('keydown-' + 'ESC', () => this.is_paused = !this.is_paused)
-            .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
-            //.on('keydown-' + 'ESC', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
-            //.on('keydown-' + 'ESC', () => !this.is_paused ? this.enemy.anims.play('walk', true) : this.enemy.anims.stop())
-            .on('keydown-' + 'ESC', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
-            .on('keydown-' + 'ESC', () => this.spritePausar.setTexture('PauseBOFF'))
-            .on('keyup-' + 'ESC', () => this.spritePausar.setTexture('PauseBON'));
-
+        if (!this.win) {
+            this.input.keyboard.on('keydown-' + 'ESC', () => this.is_paused = !this.is_paused)
+                .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
+                //.on('keydown-' + 'ESC', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
+                //.on('keydown-' + 'ESC', () => !this.is_paused ? this.enemy.anims.play('walk', true) : this.enemy.anims.stop())
+                .on('keydown-' + 'ESC', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
+                .on('keydown-' + 'ESC', () => this.spritePausar.setTexture('PauseBOFF'))
+                .on('keyup-' + 'ESC', () => this.spritePausar.setTexture('PauseBON'));
+        }
         this.inter = setInterval(() => {
             if (!this.is_paused) {
                 if (this.bulletsEnemy.isFull()) {
@@ -285,7 +287,7 @@ class industrialScene extends Phaser.Scene {
         this.spriteDesbloquearSi.destroy();
         this.tweens.add({
             targets: this.music,
-            volume: {from: 0.05, to: 0},
+            volume: { from: 0.05, to: 0 },
             duration: 500
         }, this);
         this.is_paused = true;
@@ -312,7 +314,7 @@ class industrialScene extends Phaser.Scene {
     }
     update() {
         if (this.gameOver) {
-            this.gameOver=false;
+            this.gameOver = false;
             this.contMuertes++;
             clearInterval(this.inter);
             this.shootInput.destroy();
@@ -323,10 +325,10 @@ class industrialScene extends Phaser.Scene {
             this.scene.restart();
         }
         if (this.win) {
-            
+
             clearInterval(this.inter);
             this.win = false;
-            sortResults("Revolucion Industrial",this.contMuertes);
+            sortResults("Revolucion Industrial", "Industrial Revolution", this.contMuertes);
             this.shootInput.destroy();
             this.tweens.add({
                 targets: this.music,

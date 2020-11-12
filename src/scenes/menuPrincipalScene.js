@@ -1,46 +1,60 @@
 let results=[
     {"Mapa":"",
-    "Muertes" : 100},
+    "Mapai":"",
+    "Muertes" : -1},
     {"Mapa":"",
-    "Muertes" : 100},
+    "Mapai":"",
+    "Muertes" : -1},
     {"Mapa":"",
-    "Muertes" : 100},
+    "Mapai":"",
+    "Muertes" : -1},
     {"Mapa":"",
-    "Muertes" : 100},
+    "Mapai":"",
+    "Muertes" : -1},
     {"Mapa":"",
-    "Muertes" : 100},
+    "Mapai":"",
+    "Muertes" : -1},
     {"Mapa":"",
-    "Muertes" : 100},
+    "Mapai":"",
+    "Muertes" : -1},
     {"Mapa":"",
-    "Muertes" : 100},
+    "Mapai":"",
+    "Muertes" : -1},
     {"Mapa":"",
-    "Muertes" : 100},
+    "Mapai":"",
+    "Muertes" : -1},
     {"Mapa":"",
-    "Muertes" : 100},
+    "Mapai":"",
+    "Muertes" : -1},
     {"Mapa":"",
-    "Muertes" : 100}
-]
-function sortResults(mapa,nuevoValor){
+    "Mapai":"",
+    "Muertes" : -1}
+];
+function sortResults(mapa,mapai,nuevoValor){
     for(let i=0; i<results.length; i++){
         
-        if(nuevoValor<=results[i].Muertes){
+        if(nuevoValor<=results[i].Muertes || results[i].Muertes==-1){
             var MapaAux= results[i].Mapa;
+            var MapaiAux= results[i].Mapai;
             var MuertesAux= results[i].Muertes;
             results[i].Muertes=nuevoValor;
             results[i].Mapa= mapa;
+            results[i].Mapai= mapai;
             
             for(let j=results.length-1; j>i+1;j--){
                 results[j].Mapa= results[j-1].Mapa;
+                results[j].Mapai= results[j-1].Mapai;
                 results[j].Muertes= results[j-1].Muertes;
             }
             results[i+1].Mapa= MapaAux;
+            results[i+1].Mapai= MapaiAux;
             results[i+1].Muertes= MuertesAux;
             break;
         }
     }
-    for(let i=0; i<results.length; i++){
+    /*for(let i=0; i<results.length; i++){
         console.log(results[i].Mapa, results[i].Muertes);
-    }
+    }*/
 }
 class menuPrincipalScene extends Phaser.Scene{
     

@@ -22,9 +22,8 @@ class selectNivelHistoria extends Phaser.Scene {
     }
     mapasButton = [];
     create() {
-        completedLevel[2].completado=true;
-        this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0);
-        this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
+        this.Fondo = this.add.image(0, 0, 'fondoTienda').setOrigin(0);
+        this.Fondo.setScale(gameConfig.scale.width / this.Fondo.width, gameConfig.scale.height / this.Fondo.height);
         if (espanol) {
             this.spriteTituloMapas = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height / 7, 'niveles').setScale(gameConfig.scale.height / 600);
             this.spriteTutorial= this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height *5/ 7, 'tutorialHistoria').setScale(gameConfig.scale.height / 600);
