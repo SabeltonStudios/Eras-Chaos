@@ -1,0 +1,41 @@
+Posiciones de frames de personaje héroe Prehistoria (son los mismos que el personaje básico):
+////////////////////////////////////////
+- Honda
+EN PROCESO
+
+////////////////////////////////////////
+- Hacha:
+Idle:
+Moving (4 filas x 5 columnas): 370 x 545
+Static (1 imagen): 330 x 545
+
+Atacar:
+Moving (7 filas x 8 columnas): 510 x 589
+Static (7 filas x 8 columnas): 510 x 589
+////////////////////////////////////////
+- Ballesta:
+Idle:
+Moving (4 filas x 5 columnas): 454 x 541
+Static (1 imagen): 370 x 541
+
+Atacar:
+EN PROCESO
+////////////////////////////////////////
+- Mosquete:
+Idle:
+Moving  (4 filas x 5 columnas): 596 x 541
+Static (1 imagen): 506 x 541
+
+Atacar:
+Moving  (4 filas x 10 columnas): 760 x 541
+Static (4 filas x 10 columnas): 670 x 541
+////////////////////////////////////////
+- Fusil:
+Idle:
+Moving  (4 filas x 5 columnas): 467 x 541
+Static (1 imagen): 370 x 541
+
+Atacar:
+Moving  (4 filas x 5 columnas): 467 x 541
+Static (4 filas x 5 columnas): 368 x 541
+////////////////////////////////////////
