@@ -8,25 +8,31 @@ class puntuacionesScene extends Phaser.Scene {
         this.Titulo = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'titlePuntuaciones').setScale(gameConfig.scale.height / 600);
         this.fondoMarron = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height*1.2/2,'fondoMarron').setScale(gameConfig.scale.height / 600);
 
-        this.resultados = this.add.text(gameConfig.scale.width / 2, gameConfig.scale.height / 3.5, "", {font:"30px euphorigenic", fill: '#fff' ,boundsAlignH: "center", boundsAlignV: "middle"}).setOrigin(0.5, 0).setScale(gameConfig.scale.width / 800);
+        this.mapasText = this.add.text(gameConfig.scale.width / 3, gameConfig.scale.height / 3.5, "", {font:"30px euphorigenic", fill: '#fff' ,align: 'left'}).setOrigin(0.5, 0).setScale(gameConfig.scale.width / 800);
+        this.muertesText = this.add.text(gameConfig.scale.width*2 / 3, gameConfig.scale.height / 3.5, "", {font:"30px euphorigenic", fill: '#fff' ,align: 'right'}).setOrigin(0.5, 0).setScale(gameConfig.scale.width / 800);
         
         if (!espanol) {
             this.Titulo.setTexture('titlePuntuacionesi')
-            this.aux= "Map \t \t \t  Deaths \n\n";
+            this.auxMapas= "Map\n\n";
+            this.auxMuertes= "Deaths\n\n";
             for (let i = 0; i < results.length; i++) {
                 if (results[i].Muertes > -1) {
-                    this.aux+=  results[i].Mapai + " \t \t \t \t \t \t" + results[i].Muertes + "\n";
+                    this.auxMapas+=  results[i].Mapai +"\n";
+                    this.auxMuertes+= results[i].Muertes+ "\n"
                 }
             }
             this.resultados.setText(this.aux);
         } else {
-            this.aux= "Mapa \t \t \t Muertes \n\n"
+            this.auxMapas= "Mapa\n\n";
+            this.auxMuertes= "Muertes\n\n";
             for (let i = 0; i < results.length; i++) {
                 if (results[i].Muertes > -1) {
-                    this.aux+=results[i].Mapa + " \t \t \t \t \t \t" + results[i].Muertes + "\n";
+                    this.auxMapas+=results[i].Mapa +"\n";
+                    this.auxMuertes+= results[i].Muertes+ "\n"
                 }
             }
-            this.resultados.setText(this.aux);
+            this.mapasText.setText(this.auxMapas);
+            this.muertesText.setText(this.auxMuertes);
         }
         //Botón de salir
         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15, (gameConfig.scale.height / 8) * 7.5, 'botonSalir').setScale(0.1 * gameConfig.scale.height / 600);

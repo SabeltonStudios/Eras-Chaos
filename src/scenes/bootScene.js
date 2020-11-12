@@ -216,6 +216,8 @@ class bootScene extends Phaser.Scene {
             gameConfig.scale.height=this.cameras.main.height;
             this.add.text(0,0,"",{font:"20px euphorigenic"});
 
+        }else{
+            this.scale.lockOrientation('landscape-primary')
         }
         //console.log("Se ha creado el juego");
         this.scene.start("MenuPrincipalScene");

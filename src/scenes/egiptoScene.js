@@ -100,7 +100,7 @@ class egiptoScene extends Phaser.Scene {
         this.Mapa = this.add.image(0, 0, 'egiMap').setOrigin(0)
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
         this.muertesUI = this.add.image(gameConfig.scale.width * 0.97 / 2, 53 * gameConfig.scale.height / 600, 'MuertesUI').setScale(0.45 * gameConfig.scale.width / 800);
-        this.contUI = this.add.text(gameConfig.scale.width * 1.07 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff' }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
+        this.contUI = this.add.text(gameConfig.scale.width * 1.07 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff',stroke: '#000',strokeThickness: 4 }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
 
         this.RectanguloMapa = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'rectanguloEgipto');
         this.RectanguloMapa.setScale(this.RectanguloMapa.height / this.Mapa.height * gameConfig.scale.width / this.Mapa.width);
