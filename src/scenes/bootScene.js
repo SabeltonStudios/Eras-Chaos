@@ -15,6 +15,10 @@ class bootScene extends Phaser.Scene {
         this.load.image('fondoBlanco', 'assets/Interfaz/Menu/fondoBlanco.png');
         this.load.image('titulo','assets/Interfaz/Menu/titulo.png');
         this.load.image('botonPlay','assets/Interfaz/SeleccionNivel/play.png');
+        this.load.image('fondoMarron','assets/Interfaz/fondoMarron.png');
+        this.load.image('titlePuntuaciones','assets/Interfaz/titlePuntuaciones.png');
+        this.load.image('titlePuntuacionesi','assets/Interfaz/titlePuntuacionesi.png');
+
         //Assets en español
         this.load.image('botonHistoria', 'assets/Interfaz/Menu/botonHistoria.png');
         this.load.image('boton2Jugadores', 'assets/Interfaz/Menu/boton2Jugadores.png');
@@ -38,6 +42,9 @@ class bootScene extends Phaser.Scene {
         this.load.image('egiSelectBloqi', 'assets/Interfaz/SeleccionNivel/mapaEgiptoBi.png');
         this.load.image('medSelectBloq', 'assets/Interfaz/SeleccionNivel/mapaEdadMediaB.png');
         this.load.image('medSelectBloqi', 'assets/Interfaz/SeleccionNivel/mapaEdadMediaBi.png');
+        this.load.image('revSelectBloq', 'assets/Interfaz/SeleccionNivel/mapaRevIndustrialB.png');
+        this.load.image('revSelectBloqi', 'assets/Interfaz/SeleccionNivel/mapaRevIndustrialBi.png');
+
         //Assets Prehistoria
         this.load.image('preMap', 'assets/Fondos/1.Prehistoria/Background.png');
         this.load.image('preLog', 'assets/Objetos/1.Prehistoria/object_log.png');
@@ -124,7 +131,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('botonSalir', 'assets/Interfaz/Tienda/botonSalir.png');
         this.load.image('flechaDerecha', 'assets/Interfaz/Tienda/flechaDerecha.png');
         this.load.image('flechaIzquierda', 'assets/Interfaz/Tienda/flechaIzquierda.png');
-        
+        this.load.image('coins', 'assets/Interfaz/Tienda/coins.png');
         //Assets español
         this.load.image('tituloMapas', 'assets/Interfaz/Tienda/Mapas/tituloMapas.png');
         
@@ -133,6 +140,8 @@ class bootScene extends Phaser.Scene {
         this.load.image('egiptoDesbloqueado', 'assets/Interfaz/Tienda/Mapas/egiptoDesbloqueado.png');
         this.load.image('edadMediaBloqueado', 'assets/Interfaz/Tienda/Mapas/edadMediaBloqueado.png');
         this.load.image('edadMediaDesbloqueado', 'assets/Interfaz/Tienda/Mapas/edadMediaDesbloqueado.png');
+        this.load.image('revIndustrialBloqueado', 'assets/Interfaz/Tienda/Mapas/revIndustrialBloqueado.png');
+        this.load.image('revIndustrialDesbloqueado', 'assets/Interfaz/Tienda/Mapas/revIndustrialDesbloqueado.png');
 
         //Assets ingles
         this.load.image('tituloMapasi', 'assets/Interfaz/Tienda/Mapas/tituloMapasi.png');
@@ -142,6 +151,8 @@ class bootScene extends Phaser.Scene {
         this.load.image('egiptoDesbloqueadoi', 'assets/Interfaz/Tienda/Mapas/egiptoDesbloqueadoi.png');
         this.load.image('edadMediaBloqueadoi', 'assets/Interfaz/Tienda/Mapas/edadMediaBloqueadoi.png');
         this.load.image('edadMediaDesbloqueadoi', 'assets/Interfaz/Tienda/Mapas/edadMediaDesbloqueadoi.png');
+        this.load.image('revIndustrialBloqueadoi', 'assets/Interfaz/Tienda/Mapas/revIndustrialBloqueadoi.png');
+        this.load.image('revIndustrialDesbloqueadoi', 'assets/Interfaz/Tienda/Mapas/revIndustrialDesbloqueadoi.png');
 
         //Personajes
         this.load.image('flechaDerecha', 'assets/Interfaz/Tienda/flechaDerecha.png');
@@ -203,6 +214,7 @@ class bootScene extends Phaser.Scene {
             this.game.scale.refresh();
             gameConfig.scale.width=this.cameras.main.width;
             gameConfig.scale.height=this.cameras.main.height;
+            this.add.text(0,0,"",{font:"20px euphorigenic"});
 
         }
         //console.log("Se ha creado el juego");
@@ -212,4 +224,5 @@ class bootScene extends Phaser.Scene {
     update() {
 
     }
+
 }

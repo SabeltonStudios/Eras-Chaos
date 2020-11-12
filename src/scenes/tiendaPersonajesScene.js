@@ -115,8 +115,8 @@ class tiendaPersonajesScene extends Phaser.Scene{
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
 
-        var dinero = this.add.text(gameConfig.scale.width*7.35/16,gameConfig.scale.height/4,coins, { fill: '#fff' });
-
+        var dinero = this.add.text(gameConfig.scale.width*7.35/16,gameConfig.scale.height/4,coins, {font:"20px euphorigenic", fill: '#ffffff' ,boundsAlignH: "center", boundsAlignV: "middle"}).setScale(gameConfig.scale.height / 600);
+        this.spritecoins = this.add.sprite(gameConfig.scale.width *8.3/16,gameConfig.scale.height*1.07/4,'coins').setScale(gameConfig.scale.height / 600);
         if(espanol){
             this.spriteTituloPersonajes = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloPersonajes').setScale(gameConfig.scale.height / 600);
         }else{
@@ -195,12 +195,16 @@ class tiendaPersonajesScene extends Phaser.Scene{
             personaje.bloqueado = false;
             coins = coins-personaje.coins;
             dinero.setText(coins);
+            this.cerrarMensajeDesbloquear(pos);
             
         }else{
-            var nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'No tienes dinero suficiente', { fill: '#0f0' })
+            //If i have enough money and the map is not blocked
+            this.cerrarMensajeDesbloquear(pos);
+            this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'No tienes dinero suficiente',{font:"20px euphorigenic", fill: '#ffffff' ,boundsAlignH: "center", boundsAlignV: "middle"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+            var timer = this.time.delayedCall(800, ()=>this.nocoins.destroy(), []);
         }
-        //If i have enough money and the map is not blocked
-        this.cerrarMensajeDesbloquear(pos);
+        
+        
     }
 
     //Destroy the message

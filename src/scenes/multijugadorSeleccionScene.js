@@ -43,19 +43,20 @@ class multijugadorSeleccionScene extends Phaser.Scene {
 
         //Asignamos los botones a cinco mapas
         this.mapasButton[0] = this.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 4, mapas[0].sprite).setScale(0.7 * gameConfig.scale.height / 600);
-        this.mapasButton[0].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 0 });
+        this.mapasButton[0].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 0; this.deleteTint(0,0); });
+        this.mapasButton[0].setTint(0xDEDE7C);
 
         this.mapasButton[1] = this.add.sprite((gameConfig.scale.width / 6) * 2, gameConfig.scale.height / 4, mapas[1].sprite).setScale(0.7 * gameConfig.scale.height / 600);
-        this.mapasButton[1].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 1 });
+        this.mapasButton[1].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 1; this.deleteTint(0,1); });
 
         this.mapasButton[2] = this.add.sprite((gameConfig.scale.width / 6) * 3, gameConfig.scale.height / 4, mapas[2].sprite).setScale(0.7 * gameConfig.scale.height / 600);
-        this.mapasButton[2].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 2 });
+        this.mapasButton[2].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 2; this.deleteTint(0,2); });
 
         this.mapasButton[3] = this.add.sprite((gameConfig.scale.width / 6) * 4, gameConfig.scale.height / 4, mapas[3].sprite).setScale(0.7 * gameConfig.scale.height / 600);
-        this.mapasButton[3].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 3 });
+        this.mapasButton[3].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 3; this.deleteTint(0,3); });
 
         this.mapasButton[4] = this.add.sprite((gameConfig.scale.width / 6) * 5, gameConfig.scale.height / 4, mapas[4].sprite).setScale(0.7 * gameConfig.scale.height / 600);
-        this.mapasButton[4].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 4 });
+        this.mapasButton[4].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 4; this.deleteTint(0,4); });
 
         if(espanol){
             this.spriteJugador1 = this.add.sprite((gameConfig.scale.width / 8) +120, gameConfig.scale.height /2.6, 'jugador1').setScale(0.4 * gameConfig.scale.height / 600);
@@ -169,10 +170,10 @@ class multijugadorSeleccionScene extends Phaser.Scene {
         this.personajes2Button[5].setInteractive().on('pointerdown', () => { if (!personajes[5].bloqueado) selectedChar2 = 5+this.personajes2Posicion; this.deleteTint(2,5); });
 
         //Flechas derecha e izquierda
-        this.spriteIzquierda = this.add.sprite((gameConfig.scale.width*7 / 8)-340, gameConfig.scale.height * 7 / 12, 'flechaIzquierda').setScale(0.3 * gameConfig.scale.height / 600);
+        this.spriteIzquierda = this.add.sprite((gameConfig.scale.width*7 / 8)-340, gameConfig.scale.height * 7 / 12, 'flechaIzquierda').setScale(0.2 * gameConfig.scale.height / 600);
         this.spriteIzquierda.setInteractive().on('pointerdown', () => this.trasladarIzquierda(2));
 
-        this.spriteDerecha = this.add.sprite((gameConfig.scale.width*7 / 8)+100, gameConfig.scale.height * 7 / 12, 'flechaDerecha').setScale(0.3 * gameConfig.scale.height / 600);
+        this.spriteDerecha = this.add.sprite((gameConfig.scale.width*7 / 8)+100, gameConfig.scale.height * 7 / 12, 'flechaDerecha').setScale(0.2 * gameConfig.scale.height / 600);
         this.spriteDerecha.setInteractive().on('pointerdown', () => this.trasladarDerecha(2));
 
         //Botón de salir
@@ -191,6 +192,10 @@ class multijugadorSeleccionScene extends Phaser.Scene {
                     var i;
                     for (i = 0; i < this.mapasButton.length; i++) {
                         this.mapasButton[i].setTexture(mapas[this.mapasPosicion + i].sprite);
+                        this.mapasButton[i].clearTint();
+                        if(selectedMap == this.mapasPosicion+i){
+                            this.mapasButton[i].setTint(0xDEDE7C);
+                        }
                     }
                 }
                 break;
@@ -250,6 +255,10 @@ class multijugadorSeleccionScene extends Phaser.Scene {
                     var i;
                     for (i = 0; i < this.mapasButton.length; i++) {
                         this.mapasButton[i].setTexture(mapas[this.mapasPosicion + i].sprite);
+                        this.mapasButton[i].clearTint();
+                        if(selectedMap == this.mapasPosicion+i){
+                            this.mapasButton[i].setTint(0xDEDE7C);
+                        }
                     }
                 }
                 break;
@@ -313,10 +322,20 @@ class multijugadorSeleccionScene extends Phaser.Scene {
     }
 
     //Limpia los tintes, y se lo pone al seleccionado
-    deleteTint(player,button){
+    deleteTint(option,button){
         console.log("selecciona");
-        if(player == 1){
-            //Si el personaje no esta bloqueado, se selecciona
+        switch(option){
+            case 0:
+                if(!mapas[this.mapasPosicion+button].bloqueado){
+                    var i;
+                    for (i = 0; i < this.mapasButton.length; i++) {
+                        this.mapasButton[i].clearTint();
+                    }
+                    this.mapasButton[button].setTint(0xDEDE7C);
+                }
+                break;
+            case 1:
+                //Si el personaje no esta bloqueado, se selecciona
             if(!personajes[this.personajesPosicion+button].bloqueado){
                 var i;
                 for (i = 0; i < this.personajesButton.length; i++) {
@@ -324,9 +343,9 @@ class multijugadorSeleccionScene extends Phaser.Scene {
                 }
                 this.personajesButton[button].setTint(0xDEDE7C);
             }
-            
-        }else{
-            //Si el personaje no esta bloqueado, se selecciona
+                break;
+            case 2:
+                //Si el personaje no esta bloqueado, se selecciona
             if(!personajes[this.personajes2Posicion+button].bloqueado){
                 var i;
                 for (i = 0; i < this.personajes2Button.length; i++) {
@@ -334,6 +353,11 @@ class multijugadorSeleccionScene extends Phaser.Scene {
                 }
                 this.personajes2Button[button].setTint(0xDEDE7C);
             }
+                break;
+            
+            default:
+                break;
         }
+
     }
 }

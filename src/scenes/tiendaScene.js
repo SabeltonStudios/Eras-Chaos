@@ -27,6 +27,7 @@ class tiendaScene extends Phaser.Scene{
         this.load.image('botonRecargari', 'assets/Interfaz/Tienda/botonRecargari.png');
         this.load.image('mensajeDesbloqueari', 'assets/Interfaz/Tienda/mensajeDesbloqueari.png');
         
+        
     }
 
     create(){

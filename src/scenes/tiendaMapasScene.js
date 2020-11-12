@@ -34,13 +34,13 @@ let mapas=[
     {
         "bloqueado":true,
         "coins" : 550,
-        "sprite": 'egiptoBloqueado',
-        "spriteDesbloqueado": 'egiptoDesbloqueado',
-        "spriteBloqueado": 'egiptoBloqueado',
-        "spriteDesbloqueadoi": 'egiptoDesbloqueadoi',
-        "spriteBloqueadoi": 'egiptoBloqueadoi',
-        "spriteSelectBloq": 'egiSelectBloq',
-        "spriteSelectBloqi": 'egiSelectBloqi'
+        "sprite": 'revIndustrialBloqueado',
+        "spriteDesbloqueado": 'revIndustrialDesbloqueado',
+        "spriteBloqueado": 'revIndustrialBloqueado',
+        "spriteDesbloqueadoi": 'revIndustrialDesbloqueadoi',
+        "spriteBloqueadoi": 'revIndustrialBloqueadoi',
+        "spriteSelectBloq": 'revSelectBloq',
+        "spriteSelectBloqi": 'revSelectBloqi'
     },
     {
         "bloqueado":true,
@@ -102,7 +102,6 @@ class tiendaMapasScene extends Phaser.Scene{
 
     create(){
         this.mapasPosicion=0;
-
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
 
@@ -128,8 +127,8 @@ class tiendaMapasScene extends Phaser.Scene{
             }
         }
         
-        var dinero = this.add.text(gameConfig.scale.width*7.35/16,gameConfig.scale.height/4,coins, { fill: '#fff' }).setScale(gameConfig.scale.height / 600);
-
+        var dinero = this.add.text(gameConfig.scale.width*7.35/16,gameConfig.scale.height/4,coins, {font:"20px euphorigenic", fill: '#ffffff' ,boundsAlignH: "center", boundsAlignV: "middle"}).setScale(gameConfig.scale.height / 600);
+        this.spritecoins = this.add.sprite(gameConfig.scale.width *8.3/16,gameConfig.scale.height*1.07/4,'coins').setScale(gameConfig.scale.height / 600);
         //Asignamos los botones a cinco mapas
         this.mapasButton[0] = this.add.sprite(gameConfig.scale.width / 6,gameConfig.scale.height*1.5/3,mapas[0].sprite).setScale(gameConfig.scale.height / 600);
         this.mapasButton[0].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[0+this.mapasPosicion],dinero,0));
@@ -198,12 +197,14 @@ class tiendaMapasScene extends Phaser.Scene{
             mapa.bloqueado = false;
             coins = coins-mapa.coins;
             dinero.setText(coins);
-            
+            this.cerrarMensajeDesbloquear(pos);
         }else{
-            var nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'No tienes dinero suficiente', { fill: '#0f0' })
+            //If i have enough money and the map is not blocked
+            this.cerrarMensajeDesbloquear(pos);
+            this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'No tienes dinero suficiente',{font:"20px euphorigenic", fill: '#ffffff' ,boundsAlignH: "center", boundsAlignV: "middle"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+            var timer = this.time.delayedCall(800, ()=>this.nocoins.destroy(), []);
         }
-        //If i have enough money and the map is not blocked
-        this.cerrarMensajeDesbloquear(pos);
+        
     }
 
     //Destroy the message
