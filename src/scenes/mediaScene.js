@@ -222,12 +222,13 @@ class mediaScene extends Phaser.Scene {
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
-                this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'preWeapon').setScale(0.15 * gameConfig.scale.height / 600);
+                this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'medWeapon').setScale(0.15 * gameConfig.scale.height / 600);
                 this.bomb.setTint(0xff7e7d);
                 this.bomb.body.setVelocity(-500 * gameConfig.scale.height / 600, 0);
-                this.bomb.body.setAllowGravity(false);
-                this.bomb.body.setCircle(50, 0, 0);
-                this.bomb.angle = 270;
+                this.bomb.body.setAllowRotation();
+                /*this.bomb.body.setAllowGravity(false);
+                this.bomb.body.setCircle(100, 10, 0);*/
+                this.bomb.angle = 180;
             }
         }, 750);
     }
@@ -280,6 +281,7 @@ class mediaScene extends Phaser.Scene {
     }
     rendirse(escena) {
         this.shootInput.destroy();
+        this.contMuertes=0;
         clearInterval(this.inter);
         this.ocultarMenu(this);
         this.mensajeSeguro.destroy();
@@ -409,12 +411,12 @@ class mediaScene extends Phaser.Scene {
             //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();
         }
-        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, 'preWeapon').setScale(0.15 * gameConfig.scale.height / 600);
+        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, 'medWeapon').setScale(0.15 * gameConfig.scale.height / 600);
         bomb.setTint(0x85baff);
         bomb.body.setVelocity(500 * gameConfig.scale.height / 600, 0);
+        bomb.body.setAllowRotation();
         //bomb.setOrigin(0,1);
-        bomb.body.setAllowGravity(false);
-        bomb.body.setCircle(50, 0, 0);
-        bomb.angle = 90;
+        /*bomb.body.setAllowGravity(false);
+        bomb.body.setCircle(50, 0, 0);*/
     }
 }

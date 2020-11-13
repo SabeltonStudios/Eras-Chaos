@@ -22,6 +22,7 @@ class selectNivelHistoria extends Phaser.Scene {
     }
     mapasButton = [];
     create() {
+        completedLevel[0].completado=true;
         this.Fondo = this.add.image(0, 0, 'fondoTienda').setOrigin(0);
         this.Fondo.setScale(gameConfig.scale.width / this.Fondo.width, gameConfig.scale.height / this.Fondo.height);
         if (espanol) {

@@ -82,6 +82,12 @@ class bootScene extends Phaser.Scene {
         //this.load.image('bullet', 'assets/Interfaz/Bullet.png');
         this.load.spritesheet('egiWeapon', 'assets/Armas/ArmaEgipto.png', { frameWidth: 235, frameHeight: 235 });
         
+        this.load.spritesheet('egiEnemy', 'assets/Animaciones/Spritesheets/Egipto/Enemigo/Hacha/egipto_enemigo_axe_idle_moving_spritesheet.png',
+        { frameWidth: 370, frameHeight: 545 });
+        this.load.spritesheet('egiEnemyAttack', 'assets/Animaciones/Spritesheets/Egipto/Enemigo/Hacha/egipto_enemigo_axe_attack_moving_spritesheet.png',
+        { frameWidth: 510, frameHeight: 589 });
+        this.load.spritesheet('egiEnemyDie','assets/Animaciones/Spritesheets/Egipto/Enemigo/Game over/egipto_enemigo_gameover_spritesheet.png',
+        { frameWidth: 534, frameHeight: 526 })
         //Assets Edad Media
         this.load.image('mapaMed', 'assets/Fondos/3.EdadMedia/Background.png');
         this.load.image('medApl', 'assets/Objetos/3.EdadMedia/object_apples.png');
@@ -89,6 +95,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('medVas', 'assets/Objetos/3.EdadMedia/object_vase.png');
         this.load.audio('medMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
         this.load.image('medPlayer','assets/Personajes/3.EdadMedia/BasicoEdadMedia.png');
+        this.load.image('medWeapon', 'assets/Armas/ballesta-saeta.png')
         
         //Assets Revolución Industrial
         this.load.image('mapaInd', 'assets/Fondos/4.RevolucionIndustrial/Background.png');
@@ -97,6 +104,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('indWheel', 'assets/Objetos/4.RevolucionIndustrial/object_wheel.png');
         this.load.audio('indMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
         this.load.image('indPlayer','assets/Personajes/4.RevIndustrial/BasicoRevIndustrial.png');
+        this.load.image('indWeapon', 'assets/Armas/mosquete-bala.png');
         
         //Assets Juego
         this.load.image('MuertesUI','assets/Interfaz/ContadorMuertes.png')

@@ -108,25 +108,25 @@ class prehistoriaScene extends Phaser.Scene {
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
         this.anims.create({
-            key: 'playerMoving',
+            key: 'prePlayerMoving',
             frames: this.anims.generateFrameNumbers('prePlayer', { start: 0, end: 20 }),
             frameRate: 30,
             repeat: -1
         });
         this.anims.create({
-            key: 'playerIdle',
+            key: 'prePlayerIdle',
             frames: this.anims.generateFrameNumbers('prePlayerIdle', { start: 0, end: 9 }),
             frameRate: 30,
             repeat: -1
         });
         this.anims.create({
-            key: 'playerAttack',
+            key: 'prePlayerAttack',
             frames: this.anims.generateFrameNumbers('prePlayerAttack', { start: 0, end: 39 }),
             frameRate: 55,
             repeat: 0
         });
         this.anims.create({
-            key: 'playerAttackIdle',
+            key: 'prePlayerAttackIdle',
             frames: this.anims.generateFrameNumbers('prePlayerAttackIdle', { start: 0, end: 39 }),
             frameRate: 55,
             repeat: 0
@@ -149,7 +149,7 @@ class prehistoriaScene extends Phaser.Scene {
             frameRate: 45,
             repeat: 0
         });
-        this.player.anims.play("playerMoving", true);
+        this.player.anims.play("prePlayerMoving", true);
         this.player.setVelocity(0, -200 * gameConfig.scale.height / 600);
         this.player.setBounce(1);
         this.player.body.setAllowGravity(false);
@@ -247,9 +247,9 @@ class prehistoriaScene extends Phaser.Scene {
 
 
         this.spriteParar = this.add.sprite(gameConfig.scale.width * 15 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
-        this.spriteParar.setInteractive().on('pointerdown', () => { this.player.body.moves = false; this.player.anims.play("playerIdle", true); })
-            .on('pointerup', () => { this.player.body.moves = true; this.player.anims.play("playerMoving", true) })
-            .on('pointerout', () => { this.player.body.moves = true; this.player.anims.play("playerMoving", true) })
+        this.spriteParar.setInteractive().on('pointerdown', () => { this.player.body.moves = false; this.player.anims.play("prePlayerIdle", true); })
+            .on('pointerup', () => { this.player.body.moves = true; this.player.anims.play("prePlayerMoving", true) })
+            .on('pointerout', () => { this.player.body.moves = true; this.player.anims.play("prePlayerMoving", true) })
             .on('pointerdown', () => this.spriteParar.setTexture('FreezeBOFF'))
             .on('pointerup', () => this.spriteParar.setTexture('FreezeBON'))
             .on('pointerout', () => this.spriteParar.setTexture('FreezeBON'));
@@ -258,11 +258,11 @@ class prehistoriaScene extends Phaser.Scene {
         this.spriteDisparar.setInteractive().on('pointerdown', () => {
             this.fire()
             if (this.spriteParar.isDown || this.freezeInput.isDown) {
-                this.player.anims.play("playerAttackIdle", true)
-                    .on('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("playerIdle", true) } });
+                this.player.anims.play("prePlayerAttackIdle", true)
+                    .on('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("prePlayerIdle", true) } });
             } else {
-                this.player.anims.play("playerAttack", true)
-                    .on('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("playerMoving", true) } });
+                this.player.anims.play("prePlayerAttack", true)
+                    .on('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("prePlayerMoving", true) } });
             }
         })
             .on('pointerdown', () => this.spriteDisparar.setTexture('ShootBOFF'))
@@ -272,7 +272,7 @@ class prehistoriaScene extends Phaser.Scene {
         this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.3 / 16, gameConfig.scale.height / 13, 'PauseBON').setScale(0.07 * gameConfig.scale.width / 800);
         this.spritePausar.setInteractive().on('pointerdown', () => this.is_paused = !this.is_paused)
             .on('pointerdown', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
-            .on('pointerdown', () => !this.is_paused ? this.player.anims.play("playerMoving", true) : this.player.anims.stop())
+            .on('pointerdown', () => !this.is_paused ? this.player.anims.play("prePlayerMoving", true) : this.player.anims.stop())
             .on('pointerdown', () => !this.is_paused ? this.enemy.anims.play("enemyMoving", true) : this.enemy.anims.stop())
             .on('pointerdown', () => this.spritePausar.setTexture('PauseBOFF'))
             .on('pointerdown', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
@@ -281,8 +281,8 @@ class prehistoriaScene extends Phaser.Scene {
 
 
         this.freezeInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-        this.freezeInput.on('down', () => { this.player.body.moves = false; this.player.anims.play("playerIdle", true); })
-            .on('up', () => { this.player.body.moves = true; this.player.anims.play("playerMoving", true) })
+        this.freezeInput.on('down', () => { this.player.body.moves = false; this.player.anims.play("prePlayerIdle", true); })
+            .on('up', () => { this.player.body.moves = true; this.player.anims.play("prePlayerMoving", true) })
             .on('down', () => this.spriteParar.setTexture('FreezeBOFF'))
             .on('up', () => this.spriteParar.setTexture('FreezeBON'));
 
@@ -290,10 +290,10 @@ class prehistoriaScene extends Phaser.Scene {
         this.shootInput.on('down', () => {
             this.fire()
             if (this.spriteParar.isDown || this.freezeInput.isDown) {
-                this.player.anims.play("playerAttackIdle", true)
-                    .on('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("playerIdle", true) } });
+                this.player.anims.play("prePlayerAttackIdle", true)
+                    .on('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("prePlayerIdle", true) } });
             } else {
-                this.player.anims.play("playerAttack", true)
+                this.player.anims.play("prePlayerAttack", true)
                     .on('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("playerMoving", true) } });
             }
         })
@@ -302,7 +302,7 @@ class prehistoriaScene extends Phaser.Scene {
         if (!this.win) {
             this.input.keyboard.on('keydown-' + 'ESC', () => this.is_paused = !this.is_paused)
                 .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
-                .on('keydown-' + 'ESC', () => !this.is_paused ? this.player.anims.play("playerMoving", true) : this.player.anims.stop())
+                .on('keydown-' + 'ESC', () => !this.is_paused ? this.player.anims.play("prePlayerMoving", true) : this.player.anims.stop())
                 .on('keydown-' + 'ESC', () => !this.is_paused ? this.enemy.anims.play("enemyMoving", true) : this.enemy.anims.stop())
                 .on('keydown-' + 'ESC', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
                 .on('keydown-' + 'ESC', () => this.spritePausar.setTexture('PauseBOFF'))
@@ -373,6 +373,7 @@ class prehistoriaScene extends Phaser.Scene {
     }
     rendirse(escena) {
         this.shootInput.destroy();
+        this.contMuertes=0;
         clearInterval(this.inter);
         this.ocultarMenu(this);
         this.mensajeSeguro.destroy();
