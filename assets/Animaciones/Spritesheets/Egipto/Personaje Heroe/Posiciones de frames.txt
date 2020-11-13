@@ -1,0 +1,34 @@
+Posiciones de frames de personaje héroe Egipto:
+////////////////////////////////////////
+- Hacha:
+Idle:
+Moving (4 filas x 5 columnas): 370 x 550
+Static (1 imagen): 330 x 550
+
+Atacar:
+Moving (7 filas x 8 columnas): 510 x 589
+Static (7 filas x 8 columnas): 510 x 589
+////////////////////////////////////////
+- Ballesta:
+Idle:
+Moving (4 filas x 5 columnas): 454 x 545
+Static (1 imagen): 370 x 545
+////////////////////////////////////////
+- Mosquete:
+Idle:
+Moving  (4 filas x 5 columnas): 596 x 550
+Static (1 imagen): 506 x 550
+
+Atacar:
+Moving  (4 filas x 10 columnas): 760 x 550
+Static (4 filas x 10 columnas): 670 x 550
+////////////////////////////////////////
+- Fusil:
+Idle:
+Moving  (4 filas x 5 columnas): 467 x 550
+Static (1 imagen): 370 x 550
+
+Atacar:
+Moving  (4 filas x 5 columnas): 467 x 541
+Static (4 filas x 5 columnas): 368 x 541
+////////////////////////////////////////

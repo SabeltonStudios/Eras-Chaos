@@ -24,7 +24,7 @@ Moving (4 filas x 5 columnas): 454 x 541
 Static (1 imagen): 370 x 541
 
 Atacar:
-Moving: EN PROCESO
+Moving (4 filas x 10 columnas): 470 x 541
 Static (4 filas x 10 columnas): 383 x 541 
 ////////////////////////////////////////
 - Mosquete:
