@@ -257,13 +257,6 @@ class prehistoriaScene extends Phaser.Scene {
         this.spriteDisparar = this.add.sprite(gameConfig.scale.width / 16, gameConfig.scale.height * 11 / 12, 'ShootBON').setScale(0.1 * gameConfig.scale.width / 800);
         this.spriteDisparar.setInteractive().on('pointerdown', () => {
             this.fire()
-            if (this.spriteParar.isDown || this.freezeInput.isDown) {
-                this.player.anims.play("prePlayerAttackIdle", true)
-                    .on('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("prePlayerIdle", true) } });
-            } else {
-                this.player.anims.play("prePlayerAttack", true)
-                    .on('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("prePlayerMoving", true) } });
-            }
         })
             .on('pointerdown', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('pointerup', () => this.spriteDisparar.setTexture('ShootBON'))
@@ -289,13 +282,7 @@ class prehistoriaScene extends Phaser.Scene {
         this.shootInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         this.shootInput.on('down', () => {
             this.fire()
-            if (this.spriteParar.isDown || this.freezeInput.isDown) {
-                this.player.anims.play("prePlayerAttackIdle", true)
-                    .on('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("prePlayerIdle", true) } });
-            } else {
-                this.player.anims.play("prePlayerAttack", true)
-                    .on('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("playerMoving", true) } });
-            }
+
         })
             .on('down', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('up', () => this.spriteDisparar.setTexture('ShootBON'));
@@ -373,7 +360,7 @@ class prehistoriaScene extends Phaser.Scene {
     }
     rendirse(escena) {
         this.shootInput.destroy();
-        this.contMuertes=0;
+        this.contMuertes = 0;
         clearInterval(this.inter);
         this.ocultarMenu(this);
         this.mensajeSeguro.destroy();
@@ -499,6 +486,13 @@ class prehistoriaScene extends Phaser.Scene {
 
     }
     fire() {
+        if (this.spriteParar.isDown || this.freezeInput.isDown) {
+            this.player.anims.play("prePlayerAttackIdle", false)
+                .on('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("prePlayerIdle", true) } });
+        } else {
+            this.player.anims.play("prePlayerAttack", false)
+                .on('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("prePlayerMoving", false) } });
+        }
         if (this.bulletsPre.isFull()) {
             //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();

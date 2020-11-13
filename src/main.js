@@ -29,7 +29,8 @@
         backgroudColor: 0x000000,
         autoCenter: 1,
         scaleMode: 3,
-        scene: [bootScene, menuPrincipalScene, selectNivelHistoria, prehistoriaScene, egiptoScene, mediaScene, industrialScene, 
+        scene: [bootScene, menuPrincipalScene, selectNivelHistoria, prehistoriaScene, egiptoScene, 
+             mediaScene, industrialScene, contempScene,
              multijugadorSeleccionScene, multijugadorPartidaScene,
              tiendaScene,tiendaMapasScene,tiendaPersonajesScene,tiendaArmasScene,
              tiendaPaquetesScene,tiendaRecargarScene, creditosScene,puntuacionesScene]

@@ -106,6 +106,11 @@ class bootScene extends Phaser.Scene {
         this.load.image('indPlayer','assets/Personajes/4.RevIndustrial/BasicoRevIndustrial.png');
         this.load.image('indWeapon', 'assets/Armas/mosquete-bala.png');
         
+        //Assets Contemporánea
+        this.load.image('mapaCon', 'assets/Fondos/5.Actualidad/Background.png');
+        this.load.image('conTaxi', 'assets/Objetos/5.Actualidad/TaxiUp.png');
+        this.load.image('conWeapon', 'assets/Armas/fusil-bala.png');
+
         //Assets Juego
         this.load.image('MuertesUI','assets/Interfaz/ContadorMuertes.png')
         this.load.image('CloseB','assets/Interfaz/CloseButton.png')
