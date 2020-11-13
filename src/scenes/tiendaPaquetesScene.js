@@ -111,7 +111,7 @@ class tiendaPaquetesScene extends Phaser.Scene{
         var i;
         for (i = 0; i < paquetes.length; i++) {
             if(!paquetes[i].comprado){
-                if(i<6){
+                if(i<5){
                     if(!mapas[paquetes[i].mapa].bloqueado && !personajes[paquetes[i].personaje].bloqueado && !armas[paquetes[i].arma].bloqueado){
                         paquetes[i].comprado=true;
                     }else{
