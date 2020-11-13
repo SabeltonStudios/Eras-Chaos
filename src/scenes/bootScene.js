@@ -138,7 +138,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('confirmarRendirsei', 'assets/Interfaz/ConfirmarRendiri.png');
         this.load.image('botonTienda', 'assets/Interfaz/Menu/botonTienda.png');
         this.load.image('botonTiendai', 'assets/Interfaz/Menu/botonTiendai.png');
-
+        
         //Assets tienda
         this.load.image('fondoTienda','assets/Interfaz/Tienda/fondoTienda.png');
         this.load.image('botonSalir', 'assets/Interfaz/Tienda/botonSalir.png');

@@ -78,12 +78,22 @@ class multijugadorPartidaScene extends Phaser.Scene {
             case 1:
                 this.weapon1 = 'egiWeapon';
                 this.anims.create({
-                    key: 'shoot',
+                    key: 'egishoot',
                     frames: this.anims.generateFrameNumbers('egiWeapon', { start: 0, end: 7 }),
                     frameRate: 20,
                     repeat: -1
                 });
                 break;
+            case 2:
+                this.weapon1 = 'medWeapon';
+                break;
+            case 3:
+                this.weapon1 = 'indWeapon';
+                break;
+            case 4:
+                this.weapon1 = 'contWeapon';
+                break;
+
         }
         switch (selectedWeapon2) {
             case 0:
@@ -92,11 +102,20 @@ class multijugadorPartidaScene extends Phaser.Scene {
             case 1:
                 this.weapon2 = 'egiWeapon';
                 this.anims.create({
-                    key: 'shoot',
+                    key: 'egishoot',
                     frames: this.anims.generateFrameNumbers('egiWeapon', { start: 0, end: 7 }),
                     frameRate: 20,
                     repeat: -1
                 });
+                break;
+            case 2:
+                this.weapon1 = 'medWeapon';
+                break;
+            case 3:
+                this.weapon1 = 'indWeapon';
+                break;
+            case 4:
+                this.weapon1 = 'contWeapon';
                 break;
         }
         switch (selectedMap) {
@@ -122,6 +141,9 @@ class multijugadorPartidaScene extends Phaser.Scene {
                 break;
             case 3:
                 this.Mapa = this.add.image(0, 0, 'mapaInd').setOrigin(0)
+                this.obs1 = 'indGear';
+                this.obs2 = 'indTool';
+                this.obs3 = 'indWheel';
                 break;
             case 4:
                 this.Mapa = this.add.image(0, 0, 'mapaCont').setOrigin(0)
@@ -132,6 +154,42 @@ class multijugadorPartidaScene extends Phaser.Scene {
         switch (selectedChar1) {
             case 0:
                 this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'prePlayer').setScale(0.07 * gameConfig.scale.height / 600)
+                switch (selectedWeapon1) {
+                    case 0:
+                        this.anims.create({
+                            key: 'PlayerMoving',
+                            frames: this.anims.generateFrameNumbers('prePlayer', { start: 0, end: 20 }),
+                            frameRate: 30,
+                            repeat: -1
+                        });
+                        this.anims.create({
+                            key: 'PlayerIdle',
+                            frames: this.anims.generateFrameNumbers('prePlayerIdle', { start: 0, end: 9 }),
+                            frameRate: 30,
+                            repeat: -1
+                        });
+                        this.anims.create({
+                            key: 'PlayerAttack',
+                            frames: this.anims.generateFrameNumbers('prePlayerAttack', { start: 0, end: 39 }),
+                            frameRate: 55,
+                            repeat: 0
+                        });
+                        this.anims.create({
+                            key: 'PlayerAttackIdle',
+                            frames: this.anims.generateFrameNumbers('prePlayerAttackIdle', { start: 0, end: 39 }),
+                            frameRate: 55,
+                            repeat: 0
+                        });
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                }
                 break;
             case 1:
                 this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'egiPlayer').setScale(0.07 * gameConfig.scale.height / 600)
@@ -157,18 +215,16 @@ class multijugadorPartidaScene extends Phaser.Scene {
                 this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 2, 'medPlayer').setScale(0.07 * gameConfig.scale.height / 600)
                 break;
             case 3:
-                this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'indPlayer').setScale(0.07 * gameConfig.scale.height / 600)
+                this.enemy = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'indPlayer').setScale(0.07 * gameConfig.scale.height / 600)
                 break;
             case 4:
-                this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'contPlayer').setScale(0.07 * gameConfig.scale.height / 600)
+                this.enemy = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'contPlayer').setScale(0.07 * gameConfig.scale.height / 600)
                 break;
         }
         if (this.music == null) {
             this.music = this.sound.add(this.selectedMusic);
         }
-        //*800/gameConfig.scale.width);
         this.player.body.immovable = true;
-        //*800/gameConfig.scale.width);
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
         /*this.anims.create({
@@ -335,8 +391,8 @@ class multijugadorPartidaScene extends Phaser.Scene {
         t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7 * gameConfig.scale.height / 600);
         t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonMenuPral');
         t.BotonMenu.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.stop(); t.scene.start("MenuPrincipalScene") });
-        t.BotonCerrar= t.add.sprite(gameConfig.scale.width *0.75, gameConfig.scale.height * 0.36, 'CloseB').setScale(0.1 * gameConfig.scale.width / 800);
-        t.BotonCerrar.setInteractive().on('pointerdown', () => {this.is_paused = !this.is_paused;t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput);this.ocultarMenu(this)});
+        t.BotonCerrar = t.add.sprite(gameConfig.scale.width * 0.75, gameConfig.scale.height * 0.36, 'CloseB').setScale(0.1 * gameConfig.scale.width / 800);
+        t.BotonCerrar.setInteractive().on('pointerdown', () => { this.is_paused = !this.is_paused; t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput); this.ocultarMenu(this) });
         t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda');
         t.BotonTienda.setInteractive().on('pointerdown', () => { this.shootInput.destroy(); clearInterval(this.inter); this.music.stop(); t.scene.start("TiendaScene") });
         if (!espanol) {

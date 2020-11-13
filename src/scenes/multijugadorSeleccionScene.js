@@ -1,8 +1,8 @@
-var selectedMap=0;
-var selectedChar1=0;
-var selectedChar2=0;
-var selectedWeapon1=0;
-var selectedWeapon2=0;
+var selectedMap = 0;
+var selectedChar1 = 0;
+var selectedChar2 = 0;
+var selectedWeapon1 = 0;
+var selectedWeapon2 = 0;
 //var numRounds;
 class multijugadorSeleccionScene extends Phaser.Scene {
     mapasPosicion = 0;
@@ -15,6 +15,141 @@ class multijugadorSeleccionScene extends Phaser.Scene {
     armasButton = [];
     constructor() {
         super("MultijugadorSeleccionScene");
+    }
+    preload() {
+        //Assets multijugador
+        //PersonajePrehistoria
+        //Hacha
+        this.load.spritesheet('prePlayerHacha', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Hacha/prehistoria_basico_axe_idle_moving_spritesheet.png',
+            { frameWidth: 370, frameHeight: 545 });
+        this.load.spritesheet('prePlayerHachaIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Hacha/prehistoria_basico_axe_idle_static_spritesheet.png',
+            { frameWidth: 330, frameHeight: 545 });
+        /***FALTAN 2***/
+        //Ballesta
+        this.load.spritesheet('prePlayerBall', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Ballesta/prehistoria_basico_ballesta_idle_moving_spritesheet.png',
+            { frameWidth: 454, frameHeight: 541 });
+        this.load.spritesheet('prePlayerBallIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Ballesta/prehistoria_basico_ballesta_idle_static_spritesheet.png',
+            { frameWidth: 370, frameHeight: 541 });
+        this.load.spritesheet('prePlayerBallAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Ballesta/prehistoria_basico_ballesta_attack_moving_spritesheet.png',
+            { frameWidth: 470, frameHeight: 541 });
+        this.load.spritesheet('prePlayerBallAttackIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Ballesta/prehistoria_basico_ballesta_attack_static_spritesheet_after.png',
+            { frameWidth: 383, frameHeight: 541 });
+        //Mosquete
+        this.load.spritesheet('prePlayerMos', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Mosquete/prehistoria_basico_mosquete_idle_moving_spritesheet.png',
+            { frameWidth: 596, frameHeight: 541 });
+        this.load.spritesheet('prePlayerMosIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Mosquete/prehistoria_basico_mosquete_idle_static_spritesheet.png',
+            { frameWidth: 506, frameHeight: 541 });
+        this.load.spritesheet('prePlayerMosAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Mosquete/prehistoria_basico_mosquete_attack_moving_spritesheet.png',
+            { frameWidth: 760, frameHeight: 541 });
+        this.load.spritesheet('prePlayerMosAttackIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Mosquete/prehistoria_basico_mosquete_attack_static_spritesheet.png',
+            { frameWidth: 670, frameHeight: 541 });
+        //AK-47
+        this.load.spritesheet('prePlayerAK', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Fusil/prehistoria_basico_fusil_idle_moving_spritesheet.png',
+            { frameWidth: 467, frameHeight: 541 });
+        this.load.spritesheet('prePlayerAKIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Fusil/prehistoria_basico_fusil_idle_static_spritesheet.png',
+            { frameWidth: 370, frameHeight: 541 });
+        this.load.spritesheet('prePlayerAKAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Fusil/prehistoria_basico_fusil_attack_moving_spritesheet_after.png',
+            { frameWidth: 467, frameHeight: 541 });
+        this.load.spritesheet('prePlayerAKAttackIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Fusil/prehistoria_basico_fusil_attack_static_spritesheet.png',
+            { frameWidth: 368, frameHeight: 541 });
+        //HeroePrehistoria
+        //Honda
+        this.load.spritesheet('preHeroeHonda', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Honda/prehistoria_basico_honda_idle_moving_spritesheet.png',
+            { frameWidth: 373, frameHeight: 541 });
+        this.load.spritesheet('preHeroeHondaIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Honda/prehistoria_basico_honda_idle_static_spritesheet.png',
+            { frameWidth: 373, frameHeight: 541 });
+        /***FALTAN 2***/
+        //Hacha
+        this.load.spritesheet('preHeroeHacha', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Hacha/prehistoria_hero_hacha_idle_moving_spritesheet.png',
+            { frameWidth: 370, frameHeight: 545 });
+        this.load.spritesheet('preHeroeHachaIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Hacha/prehistoria_hero_hacha_idle_static_spritesheet.png',
+            { frameWidth: 330, frameHeight: 545 });
+        this.load.spritesheet('preHeroeHachaAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Hacha/prehistoria_hero_hacha_attack_moving_spritesheet.png',
+            { frameWidth: 510, frameHeight: 589 });
+        this.load.spritesheet('preHeroeHachaAttackIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Hacha/prehistoria_hero_hacha_attack_static_spritesheet.png',
+            { frameWidth: 510, frameHeight: 589 });
+        //Ballesta
+        this.load.spritesheet('preHeroeBall', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Ballesta/prehistoria_hero_ballesta_idle_moving_spritesheet.png',
+            { frameWidth: 454, frameHeight: 541 });
+        this.load.spritesheet('preHeroeBallIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Ballesta/prehistoria_hero_ballesta_idle_static_spritesheet.png',
+            { frameWidth: 370, frameHeight: 541 });
+        this.load.spritesheet('preHeroeBallAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Ballesta/prehistoria_hero_ballesta_attack_moving_spritesheet.png',
+            { frameWidth: 510, frameHeight: 589 });
+        this.load.spritesheet('preHeroeBallAttackIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Ballesta/prehistoria_hero_ballesta_attack_static_spritesheet.png',
+            { frameWidth: 510, frameHeight: 589 });
+        //Mosquete
+        this.load.spritesheet('preHeroeMos', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Mosquete/prehistoria_hero_mosquete_idle_moving_spritesheet.png',
+            { frameWidth: 596, frameHeight: 541 });
+        this.load.spritesheet('preHeroeMosIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Mosquete/prehistoria_hero_mosquete_idle_static_spritesheet.png',
+            { frameWidth: 506, frameHeight: 541 });
+        this.load.spritesheet('preHeroeMosAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Mosquete/prehistoria_hero_mosquete_attack_moving_spritesheet.png',
+            { frameWidth: 760, frameHeight: 541 });
+        this.load.spritesheet('preHeroeMosAttackIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Mosquete/prehistoria_hero_mosquete_attack_static_spritesheet.png',
+            { frameWidth: 670, frameHeight: 541 });
+        //AK
+        this.load.spritesheet('preHeroeAK', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Fusil/prehistoria_basico_fusil_idle_moving_spritesheet.png',
+            { frameWidth: 467, frameHeight: 541 });
+        this.load.spritesheet('preHeroeAKIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Fusil/prehistoria_basico_fusil_idle_static_spritesheet.png',
+            { frameWidth: 370, frameHeight: 541 });
+        this.load.spritesheet('preHeroeAKAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Fusil/prehistoria_basico_fusil_attack_moving_spritesheet.png',
+            { frameWidth: 467, frameHeight: 541 });
+        this.load.spritesheet('preHeroeAKAttackIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Fusil/prehistoria_basico_fusil_attack_static_spritesheet.png',
+            { frameWidth: 368, frameHeight: 541 });
+        //PersonajeEgipto
+        //Honda
+        this.load.spritesheet('egiPlayerHonda', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Honda/egipto_basic_honda_idle_moving_spritesheet.png',
+            { frameWidth: 373, frameHeight: 514 });
+        this.load.spritesheet('egiPlayerHondaIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Honda/egipto_basic_honda_idle_static_spritesheet.png',
+            { frameWidth: 373, frameHeight: 514 });
+        this.load.spritesheet('egiPlayerHondaAttack', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Honda/egipto_basic_honda_attack_moving_spritesheet.png',
+            { frameWidth: 837, frameHeight: 500 });
+        this.load.spritesheet('egiPlayerHondaAttackIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Honda/egipto_basic_honda_attack_static_spritesheet.png',
+            { frameWidth: 837, frameHeight: 500 });
+        //Ballesta
+        /***FALTAN 1***/
+        this.load.spritesheet('egiPlayerBallIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Ballesta/egipto_basic_ballesta_idle_static_spritesheet.png',
+            { frameWidth: 370, frameHeight: 514 });
+        /***FALTAN 2***/
+        //Mosquete
+        /***FALTAN 4***/
+        //Ak-47
+        /***FALTAN 4***/
+        //HeroeEgipto
+        //Honda
+        /***FALTAN 4***/
+        //Hacha
+        this.load.spritesheet('egiHeroeHacha', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Hacha/egipto_hero_axe_idle_moving_spritesheet.png',
+            { frameWidth: 370, frameHeight: 550 });
+        this.load.spritesheet('egiHeroeHachaIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Hacha/egipto_hero_axe_idle_static_spritsheet.png',
+            { frameWidth: 330, frameHeight: 550 });
+        this.load.spritesheet('egiHeroeHachaAttack', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Hacha/egipto_hero_axe_attack_moving_spritesheet.png',
+            { frameWidth: 510, frameHeight: 589 });
+        this.load.spritesheet('egiHeroeHachaAttackIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Hacha/egipto_hero_axe_attack_static_spritesheet.png',
+            { frameWidth: 510, frameHeight: 589 });
+        //Ballesta
+        this.load.spritesheet('egiHeroeBall', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Ballesta/egipto_hero_ballesta_idle_moving_spritsheet.png',
+            { frameWidth: 454, frameHeight: 545 });
+        this.load.spritesheet('egiHeroeBallIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Ballesta/egipto_hero_ballesta_idle_static_spritsheet.png',
+            { frameWidth: 370, frameHeight: 545 });
+        /***FALTAN 2***/
+        //Mosquete
+        this.load.spritesheet('egiHeroeMos', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Mosquete/egipto_hero_mosquete_idle_moving_spritesheet.png',
+            { frameWidth: 596, frameHeight: 550 });
+        this.load.spritesheet('egiHeroeMosIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Mosquete/egipto_hero_mosquete_idle_static_spritesheet.png',
+            { frameWidth: 506, frameHeight: 550 });
+        this.load.spritesheet('egiHeroeMosAttack', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Mosquete/egipto_hero_mosquete_attack_moving_spritesheet.png',
+            { frameWidth: 760, frameHeight: 550 });
+        this.load.spritesheet('egiHeroeMosAttackIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Mosquete/egipto_hero_mosquete_attack_static_spritesheet.png',
+            { frameWidth: 670, frameHeight: 550 });
+        //Fusil
+        this.load.spritesheet('egiHeroeAK', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Fusil/egipto_hero_fusil_idle_moving_spritesheet.png',
+            { frameWidth: 467, frameHeight: 550 });
+        this.load.spritesheet('egiHeroeAKIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Fusil/egipto_hero_fusil_idle_static_spritesheet.png',
+            { frameWidth: 370, frameHeight: 550 });
+        this.load.spritesheet('egiHeroeAKAttack', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Fusil/egipto_hero_fusil_attack_moving_spritesheet.png',
+            { frameWidth: 467, frameHeight: 541 });
+        this.load.spritesheet('egiHeroeAKAttackIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Fusil/egipto_hero_fusil_attack_static_spritesheet.png',
+            { frameWidth: 368, frameHeight: 541 });
     }
     create() {
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
@@ -43,30 +178,30 @@ class multijugadorSeleccionScene extends Phaser.Scene {
 
         //Asignamos los botones a cinco mapas
         this.mapasButton[0] = this.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 4, mapas[0].sprite).setScale(0.7 * gameConfig.scale.height / 600);
-        this.mapasButton[0].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 0; this.deleteTint(0,0); });
+        this.mapasButton[0].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 0; this.deleteTint(0, 0); });
         this.mapasButton[0].setTint(0xDEDE7C);
 
         this.mapasButton[1] = this.add.sprite((gameConfig.scale.width / 6) * 2, gameConfig.scale.height / 4, mapas[1].sprite).setScale(0.7 * gameConfig.scale.height / 600);
-        this.mapasButton[1].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 1; this.deleteTint(0,1); });
+        this.mapasButton[1].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 1; this.deleteTint(0, 1); });
 
         this.mapasButton[2] = this.add.sprite((gameConfig.scale.width / 6) * 3, gameConfig.scale.height / 4, mapas[2].sprite).setScale(0.7 * gameConfig.scale.height / 600);
-        this.mapasButton[2].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 2; this.deleteTint(0,2); });
+        this.mapasButton[2].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 2; this.deleteTint(0, 2); });
 
         this.mapasButton[3] = this.add.sprite((gameConfig.scale.width / 6) * 4, gameConfig.scale.height / 4, mapas[3].sprite).setScale(0.7 * gameConfig.scale.height / 600);
-        this.mapasButton[3].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 3; this.deleteTint(0,3); });
+        this.mapasButton[3].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 3; this.deleteTint(0, 3); });
 
         this.mapasButton[4] = this.add.sprite((gameConfig.scale.width / 6) * 5, gameConfig.scale.height / 4, mapas[4].sprite).setScale(0.7 * gameConfig.scale.height / 600);
-        this.mapasButton[4].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 4; this.deleteTint(0,4); });
+        this.mapasButton[4].setInteractive().on('pointerdown', () => { if (!mapas[0].bloqueado) selectedMap = 4; this.deleteTint(0, 4); });
 
-        if(espanol){
-            this.spriteJugador1 = this.add.sprite((gameConfig.scale.width / 8) +120, gameConfig.scale.height /2.6, 'jugador1').setScale(0.4 * gameConfig.scale.height / 600);
-            this.spriteJugador2 = this.add.sprite((gameConfig.scale.width*7 / 8) -120, gameConfig.scale.height /2.6, 'jugador2').setScale(0.4 * gameConfig.scale.height / 600);
-        }else{
-            this.spriteJugador1 = this.add.sprite((gameConfig.scale.width / 8) +120, gameConfig.scale.height /2.6, 'jugador1i').setScale(0.4 * gameConfig.scale.height / 600);
-            this.spriteJugador2 = this.add.sprite((gameConfig.scale.width*7 / 8) -120, gameConfig.scale.height /2.6, 'jugador2i').setScale(0.4 * gameConfig.scale.height / 600);
-    
+        if (espanol) {
+            this.spriteJugador1 = this.add.sprite((gameConfig.scale.width / 8) + 120, gameConfig.scale.height / 2.6, 'jugador1').setScale(0.4 * gameConfig.scale.height / 600);
+            this.spriteJugador2 = this.add.sprite((gameConfig.scale.width * 7 / 8) - 120, gameConfig.scale.height / 2.6, 'jugador2').setScale(0.4 * gameConfig.scale.height / 600);
+        } else {
+            this.spriteJugador1 = this.add.sprite((gameConfig.scale.width / 8) + 120, gameConfig.scale.height / 2.6, 'jugador1i').setScale(0.4 * gameConfig.scale.height / 600);
+            this.spriteJugador2 = this.add.sprite((gameConfig.scale.width * 7 / 8) - 120, gameConfig.scale.height / 2.6, 'jugador2i').setScale(0.4 * gameConfig.scale.height / 600);
+
         }
-        
+
         //Flechas derecha e izquierda
         this.spriteIzquierdaMapa = this.add.sprite(gameConfig.scale.width / 25, gameConfig.scale.height / 4, 'flechaIzquierda').setScale(0.2 * gameConfig.scale.height / 600);
         this.spriteIzquierdaMapa.setInteractive().on('pointerdown', () => this.trasladarIzquierda(0));
@@ -75,112 +210,112 @@ class multijugadorSeleccionScene extends Phaser.Scene {
         this.spriteDerechaMapa.setInteractive().on('pointerdown', () => this.trasladarDerecha(0));
 
         //personajes 1
-        if(personajes[0].bloqueado){
+        if (personajes[0].bloqueado) {
             this.personajesButton[0] = this.add.sprite(gameConfig.scale.width / 8, gameConfig.scale.height / 2, personajes[0].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
-        }else{
+        } else {
             this.personajesButton[0] = this.add.sprite(gameConfig.scale.width / 8, gameConfig.scale.height / 2, personajes[0].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
         }
-        this.personajesButton[0].setInteractive().on('pointerdown', () => { if (!personajes[0].bloqueado) selectedChar1 = 0+this.personajesPosicion; this.deleteTint(1,0); });
+        this.personajesButton[0].setInteractive().on('pointerdown', () => { if (!personajes[0].bloqueado) selectedChar1 = 0 + this.personajesPosicion; this.deleteTint(1, 0); });
         this.personajesButton[0].setTint(0xDEDE7C);
 
-        if(personajes[1].bloqueado){
+        if (personajes[1].bloqueado) {
             this.personajesButton[1] = this.add.sprite((gameConfig.scale.width / 8), gameConfig.scale.height / 1.55, personajes[1].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
-        }else{
+        } else {
             this.personajesButton[1] = this.add.sprite((gameConfig.scale.width / 8), gameConfig.scale.height / 1.55, personajes[1].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
         }
-        this.personajesButton[1].setInteractive().on('pointerdown', () => { if (!personajes[1].bloqueado) selectedChar1 = 1+this.personajesPosicion; this.deleteTint(1,1); });
+        this.personajesButton[1].setInteractive().on('pointerdown', () => { if (!personajes[1].bloqueado) selectedChar1 = 1 + this.personajesPosicion; this.deleteTint(1, 1); });
 
-        if(personajes[2].bloqueado){
-            this.personajesButton[2] = this.add.sprite((gameConfig.scale.width / 8) +120, gameConfig.scale.height / 2, personajes[2].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
-        }else{
-            this.personajesButton[2] = this.add.sprite((gameConfig.scale.width / 8) +120, gameConfig.scale.height / 2, personajes[2].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        if (personajes[2].bloqueado) {
+            this.personajesButton[2] = this.add.sprite((gameConfig.scale.width / 8) + 120, gameConfig.scale.height / 2, personajes[2].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        } else {
+            this.personajesButton[2] = this.add.sprite((gameConfig.scale.width / 8) + 120, gameConfig.scale.height / 2, personajes[2].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
         }
-        this.personajesButton[2].setInteractive().on('pointerdown', () => { if (!personajes[2].bloqueado) selectedChar1 = 2+this.personajesPosicion; this.deleteTint(1,2); });
+        this.personajesButton[2].setInteractive().on('pointerdown', () => { if (!personajes[2].bloqueado) selectedChar1 = 2 + this.personajesPosicion; this.deleteTint(1, 2); });
 
-        if(personajes[3].bloqueado){
-            this.personajesButton[3] = this.add.sprite((gameConfig.scale.width / 8) +120, gameConfig.scale.height / 1.55, personajes[3].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
-        }else{
-            this.personajesButton[3] = this.add.sprite((gameConfig.scale.width / 8) +120, gameConfig.scale.height / 1.55, personajes[3].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        if (personajes[3].bloqueado) {
+            this.personajesButton[3] = this.add.sprite((gameConfig.scale.width / 8) + 120, gameConfig.scale.height / 1.55, personajes[3].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        } else {
+            this.personajesButton[3] = this.add.sprite((gameConfig.scale.width / 8) + 120, gameConfig.scale.height / 1.55, personajes[3].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
         }
-        this.personajesButton[3].setInteractive().on('pointerdown', () => { if (!personajes[3].bloqueado) selectedChar1 = 3+this.personajesPosicion; this.deleteTint(1,3); });
+        this.personajesButton[3].setInteractive().on('pointerdown', () => { if (!personajes[3].bloqueado) selectedChar1 = 3 + this.personajesPosicion; this.deleteTint(1, 3); });
 
-        if(personajes[4].bloqueado){
-            this.personajesButton[4] = this.add.sprite((gameConfig.scale.width / 8) +240, gameConfig.scale.height / 2, personajes[4].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
-        }else{
-            this.personajesButton[4] = this.add.sprite((gameConfig.scale.width / 8) +240, gameConfig.scale.height / 2, personajes[4].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        if (personajes[4].bloqueado) {
+            this.personajesButton[4] = this.add.sprite((gameConfig.scale.width / 8) + 240, gameConfig.scale.height / 2, personajes[4].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        } else {
+            this.personajesButton[4] = this.add.sprite((gameConfig.scale.width / 8) + 240, gameConfig.scale.height / 2, personajes[4].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
         }
-        this.personajesButton[4].setInteractive().on('pointerdown', () => { if (!personajes[4].bloqueado) selectedChar1 = 4+this.personajesPosicion; this.deleteTint(1,4); });
+        this.personajesButton[4].setInteractive().on('pointerdown', () => { if (!personajes[4].bloqueado) selectedChar1 = 4 + this.personajesPosicion; this.deleteTint(1, 4); });
 
-        if(personajes[5].bloqueado){
-            this.personajesButton[5] = this.add.sprite((gameConfig.scale.width / 8) +240, gameConfig.scale.height / 1.55, personajes[5].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
-        }else{
-            this.personajesButton[5] = this.add.sprite((gameConfig.scale.width / 8) +240, gameConfig.scale.height / 1.55, personajes[5].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        if (personajes[5].bloqueado) {
+            this.personajesButton[5] = this.add.sprite((gameConfig.scale.width / 8) + 240, gameConfig.scale.height / 1.55, personajes[5].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        } else {
+            this.personajesButton[5] = this.add.sprite((gameConfig.scale.width / 8) + 240, gameConfig.scale.height / 1.55, personajes[5].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
         }
-        this.personajesButton[5].setInteractive().on('pointerdown', () => { if (!personajes[5].bloqueado) selectedChar1 = 5+this.personajesPosicion; this.tdeleteTint(1,5); });
+        this.personajesButton[5].setInteractive().on('pointerdown', () => { if (!personajes[5].bloqueado) selectedChar1 = 5 + this.personajesPosicion; this.tdeleteTint(1, 5); });
 
         //Flechas derecha e izquierda
-        this.spriteIzquierda = this.add.sprite((gameConfig.scale.width / 8) -100, gameConfig.scale.height * 7 / 12, 'flechaIzquierda').setScale(0.2 * gameConfig.scale.height / 600);
+        this.spriteIzquierda = this.add.sprite((gameConfig.scale.width / 8) - 100, gameConfig.scale.height * 7 / 12, 'flechaIzquierda').setScale(0.2 * gameConfig.scale.height / 600);
         this.spriteIzquierda.setInteractive().on('pointerdown', () => this.trasladarIzquierda(1));
 
-        this.spriteDerecha = this.add.sprite((gameConfig.scale.width / 8) +340, gameConfig.scale.height * 7 / 12, 'flechaDerecha').setScale(0.2 * gameConfig.scale.height / 600);
+        this.spriteDerecha = this.add.sprite((gameConfig.scale.width / 8) + 340, gameConfig.scale.height * 7 / 12, 'flechaDerecha').setScale(0.2 * gameConfig.scale.height / 600);
         this.spriteDerecha.setInteractive().on('pointerdown', () => this.trasladarDerecha(1));
 
         //personajes 2
-        if(personajes[0].bloqueado){
-            this.personajes2Button[0] = this.add.sprite(gameConfig.scale.width *7/ 8 -240, gameConfig.scale.height / 2, personajes[0].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);       
-        }else{
-            this.personajes2Button[0] = this.add.sprite(gameConfig.scale.width *7/ 8 -240, gameConfig.scale.height / 2, personajes[0].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        if (personajes[0].bloqueado) {
+            this.personajes2Button[0] = this.add.sprite(gameConfig.scale.width * 7 / 8 - 240, gameConfig.scale.height / 2, personajes[0].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        } else {
+            this.personajes2Button[0] = this.add.sprite(gameConfig.scale.width * 7 / 8 - 240, gameConfig.scale.height / 2, personajes[0].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
         }
-        this.personajes2Button[0].setInteractive().on('pointerdown', () => { if (!personajes[0].bloqueado) selectedChar2 = 0+this.personajes2Posicion; this.deleteTint(2,0); });
+        this.personajes2Button[0].setInteractive().on('pointerdown', () => { if (!personajes[0].bloqueado) selectedChar2 = 0 + this.personajes2Posicion; this.deleteTint(2, 0); });
         this.personajes2Button[0].setTint(0xDEDE7C);
 
-        if(personajes[1].bloqueado){
-            this.personajes2Button[1] = this.add.sprite((gameConfig.scale.width*7 / 8)-240, gameConfig.scale.height / 1.55, personajes[1].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
-        }else{
-            this.personajes2Button[1] = this.add.sprite((gameConfig.scale.width*7 / 8)-240, gameConfig.scale.height / 1.55, personajes[1].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        if (personajes[1].bloqueado) {
+            this.personajes2Button[1] = this.add.sprite((gameConfig.scale.width * 7 / 8) - 240, gameConfig.scale.height / 1.55, personajes[1].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        } else {
+            this.personajes2Button[1] = this.add.sprite((gameConfig.scale.width * 7 / 8) - 240, gameConfig.scale.height / 1.55, personajes[1].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
         }
-        this.personajes2Button[1].setInteractive().on('pointerdown', () => { if (!personajes[1].bloqueado) selectedChar2 = 1+this.personajes2Posicion; this.deleteTint(2,1); });
+        this.personajes2Button[1].setInteractive().on('pointerdown', () => { if (!personajes[1].bloqueado) selectedChar2 = 1 + this.personajes2Posicion; this.deleteTint(2, 1); });
 
-        if(personajes[2].bloqueado){
-            this.personajes2Button[2] = this.add.sprite((gameConfig.scale.width*7 / 8) -120, gameConfig.scale.height / 2, personajes[2].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
-        }else{
-            this.personajes2Button[2] = this.add.sprite((gameConfig.scale.width*7 / 8) -120, gameConfig.scale.height / 2, personajes[2].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        if (personajes[2].bloqueado) {
+            this.personajes2Button[2] = this.add.sprite((gameConfig.scale.width * 7 / 8) - 120, gameConfig.scale.height / 2, personajes[2].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        } else {
+            this.personajes2Button[2] = this.add.sprite((gameConfig.scale.width * 7 / 8) - 120, gameConfig.scale.height / 2, personajes[2].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
         }
-        this.personajes2Button[2].setInteractive().on('pointerdown', () => { if (!personajes[2].bloqueado) selectedChar2 = 2+this.personajes2Posicion; this.deleteTint(2,2); });
+        this.personajes2Button[2].setInteractive().on('pointerdown', () => { if (!personajes[2].bloqueado) selectedChar2 = 2 + this.personajes2Posicion; this.deleteTint(2, 2); });
 
-        if(personajes[3].bloqueado){
-            this.personajes2Button[3] = this.add.sprite((gameConfig.scale.width*7 / 8) -120, gameConfig.scale.height / 1.55, personajes[3].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
-        }else{
-            this.personajes2Button[3] = this.add.sprite((gameConfig.scale.width*7 / 8) -120, gameConfig.scale.height / 1.55, personajes[3].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        if (personajes[3].bloqueado) {
+            this.personajes2Button[3] = this.add.sprite((gameConfig.scale.width * 7 / 8) - 120, gameConfig.scale.height / 1.55, personajes[3].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        } else {
+            this.personajes2Button[3] = this.add.sprite((gameConfig.scale.width * 7 / 8) - 120, gameConfig.scale.height / 1.55, personajes[3].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
         }
-        this.personajes2Button[3].setInteractive().on('pointerdown', () => { if (!personajes[3].bloqueado) selectedChar2 = 3+this.personajes2Posicion; this.deleteTint(2,3); });
+        this.personajes2Button[3].setInteractive().on('pointerdown', () => { if (!personajes[3].bloqueado) selectedChar2 = 3 + this.personajes2Posicion; this.deleteTint(2, 3); });
 
-        if(personajes[4].bloqueado){
-            this.personajes2Button[4] = this.add.sprite((gameConfig.scale.width *7/ 8), gameConfig.scale.height / 2, personajes[4].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
-        }else{
-            this.personajes2Button[2] = this.add.sprite((gameConfig.scale.width *7/ 8), gameConfig.scale.height / 2, personajes[4].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        if (personajes[4].bloqueado) {
+            this.personajes2Button[4] = this.add.sprite((gameConfig.scale.width * 7 / 8), gameConfig.scale.height / 2, personajes[4].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        } else {
+            this.personajes2Button[2] = this.add.sprite((gameConfig.scale.width * 7 / 8), gameConfig.scale.height / 2, personajes[4].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
         }
-        this.personajes2Button[4].setInteractive().on('pointerdown', () => { if (!personajes[24].bloqueado) selectedChar2 = 4+this.personajes2Posicion; this.deleteTint(2,4); });
+        this.personajes2Button[4].setInteractive().on('pointerdown', () => { if (!personajes[24].bloqueado) selectedChar2 = 4 + this.personajes2Posicion; this.deleteTint(2, 4); });
 
-        if(personajes[5].bloqueado){
-            this.personajes2Button[5] = this.add.sprite((gameConfig.scale.width*7 / 8), gameConfig.scale.height / 1.55, personajes[5].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
-        }else{
-            this.personajes2Button[5] = this.add.sprite((gameConfig.scale.width*7 / 8), gameConfig.scale.height / 1.55, personajes[5].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        if (personajes[5].bloqueado) {
+            this.personajes2Button[5] = this.add.sprite((gameConfig.scale.width * 7 / 8), gameConfig.scale.height / 1.55, personajes[5].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
+        } else {
+            this.personajes2Button[5] = this.add.sprite((gameConfig.scale.width * 7 / 8), gameConfig.scale.height / 1.55, personajes[5].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
         }
-        this.personajes2Button[5].setInteractive().on('pointerdown', () => { if (!personajes[5].bloqueado) selectedChar2 = 5+this.personajes2Posicion; this.deleteTint(2,5); });
+        this.personajes2Button[5].setInteractive().on('pointerdown', () => { if (!personajes[5].bloqueado) selectedChar2 = 5 + this.personajes2Posicion; this.deleteTint(2, 5); });
 
         //Flechas derecha e izquierda
-        this.spriteIzquierda = this.add.sprite((gameConfig.scale.width*7 / 8)-340, gameConfig.scale.height * 7 / 12, 'flechaIzquierda').setScale(0.2 * gameConfig.scale.height / 600);
+        this.spriteIzquierda = this.add.sprite((gameConfig.scale.width * 7 / 8) - 340, gameConfig.scale.height * 7 / 12, 'flechaIzquierda').setScale(0.2 * gameConfig.scale.height / 600);
         this.spriteIzquierda.setInteractive().on('pointerdown', () => this.trasladarIzquierda(2));
 
-        this.spriteDerecha = this.add.sprite((gameConfig.scale.width*7 / 8)+100, gameConfig.scale.height * 7 / 12, 'flechaDerecha').setScale(0.2 * gameConfig.scale.height / 600);
+        this.spriteDerecha = this.add.sprite((gameConfig.scale.width * 7 / 8) + 100, gameConfig.scale.height * 7 / 12, 'flechaDerecha').setScale(0.2 * gameConfig.scale.height / 600);
         this.spriteDerecha.setInteractive().on('pointerdown', () => this.trasladarDerecha(2));
 
         //Botón de salir
         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15, (gameConfig.scale.height / 8) * 7.5, 'botonSalir').setScale(0.1 * gameConfig.scale.height / 600);
         this.spriteSalir.setInteractive().on('pointerdown', () => this.scene.start("MenuPrincipalScene"));
 
-        this.spriteJugar = this.add.sprite(gameConfig.scale.width / 2, (gameConfig.scale.height / 8) * 7.5, 'botonPlay').setScale(0.4 *gameConfig.scale.height / 600);
+        this.spriteJugar = this.add.sprite(gameConfig.scale.width / 2, (gameConfig.scale.height / 8) * 7.5, 'botonPlay').setScale(0.4 * gameConfig.scale.height / 600);
         this.spriteJugar.setInteractive().on('pointerdown', () => this.scene.start("MultijugadorPartidaScene"));
     }
 
@@ -193,7 +328,7 @@ class multijugadorSeleccionScene extends Phaser.Scene {
                     for (i = 0; i < this.mapasButton.length; i++) {
                         this.mapasButton[i].setTexture(mapas[this.mapasPosicion + i].sprite);
                         this.mapasButton[i].clearTint();
-                        if(selectedMap == this.mapasPosicion+i){
+                        if (selectedMap == this.mapasPosicion + i) {
                             this.mapasButton[i].setTint(0xDEDE7C);
                         }
                     }
@@ -201,16 +336,16 @@ class multijugadorSeleccionScene extends Phaser.Scene {
                 break;
             case 1:
                 if (this.personajesPosicion > 0) {
-                    this.personajesPosicion = this.personajesPosicion-2;
+                    this.personajesPosicion = this.personajesPosicion - 2;
                     var i;
                     for (i = 0; i < this.personajesButton.length; i++) {
-                        if(personajes[this.personajesPosicion+i].bloqueado){
-                            this.personajesButton[i].setTexture(personajes[this.personajesPosicion+i].seleccionBloqueado);
-                        }else{
-                            this.personajesButton[i].setTexture(personajes[this.personajesPosicion+i].seleccionDesbloqueado);
+                        if (personajes[this.personajesPosicion + i].bloqueado) {
+                            this.personajesButton[i].setTexture(personajes[this.personajesPosicion + i].seleccionBloqueado);
+                        } else {
+                            this.personajesButton[i].setTexture(personajes[this.personajesPosicion + i].seleccionDesbloqueado);
                         }
                         this.personajesButton[i].clearTint();
-                        if(selectedChar1 == this.personajesPosicion+i){
+                        if (selectedChar1 == this.personajesPosicion + i) {
                             this.personajesButton[i].setTint(0xDEDE7C);
                         }
                     }
@@ -218,16 +353,16 @@ class multijugadorSeleccionScene extends Phaser.Scene {
                 break;
             case 2:
                 if (this.personajes2Posicion > 0) {
-                    this.personajes2Posicion = this.personajes2Posicion-2;
+                    this.personajes2Posicion = this.personajes2Posicion - 2;
                     var i;
                     for (i = 0; i < this.personajes2Button.length; i++) {
-                        if(personajes[this.personajes2Posicion+i].bloqueado){
-                            this.personajes2Button[i].setTexture(personajes[this.personajes2Posicion+i].seleccionBloqueado);
-                        }else{
-                            this.personajes2Button[i].setTexture(personajes[this.personajes2Posicion+i].seleccionDesbloqueado);
+                        if (personajes[this.personajes2Posicion + i].bloqueado) {
+                            this.personajes2Button[i].setTexture(personajes[this.personajes2Posicion + i].seleccionBloqueado);
+                        } else {
+                            this.personajes2Button[i].setTexture(personajes[this.personajes2Posicion + i].seleccionDesbloqueado);
                         }
                         this.personajes2Button[i].clearTint();
-                        if(selectedChar2 == this.personajes2Posicion+i){
+                        if (selectedChar2 == this.personajes2Posicion + i) {
                             this.personajes2Button[i].setTint(0xDEDE7C);
                         }
                     }
@@ -256,7 +391,7 @@ class multijugadorSeleccionScene extends Phaser.Scene {
                     for (i = 0; i < this.mapasButton.length; i++) {
                         this.mapasButton[i].setTexture(mapas[this.mapasPosicion + i].sprite);
                         this.mapasButton[i].clearTint();
-                        if(selectedMap == this.mapasPosicion+i){
+                        if (selectedMap == this.mapasPosicion + i) {
                             this.mapasButton[i].setTint(0xDEDE7C);
                         }
                     }
@@ -264,49 +399,49 @@ class multijugadorSeleccionScene extends Phaser.Scene {
                 break;
             case 1:
                 if ((this.personajesPosicion + 6) < personajes.length) {
-                    if((this.personajesPosicion + 8) <= personajes.length){
+                    if ((this.personajesPosicion + 8) <= personajes.length) {
                         var buttonlength = this.personajesButton.length;
-                    }else{
-                        var buttonlength = this.personajesButton.length-1;
+                    } else {
+                        var buttonlength = this.personajesButton.length - 1;
                     }
-                    this.personajesPosicion = this.personajesPosicion+2;
+                    this.personajesPosicion = this.personajesPosicion + 2;
                     var i;
                     for (i = 0; i < buttonlength; i++) {
-                        if(personajes[this.personajesPosicion+i].bloqueado){
-                            this.personajesButton[i].setTexture(personajes[this.personajesPosicion+i].seleccionBloqueado);
-                        }else{
-                            this.personajesButton[i].setTexture(personajes[this.personajesPosicion+i].seleccionDesbloqueado);
+                        if (personajes[this.personajesPosicion + i].bloqueado) {
+                            this.personajesButton[i].setTexture(personajes[this.personajesPosicion + i].seleccionBloqueado);
+                        } else {
+                            this.personajesButton[i].setTexture(personajes[this.personajesPosicion + i].seleccionDesbloqueado);
                         }
                         this.personajesButton[i].clearTint();
-                        if(selectedChar1 == this.personajesPosicion+i){
+                        if (selectedChar1 == this.personajesPosicion + i) {
                             this.personajesButton[i].setTint(0xDEDE7C);
                         }
                     }
-                   
+
                 }
                 break;
             case 2:
                 if ((this.personajes2Posicion + 6) < personajes.length) {
-                    if((this.personajes2Posicion + 8) <= personajes.length){
+                    if ((this.personajes2Posicion + 8) <= personajes.length) {
                         var buttonlength = this.personajes2Button.length;
-                    }else{
-                        var buttonlength = this.personajes2Button.length-1;
+                    } else {
+                        var buttonlength = this.personajes2Button.length - 1;
                     }
-                    this.personajes2Posicion = this.personajes2Posicion+2;
+                    this.personajes2Posicion = this.personajes2Posicion + 2;
                     var i;
                     for (i = 0; i < buttonlength; i++) {
-                        if(personajes[this.personajesPosicion+i].bloqueado){
-                            this.personajes2Button[i].setTexture(personajes[this.personajes2Posicion+i].seleccionBloqueado);
-                        }else{
-                            this.personajes2Button[i].setTexture(personajes[this.personajes2Posicion+i].seleccionDesbloqueado);
+                        if (personajes[this.personajesPosicion + i].bloqueado) {
+                            this.personajes2Button[i].setTexture(personajes[this.personajes2Posicion + i].seleccionBloqueado);
+                        } else {
+                            this.personajes2Button[i].setTexture(personajes[this.personajes2Posicion + i].seleccionDesbloqueado);
                         }
                         this.personajes2Button[i].clearTint();
-                        if(selectedChar2 == this.personajes2Posicion+i){
+                        if (selectedChar2 == this.personajes2Posicion + i) {
                             this.personajes2Button[i].setTint(0xDEDE7C);
                         }
                     }
                 }
-            break;
+                break;
             case 3:
                 if ((this.armasPosicion + 5) < armas.length) {
                     this.armasPosicion++;
@@ -318,15 +453,15 @@ class multijugadorSeleccionScene extends Phaser.Scene {
                 break;
         }
 
-        
+
     }
 
     //Limpia los tintes, y se lo pone al seleccionado
-    deleteTint(option,button){
+    deleteTint(option, button) {
         console.log("selecciona");
-        switch(option){
+        switch (option) {
             case 0:
-                if(!mapas[this.mapasPosicion+button].bloqueado){
+                if (!mapas[this.mapasPosicion + button].bloqueado) {
                     var i;
                     for (i = 0; i < this.mapasButton.length; i++) {
                         this.mapasButton[i].clearTint();
@@ -336,25 +471,25 @@ class multijugadorSeleccionScene extends Phaser.Scene {
                 break;
             case 1:
                 //Si el personaje no esta bloqueado, se selecciona
-            if(!personajes[this.personajesPosicion+button].bloqueado){
-                var i;
-                for (i = 0; i < this.personajesButton.length; i++) {
-                    this.personajesButton[i].clearTint();
+                if (!personajes[this.personajesPosicion + button].bloqueado) {
+                    var i;
+                    for (i = 0; i < this.personajesButton.length; i++) {
+                        this.personajesButton[i].clearTint();
+                    }
+                    this.personajesButton[button].setTint(0xDEDE7C);
                 }
-                this.personajesButton[button].setTint(0xDEDE7C);
-            }
                 break;
             case 2:
                 //Si el personaje no esta bloqueado, se selecciona
-            if(!personajes[this.personajes2Posicion+button].bloqueado){
-                var i;
-                for (i = 0; i < this.personajes2Button.length; i++) {
-                    this.personajes2Button[i].clearTint();
+                if (!personajes[this.personajes2Posicion + button].bloqueado) {
+                    var i;
+                    for (i = 0; i < this.personajes2Button.length; i++) {
+                        this.personajes2Button[i].clearTint();
+                    }
+                    this.personajes2Button[button].setTint(0xDEDE7C);
                 }
-                this.personajes2Button[button].setTint(0xDEDE7C);
-            }
                 break;
-            
+
             default:
                 break;
         }
