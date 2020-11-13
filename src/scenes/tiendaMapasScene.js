@@ -106,7 +106,9 @@ class tiendaMapasScene extends Phaser.Scene{
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
 
         if(espanol){
-            this.spriteTituloMapas = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloMapas').setScale(gameConfig.scale.height / 600);
+            this.spriteTituloMapas = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/8,'tituloMapas').setScale(0.8 *gameConfig.scale.height / 600);
+            this.spriteMensaje = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/4.5,'mensajeModoMultijugador').setScale(0.8 *gameConfig.scale.height / 600);
+
             var i;
             for (i = 0; i < mapas.length; i++) {
                 if(mapas[i].bloqueado){
@@ -116,7 +118,9 @@ class tiendaMapasScene extends Phaser.Scene{
                 }
             }
         }else{
-            this.spriteTituloMapas = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloMapasi').setScale(gameConfig.scale.height / 600);
+            this.spriteTituloMapas = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/8,'tituloMapasi').setScale(0.8 *gameConfig.scale.height / 600);
+            this.spriteMensaje = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/4.5,'mensajeModoMultijugadori').setScale(0.8 *gameConfig.scale.height / 600);
+
             var i;
             for (i = 0; i < mapas.length; i++) {
                 if(mapas[i].bloqueado){
@@ -127,8 +131,9 @@ class tiendaMapasScene extends Phaser.Scene{
             }
         }
         
-        var dinero = this.add.text(gameConfig.scale.width*7.35/16,gameConfig.scale.height/4,coins, {font:"20px euphorigenic", fill: '#ffffff' ,boundsAlignH: "center", boundsAlignV: "middle"}).setScale(gameConfig.scale.height / 600);
-        this.spritecoins = this.add.sprite(gameConfig.scale.width *8.3/16,gameConfig.scale.height*1.07/4,'coins').setScale(gameConfig.scale.height / 600);
+        var dinero = this.add.text(gameConfig.scale.width*7.35/16,gameConfig.scale.height*1.1/4,coins, {font:"20px euphorigenic", fill: '#ffffff' ,boundsAlignH: "center", boundsAlignV: "middle"}).setScale(gameConfig.scale.height / 600);
+        this.spritecoins = this.add.sprite(gameConfig.scale.width *8.3/16,gameConfig.scale.height*1.17/4,'coins').setScale(gameConfig.scale.height / 600);
+
         //Asignamos los botones a cinco mapas
         this.mapasButton[0] = this.add.sprite(gameConfig.scale.width / 6,gameConfig.scale.height*1.5/3,mapas[0].sprite).setScale(gameConfig.scale.height / 600);
         this.mapasButton[0].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[0+this.mapasPosicion],dinero,0));

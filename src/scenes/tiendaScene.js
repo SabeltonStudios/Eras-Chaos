@@ -14,7 +14,8 @@ class tiendaScene extends Phaser.Scene{
         this.load.image('botonPaquetes', 'assets/Interfaz/Tienda/botonPaquetes.png');
         this.load.image('botonRecargar', 'assets/Interfaz/Tienda/botonRecargar.png');
         this.load.image('mensajeDesbloquear', 'assets/Interfaz/Tienda/mensajeDesbloquear.png');
-        
+        this.load.image('mensajeModoMultijugador', 'assets/Interfaz/Tienda/mensajeModoMultijugador.png');
+
         this.load.image('botonDesbloquearNo', 'assets/Interfaz/Tienda/botonDesbloquearNo.png');
         this.load.image('botonDesbloquearSi', 'assets/Interfaz/Tienda/botonDesbloquearSi.png');
         this.load.image('botonSalir', 'assets/Interfaz/Tienda/botonSalir.png');
@@ -26,7 +27,7 @@ class tiendaScene extends Phaser.Scene{
         this.load.image('botonPaquetesi', 'assets/Interfaz/Tienda/botonPaquetesi.png');
         this.load.image('botonRecargari', 'assets/Interfaz/Tienda/botonRecargari.png');
         this.load.image('mensajeDesbloqueari', 'assets/Interfaz/Tienda/mensajeDesbloqueari.png');
-        
+        this.load.image('mensajeModoMultijugadori', 'assets/Interfaz/Tienda/mensajeModoMultijugadori.png');
         
     }
 
@@ -35,14 +36,14 @@ class tiendaScene extends Phaser.Scene{
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
 
         if(espanol){
-            this.spriteTituloTienda = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloTienda').setScale(gameConfig.scale.height / 600);
+            this.spriteTituloTienda = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/8,'tituloTienda').setScale(0.8 *gameConfig.scale.height / 600);
             this.spriteMapas = this.add.sprite(gameConfig.scale.width*1.2 / 4,gameConfig.scale.height*2/5,'botonMapas').setScale(gameConfig.scale.height / 600);
             this.spritePersonajes = this.add.sprite((gameConfig.scale.width / 4)*2.8,gameConfig.scale.height*2/5,'botonPersonajes').setScale(gameConfig.scale.height / 600);
             this.spriteArmas = this.add.sprite(gameConfig.scale.width*1.2 / 4,gameConfig.scale.height*3.5/5,'botonArmas').setScale(gameConfig.scale.height / 600);
             this.spritePaquetes = this.add.sprite((gameConfig.scale.width / 4)*2.8,gameConfig.scale.height*3.5/5,'botonPaquetes').setScale(gameConfig.scale.height / 600);
             this.spriteRecargar = this.add.sprite((gameConfig.scale.width / 10)*8.7,(gameConfig.scale.height/8)*7.5,'botonRecargar').setScale(0.9*gameConfig.scale.height / 600);
         }else{
-            this.spriteTituloTienda = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloTiendai').setScale(gameConfig.scale.height / 600);
+            this.spriteTituloTienda = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/8,'tituloTiendai').setScale(0.8 *gameConfig.scale.height / 600);
             this.spriteMapas = this.add.sprite(gameConfig.scale.width*1.2 / 4,gameConfig.scale.height*2/5,'botonMapasi').setScale(gameConfig.scale.height / 600);
             this.spritePersonajes = this.add.sprite((gameConfig.scale.width / 4)*2.8,gameConfig.scale.height*2/5,'botonPersonajesi').setScale(gameConfig.scale.height / 600);
             this.spriteArmas = this.add.sprite(gameConfig.scale.width*1.2 / 4,gameConfig.scale.height*3.5/5,'botonArmasi').setScale(gameConfig.scale.height / 600);

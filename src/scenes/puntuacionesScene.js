@@ -5,7 +5,7 @@ class puntuacionesScene extends Phaser.Scene {
     create() {
         this.Fondo = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
         this.Fondo.setScale(gameConfig.scale.width / this.Fondo.width, gameConfig.scale.height / this.Fondo.height);
-        this.Titulo = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'titlePuntuaciones').setScale(gameConfig.scale.height / 600);
+        this.Titulo = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/8,'titlePuntuaciones').setScale(0.8 *gameConfig.scale.height / 600);
         this.fondoMarron = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height*1.2/2,'fondoMarron').setScale(gameConfig.scale.height / 600);
 
         this.mapasText = this.add.text(gameConfig.scale.width / 3, gameConfig.scale.height / 3.5, "", {font:"30px euphorigenic", fill: '#fff' ,align: 'left'}).setOrigin(0.5, 0).setScale(gameConfig.scale.width / 800);

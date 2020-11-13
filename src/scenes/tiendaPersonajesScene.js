@@ -115,16 +115,21 @@ class tiendaPersonajesScene extends Phaser.Scene{
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
 
-        var dinero = this.add.text(gameConfig.scale.width*7.35/16,gameConfig.scale.height/4,coins, {font:"20px euphorigenic", fill: '#ffffff' ,boundsAlignH: "center", boundsAlignV: "middle"}).setScale(gameConfig.scale.height / 600);
-        this.spritecoins = this.add.sprite(gameConfig.scale.width *8.3/16,gameConfig.scale.height*1.07/4,'coins').setScale(gameConfig.scale.height / 600);
+        var dinero = this.add.text(gameConfig.scale.width*7.35/16,gameConfig.scale.height*1.1/4,coins, {font:"20px euphorigenic", fill: '#ffffff' ,boundsAlignH: "center", boundsAlignV: "middle"}).setScale(gameConfig.scale.height / 600);
+        this.spritecoins = this.add.sprite(gameConfig.scale.width *8.3/16,gameConfig.scale.height*1.17/4,'coins').setScale(gameConfig.scale.height / 600);
+
         if(espanol){
-            this.spriteTituloPersonajes = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloPersonajes').setScale(gameConfig.scale.height / 600);
+            this.spriteTituloPersonajes = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/8,'tituloPersonajes').setScale(0.8 *gameConfig.scale.height / 600);
+            this.spriteMensaje = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/4.5,'mensajeModoMultijugador').setScale(0.8 *gameConfig.scale.height / 600);
+
         }else{
-            this.spriteTituloPersonajes = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/7,'tituloPersonajesi').setScale(gameConfig.scale.height / 600);
+            this.spriteTituloPersonajes = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/8,'tituloPersonajesi').setScale(0.8 *gameConfig.scale.height / 600);
+            this.spriteMensaje = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/4.5,'mensajeModoMultijugadori').setScale(0.8 *gameConfig.scale.height / 600);
+
         }
 
         var i;
-        for (i = 0; i < mapas.length; i++) {
+        for (i = 0; i < personajes.length; i++) {
             if(personajes[i].bloqueado){
                 personajes[i].sprite = personajes[i].spriteBloqueado;
             }else{
@@ -133,26 +138,26 @@ class tiendaPersonajesScene extends Phaser.Scene{
         }
 
         //Asignamos los botones a cinco personajes
-        this.personajesButton[0] = this.add.sprite(gameConfig.scale.width / 6,gameConfig.scale.height*1.5/3,personajes[0].sprite).setScale(gameConfig.scale.height / 600);
+        this.personajesButton[0] = this.add.sprite(gameConfig.scale.width / 6,gameConfig.scale.height*1.7/3,personajes[0].sprite).setScale(gameConfig.scale.height / 600);
         this.personajesButton[0].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[0+this.personajesPosicion],dinero,0));
 
-        this.personajesButton[1] = this.add.sprite((gameConfig.scale.width / 6)*2,gameConfig.scale.height*1.5/3,personajes[1].sprite).setScale(gameConfig.scale.height / 600);
+        this.personajesButton[1] = this.add.sprite((gameConfig.scale.width / 6)*2,gameConfig.scale.height*1.7/3,personajes[1].sprite).setScale(gameConfig.scale.height / 600);
         this.personajesButton[1].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[1+this.personajesPosicion],dinero,1));
 
-        this.personajesButton[2] = this.add.sprite((gameConfig.scale.width / 6)*3,gameConfig.scale.height*1.5/3,personajes[2].sprite).setScale(gameConfig.scale.height / 600);
+        this.personajesButton[2] = this.add.sprite((gameConfig.scale.width / 6)*3,gameConfig.scale.height*1.7/3,personajes[2].sprite).setScale(gameConfig.scale.height / 600);
         this.personajesButton[2].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[2+this.personajesPosicion],dinero,2));
 
-        this.personajesButton[3] = this.add.sprite((gameConfig.scale.width / 6)*4,gameConfig.scale.height*1.5/3,personajes[3].sprite).setScale(gameConfig.scale.height / 600);
+        this.personajesButton[3] = this.add.sprite((gameConfig.scale.width / 6)*4,gameConfig.scale.height*1.7/3,personajes[3].sprite).setScale(gameConfig.scale.height / 600);
         this.personajesButton[3].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[3+this.personajesPosicion],dinero,3));
 
-        this.personajesButton[4] = this.add.sprite((gameConfig.scale.width / 6)*5,gameConfig.scale.height*1.5/3,personajes[4].sprite).setScale(gameConfig.scale.height / 600);
+        this.personajesButton[4] = this.add.sprite((gameConfig.scale.width / 6)*5,gameConfig.scale.height*1.7/3,personajes[4].sprite).setScale(gameConfig.scale.height / 600);
         this.personajesButton[4].setInteractive().on('pointerdown', () =>this.desbloquear(personajes[4+this.personajesPosicion],dinero,4));
 
         //Flechas derecha e izquierda
-        this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 25,gameConfig.scale.height*1.5/3,'flechaIzquierda').setScale(gameConfig.scale.height *0.4/ 600);
+        this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 25,gameConfig.scale.height*1.7/3,'flechaIzquierda').setScale(gameConfig.scale.height *0.4/ 600);
         this.spriteIzquierda.setInteractive().on('pointerdown', () =>this.trasladarIzquierda());
 
-        this.spriteDerecha = this.add.sprite(gameConfig.scale.width*24/25,gameConfig.scale.height*1.5/3,'flechaDerecha').setScale(gameConfig.scale.height *0.4/ 600);
+        this.spriteDerecha = this.add.sprite(gameConfig.scale.width*24/25,gameConfig.scale.height*1.7/3,'flechaDerecha').setScale(gameConfig.scale.height *0.4/ 600);
         this.spriteDerecha.setInteractive().on('pointerdown', () =>this.trasladarDerecha());
 
         //Botón de salir
