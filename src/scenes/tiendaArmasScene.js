@@ -5,6 +5,8 @@ let armas=[
         "sprite": 'hondaDesbloqueado',
         "spriteDesbloqueado": 'hondaDesbloqueado',
         "spriteDesbloqueadoi": 'hondaDesbloqueadoi',
+        "nombre": 'Honda',
+        "frames": [20,9,38,38]
     },
     {
         "bloqueado":true,
@@ -14,6 +16,8 @@ let armas=[
         "spriteBloqueado": 'hachaBloqueado',
         "spriteDesbloqueadoi": 'hachaDesbloqueadoi',
         "spriteBloqueadoi": 'hachaBloqueadoi',
+        "nombre": 'Hacha',
+        "frames": [19,0,52,52]
     },
     {
         "bloqueado":true,
@@ -23,6 +27,8 @@ let armas=[
         "spriteBloqueado": 'ballestaBloqueado',
         "spriteDesbloqueadoi": 'ballestaDesbloqueadoi',
         "spriteBloqueadoi": 'ballestaBloqueadoi',
+        "nombre": 'Ball',
+        "frames": [19,0,39,39]
     },
     {
         "bloqueado":true,
@@ -32,6 +38,8 @@ let armas=[
         "spriteBloqueado": 'mosqueteBloqueado',
         "spriteDesbloqueadoi": 'mosqueteDesbloqueadoi',
         "spriteBloqueadoi": 'mosqueteBloqueadoi',
+        "nombre": 'Mos',
+        "frames": [19,0,39,39]
     },
     {
         "bloqueado":true,
@@ -41,6 +49,8 @@ let armas=[
         "spriteBloqueado": 'fusilBloqueado',
         "spriteDesbloqueadoi": 'fusilDesbloqueadoi',
         "spriteBloqueadoi": 'fusilBloqueadoi',
+        "nombre": 'AK',
+        "frames": [19,0,19,19]
     }
 ];
 class tiendaArmasScene extends Phaser.Scene{

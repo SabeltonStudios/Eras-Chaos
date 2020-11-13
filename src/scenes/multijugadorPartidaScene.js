@@ -149,97 +149,73 @@ class multijugadorPartidaScene extends Phaser.Scene {
                 this.Mapa = this.add.image(0, 0, 'mapaCont').setOrigin(0)
                 break;
         }
-
-        this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
-        switch (selectedChar1) {
-            case 0:
-                this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'prePlayer').setScale(0.07 * gameConfig.scale.height / 600)
-                switch (selectedWeapon1) {
-                    case 0:
-                        this.anims.create({
-                            key: 'PlayerMoving',
-                            frames: this.anims.generateFrameNumbers('prePlayer', { start: 0, end: 20 }),
-                            frameRate: 30,
-                            repeat: -1
-                        });
-                        this.anims.create({
-                            key: 'PlayerIdle',
-                            frames: this.anims.generateFrameNumbers('prePlayerIdle', { start: 0, end: 9 }),
-                            frameRate: 30,
-                            repeat: -1
-                        });
-                        this.anims.create({
-                            key: 'PlayerAttack',
-                            frames: this.anims.generateFrameNumbers('prePlayerAttack', { start: 0, end: 39 }),
-                            frameRate: 55,
-                            repeat: 0
-                        });
-                        this.anims.create({
-                            key: 'PlayerAttackIdle',
-                            frames: this.anims.generateFrameNumbers('prePlayerAttackIdle', { start: 0, end: 39 }),
-                            frameRate: 55,
-                            repeat: 0
-                        });
-                        break;
-                    case 1:
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                }
-                break;
-            case 1:
-                this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'egiPlayer').setScale(0.07 * gameConfig.scale.height / 600)
-                break;
-            case 2:
-                this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'medPlayer').setScale(0.07 * gameConfig.scale.height / 600)
-                break;
-            case 3:
-                this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'indPlayer').setScale(0.07 * gameConfig.scale.height / 600)
-                break;
-            case 4:
-                this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'contPlayer').setScale(0.07 * gameConfig.scale.height / 600)
-                break;
-        }
-        switch (selectedChar2) {
-            case 0:
-                this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 2, 'prePlayer').setScale(0.07 * gameConfig.scale.height / 600)
-                break;
-            case 1:
-                this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 2, 'egiPlayer').setScale(0.07 * gameConfig.scale.height / 600)
-                break;
-            case 2:
-                this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 2, 'medPlayer').setScale(0.07 * gameConfig.scale.height / 600)
-                break;
-            case 3:
-                this.enemy = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'indPlayer').setScale(0.07 * gameConfig.scale.height / 600)
-                break;
-            case 4:
-                this.enemy = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'contPlayer').setScale(0.07 * gameConfig.scale.height / 600)
-                break;
-        }
         if (this.music == null) {
             this.music = this.sound.add(this.selectedMusic);
         }
+        this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
+
+        this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, personajes[selectedChar1].nombre+'Player'+armas[selectedWeapon1].nombre).setScale(0.07 * gameConfig.scale.height / 600)
+        this.enemy = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, personajes[selectedChar2].nombre+'Player'+armas[selectedWeapon2].nombre).setScale(0.07 * gameConfig.scale.height / 600)
+        this.anims.create({
+            key: personajes[selectedChar1].nombre+'Player'+armas[selectedWeapon1].nombre,
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre+'Player'+armas[selectedWeapon1].nombre, { start: 0, end: armas[selectedWeapon1].frames[0] }),
+            frameRate: 20,
+            repeat: -1
+        });
+        this.anims.create({
+            key: personajes[selectedChar1].nombre+'Player'+armas[selectedWeapon1].nombre+'Idle',
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre+'Player'+armas[selectedWeapon1].nombre+'Idle', { start: 0, end: armas[selectedWeapon1].frames[1] }),
+            frameRate: 20,
+            repeat: -1
+        }); 
+        this.anims.create({
+            key: personajes[selectedChar1].nombre+'Player'+armas[selectedWeapon1].nombre+'Attacking',
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre+'Player'+armas[selectedWeapon1].nombre+'Attacking', { start: 0, end: armas[selectedWeapon1].frames[2] }),
+            frameRate: 20,
+            repeat: 0
+        });       
+        this.anims.create({
+            key: personajes[selectedChar1].nombre+'Player'+armas[selectedWeapon1].nombre+'AttackingIdle',
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre+'Player'+armas[selectedWeapon1].nombre+'AttackingIdle', { start: 0, end: armas[selectedWeapon1].frames[3] }),
+            frameRate: 20,
+            repeat: 0
+        });
+
+        this.anims.create({
+            key: personajes[selectedChar2].nombre+'Player2'+armas[selectedWeapon2].nombre,
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre+'Player'+armas[selectedWeapon2].nombre, { start: 0, end: armas[selectedWeapon2].frames[0] }),
+            frameRate: 20,
+            repeat: -1
+        });
+        this.anims.create({
+            key: personajes[selectedChar2].nombre+'Player2'+armas[selectedWeapon2].nombre+'Idle',
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre+'Player'+armas[selectedWeapon2].nombre+'Idle', { start: 0, end: armas[selectedWeapon2].frames[1] }),
+            frameRate: 20,
+            repeat: -1
+        }); 
+        this.anims.create({
+            key: personajes[selectedChar2].nombre+'Player2'+armas[selectedWeapon2].nombre+'Attacking',
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre+'Player'+armas[selectedWeapon2].nombre+'Attacking', { start: 0, end: armas[selectedWeapon2].frames[2] }),
+            frameRate: 20,
+            repeat: 0
+        });       
+        this.anims.create({
+            key: personajes[selectedChar2].nombre+'Player2'+armas[selectedWeapon2].nombre+'AttackingIdle',
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre+'Player'+armas[selectedWeapon2].nombre+'AttackingIdle', { start: 0, end: armas[selectedWeapon2].frames[3] }),
+            frameRate: 20,
+            repeat: 0
+        });                         
+        
         this.player.body.immovable = true;
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
-        /*this.anims.create({
-            key: 'walk',
-            frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
-            frameRate: 10,
-            repeat: -1
-        });
-        this.player.anims.play('walk', true);*/
+        this.player.anims.play('walk', true);
         this.player.setVelocity(0, -200 * gameConfig.scale.height / 600);
         this.player.setBounce(1);
         this.player.body.setAllowGravity(false);
         this.player.setCollideWorldBounds(true);
 
-        //this.enemy.anims.play('walk', true);
+        this.enemy.anims.play('walk', true);
         this.enemy.setVelocity(0, 240 * gameConfig.scale.height / 600);
         this.enemy.setBounce(1);
         this.enemy.body.setAllowGravity(false);

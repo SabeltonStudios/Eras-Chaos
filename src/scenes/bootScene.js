@@ -52,13 +52,13 @@ class bootScene extends Phaser.Scene {
         this.load.image('preStone', 'assets/Objetos/1.Prehistoria/object_stone.png');
         this.load.audio('preMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
         this.load.image('preWeapon', 'assets/Armas/ArmaPrehistoria.png');
-        this.load.spritesheet('prePlayer','assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basico_honda_idle_moving_spritesheet.png',
+        this.load.spritesheet('prePlayerHonda','assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basico_honda_idle_moving_spritesheet.png',
         {frameWidth: 373, frameHeight: 541});
-        this.load.spritesheet('prePlayerIdle','assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basico_honda_idle_static_spritesheet.png',
+        this.load.spritesheet('prePlayerHondaIdle','assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basico_honda_idle_static_spritesheet.png',
         {frameWidth: 373, frameHeight: 541});
-        this.load.spritesheet('prePlayerAttack','assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basic_honda_attack_moving_spritesheet.png',
+        this.load.spritesheet('prePlayerHondaAttack','assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basic_honda_attack_moving_spritesheet.png',
         {frameWidth: 837 , frameHeight: 557});
-        this.load.spritesheet('prePlayerAttackIdle','assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basic_honda_attack_static_spritesheet.png',
+        this.load.spritesheet('prePlayerHondaAttackIdle','assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basic_honda_attack_static_spritesheet.png',
         {frameWidth: 837 , frameHeight: 541});
 
         this.load.spritesheet('preEnemy', 'assets/Animaciones/Spritesheets/Prehistoria/Enemigo/enemigo_prehistoria_honda_idle_moving_spritesheet.png',
@@ -89,7 +89,7 @@ class bootScene extends Phaser.Scene {
         this.load.spritesheet('egiEnemyDie','assets/Animaciones/Spritesheets/Egipto/Enemigo/Game over/egipto_enemigo_gameover_spritesheet.png',
         { frameWidth: 534, frameHeight: 526 })
         //Assets Edad Media
-        this.load.image('mapaMed', 'assets/Fondos/3.EdadMedia/Background.png');
+        this.load.image('medMap', 'assets/Fondos/3.EdadMedia/Background.png');
         this.load.image('medApl', 'assets/Objetos/3.EdadMedia/object_apples.png');
         this.load.image('medBar', 'assets/Objetos/3.EdadMedia/object_barrel.png');
         this.load.image('medVas', 'assets/Objetos/3.EdadMedia/object_vase.png');
@@ -98,7 +98,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('medWeapon', 'assets/Armas/ballesta-saeta.png')
         
         //Assets Revolución Industrial
-        this.load.image('mapaInd', 'assets/Fondos/4.RevolucionIndustrial/Background.png');
+        this.load.image('indMap', 'assets/Fondos/4.RevolucionIndustrial/Background.png');
         this.load.image('indGear', 'assets/Objetos/4.RevolucionIndustrial/object_gear.png');
         this.load.image('indTool', 'assets/Objetos/4.RevolucionIndustrial/object_toolbox.png');
         this.load.image('indWheel', 'assets/Objetos/4.RevolucionIndustrial/object_wheel.png');
@@ -107,7 +107,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('indWeapon', 'assets/Armas/mosquete-bala.png');
         
         //Assets Contemporánea
-        this.load.image('mapaCon', 'assets/Fondos/5.Actualidad/Background.png');
+        this.load.image('conMapa', 'assets/Fondos/5.Actualidad/Background.png');
         this.load.image('conTaxi', 'assets/Objetos/5.Actualidad/TaxiUp.png');
         this.load.image('conWeapon', 'assets/Armas/fusil-bala.png');
 

@@ -7,7 +7,8 @@ let personajes=[
         "spriteDesbloqueado": 'Unvaar',
         "spriteBloqueado": 'Unvaar',
         "seleccionDesbloqueado": 'UnvaarS',
-        "seleccionBloqueado": 'UnvaarBS'
+        "seleccionBloqueado": 'UnvaarBS',
+        "nombre": 'pre'
     },
     {
         "bloqueado":true,
@@ -16,7 +17,8 @@ let personajes=[
         "spriteDesbloqueado": 'Nahib',
         "spriteBloqueado": 'NahibB',
         "seleccionDesbloqueado": 'NahibS',
-        "seleccionBloqueado": 'NahibBS'
+        "seleccionBloqueado": 'NahibBS',
+        "nombre": 'egi'
     },
     {
         "bloqueado":true,
@@ -25,7 +27,8 @@ let personajes=[
         "spriteDesbloqueado": 'Lamber',
         "spriteBloqueado": 'LamberB',
         "seleccionDesbloqueado": 'LamberS',
-        "seleccionBloqueado": 'LamberBS'
+        "seleccionBloqueado": 'LamberBS',
+        "nombre": 'med'
     },
     {
         "bloqueado":true,
@@ -34,7 +37,8 @@ let personajes=[
         "spriteDesbloqueado": 'Thomas',
         "spriteBloqueado": 'ThomasB',
         "seleccionDesbloqueado": 'ThomasS',
-        "seleccionBloqueado": 'ThomasBS'
+        "seleccionBloqueado": 'ThomasBS',
+        "nombre": 'ind'
     },
     {
         "bloqueado":true,
@@ -43,7 +47,8 @@ let personajes=[
         "spriteDesbloqueado": 'Thomas',
         "spriteBloqueado": 'ThomasB',
         "seleccionDesbloqueado": 'ThomasS',
-        "seleccionBloqueado": 'ThomasBS'
+        "seleccionBloqueado": 'ThomasBS',
+        "nombre": 'con'
     },
     {
         "bloqueado":true,
@@ -52,7 +57,8 @@ let personajes=[
         "spriteDesbloqueado": 'Gaard',
         "spriteBloqueado": 'GaardB',
         "seleccionDesbloqueado": 'Gaard',
-        "seleccionBloqueado": 'GaardBS'
+        "seleccionBloqueado": 'GaardBS',
+        "nombre": 'preH'
     },
     {
         "bloqueado":true,
@@ -61,7 +67,8 @@ let personajes=[
         "spriteDesbloqueado": 'Cleopatra',
         "spriteBloqueado": 'CleopatraB',
         "seleccionDesbloqueado": 'CleopatraS',
-        "seleccionBloqueado": 'CleopatraBS'
+        "seleccionBloqueado": 'CleopatraBS',
+        "nombre": 'egiH'
     },
     {
         "bloqueado":true,
@@ -70,7 +77,28 @@ let personajes=[
         "spriteDesbloqueado": 'SirRodrick',
         "spriteBloqueado": 'SirRodrickB',
         "seleccionDesbloqueado": 'SirRodrickS',
-        "seleccionBloqueado": 'SirRodrickBS'
+        "seleccionBloqueado": 'SirRodrickBS',
+        "nombre": 'medH'
+    },
+    {
+        "bloqueado":true,
+        "coins" : 650,
+        "sprite": 'SirRodrickB',
+        "spriteDesbloqueado": 'SirRodrick',
+        "spriteBloqueado": 'SirRodrickB',
+        "seleccionDesbloqueado": 'SirRodrickS',
+        "seleccionBloqueado": 'SirRodrickBS',
+        "nombre": 'indH'
+    },
+    {
+        "bloqueado":true,
+        "coins" : 650,
+        "sprite": 'SirRodrickB',
+        "spriteDesbloqueado": 'SirRodrick',
+        "spriteBloqueado": 'SirRodrickB',
+        "seleccionDesbloqueado": 'SirRodrickS',
+        "seleccionBloqueado": 'SirRodrickBS',
+        "nombre": 'conH'
     }
 ];
 
