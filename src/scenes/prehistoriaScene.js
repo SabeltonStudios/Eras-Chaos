@@ -92,13 +92,13 @@ class prehistoriaScene extends Phaser.Scene {
         });
         this.anims.create({
             key: 'prePlayerHondaAttack',
-            frames: this.anims.generateFrameNumbers('prePlayerHondaAttack', { start: 0, end: 39 }),
+            frames: this.anims.generateFrameNumbers('prePlayerHondaAttack', { start: 0, end: 37 }),
             frameRate: 55,
             repeat: 0
         });
         this.anims.create({
             key: 'prePlayerHondaAttackIdle',
-            frames: this.anims.generateFrameNumbers('prePlayerHondaAttackIdle', { start: 0, end: 39 }),
+            frames: this.anims.generateFrameNumbers('prePlayerHondaAttackIdle', { start: 0, end: 37 }),
             frameRate: 55,
             repeat: 0
         });

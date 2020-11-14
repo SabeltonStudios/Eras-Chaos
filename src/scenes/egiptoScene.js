@@ -94,7 +94,7 @@ class egiptoScene extends Phaser.Scene {
         this.aux[3].body.setSize(gameConfig.scale.width / 3, 0.16 * gameConfig.scale.height, false);
         this.aux[3].body.setOffset(-gameConfig.scale.width / 3 + 65 * gameConfig.scale.width / 800, 0);
 
-        this.player = this.physics.add.sprite(gameConfig.scale.width / 6.5, gameConfig.scale.height / 6, 'egiPlayerHacha').setScale(0.07 * gameConfig.scale.width / 800)// * gameConfig.scale.width/800 );
+        this.player = this.physics.add.sprite(gameConfig.scale.width / 6.5, gameConfig.scale.height / 6, 'egiPlayerHacha').setOrigin(0, 1).setScale(0.14 * gameConfig.scale.width / 800)// * gameConfig.scale.width/800 );
         this.player.body.immovable = true;
         this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5.5 / 6, gameConfig.scale.height / 2, 'egiEnemy').setOrigin(1, 1).setScale(0.17 * gameConfig.scale.width / 800)// * gameConfig.scale.width/800);
         this.enemy.flipX = true;
@@ -105,12 +105,12 @@ class egiptoScene extends Phaser.Scene {
             frameRate: 30,
             repeat: -1
         });
-        this.anims.create({
+        /*this.anims.create({
             key: 'egiPlayerHachaIdle',
-            frames: this.anims.generateFrameNumbers('egiPlayerHachaIdle', { start: 0, end: 0 }),
+            frames: this.anims.generateFrameNumbers('egiPlayerHachaIdle'),
             frameRate: 30,
             repeat: -1
-        });
+        });*/
         this.anims.create({
             key: 'egiPlayerHachaAttack',
             frames: this.anims.generateFrameNumbers('egiPlayerHachaAttack', { start: 0, end: 52 }),
@@ -229,7 +229,7 @@ class egiptoScene extends Phaser.Scene {
 
 
         this.spriteParar = this.add.sprite(gameConfig.scale.width * 15 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
-        this.spriteParar.setInteractive().on('pointerdown', () => {this.player.body.moves = false;this.player.anims.play('egiPlayerHachaIdle', true)})
+        this.spriteParar.setInteractive().on('pointerdown', () => {this.player.body.moves = false;this.player.anims.stop(); this.player.setTexture('egiPlayerHachaIdle')})
             .on('pointerup', () => {this.player.body.moves = true; this.player.anims.play('egiPlayerHachaMoving', true)})
             .on('pointerout', () => {this.player.body.moves = true; this.player.anims.play('egiPlayerHachaMoving', true)})
             .on('pointerdown', () => this.spriteParar.setTexture('FreezeBOFF'))
@@ -254,7 +254,7 @@ class egiptoScene extends Phaser.Scene {
 
 
         this.freezeInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-        this.freezeInput.on('down', () => {this.player.body.moves = false; this.player.anims.play('egiPlayerHachaIdle', true)})
+        this.freezeInput.on('down', () => {this.player.body.moves = false; this.player.anims.stop(); this.player.setTexture('egiPlayerHachaIdle')})
             .on('up', () => {this.player.body.moves = true; this.player.anims.play('egiPlayerHachaMoving', true)})
             .on('down', () => this.spriteParar.setTexture('FreezeBOFF'))
             .on('up', () => this.spriteParar.setTexture('FreezeBON'));
@@ -473,7 +473,7 @@ class egiptoScene extends Phaser.Scene {
     fire() {
         if (this.spriteParar.isDown || this.freezeInput.isDown) {
             this.player.anims.play("egiPlayerHachaAttackIdle", false)
-                .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("egiPlayerHachaIdle", true) } });
+                .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.stop(); this.player.setTexture('egiPlayerHachaIdle') } });
         } else {
             this.player.anims.play("egiPlayerHachaAttack", false)
                 .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("egiPlayerHachaMoving", false) } });
