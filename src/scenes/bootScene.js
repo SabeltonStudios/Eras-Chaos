@@ -45,6 +45,17 @@ class bootScene extends Phaser.Scene {
         this.load.image('revSelectBloq', 'assets/Interfaz/SeleccionNivel/mapaRevIndustrialB.png');
         this.load.image('revSelectBloqi', 'assets/Interfaz/SeleccionNivel/mapaRevIndustrialBi.png');
 
+        this.load.image('honda', 'assets/Interfaz/SeleccionNivel/honda.png');
+        this.load.image('hacha', 'assets/Interfaz/SeleccionNivel/hacha.png');
+        this.load.image('hachaB', 'assets/Interfaz/SeleccionNivel/hachaB.png');
+        this.load.image('ballesta', 'assets/Interfaz/SeleccionNivel/ballesta.png');
+        this.load.image('ballestaB', 'assets/Interfaz/SeleccionNivel/ballestaB.png');
+        this.load.image('mosquete', 'assets/Interfaz/SeleccionNivel/mosquete.png');
+        this.load.image('mosqueteB', 'assets/Interfaz/SeleccionNivel/mosqueteB.png');
+        this.load.image('fusil', 'assets/Interfaz/SeleccionNivel/fusil.png');
+        this.load.image('fusilB', 'assets/Interfaz/SeleccionNivel/fusilB.png');
+
+
         //Assets Prehistoria
         this.load.image('preMap', 'assets/Fondos/1.Prehistoria/Background.png');
         this.load.image('preObj1', 'assets/Objetos/1.Prehistoria/object_log.png');

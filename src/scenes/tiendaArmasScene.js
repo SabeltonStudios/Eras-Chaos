@@ -5,6 +5,7 @@ let armas=[
         "sprite": 'hondaDesbloqueado',
         "spriteDesbloqueado": 'hondaDesbloqueado',
         "spriteDesbloqueadoi": 'hondaDesbloqueadoi',
+        "seleccionDesbloqueado": 'honda',
         "nombre": 'Honda',
         "frames": [20,9,38,38]
     },
@@ -16,6 +17,8 @@ let armas=[
         "spriteBloqueado": 'hachaBloqueado',
         "spriteDesbloqueadoi": 'hachaDesbloqueadoi',
         "spriteBloqueadoi": 'hachaBloqueadoi',
+        "seleccionDesbloqueado": 'hacha',
+        "seleccionBloqueado": 'hachaB',
         "nombre": 'Hacha',
         "frames": [19,0,52,52]
     },
@@ -27,6 +30,8 @@ let armas=[
         "spriteBloqueado": 'ballestaBloqueado',
         "spriteDesbloqueadoi": 'ballestaDesbloqueadoi',
         "spriteBloqueadoi": 'ballestaBloqueadoi',
+        "seleccionDesbloqueado": 'ballesta',
+        "seleccionBloqueado": 'ballestaB',
         "nombre": 'Ball',
         "frames": [19,0,39,39]
     },
@@ -38,6 +43,8 @@ let armas=[
         "spriteBloqueado": 'mosqueteBloqueado',
         "spriteDesbloqueadoi": 'mosqueteDesbloqueadoi',
         "spriteBloqueadoi": 'mosqueteBloqueadoi',
+        "seleccionDesbloqueado": 'mosquete',
+        "seleccionBloqueado": 'mosqueteB',
         "nombre": 'Mos',
         "frames": [19,0,39,39]
     },
@@ -49,6 +56,8 @@ let armas=[
         "spriteBloqueado": 'fusilBloqueado',
         "spriteDesbloqueadoi": 'fusilDesbloqueadoi',
         "spriteBloqueadoi": 'fusilBloqueadoi',
+        "seleccionDesbloqueado": 'fusil',
+        "seleccionBloqueado": 'fusilB',
         "nombre": 'AK',
         "frames": [19,0,19,19]
     }
