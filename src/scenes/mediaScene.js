@@ -73,24 +73,36 @@ class mediaScene extends Phaser.Scene {
         this.muertesUI = this.add.image(gameConfig.scale.width * 0.97 / 2, 53 * gameConfig.scale.height / 600, 'MuertesUI').setScale(0.45 * gameConfig.scale.width / 800);
         this.contUI = this.add.text(gameConfig.scale.width * 1.07 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff',stroke: '#000',strokeThickness: 4 }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
 
-        this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'medPlayer').setScale(0.07 * gameConfig.scale.height / 600)//*800/gameConfig.scale.width);
+        this.player = this.physics.add.sprite(gameConfig.scale.width / 6.5, gameConfig.scale.height / 6, 'medPlayer').setScale(0.07 * gameConfig.scale.height / 600)//*800/gameConfig.scale.width);
         this.player.body.immovable = true;
-        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 2, 'medPlayer').setScale(0.07 * gameConfig.scale.height / 600)//*800/gameConfig.scale.width);
+        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5.5 / 6, gameConfig.scale.height / 2, 'medEnemy').setOrigin(1, 1).setScale(0.17 * gameConfig.scale.width / 800)//*800/gameConfig.scale.width);
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
-        /*this.anims.create({
-            key: 'walk',
-            frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
-            frameRate: 10,
+        this.anims.create({
+            key: 'medenemyMoving',
+            frames: this.anims.generateFrameNumbers('medEnemy', { start: 0, end: 19 }),
+            frameRate: 45,
             repeat: -1
         });
-        this.player.anims.play('walk', true);*/
+        this.anims.create({
+            key: 'medenemyAttacking',
+            frames: this.anims.generateFrameNumbers('medEnemyAttack', { start: 0, end: 39 }),
+            frameRate: 64,
+            repeat: 0
+        });
+        this.anims.create({
+            key: 'medenemyDying',
+            frames: this.anims.generateFrameNumbers('medEnemyDie', { start: 0, end: 48 }),
+            frameRate: 32,
+            repeat: 0
+        });
+        //this.player.anims.play('walk', true);
         this.player.setVelocity(0, -300 * gameConfig.scale.height / 600);
         this.player.setBounce(1);
         this.player.body.setAllowGravity(false);
         this.player.setCollideWorldBounds(true);
 
-        //this.enemy.anims.play('walk', true);
+        this.enemy.anims.play('medenemyMoving', true);
         this.enemy.setVelocity(0, 220 * gameConfig.scale.height / 600);
         this.enemy.setBounce(1);
         this.enemy.body.setAllowGravity(false);
@@ -183,7 +195,7 @@ class mediaScene extends Phaser.Scene {
         this.spritePausar.setInteractive().on('pointerdown', () => this.is_paused = !this.is_paused)
             .on('pointerdown', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
             //.on('pointerdown', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
-            //.on('pointerdown', () => !this.is_paused ? this.enemy.anims.play('walk', true) : this.enemy.anims.stop())
+            .on('pointerdown', () => !this.is_paused ? this.enemy.anims.play('medenemyMoving', true) : this.enemy.anims.stop())
             .on('pointerdown', () => this.spritePausar.setTexture('PauseBOFF'))
             .on('pointerdown', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
             .on('pointerup', () => this.spritePausar.setTexture('PauseBON'))
@@ -204,7 +216,7 @@ class mediaScene extends Phaser.Scene {
             this.input.keyboard.on('keydown-' + 'ESC', () => this.is_paused = !this.is_paused)
                 .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
                 //.on('keydown-' + 'ESC', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
-                //.on('keydown-' + 'ESC', () => !this.is_paused ? this.enemy.anims.play('walk', true) : this.enemy.anims.stop())
+                .on('keydown-' + 'ESC', () => !this.is_paused ? this.enemy.anims.play('medenemyMoving', true) : this.enemy.anims.stop())
                 .on('keydown-' + 'ESC', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
                 .on('keydown-' + 'ESC', () => this.spritePausar.setTexture('PauseBOFF'))
                 .on('keyup-' + 'ESC', () => this.spritePausar.setTexture('PauseBON'));
@@ -218,9 +230,8 @@ class mediaScene extends Phaser.Scene {
                 this.bomb.setTint(0xff7e7d);
                 this.bomb.body.setVelocity(-500 * gameConfig.scale.height / 600, 0);
                 this.bomb.body.setAllowRotation();
-                /*this.bomb.body.setAllowGravity(false);
-                this.bomb.body.setCircle(100, 10, 0);*/
                 this.bomb.angle = 180;
+                this.enemy.anims.play("medenemyAttacking", false).once('animationcomplete', () => { if (!this.is_paused) { this.enemy.anims.play("medenemyMoving", true); } }, this);
             }
         }, 750);
     }
@@ -329,6 +340,7 @@ class mediaScene extends Phaser.Scene {
                 volume: 0,
                 duration: 500
             }, this);
+            this.enemy.anims.play("medenemyDying", true);
             if (completedLevel[2].completado) {
                 this.music.stop();
                 this.scene.stop();

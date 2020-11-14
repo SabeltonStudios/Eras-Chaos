@@ -47,11 +47,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
     constructor() {
         super("MultijugadorPartidaScene");
     }
-
-    preload() {
-
-
-    }
+    preload() { }
     create() {
         this.win = false;
         this.is_paused = false;
@@ -62,10 +58,11 @@ class multijugadorPartidaScene extends Phaser.Scene {
         if (this.music == null) {
             this.music = this.sound.add(mapas[selectedMap].nombre + 'Music');
         }
-        this.Mapa = this.add.image(0, 0, mapas[selectedMap].nombre + 'Map').setOrigin(0).setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
+        this.Mapa = this.add.image(0, 0, mapas[selectedMap].nombre + 'Map').setOrigin(0);
+        this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
 
         this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre).setScale(0.07 * gameConfig.scale.height / 600)
-        this.enemy = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, personajes[selectedChar2].nombre + 'Player' + armas[selectedWeapon2].nombre).setScale(0.07 * gameConfig.scale.height / 600)
+        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 6, personajes[selectedChar2].nombre + 'Player' + armas[selectedWeapon2].nombre).setScale(0.07 * gameConfig.scale.height / 600)
         if (armas[selectedWeapon1].nombre === 'egi' || armas[selectedWeapon2].nombre === 'egi') {
             this.anims.create({
                 key: 'egishoot',
@@ -352,36 +349,39 @@ class multijugadorPartidaScene extends Phaser.Scene {
                 this.bulletsPre.getFirst(true).destroy();
             }
 
-            if (armas[selectedWeapon1].nombre === 'egi') {
-                this.bomb = this.physics.add.sprite(this.enemy.x + this.enemy.width / 3, this.enemy.y - this.enemy.height / 3, armas[selectedWeapon1].nombre + 'Weapon').setScale(0.15 * gameConfig.scale.height / 600);
+            if (armas[selectedWeapon1].nombre === 'Hacha') {
+                this.bomb = this.physics.add.sprite(this.enemy.x + this.enemy.width / 3, this.enemy.y - this.enemy.height / 3, armas[selectedWeapon1].nombre + 'Weapon').setScale(armas[selectedWeapon1].scale * gameConfig.scale.height / 600);
                 this.bomb.play("egishoot");
             } else {
-                this.bomb = this.physics.add.sprite(this.player.x + 10, this.player.y, armas[selectedWeapon1].nombre + 'Weapon').setScale(0.15 * gameConfig.scale.height / 600);
+                this.bomb = this.physics.add.sprite(this.player.x + 10, this.player.y, armas[selectedWeapon1].nombre + 'Weapon').setScale(armas[selectedWeapon1].scale * gameConfig.scale.height / 600);
             }
 
             this.bomb.setTint(0x85baff);
             this.bulletsPre.add(this.bomb);
 
-            this.bomb.body.setAllowGravity(false);
-            this.bomb.body.setVelocity(500 * gameConfig.scale.height / 600, 0);
-            this.bomb.body.setCircle(50, 0, 0);
+            if (!armas[selectedWeapon1].nombre === 'Ball') {
+                this.bomb.body.setAllowGravity(false);
+                this.bomb.body.setCircle(armas[selectedWeapon1].circle[0], armas[selectedWeapon1].circle[1], armas[selectedWeapon1].circle[2]);
+            }
+            this.bomb.body.setVelocity(armas[selectedWeapon1].speed * gameConfig.scale.height / 600, 0);
             this.bomb.angle = 90;
         } else {
             if (this.bulletsEnemy.isFull()) {
                 this.bulletsEnemy.getFirst(true).destroy();
             }
-            if (armas[selectedWeapon1].nombre === 'egi') {
-                this.bomb = this.physics.add.sprite(this.enemy.x + this.enemy.width / 3, this.enemy.y - this.enemy.height / 3, armas[selectedWeapon1].nombre + 'Weapon').setScale(0.15 * gameConfig.scale.height / 600);
+            if (armas[selectedWeapon2].nombre === 'Hacha') {
+                this.bomb = this.physics.add.sprite(this.enemy.x + this.enemy.width / 3, this.enemy.y - this.enemy.height / 3, armas[selectedWeapon1].nombre + 'Weapon').setScale(armas[selectedWeapon2].scale * gameConfig.scale.height / 600);
                 this.bomb.play("egishoot");
             } else {
-                this.bomb = this.physics.add.sprite(this.enemy.x - 10, this.enemy.y, armas[selectedWeapon2].nombre + 'Weapon').setScale(0.15 * gameConfig.scale.height / 600);
+                this.bomb = this.physics.add.sprite(this.enemy.x - 10, this.enemy.y, armas[selectedWeapon2].nombre + 'Weapon').setScale(armas[selectedWeapon2].scale * gameConfig.scale.height / 600);
             }
             this.bomb.setTint(0xff7e7d);
             this.bulletsEnemy.add(this.bomb);
-
-            this.bomb.body.setAllowGravity(false);
-            this.bomb.body.setVelocity(-500 * gameConfig.scale.height / 600, 0);
-            this.bomb.body.setCircle(50, 0, 0);
+            if (!armas[selectedWeapon2].nombre === 'Ball') {
+                this.bomb.body.setAllowGravity(false);
+                this.bomb.body.setCircle(armas[selectedWeapon2].circle[0], armas[selectedWeapon2].circle[1], armas[selectedWeapon2].circle[2]);
+            }
+            this.bomb.body.setVelocity(-armas[selectedWeapon2].speed * gameConfig.scale.height / 600, 0);
             this.bomb.angle = 270;
         }
     }

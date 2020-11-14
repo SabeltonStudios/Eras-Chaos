@@ -7,6 +7,9 @@ let armas=[
         "spriteDesbloqueadoi": 'hondaDesbloqueadoi',
         "seleccionDesbloqueado": 'honda',
         "nombre": 'Honda',
+        "speed":300,
+        "scale":0.15,
+        "circle":[50,0,0],
         "frames": [20,9,38,38]
     },
     {
@@ -20,6 +23,9 @@ let armas=[
         "seleccionDesbloqueado": 'hacha',
         "seleccionBloqueado": 'hachaB',
         "nombre": 'Hacha',
+        "speed":350,
+        "scale":0.15,
+        "circle":[100,30,30],
         "frames": [19,0,52,52]
     },
     {
@@ -33,6 +39,9 @@ let armas=[
         "seleccionDesbloqueado": 'ballesta',
         "seleccionBloqueado": 'ballestaB',
         "nombre": 'Ball',
+        "speed":500,
+        "scale":0.15,
+        "circle":null,
         "frames": [19,0,39,39]
     },
     {
@@ -46,6 +55,9 @@ let armas=[
         "seleccionDesbloqueado": 'mosquete',
         "seleccionBloqueado": 'mosqueteB',
         "nombre": 'Mos',
+        "speed":650,
+        "scale":0.8,
+        "circle":[9.3,4,4],
         "frames": [19,0,39,39]
     },
     {
@@ -59,6 +71,9 @@ let armas=[
         "seleccionDesbloqueado": 'fusil',
         "seleccionBloqueado": 'fusilB',
         "nombre": 'AK',
+        "speed":700,
+        "scale":0.15,
+        "circle":[50,5,5],
         "frames": [19,0,19,19]
     }
 ];

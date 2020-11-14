@@ -227,7 +227,7 @@ class contempScene extends Phaser.Scene {
                 this.bomb.body.setVelocity(-700 * gameConfig.scale.height / 600, 0);
                 this.bomb.body.setAllowRotation();
                 this.bomb.body.setAllowGravity(false);
-                this.bomb.body.setCircle(50, 0, 0);
+                this.bomb.body.setCircle(50, 5, 5);
                 this.bomb.angle = 180;
             }
         }, 500);
@@ -417,6 +417,6 @@ class contempScene extends Phaser.Scene {
         bomb.body.setAllowRotation();
         //bomb.setOrigin(0,1);
         bomb.body.setAllowGravity(false);
-        bomb.body.setCircle(50, 0, 0);
+        bomb.body.setCircle(50, 5, 5);
     }
 }
