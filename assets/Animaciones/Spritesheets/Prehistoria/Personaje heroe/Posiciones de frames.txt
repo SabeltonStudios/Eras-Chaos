@@ -1,4 +1,4 @@
-Posiciones de frames de personaje héroe Prehistoria (son los mismos que el personaje básico):
+Posiciones de frames de personaje héroe Prehistoria:
 ////////////////////////////////////////
 - Honda
 Idle:
@@ -6,7 +6,8 @@ Moving (2 filas x 5 columnas): 373 x 541
 Static (3 filas x 7 columnas): 373 x 541
 
 Atacar:
-EN PROCESO
+Moving (5 filas x 8 columnas): 837 x 541
+Static (5 filas x 8 columnas): 837 x 541
 ////////////////////////////////////////
 - Hacha:
 Idle:

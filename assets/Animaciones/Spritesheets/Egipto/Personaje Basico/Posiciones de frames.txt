@@ -2,7 +2,7 @@ Ya casi está esto...es que tengo los frames pero me faltan hacer los spriteshee
 
 Posiciones de frames de personaje básico Egipto:
 ////////////////////////////////////////
-- Honda
+- HONDA
 Idle:
 Moving (2 filas x 5 columnas): 373 x 514
 Static (3 filas x 7 columnas): 373 x 514
@@ -11,7 +11,38 @@ Atacar:
 Moving (5 filas x 8 columnas): 837 x 500
 Static (5 filas x 8 columnas): 837 x 500
 ////////////////////////////////////////
-- Ballesta:
+- HACHA
+Attack:
+moving: (7 filas x 8 columnas) 510 x 570
+idle: (7 filas x 8 columnas) 510 x 570
+
 Idle:
-Static (1 imagen): 370 x 514
+moving: (4 filas x 5 columnas) 370 x 541
+static: (1 imagen) 330 x 541
 ////////////////////////////////////////
+- MOSQUETE
+Attack:
+moving: (4 filas x 10 columnas) 750 x 510
+static: (4 filas x 10 columnas) 650 x 510
+
+Idle: 
+moving: (3 filas x 7 columnas) 596 x 510
+static: (1 imagen) 506 x 510
+////////////////////////////////////////
+- FUSIL 
+Attack:
+moving: (4 filas x 5 columnas) 450 x 500
+static: (4 filas x 5 columnas) 350 x 500
+
+Idle:
+moving: (4 filas x 5 columnas) 450 x 500
+static: (1 imagen) 350 x 500
+////////////////////////////////////////
+- BALLESTA 
+Attack:
+moving: (4 filas x 10 columnas) 465 x 500
+static: (4 filas x 10 columnas) 370 x 500
+
+Idle:
+moving: (4 filas x 5 columnas) 454 x 500
+static: (1 imagen) 370 x 500
