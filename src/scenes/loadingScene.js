@@ -4,7 +4,8 @@ class loadingScene extends Phaser.Scene {
         
     }
     preload(){
-        this.load.image('fondo', 'assets/Interfaz/Menu/fondoMenuPrincipal.png');
+        this.load.image('fondoLoading', 'assets/Interfaz/FondoLoading.png');
+        this.load.image('textLoading', 'assets/Interfaz/textLoading.png');
     }
    
     create(){

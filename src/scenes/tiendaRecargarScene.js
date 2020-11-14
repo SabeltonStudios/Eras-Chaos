@@ -33,23 +33,6 @@ class tiendaRecargarScene extends Phaser.Scene{
     }
     preload(){
 
-        //Assets de tienda
-        this.load.image('flechaDerecha', 'assets/Interfaz/Tienda/flechaDerecha.png');
-        this.load.image('flechaIzquierda', 'assets/Interfaz/Tienda/flechaIzquierda.png');
-
-        //Assets español
-        this.load.image('tituloRecargar', 'assets/Interfaz/Tienda/Recargar/tituloRecargar.png');
-        this.load.image('500monedas','assets/Interfaz/Tienda/Recargar/500monedas.png');
-        this.load.image('1100monedas','assets/Interfaz/Tienda/Recargar/1100monedas.png');
-        this.load.image('1725monedas','assets/Interfaz/Tienda/Recargar/1725monedas.png');
-        this.load.image('3250monedas','assets/Interfaz/Tienda/Recargar/3250monedas.png');
-
-        //Assets ingles
-        this.load.image('tituloRecargari', 'assets/Interfaz/Tienda/Recargar/tituloRecargari.png');
-        this.load.image('500monedasi','assets/Interfaz/Tienda/Recargar/500monedasi.png');
-        this.load.image('1100monedasi','assets/Interfaz/Tienda/Recargar/1100monedasi.png');
-        this.load.image('1725monedasi','assets/Interfaz/Tienda/Recargar/1725monedasi.png');
-        this.load.image('3250monedasi','assets/Interfaz/Tienda/Recargar/3250monedasi.png');
     }
 
     create(){
@@ -58,8 +41,9 @@ class tiendaRecargarScene extends Phaser.Scene{
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
 
-        var dinero = this.add.text(gameConfig.scale.width*7.35/16,gameConfig.scale.height*1.1/4,coins, {font:"20px euphorigenic", fill: '#ffffff' ,boundsAlignH: "center", boundsAlignV: "middle"}).setScale(gameConfig.scale.height / 600);
-        this.spritecoins = this.add.sprite(gameConfig.scale.width *8.3/16,gameConfig.scale.height*1.17/4,'coins').setScale(gameConfig.scale.height / 600);
+        var dinero = this.add.text(gameConfig.scale.width/2,gameConfig.scale.height*1.1/4,coins, {font:"25px euphorigenic", fill: '#ffffff' ,align: "center"}).setOrigin(0.5,0).setScale(gameConfig.scale.height / 600);
+        this.spritecoins = this.add.sprite(gameConfig.scale.width*1.1 /2,gameConfig.scale.height*1.19/4,'coins').setScale(1.2*gameConfig.scale.height / 600);
+        dinero.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
 
         if(espanol){
             this.spriteTituloRecargar = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/8,'tituloRecargar').setScale(0.8 * gameConfig.scale.height / 600);
@@ -132,6 +116,13 @@ class tiendaRecargarScene extends Phaser.Scene{
 
     comprarMonedas(moneda,dinero,pos){
         coins += moneda.monedas;
+        if(espanol){
+            this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'¡Has comprado '+moneda.monedas+' monedas!',{font:"35px euphorigenic", fill: '#E9BB00' ,align:"center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+        }else{
+            this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'You have bought '+moneda.monedas+' coins!',{font:"35px euphorigenic", fill: '#E9BB00' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+        }
+        this.comprado.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
+        var timer = this.time.delayedCall(1000, ()=>this.comprado.destroy(), []);
         dinero.setText(coins);
         this.cerrarMensajeDesbloquear(pos);
     }

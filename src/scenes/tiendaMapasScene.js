@@ -49,26 +49,15 @@ let mapas=[
     {
         "bloqueado":true,
         "coins" : 650,
-        "sprite": 'egiptoBloqueado',
-        "spriteDesbloqueado": 'egiptoDesbloqueado',
-        "spriteBloqueado": 'egiptoBloqueado',
-        "spriteDesbloqueadoi": 'egiptoDesbloqueadoi',
-        "spriteBloqueadoi": 'egiptoBloqueadoi',
-        "spriteSelectBloq": 'egiSelectBloq',
-        "spriteSelectBloqi": 'egiSelectBloqi',
+        "sprite": 'actualidadBloqueado',
+        "spriteDesbloqueado": 'actualidadDesbloqueado',
+        "spriteBloqueado": 'actualidadBloqueado',
+        "spriteDesbloqueadoi": 'actualidadDesbloqueadoi',
+        "spriteBloqueadoi": 'actualidadBloqueadoi',
+        "spriteSelectBloq": 'actSelectBloq',
+        "spriteSelectBloqi": 'actSelectBloqi',
         "nombre": 'con'
     },
-    //↓ESTE SOBRA, NO?
-    {
-        "bloqueado":true,
-        "coins" : 650,
-        "spriteDesbloqueado": 'egiptoDesbloqueado',
-        "spriteBloqueado": 'egiptoBloqueado',
-        "spriteDesbloqueadoi": 'egiptoDesbloqueadoi',
-        "spriteBloqueadoi": 'egiptoBloqueadoi',
-        "spriteSelectBloq": 'egiSelectBloq',
-        "spriteSelectBloqi": 'egiSelectBloqi'
-    }
 ];
 
 
@@ -83,27 +72,7 @@ class tiendaMapasScene extends Phaser.Scene{
     }
     
     preload(){
-        /*//Assets de tienda
-        this.load.image('flechaDerecha', 'assets/Interfaz/Tienda/flechaDerecha.png');
-        this.load.image('flechaIzquierda', 'assets/Interfaz/Tienda/flechaIzquierda.png');
-        
-        //Assets español
-        this.load.image('tituloMapas', 'assets/Interfaz/Tienda/Mapas/tituloMapas.png');
-        
-        this.load.image('prehistoriaDesbloqueado', 'assets/Interfaz/Tienda/Mapas/prehistoriaDesbloqueado.png');
-        this.load.image('egiptoBloqueado', 'assets/Interfaz/Tienda/Mapas/egiptoBloqueado.png');
-        this.load.image('egiptoDesbloqueado', 'assets/Interfaz/Tienda/Mapas/egiptoDesbloqueado.png');
-        this.load.image('edadMediaBloqueado', 'assets/Interfaz/Tienda/Mapas/edadMediaBloqueado.png');
-        this.load.image('edadMediaDesbloqueado', 'assets/Interfaz/Tienda/Mapas/edadMediaDesbloqueado.png');
 
-        //Assets ingles
-        this.load.image('tituloMapasi', 'assets/Interfaz/Tienda/Mapas/tituloMapasi.png');
-
-        this.load.image('prehistoriaDesbloqueadoi', 'assets/Interfaz/Tienda/Mapas/prehistoriaDesbloqueado.png');
-        this.load.image('egiptoBloqueadoi', 'assets/Interfaz/Tienda/Mapas/egiptoBloqueadoi.png');
-        this.load.image('egiptoDesbloqueadoi', 'assets/Interfaz/Tienda/Mapas/egiptoDesbloqueadoi.png');
-        this.load.image('edadMediaBloqueadoi', 'assets/Interfaz/Tienda/Mapas/edadMediaBloqueadoi.png');
-        this.load.image('edadMediaDesbloqueadoi', 'assets/Interfaz/Tienda/Mapas/edadMediaDesbloqueadoi.png');*/
     }
 
     create(){
@@ -137,8 +106,9 @@ class tiendaMapasScene extends Phaser.Scene{
             }
         }
         
-        var dinero = this.add.text(gameConfig.scale.width*7.35/16,gameConfig.scale.height*1.1/4,coins, {font:"20px euphorigenic", fill: '#ffffff' ,boundsAlignH: "center", boundsAlignV: "middle"}).setScale(gameConfig.scale.height / 600);
-        this.spritecoins = this.add.sprite(gameConfig.scale.width *8.3/16,gameConfig.scale.height*1.17/4,'coins').setScale(gameConfig.scale.height / 600);
+        var dinero = this.add.text(gameConfig.scale.width/2,gameConfig.scale.height*1.1/4,coins, {font:"25px euphorigenic", fill: '#ffffff' ,align: "center"}).setOrigin(0.5,0).setScale(gameConfig.scale.height / 600);
+        this.spritecoins = this.add.sprite(gameConfig.scale.width*1.1 /2,gameConfig.scale.height*1.19/4,'coins').setScale(1.2*gameConfig.scale.height / 600);
+        dinero.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
 
         //Asignamos los botones a cinco mapas
         this.mapasButton[0] = this.add.sprite(gameConfig.scale.width / 6,gameConfig.scale.height*1.5/3,mapas[0].sprite).setScale(gameConfig.scale.height / 600);
@@ -173,11 +143,12 @@ class tiendaMapasScene extends Phaser.Scene{
         this.spriteDerecha.disableInteractive();
         this.spriteIzquierda.disableInteractive();
         var i;
-        for (i = 0; i < this.mapasButton.length; i++) {
-            this.mapasButton[i].disableInteractive();
-        }
-        
+
         if(mapa.bloqueado){
+            for (i = 0; i < this.mapasButton.length; i++) {
+                this.mapasButton[i].disableInteractive();
+            }
+
             this.mapasButton[pos].setTint(0xDEDE7C);
             if(espanol){
                 this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloquear').setScale(gameConfig.scale.height / 600);
@@ -208,12 +179,24 @@ class tiendaMapasScene extends Phaser.Scene{
             mapa.bloqueado = false;
             coins = coins-mapa.coins;
             dinero.setText(coins);
+            if(espanol){
+                this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'¡Has comprado un mapa!',{font:"35px euphorigenic", fill: '#E9BB00' ,align:"center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+            }else{
+                this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'You have bought a map!',{font:"35px euphorigenic", fill: '#E9BB00' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+            }
+            this.comprado.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
+            var timer = this.time.delayedCall(1000, ()=>this.comprado.destroy(), []);
             this.cerrarMensajeDesbloquear(pos);
         }else{
             //If i have enough money and the map is not blocked
             this.cerrarMensajeDesbloquear(pos);
-            this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'No tienes dinero suficiente',{font:"20px euphorigenic", fill: '#ffffff' ,boundsAlignH: "center", boundsAlignV: "middle"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
-            var timer = this.time.delayedCall(800, ()=>this.nocoins.destroy(), []);
+            if(espanol){
+                this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'No tienes monedas suficientes',{font:"35px euphorigenic", fill: '#C10202' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+            }else{
+                this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'You don not have enought coins',{font:"35px euphorigenic", fill: '#C10202' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+            }
+            this.nocoins.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
+            var timer = this.time.delayedCall(1000, ()=>this.nocoins.destroy(), []);
         }
         
     }

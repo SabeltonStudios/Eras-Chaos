@@ -109,42 +109,16 @@ class tiendaPersonajesScene extends Phaser.Scene{
         super("TiendaPersonajesScene");
     }
     preload(){
-       /* //Assets de tienda
-        this.load.image('flechaDerecha', 'assets/Interfaz/Tienda/flechaDerecha.png');
-        this.load.image('flechaIzquierda', 'assets/Interfaz/Tienda/flechaIzquierda.png');
-        this.load.image('botonDesbloquearNo', 'assets/Interfaz/Tienda/botonDesbloquearNo.png');
-        this.load.image('botonDesbloquearSi', 'assets/Interfaz/Tienda/botonDesbloquearSi.png');
 
-        //Assets personajes
-        this.load.image('Unvaar', 'assets/Interfaz/Tienda/Personajes/Unvaar.png');
-        this.load.image('Gaard', 'assets/Interfaz/Tienda/Personajes/Gaard.png');
-        this.load.image('GaardB', 'assets/Interfaz/Tienda/Personajes/GaardB.png');
-        this.load.image('Nahib', 'assets/Interfaz/Tienda/Personajes/Nahib.png');
-        this.load.image('NahibB', 'assets/Interfaz/Tienda/Personajes/NahibB.png');
-        this.load.image('Cleopatra', 'assets/Interfaz/Tienda/Personajes/Cleopatra.png');
-        this.load.image('CleopatraB', 'assets/Interfaz/Tienda/Personajes/CleopatraB.png');
-        this.load.image('Lamber', 'assets/Interfaz/Tienda/Personajes/Lamber.png');
-        this.load.image('LamberB', 'assets/Interfaz/Tienda/Personajes/LamberB.png');
-        this.load.image('SirRodrick', 'assets/Interfaz/Tienda/Personajes/SirRodrick.png');
-        this.load.image('SirRodrickB', 'assets/Interfaz/Tienda/Personajes/SirRodrickB.png');
-        this.load.image('Thomas', 'assets/Interfaz/Tienda/Personajes/Thomas.png');
-        this.load.image('ThomasB', 'assets/Interfaz/Tienda/Personajes/ThomasB.png');
-
-        //Assets español
-        this.load.image('tituloPersonajes', 'assets/Interfaz/Tienda/Personajes/tituloPersonajes.png');
-        this.load.image('mensajeDesbloquear', 'assets/Interfaz/Tienda/mensajeDesbloquear.png');
-
-        //Assets ingles
-        this.load.image('tituloPersonajesi', 'assets/Interfaz/Tienda/Personajes/tituloPersonajesi.png');
-        this.load.image('mensajeDesbloqueari', 'assets/Interfaz/Tienda/mensajeDesbloqueari.png');*/
     }
 
     create(){
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
 
-        var dinero = this.add.text(gameConfig.scale.width*7.35/16,gameConfig.scale.height*1.1/4,coins, {font:"20px euphorigenic", fill: '#ffffff' ,boundsAlignH: "center", boundsAlignV: "middle"}).setScale(gameConfig.scale.height / 600);
-        this.spritecoins = this.add.sprite(gameConfig.scale.width *8.3/16,gameConfig.scale.height*1.17/4,'coins').setScale(gameConfig.scale.height / 600);
+        var dinero = this.add.text(gameConfig.scale.width/2,gameConfig.scale.height*1.1/4,coins, {font:"25px euphorigenic", fill: '#ffffff' ,align: "center"}).setOrigin(0.5,0).setScale(gameConfig.scale.height / 600);
+        this.spritecoins = this.add.sprite(gameConfig.scale.width*1.1 /2,gameConfig.scale.height*1.19/4,'coins').setScale(1.2*gameConfig.scale.height / 600);
+        dinero.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
 
         if(espanol){
             this.spriteTituloPersonajes = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/8,'tituloPersonajes').setScale(0.8 *gameConfig.scale.height / 600);
@@ -198,11 +172,13 @@ class tiendaPersonajesScene extends Phaser.Scene{
     desbloquear(personaje,dinero,pos){
         this.spriteDerecha.disableInteractive();
         this.spriteIzquierda.disableInteractive();
-        var i;
-        for (i = 0; i < this.personajesButton.length; i++) {
-            this.personajesButton[i].disableInteractive();
-        }
+        
         if(personaje.bloqueado){
+            var i;
+            for (i = 0; i < this.personajesButton.length; i++) {
+                this.personajesButton[i].disableInteractive();
+            }
+
             this.personajesButton[pos].setTint(0xDEDE7C);
             if(espanol){
                 this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloquear').setScale(gameConfig.scale.height / 600);
@@ -228,13 +204,24 @@ class tiendaPersonajesScene extends Phaser.Scene{
             personaje.bloqueado = false;
             coins = coins-personaje.coins;
             dinero.setText(coins);
+            if(espanol){
+                this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'¡Has comprado un personaje!',{font:"35px euphorigenic", fill: '#E9BB00' ,align:"center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+            }else{
+                this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'You have bought a character!',{font:"35px euphorigenic", fill: '#E9BB00' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+            }
+            this.comprado.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
+            var timer = this.time.delayedCall(1000, ()=>this.comprado.destroy(), []);
             this.cerrarMensajeDesbloquear(pos);
-            
         }else{
             //If i have enough money and the map is not blocked
             this.cerrarMensajeDesbloquear(pos);
-            this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'No tienes dinero suficiente',{font:"20px euphorigenic", fill: '#ffffff' ,boundsAlignH: "center", boundsAlignV: "middle"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
-            var timer = this.time.delayedCall(800, ()=>this.nocoins.destroy(), []);
+            if(espanol){
+                this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'No tienes monedas suficientes',{font:"35px euphorigenic", fill: '#C10202' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+            }else{
+                this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'You don not have enought coins',{font:"35px euphorigenic", fill: '#C10202' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+            }
+            this.nocoins.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
+            var timer = this.time.delayedCall(1000, ()=>this.nocoins.destroy(), []);
         }
         
         

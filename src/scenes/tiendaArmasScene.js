@@ -86,37 +86,17 @@ class tiendaArmasScene extends Phaser.Scene{
     }
 
     preload(){
-        //Assets español
-        this.load.image('tituloArmas', 'assets/Interfaz/Tienda/Armas/tituloArmas.png');
-        this.load.image('hondaDesbloqueado', 'assets/Interfaz/Tienda/Armas/hondaDesbloqueado.png');
-        this.load.image('hachaDesbloqueado', 'assets/Interfaz/Tienda/Armas/hachaDesbloqueado.png');
-        this.load.image('hachaBloqueado', 'assets/Interfaz/Tienda/Armas/hachaBloqueado.png');
-        this.load.image('ballestaDesbloqueado', 'assets/Interfaz/Tienda/Armas/ballestaDesbloqueado.png');
-        this.load.image('ballestaBloqueado', 'assets/Interfaz/Tienda/Armas/ballestaBloqueado.png');
-        this.load.image('mosqueteDesbloqueado', 'assets/Interfaz/Tienda/Armas/mosqueteDesbloqueado.png');
-        this.load.image('mosqueteBloqueado', 'assets/Interfaz/Tienda/Armas/mosqueteBloqueado.png');
-        this.load.image('fusilDesbloqueado', 'assets/Interfaz/Tienda/Armas/fusilDesbloqueado.png');
-        this.load.image('fusilBloqueado', 'assets/Interfaz/Tienda/Armas/fusilBloqueado.png');
-        //Assets ingles
-        this.load.image('tituloArmasi', 'assets/Interfaz/Tienda/Armas/tituloArmasi.png');
-        this.load.image('hondaDesbloqueadoi', 'assets/Interfaz/Tienda/Armas/hondaDesbloqueadoi.png');
-        this.load.image('hachaDesbloqueadoi', 'assets/Interfaz/Tienda/Armas/hachaDesbloqueadoi.png');
-        this.load.image('hachaBloqueadoi', 'assets/Interfaz/Tienda/Armas/hachaBloqueadoi.png');
-        this.load.image('ballestaDesbloqueadoi', 'assets/Interfaz/Tienda/Armas/ballestaDesbloqueadoi.png');
-        this.load.image('ballestaBloqueadoi', 'assets/Interfaz/Tienda/Armas/ballestaBloqueadoi.png');
-        this.load.image('mosqueteDesbloqueadoi', 'assets/Interfaz/Tienda/Armas/mosqueteDesbloqueadoi.png');
-        this.load.image('mosqueteBloqueadoi', 'assets/Interfaz/Tienda/Armas/mosqueteBloqueadoi.png');
-        this.load.image('fusilDesbloqueadoi', 'assets/Interfaz/Tienda/Armas/fusilDesbloqueadoi.png');
-        this.load.image('fusilBloqueadoi', 'assets/Interfaz/Tienda/Armas/fusilBloqueadoi.png');
+        
     }
 
     create(){
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
 
-        var dinero = this.add.text(gameConfig.scale.width*7.35/16,gameConfig.scale.height*1.1/4,coins, {font:"20px euphorigenic", fill: '#ffffff' ,boundsAlignH: "center", boundsAlignV: "middle"}).setScale(gameConfig.scale.height / 600);
-        this.spritecoins = this.add.sprite(gameConfig.scale.width *8.3/16,gameConfig.scale.height*1.17/4,'coins').setScale(gameConfig.scale.height / 600);
-
+        var dinero = this.add.text(gameConfig.scale.width/2,gameConfig.scale.height*1.1/4,coins, {font:"25px euphorigenic", fill: '#ffffff' ,align: "center"}).setOrigin(0.5,0).setScale(gameConfig.scale.height / 600);
+        this.spritecoins = this.add.sprite(gameConfig.scale.width*1.1 /2,gameConfig.scale.height*1.19/4,'coins').setScale(1.2*gameConfig.scale.height / 600);
+        dinero.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
+        
         if(espanol){
             this.spriteTituloArmas = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/8,'tituloArmas').setScale(0.8 * gameConfig.scale.height / 600);
             this.spriteMensaje = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/4.5,'mensajeModoMultijugador').setScale(0.8 *gameConfig.scale.height / 600);
@@ -179,11 +159,13 @@ class tiendaArmasScene extends Phaser.Scene{
     desbloquear(arma,dinero,pos){
         this.spriteDerecha.disableInteractive();
         this.spriteIzquierda.disableInteractive();
-        var i;
-        for (i = 0; i < this.armasButton.length; i++) {
-            this.armasButton[i].disableInteractive();
-        }
+        
         if(arma.bloqueado){
+            var i;
+            for (i = 0; i < this.armasButton.length; i++) {
+                this.armasButton[i].disableInteractive();
+            }
+
             this.armasButton[pos].setTint(0xDEDE7C);
             if(espanol){
                 this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloquear').setScale(gameConfig.scale.height / 600);
@@ -214,13 +196,25 @@ class tiendaArmasScene extends Phaser.Scene{
             arma.bloqueado = false;
             coins = coins-arma.coins;
             dinero.setText(coins);
+            if(espanol){
+                this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'¡Has comprado un arma!',{font:"35px euphorigenic", fill: '#E9BB00' ,align:"center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+            }else{
+                this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'You have bought an arm!',{font:"35px euphorigenic", fill: '#E9BB00' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+            }
+            this.comprado.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
+            var timer = this.time.delayedCall(1000, ()=>this.comprado.destroy(), []);
             this.cerrarMensajeDesbloquear(pos);
             
         }else{
             //If i have enough money and the map is not blocked
             this.cerrarMensajeDesbloquear(pos);
-            this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'No tienes dinero suficiente',{font:"20px euphorigenic", fill: '#ffffff' ,boundsAlignH: "center", boundsAlignV: "middle"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
-            var timer = this.time.delayedCall(800, ()=>this.nocoins.destroy(), []);
+            if(espanol){
+                this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'No tienes monedas suficientes',{font:"35px euphorigenic", fill: '#C10202' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+            }else{
+                this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'You don not have enought coins',{font:"35px euphorigenic", fill: '#C10202' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+            }
+            this.nocoins.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
+            var timer = this.time.delayedCall(1000, ()=>this.nocoins.destroy(), []);
         }
         
         

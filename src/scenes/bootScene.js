@@ -6,9 +6,11 @@ class bootScene extends Phaser.Scene {
 
     preload() {
 
-        this.Fondo = this.add.image(0, 0, 'fondo').setOrigin(0)
+        this.Fondo = this.add.image(0, 0, 'fondoLoading').setOrigin(0)
         this.Fondo.setScale(gameConfig.scale.width / this.Fondo.width, gameConfig.scale.height / this.Fondo.height);
+        this.TextLoading = this.add.image(gameConfig.scale.width/2, gameConfig.scale.height/2, 'textLoading').setScale(gameConfig.scale.height / 600);
         //Assets menu principal
+        this.load.image('fondo', 'assets/Interfaz/Menu/FondoMenuPrincipal.png');
         this.load.image('botonPuntuaciones', 'assets/Interfaz/Menu/BotonPuntuaciones.png');
         this.load.image('botonPuntuacionesi', 'assets/Interfaz/Menu/BotonPuntuacionesi.png');
         this.load.image('botonEspanolOn', 'assets/Interfaz/Menu/botonEspanolOn.png');
@@ -48,7 +50,9 @@ class bootScene extends Phaser.Scene {
         this.load.image('medSelectBloqi', 'assets/Interfaz/SeleccionNivel/mapaEdadMediaBi.png');
         this.load.image('revSelectBloq', 'assets/Interfaz/SeleccionNivel/mapaRevIndustrialB.png');
         this.load.image('revSelectBloqi', 'assets/Interfaz/SeleccionNivel/mapaRevIndustrialBi.png');
-
+        this.load.image('actSelectBloq', 'assets/Interfaz/SeleccionNivel/mapaActualidadB.png');
+        this.load.image('actSelectBloqi', 'assets/Interfaz/SeleccionNivel/mapaActualidadBi.png');
+        
         this.load.image('honda', 'assets/Interfaz/SeleccionNivel/honda.png');
         this.load.image('hacha', 'assets/Interfaz/SeleccionNivel/hacha.png');
         this.load.image('hachaB', 'assets/Interfaz/SeleccionNivel/hachaB.png');
@@ -59,7 +63,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('fusil', 'assets/Interfaz/SeleccionNivel/fusil.png');
         this.load.image('fusilB', 'assets/Interfaz/SeleccionNivel/fusilB.png');
 
-
+        /*
         //Assets Prehistoria
         this.load.image('preMap', 'assets/Fondos/1.Prehistoria/Background.png');
         this.load.image('preObj1', 'assets/Objetos/1.Prehistoria/object_log.png');
@@ -157,7 +161,7 @@ class bootScene extends Phaser.Scene {
 
         this.load.image('PauseBON', 'assets/Interfaz/PauseButton.png');
         this.load.image('PauseBOFF', 'assets/Interfaz/PauseButtonOFF.png');
-
+*/
         this.load.image('PauseMenu', 'assets/Interfaz/Menu/fondoBlanco.png');
         this.load.image('PauseTitle', 'assets/Interfaz/Menu/tituloPaused.png');
         this.load.image('PauseTitlei', 'assets/Interfaz/Menu/tituloPausedi.png');
@@ -174,6 +178,30 @@ class bootScene extends Phaser.Scene {
         this.load.image('flechaDerecha', 'assets/Interfaz/Tienda/flechaDerecha.png');
         this.load.image('flechaIzquierda', 'assets/Interfaz/Tienda/flechaIzquierda.png');
         this.load.image('coins', 'assets/Interfaz/Tienda/coins.png');
+        //Español
+        this.load.image('tituloTienda','assets/Interfaz/Tienda/tituloTienda.png');
+        this.load.image('botonMapas', 'assets/Interfaz/Tienda/botonMapas.png');
+        this.load.image('botonPersonajes', 'assets/Interfaz/Tienda/botonPersonajes.png');
+        this.load.image('botonArmas', 'assets/Interfaz/Tienda/botonArmas.png');
+        this.load.image('botonPaquetes', 'assets/Interfaz/Tienda/botonPaquetes.png');
+        this.load.image('botonRecargar', 'assets/Interfaz/Tienda/botonRecargar.png');
+        this.load.image('mensajeDesbloquear', 'assets/Interfaz/Tienda/mensajeDesbloquear.png');
+        this.load.image('mensajeModoMultijugador', 'assets/Interfaz/Tienda/mensajeModoMultijugador.png');
+
+        this.load.image('botonDesbloquearNo', 'assets/Interfaz/Tienda/botonDesbloquearNo.png');
+        this.load.image('botonDesbloquearSi', 'assets/Interfaz/Tienda/botonDesbloquearSi.png');
+        this.load.image('botonSalir', 'assets/Interfaz/Tienda/botonSalir.png');
+        
+        //Ingles
+        this.load.image('tituloTiendai','assets/Interfaz/Tienda/tituloTiendai.png');
+        this.load.image('botonMapasi', 'assets/Interfaz/Tienda/botonMapasi.png');
+        this.load.image('botonPersonajesi', 'assets/Interfaz/Tienda/botonPersonajesi.png');
+        this.load.image('botonArmasi', 'assets/Interfaz/Tienda/botonArmasi.png');
+        this.load.image('botonPaquetesi', 'assets/Interfaz/Tienda/botonPaquetesi.png');
+        this.load.image('botonRecargari', 'assets/Interfaz/Tienda/botonRecargari.png');
+        this.load.image('mensajeDesbloqueari', 'assets/Interfaz/Tienda/mensajeDesbloqueari.png');
+        this.load.image('mensajeModoMultijugadori', 'assets/Interfaz/Tienda/mensajeModoMultijugadori.png');
+
         //Assets español
         this.load.image('tituloMapas', 'assets/Interfaz/Tienda/Mapas/tituloMapas.png');
 
@@ -184,7 +212,8 @@ class bootScene extends Phaser.Scene {
         this.load.image('edadMediaDesbloqueado', 'assets/Interfaz/Tienda/Mapas/edadMediaDesbloqueado.png');
         this.load.image('revIndustrialBloqueado', 'assets/Interfaz/Tienda/Mapas/revIndustrialBloqueado.png');
         this.load.image('revIndustrialDesbloqueado', 'assets/Interfaz/Tienda/Mapas/revIndustrialDesbloqueado.png');
-
+        this.load.image('actualidadBloqueado', 'assets/Interfaz/Tienda/Mapas/actualidadBloqueado.png');
+        this.load.image('actualidadDesbloqueado', 'assets/Interfaz/Tienda/Mapas/actualidadDesbloqueado.png');
         //Assets ingles
         this.load.image('tituloMapasi', 'assets/Interfaz/Tienda/Mapas/tituloMapasi.png');
 
@@ -195,6 +224,8 @@ class bootScene extends Phaser.Scene {
         this.load.image('edadMediaDesbloqueadoi', 'assets/Interfaz/Tienda/Mapas/edadMediaDesbloqueadoi.png');
         this.load.image('revIndustrialBloqueadoi', 'assets/Interfaz/Tienda/Mapas/revIndustrialBloqueadoi.png');
         this.load.image('revIndustrialDesbloqueadoi', 'assets/Interfaz/Tienda/Mapas/revIndustrialDesbloqueadoi.png');
+        this.load.image('actualidadBloqueadoi', 'assets/Interfaz/Tienda/Mapas/actualidadBloqueadoi.png');
+        this.load.image('actualidadDesbloqueadoi', 'assets/Interfaz/Tienda/Mapas/actualidadDesbloqueadoi.png');
 
         //Personajes
         this.load.image('flechaDerecha', 'assets/Interfaz/Tienda/flechaDerecha.png');
@@ -230,6 +261,10 @@ class bootScene extends Phaser.Scene {
         this.load.image('SirRodrickBS', 'assets/Interfaz/SeleccionNivel/SirRodrickB.png');
         this.load.image('ThomasS', 'assets/Interfaz/SeleccionNivel/Thomas.png');
         this.load.image('ThomasBS', 'assets/Interfaz/SeleccionNivel/ThomasB.png');
+
+        this.load.image('itemBl', 'assets/Interfaz/SeleccionNivel/itemBloqueado.png');
+        this.load.image('itemBli', 'assets/Interfaz/SeleccionNivel/itemBloqueadoi.png');
+        
         //Assets español
         this.load.image('tituloPersonajes', 'assets/Interfaz/Tienda/Personajes/tituloPersonajes.png');
         this.load.image('mensajeDesbloquear', 'assets/Interfaz/Tienda/mensajeDesbloquear.png');
@@ -243,6 +278,64 @@ class bootScene extends Phaser.Scene {
         this.load.image('jugador2', 'assets/Interfaz/SeleccionNivel/Jugador2.png');
         this.load.image('jugador2i', 'assets/Interfaz/SeleccionNivel/Jugador2.png');
 
+        //Assets armas
+        //Assets español
+        this.load.image('tituloArmas', 'assets/Interfaz/Tienda/Armas/tituloArmas.png');
+        this.load.image('hondaDesbloqueado', 'assets/Interfaz/Tienda/Armas/hondaDesbloqueado.png');
+        this.load.image('hachaDesbloqueado', 'assets/Interfaz/Tienda/Armas/hachaDesbloqueado.png');
+        this.load.image('hachaBloqueado', 'assets/Interfaz/Tienda/Armas/hachaBloqueado.png');
+        this.load.image('ballestaDesbloqueado', 'assets/Interfaz/Tienda/Armas/ballestaDesbloqueado.png');
+        this.load.image('ballestaBloqueado', 'assets/Interfaz/Tienda/Armas/ballestaBloqueado.png');
+        this.load.image('mosqueteDesbloqueado', 'assets/Interfaz/Tienda/Armas/mosqueteDesbloqueado.png');
+        this.load.image('mosqueteBloqueado', 'assets/Interfaz/Tienda/Armas/mosqueteBloqueado.png');
+        this.load.image('fusilDesbloqueado', 'assets/Interfaz/Tienda/Armas/fusilDesbloqueado.png');
+        this.load.image('fusilBloqueado', 'assets/Interfaz/Tienda/Armas/fusilBloqueado.png');
+        //Assets ingles
+        this.load.image('tituloArmasi', 'assets/Interfaz/Tienda/Armas/tituloArmasi.png');
+        this.load.image('hondaDesbloqueadoi', 'assets/Interfaz/Tienda/Armas/hondaDesbloqueadoi.png');
+        this.load.image('hachaDesbloqueadoi', 'assets/Interfaz/Tienda/Armas/hachaDesbloqueadoi.png');
+        this.load.image('hachaBloqueadoi', 'assets/Interfaz/Tienda/Armas/hachaBloqueadoi.png');
+        this.load.image('ballestaDesbloqueadoi', 'assets/Interfaz/Tienda/Armas/ballestaDesbloqueadoi.png');
+        this.load.image('ballestaBloqueadoi', 'assets/Interfaz/Tienda/Armas/ballestaBloqueadoi.png');
+        this.load.image('mosqueteDesbloqueadoi', 'assets/Interfaz/Tienda/Armas/mosqueteDesbloqueadoi.png');
+        this.load.image('mosqueteBloqueadoi', 'assets/Interfaz/Tienda/Armas/mosqueteBloqueadoi.png');
+        this.load.image('fusilDesbloqueadoi', 'assets/Interfaz/Tienda/Armas/fusilDesbloqueadoi.png');
+        this.load.image('fusilBloqueadoi', 'assets/Interfaz/Tienda/Armas/fusilBloqueadoi.png');
+
+
+        //Assets paquetes
+        //Assets español
+        this.load.image('tituloPaquetes', 'assets/Interfaz/Tienda/Paquetes/tituloPaquetes.png');
+        this.load.image('bundleEgipto', 'assets/Interfaz/Tienda/Paquetes/bundleEgipto.png');
+        this.load.image('bundleEgipto+', 'assets/Interfaz/Tienda/Paquetes/bundleEgipto+.png');
+        this.load.image('bundleEdadMedia', 'assets/Interfaz/Tienda/Paquetes/bundleEdadMedia.png');
+        this.load.image('bundleEdadMedia+', 'assets/Interfaz/Tienda/Paquetes/bundleEdadMedia+.png');
+        this.load.image('bundleRevIndustrial', 'assets/Interfaz/Tienda/Paquetes/bundleRevIndustrial.png');
+        //Assets ingles
+        this.load.image('tituloPaquetesi', 'assets/Interfaz/Tienda/Paquetes/tituloPaquetesi.png');
+        this.load.image('bundleEgiptoi', 'assets/Interfaz/Tienda/Paquetes/bundleEgiptoi.png');
+        this.load.image('bundleEgipto+i', 'assets/Interfaz/Tienda/Paquetes/bundleEgipto+i.png');
+        this.load.image('bundleEdadMediai', 'assets/Interfaz/Tienda/Paquetes/bundleEdadMediai.png');
+        this.load.image('bundleEdadMedia+i', 'assets/Interfaz/Tienda/Paquetes/bundleEdadMedia+i.png');
+        this.load.image('bundleRevIndustriali', 'assets/Interfaz/Tienda/Paquetes/bundleRevIndustriali.png');
+
+
+        //Assets recargar
+        //Assets español
+        this.load.image('tituloRecargar', 'assets/Interfaz/Tienda/Recargar/tituloRecargar.png');
+        this.load.image('500monedas','assets/Interfaz/Tienda/Recargar/500monedas.png');
+        this.load.image('1100monedas','assets/Interfaz/Tienda/Recargar/1100monedas.png');
+        this.load.image('1725monedas','assets/Interfaz/Tienda/Recargar/1725monedas.png');
+        this.load.image('3250monedas','assets/Interfaz/Tienda/Recargar/3250monedas.png');
+
+        //Assets ingles
+        this.load.image('tituloRecargari', 'assets/Interfaz/Tienda/Recargar/tituloRecargari.png');
+        this.load.image('500monedasi','assets/Interfaz/Tienda/Recargar/500monedasi.png');
+        this.load.image('1100monedasi','assets/Interfaz/Tienda/Recargar/1100monedasi.png');
+        this.load.image('1725monedasi','assets/Interfaz/Tienda/Recargar/1725monedasi.png');
+        this.load.image('3250monedasi','assets/Interfaz/Tienda/Recargar/3250monedasi.png');
+
+        /*
         //Assets multijugador
         //PersonajePrehistoria
         //Hacha
@@ -398,6 +491,7 @@ class bootScene extends Phaser.Scene {
         this.load.spritesheet('egiHeroeAKAttackIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Fusil/egipto_hero_fusil_attack_static_spritesheet.png',
             { frameWidth: 368, frameHeight: 541 });
 
+    */
     }
 
     create() {
