@@ -29,7 +29,7 @@
         backgroudColor: 0x000000,
         autoCenter: 1,
         scaleMode: 3,
-        scene: [bootScene, menuPrincipalScene, selectNivelHistoria, prehistoriaScene, egiptoScene, 
+        scene: [loadingScene,bootScene, menuPrincipalScene, selectNivelHistoria, prehistoriaScene, egiptoScene, 
              mediaScene, industrialScene, contempScene,
              multijugadorSeleccionScene, multijugadorPartidaScene,
              tiendaScene,tiendaMapasScene,tiendaPersonajesScene,tiendaArmasScene,
@@ -37,7 +37,6 @@
     }
 
 window.onload = function () {
-
     var game = new Phaser.Game(gameConfig);
     game.sound.pauseOnBlur = false;
     window.focus();

@@ -1,9 +1,13 @@
 class bootScene extends Phaser.Scene {
     constructor() {
         super("BootScene");
+        
     }
 
     preload() {
+        
+        this.Fondo = this.add.image(0, 0, 'fondo').setOrigin(0)
+        this.Fondo.setScale(gameConfig.scale.width / this.Fondo.width, gameConfig.scale.height / this.Fondo.height);
         //Assets menu principal
         this.load.image('botonPuntuaciones','assets/Interfaz/Menu/BotonPuntuaciones.png');
         this.load.image('botonPuntuacionesi','assets/Interfaz/Menu/BotonPuntuacionesi.png');
@@ -11,7 +15,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('botonInglesOn', 'assets/Interfaz/Menu/botonInglesOn.png');
         this.load.image('botonEspanolOff', 'assets/Interfaz/Menu/botonEspanolOff.png');
         this.load.image('botonInglesOff', 'assets/Interfaz/Menu/botonInglesOff.png');
-        this.load.image('fondo', 'assets/Interfaz/Menu/fondoMenuPrincipal.png');
+        
         this.load.image('fondoBlanco', 'assets/Interfaz/Menu/fondoBlanco.png');
         this.load.image('titulo','assets/Interfaz/Menu/titulo.png');
         this.load.image('botonPlay','assets/Interfaz/SeleccionNivel/play.png');
