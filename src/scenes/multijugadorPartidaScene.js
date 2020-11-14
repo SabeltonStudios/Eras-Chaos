@@ -6,8 +6,6 @@ class multijugadorPartidaScene extends Phaser.Scene {
     enemy;
     win;
     music;
-    weapon1;
-    weapon2;
     configPre = {
         classType: Phaser.GameObjects.Image,
         defaultKey: 'stone',
@@ -51,171 +49,91 @@ class multijugadorPartidaScene extends Phaser.Scene {
     }
 
     preload() {
-        /*this.load.image('mapaMed', 'assets/Fondos/3.EdadMedia/Background.png');
 
-        this.load.image('medApl', 'assets/Objetos/3.EdadMedia/object_apples.png');
-        this.load.image('medBar', 'assets/Objetos/3.EdadMedia/object_barrel.png');
-        this.load.image('medVas', 'assets/Objetos/3.EdadMedia/object_vase.png');
-
-        this.load.audio('medMusic', ['assets/Música/PrehistoriaFinal.mp3']);//, 'assets/Música/PrehistoriaFinal.ogg']);
-
-        //this.load.spritesheet('dude', 'assets/Interfaz/dude.png', { frameWidth: 32, frameHeight: 48 });
-        this.load.image('medPlayer','assets/Personajes/3.EdadMedia/BasicoEdadMedia.png');
-        this.load.image('stone', 'assets/Armas/ArmaPrehistoria.png');*/
 
     }
     create() {
         this.win = false;
         this.is_paused = false;
-        //this.cameras.main.zoom= 1.3;
         this.cameras.main.zoomTo(1.05, 1000);
         this.physics.world.bounds.setTo(92.5 * gameConfig.scale.width / 800, 69.5 * gameConfig.scale.width / 800, 615 * gameConfig.scale.height / 600, 461 * gameConfig.scale.height / 600);
         this.physics.world.setBoundsCollision(false, false, true, true);
-        switch (selectedWeapon1) {
-            case 0:
-                this.weapon1 = 'preWeapon';
-                break;
-            case 1:
-                this.weapon1 = 'egiWeapon';
-                this.anims.create({
-                    key: 'egishoot',
-                    frames: this.anims.generateFrameNumbers('egiWeapon', { start: 0, end: 7 }),
-                    frameRate: 20,
-                    repeat: -1
-                });
-                break;
-            case 2:
-                this.weapon1 = 'medWeapon';
-                break;
-            case 3:
-                this.weapon1 = 'indWeapon';
-                break;
-            case 4:
-                this.weapon1 = 'contWeapon';
-                break;
 
-        }
-        switch (selectedWeapon2) {
-            case 0:
-                this.weapon2 = 'preWeapon';
-                break;
-            case 1:
-                this.weapon2 = 'egiWeapon';
-                this.anims.create({
-                    key: 'egishoot',
-                    frames: this.anims.generateFrameNumbers('egiWeapon', { start: 0, end: 7 }),
-                    frameRate: 20,
-                    repeat: -1
-                });
-                break;
-            case 2:
-                this.weapon1 = 'medWeapon';
-                break;
-            case 3:
-                this.weapon1 = 'indWeapon';
-                break;
-            case 4:
-                this.weapon1 = 'contWeapon';
-                break;
-        }
-        switch (selectedMap) {
-            case 0:
-                this.Mapa = this.add.image(0, 0, 'preMap').setOrigin(0);
-                this.selectedMusic = 'preMusic';
-                this.obs1 = 'preLog';
-                this.obs2 = 'preSkull';
-                this.obs3 = 'preStone';
-                break;
-            case 1:
-                this.Mapa = this.add.image(0, 0, 'egiMap').setOrigin(0);
-                this.selectedMusic = 'egiMusic';
-                this.obs1 = 'egiCat';
-                this.obs2 = 'egiCup';
-                this.obs3 = 'egiPyr';
-                break;
-            case 2:
-                this.Mapa = this.add.image(0, 0, 'mapaMed').setOrigin(0);
-                this.obs1 = 'medApl';
-                this.obs2 = 'medBar';
-                this.obs3 = 'medVas';
-                break;
-            case 3:
-                this.Mapa = this.add.image(0, 0, 'mapaInd').setOrigin(0)
-                this.obs1 = 'indGear';
-                this.obs2 = 'indTool';
-                this.obs3 = 'indWheel';
-                break;
-            case 4:
-                this.Mapa = this.add.image(0, 0, 'mapaCont').setOrigin(0)
-                break;
-        }
         if (this.music == null) {
-            this.music = this.sound.add(this.selectedMusic);
+            this.music = this.sound.add(mapas[selectedMap].nombre + 'Music');
         }
-        this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
+        this.Mapa = this.add.image(0, 0, mapas[selectedMap].nombre + 'Map').setOrigin(0).setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
 
-        this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, personajes[selectedChar1].nombre+'Player'+armas[selectedWeapon1].nombre).setScale(0.07 * gameConfig.scale.height / 600)
-        this.enemy = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, personajes[selectedChar2].nombre+'Player'+armas[selectedWeapon2].nombre).setScale(0.07 * gameConfig.scale.height / 600)
+        this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre).setScale(0.07 * gameConfig.scale.height / 600)
+        this.enemy = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, personajes[selectedChar2].nombre + 'Player' + armas[selectedWeapon2].nombre).setScale(0.07 * gameConfig.scale.height / 600)
+        if (armas[selectedWeapon1].nombre === 'egi' || armas[selectedWeapon2].nombre === 'egi') {
+            this.anims.create({
+                key: 'egishoot',
+                frames: this.anims.generateFrameNumbers('egiWeapon', { start: 0, end: 7 }),
+                frameRate: 20,
+                repeat: -1
+            });
+        }
         this.anims.create({
-            key: personajes[selectedChar1].nombre+'Player'+armas[selectedWeapon1].nombre,
-            frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre+'Player'+armas[selectedWeapon1].nombre, { start: 0, end: armas[selectedWeapon1].frames[0] }),
-            frameRate: 20,
+            key: personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre,
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre, { start: 0, end: armas[selectedWeapon1].frames[0] }),
+            frameRate: 32,
             repeat: -1
         });
         this.anims.create({
-            key: personajes[selectedChar1].nombre+'Player'+armas[selectedWeapon1].nombre+'Idle',
-            frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre+'Player'+armas[selectedWeapon1].nombre+'Idle', { start: 0, end: armas[selectedWeapon1].frames[1] }),
-            frameRate: 20,
+            key: personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle',
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle', { start: 0, end: armas[selectedWeapon1].frames[1] }),
+            frameRate: 32,
             repeat: -1
-        }); 
+        });
         this.anims.create({
-            key: personajes[selectedChar1].nombre+'Player'+armas[selectedWeapon1].nombre+'Attacking',
-            frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre+'Player'+armas[selectedWeapon1].nombre+'Attacking', { start: 0, end: armas[selectedWeapon1].frames[2] }),
-            frameRate: 20,
+            key: personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Attacking',
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Attacking', { start: 0, end: armas[selectedWeapon1].frames[2] }),
+            frameRate: 64,
             repeat: 0
-        });       
+        });
         this.anims.create({
-            key: personajes[selectedChar1].nombre+'Player'+armas[selectedWeapon1].nombre+'AttackingIdle',
-            frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre+'Player'+armas[selectedWeapon1].nombre+'AttackingIdle', { start: 0, end: armas[selectedWeapon1].frames[3] }),
-            frameRate: 20,
+            key: personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'AttackingIdle',
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'AttackingIdle', { start: 0, end: armas[selectedWeapon1].frames[3] }),
+            frameRate: 64,
             repeat: 0
         });
 
         this.anims.create({
-            key: personajes[selectedChar2].nombre+'Player2'+armas[selectedWeapon2].nombre,
-            frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre+'Player'+armas[selectedWeapon2].nombre, { start: 0, end: armas[selectedWeapon2].frames[0] }),
-            frameRate: 20,
+            key: personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre,
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre + 'Player' + armas[selectedWeapon2].nombre, { start: 0, end: armas[selectedWeapon2].frames[0] }),
+            frameRate: 32,
             repeat: -1
         });
         this.anims.create({
-            key: personajes[selectedChar2].nombre+'Player2'+armas[selectedWeapon2].nombre+'Idle',
-            frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre+'Player'+armas[selectedWeapon2].nombre+'Idle', { start: 0, end: armas[selectedWeapon2].frames[1] }),
-            frameRate: 20,
+            key: personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'Idle',
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre + 'Player' + armas[selectedWeapon2].nombre + 'Idle', { start: 0, end: armas[selectedWeapon2].frames[1] }),
+            frameRate: 32,
             repeat: -1
-        }); 
+        });
         this.anims.create({
-            key: personajes[selectedChar2].nombre+'Player2'+armas[selectedWeapon2].nombre+'Attacking',
-            frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre+'Player'+armas[selectedWeapon2].nombre+'Attacking', { start: 0, end: armas[selectedWeapon2].frames[2] }),
-            frameRate: 20,
+            key: personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'Attacking',
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre + 'Player' + armas[selectedWeapon2].nombre + 'Attacking', { start: 0, end: armas[selectedWeapon2].frames[2] }),
+            frameRate: 64,
             repeat: 0
-        });       
+        });
         this.anims.create({
-            key: personajes[selectedChar2].nombre+'Player2'+armas[selectedWeapon2].nombre+'AttackingIdle',
-            frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre+'Player'+armas[selectedWeapon2].nombre+'AttackingIdle', { start: 0, end: armas[selectedWeapon2].frames[3] }),
-            frameRate: 20,
+            key: personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'AttackingIdle',
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre + 'Player' + armas[selectedWeapon2].nombre + 'AttackingIdle', { start: 0, end: armas[selectedWeapon2].frames[3] }),
+            frameRate: 64,
             repeat: 0
-        });                         
-        
+        });
+
         this.player.body.immovable = true;
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
-        this.player.anims.play('walk', true);
+        //this.player.anims.play('walk', true);
         this.player.setVelocity(0, -200 * gameConfig.scale.height / 600);
         this.player.setBounce(1);
         this.player.body.setAllowGravity(false);
         this.player.setCollideWorldBounds(true);
 
-        this.enemy.anims.play('walk', true);
+        //this.enemy.anims.play('walk', true);
         this.enemy.setVelocity(0, 240 * gameConfig.scale.height / 600);
         this.enemy.setBounce(1);
         this.enemy.body.setAllowGravity(false);
@@ -251,24 +169,24 @@ class multijugadorPartidaScene extends Phaser.Scene {
 
         this.obstacles = this.physics.add.group(this.ObstaclesConfig);
         this.obstacles.setOrigin(0.5, 0.5);
-        this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, this.obs2).setScale(0.2 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(120, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, this.obs2).setScale(0.15 * gameConfig.scale.height / 600).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, this.obs3).setScale(0.2 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, mapas[selectedMap].nombre + 'Obj2').setScale(0.2 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, mapas[selectedMap].nombre + 'Obj2').setScale(0.15 * gameConfig.scale.height / 600).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, mapas[selectedMap].nombre + 'Obj3').setScale(0.2 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(120, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, this.obs1).setScale(0.2 * gameConfig.scale.height / 600).body.setCircle(120, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, this.obs3).setScale(0.2 * gameConfig.scale.height / 600).body.setCircle(120, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.59, this.obs1).setScale(0.15 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, this.obs2).setScale(0.2 * gameConfig.scale.height / 600).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, mapas[selectedMap].nombre + 'Obj1').setScale(0.2 * gameConfig.scale.height / 600).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, mapas[selectedMap].nombre + 'Obj3').setScale(0.2 * gameConfig.scale.height / 600).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.59, mapas[selectedMap].nombre + 'Obj1').setScale(0.15 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, mapas[selectedMap].nombre + 'Obj2').setScale(0.2 * gameConfig.scale.height / 600).body.setCircle(120, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, this.obs3).setScale(0.15 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.29, gameConfig.scale.height * 0.73, this.obs1).setScale(0.15 * gameConfig.scale.height / 600).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.29, this.obs3).setScale(0.15 * gameConfig.scale.height / 600).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.75, this.obs2).setScale(0.20 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, mapas[selectedMap].nombre + 'Obj3').setScale(0.15 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.29, gameConfig.scale.height * 0.73, mapas[selectedMap].nombre + 'Obj1').setScale(0.15 * gameConfig.scale.height / 600).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.29, mapas[selectedMap].nombre + 'Obj3').setScale(0.15 * gameConfig.scale.height / 600).body.setCircle(115, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.75, mapas[selectedMap].nombre + 'Obj2').setScale(0.20 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(120, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, this.obs1).setScale(0.25 * gameConfig.scale.height / 600).body.setCircle(125, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, this.obs2).setScale(0.25 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(125, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, this.obs3).setScale(0.30 * gameConfig.scale.height / 600).body.setCircle(130, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, this.obs1).setScale(0.25 * gameConfig.scale.height / 600).body.setCircle(125, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, mapas[selectedMap].nombre + 'Obj1').setScale(0.25 * gameConfig.scale.height / 600).body.setCircle(125, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, mapas[selectedMap].nombre + 'Obj2').setScale(0.25 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(125, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, mapas[selectedMap].nombre + 'Obj3').setScale(0.30 * gameConfig.scale.height / 600).body.setCircle(130, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, mapas[selectedMap].nombre + 'Obj1').setScale(0.25 * gameConfig.scale.height / 600).body.setCircle(125, 40, 20).setAllowGravity(false);
 
         this.physics.add.collider(wallR, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallL, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
@@ -300,7 +218,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             .on('pointerout', () => this.spriteParar.setTexture('FreezeBON'));
 
         this.spriteDisparar = this.add.sprite(gameConfig.scale.width / 16, gameConfig.scale.height * 11 / 12, 'ShootBON').setScale(0.1 * gameConfig.scale.width / 800);
-        this.spriteDisparar.setInteractive().on('pointerdown', () => this.fire() /*animar disparo */)
+        this.spriteDisparar.setInteractive().on('pointerdown', () => this.fire(true) /*animar disparo */)
             .on('pointerdown', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('pointerup', () => this.spriteDisparar.setTexture('ShootBON'))
             .on('pointerout', () => this.spriteDisparar.setTexture('ShootBON'));
@@ -315,7 +233,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             .on('pointerout', () => this.spriteParar2.setTexture('FreezeBON'));
 
         this.spriteDisparar2 = this.add.sprite(gameConfig.scale.width * 15 / 16, gameConfig.scale.height * 11 / 12, 'ShootBON').setScale(0.1 * gameConfig.scale.width / 800);
-        this.spriteDisparar2.setInteractive().on('pointerdown', () => this.fire2() /*animar disparo */)
+        this.spriteDisparar2.setInteractive().on('pointerdown', () => this.fire(false) /*animar disparo */)
             .on('pointerdown', () => this.spriteDisparar2.setTexture('ShootBOFF'))
             .on('pointerup', () => this.spriteDisparar2.setTexture('ShootBON'))
             .on('pointerout', () => this.spriteDisparar2.setTexture('ShootBON'));
@@ -338,7 +256,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             .on('up', () => this.spriteParar.setTexture('FreezeBON'));
 
         this.shootInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
-        this.shootInput.on('down', () => this.fire())
+        this.shootInput.on('down', () => this.fire(true))
             .on('down', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('up', () => this.spriteDisparar.setTexture('ShootBON'));
         //Player 2
@@ -349,7 +267,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             .on('up', () => this.spriteParar2.setTexture('FreezeBON'));
 
         this.shootInput2 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
-        this.shootInput2.on('down', () => this.fire2())
+        this.shootInput2.on('down', () => this.fire(false))
             .on('down', () => this.spriteDisparar2.setTexture('ShootBOFF'))
             .on('up', () => this.spriteDisparar2.setTexture('ShootBON'));
 
@@ -428,28 +346,44 @@ class multijugadorPartidaScene extends Phaser.Scene {
         }
 
     }
-    fire() {
-        if (this.bulletsPre.isFull()) {
-            //bullets.remove(bullets.getFirst(true), true);
-            this.bulletsPre.getFirst(true).destroy();
+    fire(pl1) {
+        if (pl1 === true) {
+            if (this.bulletsPre.isFull()) {
+                this.bulletsPre.getFirst(true).destroy();
+            }
+
+            if (armas[selectedWeapon1].nombre === 'egi') {
+                this.bomb = this.physics.add.sprite(this.enemy.x + this.enemy.width / 3, this.enemy.y - this.enemy.height / 3, armas[selectedWeapon1].nombre + 'Weapon').setScale(0.15 * gameConfig.scale.height / 600);
+                this.bomb.play("egishoot");
+            } else {
+                this.bomb = this.physics.add.sprite(this.player.x + 10, this.player.y, armas[selectedWeapon1].nombre + 'Weapon').setScale(0.15 * gameConfig.scale.height / 600);
+            }
+
+            this.bomb.setTint(0x85baff);
+            this.bulletsPre.add(this.bomb);
+
+            this.bomb.body.setAllowGravity(false);
+            this.bomb.body.setVelocity(500 * gameConfig.scale.height / 600, 0);
+            this.bomb.body.setCircle(50, 0, 0);
+            this.bomb.angle = 90;
+        } else {
+            if (this.bulletsEnemy.isFull()) {
+                this.bulletsEnemy.getFirst(true).destroy();
+            }
+            if (armas[selectedWeapon1].nombre === 'egi') {
+                this.bomb = this.physics.add.sprite(this.enemy.x + this.enemy.width / 3, this.enemy.y - this.enemy.height / 3, armas[selectedWeapon1].nombre + 'Weapon').setScale(0.15 * gameConfig.scale.height / 600);
+                this.bomb.play("egishoot");
+            } else {
+                this.bomb = this.physics.add.sprite(this.enemy.x - 10, this.enemy.y, armas[selectedWeapon2].nombre + 'Weapon').setScale(0.15 * gameConfig.scale.height / 600);
+            }
+            this.bomb.setTint(0xff7e7d);
+            this.bulletsEnemy.add(this.bomb);
+
+            this.bomb.body.setAllowGravity(false);
+            this.bomb.body.setVelocity(-500 * gameConfig.scale.height / 600, 0);
+            this.bomb.body.setCircle(50, 0, 0);
+            this.bomb.angle = 270;
         }
-        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, this.weapon1).setScale(0.15 * gameConfig.scale.height / 600);
-        bomb.setTint(0x85baff);
-        //bomb.setOrigin(0,1);
-        bomb.body.setAllowGravity(false);
-        bomb.body.setVelocity(500 * gameConfig.scale.height / 600, 0);
-        bomb.body.setCircle(50, 0, 0);
-        bomb.angle = 90;
     }
-    fire2() {
-        if (this.bulletsEnemy.isFull()) {
-            this.bulletsEnemy.getFirst(true).destroy();
-        }
-        this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, this.weapon2).setScale(0.15 * gameConfig.scale.height / 600);
-        this.bomb.setTint(0xff7e7d);
-        this.bomb.body.setAllowGravity(false);
-        this.bomb.body.setVelocity(-500 * gameConfig.scale.height / 600, 0);
-        this.bomb.body.setCircle(50, 0, 0);
-        this.bomb.angle = 270;
-    }
+
 }

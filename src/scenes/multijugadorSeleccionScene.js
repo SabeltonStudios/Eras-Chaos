@@ -251,7 +251,7 @@ class multijugadorSeleccionScene extends Phaser.Scene {
         } else {
             this.personajesButton[5] = this.add.sprite((gameConfig.scale.width / 8) + 240, gameConfig.scale.height / 1.55, personajes[5].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
         }
-        this.personajesButton[5].setInteractive().on('pointerdown', () => { if (!personajes[5].bloqueado) selectedChar1 = 5 + this.personajesPosicion; this.tdeleteTint(1, 5); });
+        this.personajesButton[5].setInteractive().on('pointerdown', () => { if (!personajes[5].bloqueado) selectedChar1 = 5 + this.personajesPosicion; this.deleteTint(1, 5); });
 
         //Flechas derecha e izquierda
         this.spriteIzquierda = this.add.sprite((gameConfig.scale.width / 8) - 100, gameConfig.scale.height * 7 / 12, 'flechaIzquierda').setScale(0.2 * gameConfig.scale.height / 600);

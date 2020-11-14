@@ -47,9 +47,9 @@ class bootScene extends Phaser.Scene {
 
         //Assets Prehistoria
         this.load.image('preMap', 'assets/Fondos/1.Prehistoria/Background.png');
-        this.load.image('preLog', 'assets/Objetos/1.Prehistoria/object_log.png');
-        this.load.image('preSkull', 'assets/Objetos/1.Prehistoria/object_skull.png');
-        this.load.image('preStone', 'assets/Objetos/1.Prehistoria/object_stone.png');
+        this.load.image('preObj1', 'assets/Objetos/1.Prehistoria/object_log.png');
+        this.load.image('preObj2', 'assets/Objetos/1.Prehistoria/object_skull.png');
+        this.load.image('preObj3', 'assets/Objetos/1.Prehistoria/object_stone.png');
         this.load.audio('preMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
         this.load.image('preWeapon', 'assets/Armas/ArmaPrehistoria.png');
         this.load.spritesheet('prePlayerHonda','assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basico_honda_idle_moving_spritesheet.png',
@@ -73,9 +73,9 @@ class bootScene extends Phaser.Scene {
         this.load.image('rectanguloEgipto', 'assets/Fondos/2.AntiguoEgipto/RectanguloCentral.png');
         this.load.image('columnaC', 'assets/Fondos/2.AntiguoEgipto/ColumnUp.png');
         this.load.image('columnaD', 'assets/Fondos/2.AntiguoEgipto/ColumnRight.png');
-        this.load.image('egiCat', 'assets/Objetos/2.AntiguoEgipto/object_cats.png');
-        this.load.image('egiCup', 'assets/Objetos/2.AntiguoEgipto/object_cup.png');
-        this.load.image('egiPyr', 'assets/Objetos/2.AntiguoEgipto/object_pyramid.png');
+        this.load.image('egiObj1', 'assets/Objetos/2.AntiguoEgipto/object_cats.png');
+        this.load.image('egiObj2', 'assets/Objetos/2.AntiguoEgipto/object_cup.png');
+        this.load.image('egiObj3', 'assets/Objetos/2.AntiguoEgipto/object_pyramid.png');
         this.load.audio('egiMusic', ['assets/Música/Egipto.mp3', 'assets/Música/Egipto.ogg']);
         //this.load.spritesheet('dude', 'assets/Interfaz/dude.png', { frameWidth: 32, frameHeight: 48 });
         this.load.image('egiPlayer', 'assets/Personajes/2.AntiguoEgipto/BasicoEgipto.png');
@@ -90,18 +90,18 @@ class bootScene extends Phaser.Scene {
         { frameWidth: 534, frameHeight: 526 })
         //Assets Edad Media
         this.load.image('medMap', 'assets/Fondos/3.EdadMedia/Background.png');
-        this.load.image('medApl', 'assets/Objetos/3.EdadMedia/object_apples.png');
-        this.load.image('medBar', 'assets/Objetos/3.EdadMedia/object_barrel.png');
-        this.load.image('medVas', 'assets/Objetos/3.EdadMedia/object_vase.png');
+        this.load.image('medObj1', 'assets/Objetos/3.EdadMedia/object_apples.png');
+        this.load.image('medObj2', 'assets/Objetos/3.EdadMedia/object_barrel.png');
+        this.load.image('medObj3', 'assets/Objetos/3.EdadMedia/object_vase.png');
         this.load.audio('medMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
         this.load.image('medPlayer','assets/Personajes/3.EdadMedia/BasicoEdadMedia.png');
         this.load.image('medWeapon', 'assets/Armas/ballesta-saeta.png')
         
         //Assets Revolución Industrial
         this.load.image('indMap', 'assets/Fondos/4.RevolucionIndustrial/Background.png');
-        this.load.image('indGear', 'assets/Objetos/4.RevolucionIndustrial/object_gear.png');
-        this.load.image('indTool', 'assets/Objetos/4.RevolucionIndustrial/object_toolbox.png');
-        this.load.image('indWheel', 'assets/Objetos/4.RevolucionIndustrial/object_wheel.png');
+        this.load.image('indObj1', 'assets/Objetos/4.RevolucionIndustrial/object_gear.png');
+        this.load.image('indObj2', 'assets/Objetos/4.RevolucionIndustrial/object_toolbox.png');
+        this.load.image('indObj3', 'assets/Objetos/4.RevolucionIndustrial/object_wheel.png');
         this.load.audio('indMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
         this.load.image('indPlayer','assets/Personajes/4.RevIndustrial/BasicoRevIndustrial.png');
         this.load.image('indWeapon', 'assets/Armas/mosquete-bala.png');

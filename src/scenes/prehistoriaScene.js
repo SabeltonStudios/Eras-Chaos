@@ -51,35 +51,7 @@ class prehistoriaScene extends Phaser.Scene {
     }
 
     preload() {
-        /*this.load.image('mapaPre', 'assets/Fondos/1.Prehistoria/Background.png');
-
-        this.load.image('FreezeBON', 'assets/Interfaz/FreezeButton.png');
-        this.load.image('FreezeBOFF', 'assets/Interfaz/FreezeButtonOFF.png');
-
-        this.load.image('ShootBON', 'assets/Interfaz/ShootButton.png');
-        this.load.image('ShootBOFF', 'assets/Interfaz/ShootButtonOFF.png');
-
-        this.load.image('PauseBON', 'assets/Interfaz/PauseButton.png');
-        this.load.image('PauseBOFF', 'assets/Interfaz/PauseButtonOFF.png');
-
-        this.load.image('PauseMenu', 'assets/Interfaz/Menu/fondoBlanco.png');
-        this.load.image('PauseTitle', 'assets/Interfaz/Menu/tituloPaused.png');
-        this.load.image('PauseTitlei', 'assets/Interfaz/Menu/tituloPausedi.png');
-        this.load.image('botonMenuPral', 'assets/Interfaz/Menu/MainMenu.png');
-        this.load.image('botonMenuPrali', 'assets/Interfaz/Menu/MainMenui.png');
-        this.load.image('botonTienda', 'assets/Interfaz/Menu/botonTienda.png');
-        this.load.image('botonTiendai', 'assets/Interfaz/Menu/botonTiendai.png');
-
-        this.load.image('preLog', 'assets/Objetos/1.Prehistoria/object_log.png');
-        this.load.image('preSkull', 'assets/Objetos/1.Prehistoria/object_skull.png');
-        this.load.image('preStone', 'assets/Objetos/1.Prehistoria/object_stone.png');
-
-        this.load.audio('preMusic', ['assets/Música/PrehistoriaFinal.mp3']);//, 'assets/Música/PrehistoriaFinal.ogg']);
-
-        //this.load.spritesheet('dude', 'assets/Interfaz/dude.png', { frameWidth: 32, frameHeight: 48 });
-        this.load.image('prePlayer','assets/Personajes/1.Prehistoria/BasicoPrehistoria.png');
-        this.load.image('stone', 'assets/Armas/ArmaPrehistoria.png');*/
-
+        
     }
     create() {
         if (this.music == null) {
@@ -91,7 +63,6 @@ class prehistoriaScene extends Phaser.Scene {
         this.gameOver = false;
         this.win = false;
         this.is_paused = false;
-        //this.cameras.main.zoom= 1.3;
         this.cameras.main.zoomTo(1.05, 1000);
 
         this.physics.world.bounds.setTo(92.5 * gameConfig.scale.width / 800, 69.5 * gameConfig.scale.width / 800, 615 * gameConfig.scale.height / 600, 461 * gameConfig.scale.height / 600);
@@ -183,32 +154,32 @@ class prehistoriaScene extends Phaser.Scene {
         wallD.body.immovable = true;
 
         this.bulletsPre = this.physics.add.group(this.configPre);
-        Phaser.Actions.Call(this.bulletsPre.getChildren(), function (bullet) {
-            //if(bullet.position.x>gameConfig.scale.width){bullet.destroy();}
-        });
+        //↓quitar?
+        Phaser.Actions.Call(this.bulletsPre.getChildren(), function (bullet) {});
         this.bulletsEnemy = this.physics.add.group(this.EnemyConfigPre);
+        //↓quitar?
         Phaser.Actions.Call(this.bulletsEnemy.getChildren(), function (bullet) { });
 
         this.obstacles = this.physics.add.group(this.ObstaclesConfig);
         this.obstacles.setOrigin(0.5, 0.5);
-        this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'preStone').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
-        //this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, 'preLog').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, 'preSkull').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'preObj3').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
+        //this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, 'preObj1').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, 'preObj2').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(120, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'preStone').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
-        //this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, 'preSkull').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
-        //.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.62, 'preStone').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'preLog').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'preObj3').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+        //this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, 'preObj2').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        //.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.62, 'preObj3').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'preObj1').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, 'preSkull').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
-        //this.obstacles.create(gameConfig.scale.width * 0.31, gameConfig.scale.height * 0.7, 'preLog').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
-        //this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.32, 'preSkull').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.7, 'preLog').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, 'preObj2').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
+        //this.obstacles.create(gameConfig.scale.width * 0.31, gameConfig.scale.height * 0.7, 'preObj1').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+        //this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.32, 'preObj2').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.7, 'preObj1').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'preStone').setScale(0.12 * gameConfig.scale.height / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
-        //this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, 'preLog').setScale(0.1 * gameConfig.scale.height / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
-        //this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'preSkull').setScale(0.12 * gameConfig.scale.height / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'preStone').setScale(0.1 * gameConfig.scale.height / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'preObj3').setScale(0.12 * gameConfig.scale.height / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        //this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, 'preObj1').setScale(0.1 * gameConfig.scale.height / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
+        //this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'preObj2').setScale(0.12 * gameConfig.scale.height / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'preObj3').setScale(0.1 * gameConfig.scale.height / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
 
         this.physics.add.collider(wallR, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallL, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
@@ -488,10 +459,10 @@ class prehistoriaScene extends Phaser.Scene {
     fire() {
         if (this.spriteParar.isDown || this.freezeInput.isDown) {
             this.player.anims.play("prePlayerHondaAttackIdle", false)
-                .on('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("prePlayerHondaIdle", true) } });
+                .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("prePlayerHondaIdle", true) } });
         } else {
             this.player.anims.play("prePlayerHondaAttack", false)
-                .on('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("prePlayerHondaMoving", false) } });
+                .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("prePlayerHondaMoving", false) } });
         }
         if (this.bulletsPre.isFull()) {
             //bullets.remove(bullets.getFirst(true), true);

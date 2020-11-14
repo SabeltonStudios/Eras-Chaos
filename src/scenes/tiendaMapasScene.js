@@ -8,6 +8,7 @@ let mapas=[
         "spriteBloqueado": 'prehistoriaDesbloqueado',
         "spriteDesbloqueadoi": 'prehistoriaDesbloqueadoi',
         "spriteBloqueadoi": 'prehistoriaDesbloqueadoi',
+        "nombre": 'pre'
     },
     {
         "bloqueado":true,
@@ -18,7 +19,8 @@ let mapas=[
         "spriteDesbloqueadoi": 'egiptoDesbloqueadoi',
         "spriteBloqueadoi": 'egiptoBloqueadoi',
         "spriteSelectBloq": 'egiSelectBloq',
-        "spriteSelectBloqi": 'egiSelectBloqi'
+        "spriteSelectBloqi": 'egiSelectBloqi',
+        "nombre": 'egi'
     },
     {
         "bloqueado":true,
@@ -29,7 +31,8 @@ let mapas=[
         "spriteDesbloqueadoi": 'edadMediaDesbloqueadoi',
         "spriteBloqueadoi": 'edadMediaBloqueadoi',
         "spriteSelectBloq": 'medSelectBloq',
-        "spriteSelectBloqi": 'medSelectBloqi'
+        "spriteSelectBloqi": 'medSelectBloqi',
+        "nombre": 'med'
     },
     {
         "bloqueado":true,
@@ -40,7 +43,8 @@ let mapas=[
         "spriteDesbloqueadoi": 'revIndustrialDesbloqueadoi',
         "spriteBloqueadoi": 'revIndustrialBloqueadoi',
         "spriteSelectBloq": 'revSelectBloq',
-        "spriteSelectBloqi": 'revSelectBloqi'
+        "spriteSelectBloqi": 'revSelectBloqi',
+        "nombre": 'ind'
     },
     {
         "bloqueado":true,
@@ -51,8 +55,10 @@ let mapas=[
         "spriteDesbloqueadoi": 'egiptoDesbloqueadoi',
         "spriteBloqueadoi": 'egiptoBloqueadoi',
         "spriteSelectBloq": 'egiSelectBloq',
-        "spriteSelectBloqi": 'egiSelectBloqi'
+        "spriteSelectBloqi": 'egiSelectBloqi',
+        "nombre": 'con'
     },
+    //↓ESTE SOBRA, NO?
     {
         "bloqueado":true,
         "coins" : 650,
