@@ -24,8 +24,8 @@ let armas=[
         "seleccionBloqueado": 'hachaB',
         "nombre": 'Hacha',
         "speed":350,
-        "scale":0.15,
-        "circle":[100,30,30],
+        "scale":0.12,
+        "circle":[125,0,0],
         "frames": [19,0,52,52]
     },
     {

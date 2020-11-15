@@ -79,49 +79,14 @@ class industrialScene extends Phaser.Scene {
         this.Mapa = this.add.image(0, 0, 'indMap').setOrigin(0)
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
         this.muertesUI = this.add.image(gameConfig.scale.width * 0.97 / 2, 53 * gameConfig.scale.height / 600, 'MuertesUI').setScale(0.45 * gameConfig.scale.width / 800);
-        this.contUI = this.add.text(gameConfig.scale.width * 1.07 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff', stroke: '#000', strokeThickness: 4 }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
+        this.contUI = this.add.text(gameConfig.scale.width * 1.1 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff', stroke: '#000', strokeThickness: 4 }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
 
         this.player = this.physics.add.sprite(gameConfig.scale.width / 6.5, gameConfig.scale.height / 6, 'indPlayerMos').setOrigin(0,1).setScale(0.14 * gameConfig.scale.height / 600)//*800/gameConfig.scale.width);
         this.player.body.immovable = true;
         this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5.5 / 6, gameConfig.scale.height / 2, 'indEnemy').setOrigin(1,1).setScale(0.14 * gameConfig.scale.height / 600)//*800/gameConfig.scale.width);
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
-        this.anims.create({
-            key: 'indPlayerMosMoving',
-            frames: this.anims.generateFrameNumbers('indPlayerMos', { start: 0, end: 19 }),
-            frameRate: 30,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'indPlayerMosAttack',
-            frames: this.anims.generateFrameNumbers('indPlayerMosAttack', { start: 0, end: 39 }),
-            frameRate: 55,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'indPlayerMosAttackIdle',
-            frames: this.anims.generateFrameNumbers('indPlayerMosAttackIdle', { start: 0, end: 39 }),
-            frameRate: 55,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'indenemyMoving',
-            frames: this.anims.generateFrameNumbers('indEnemy', { start: 0, end: 19 }),
-            frameRate: 45,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'indenemyAttacking',
-            frames: this.anims.generateFrameNumbers('indEnemyAttack', { start: 0, end: 39 }),
-            frameRate: 64,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'indenemyDying',
-            frames: this.anims.generateFrameNumbers('indEnemyDie', { start: 0, end: 48 }),
-            frameRate: 32,
-            repeat: 0
-        });
+        
         this.player.anims.play("indPlayerMosMoving", true);
         this.player.setVelocity(0, -330 * gameConfig.scale.height / 600);
         this.player.setBounce(1);
@@ -369,9 +334,10 @@ class industrialScene extends Phaser.Scene {
             }, this);
             this.enemy.anims.play("indenemyDying", true);
             if (completedLevel[3].completado) {
+                this.contMuertes=0;
                 this.music.stop();
                 this.scene.stop();
-                this.scene.start("IndustrialScene");
+                this.scene.start("ContempScene");
             }
             else {
                 completedLevel[3].completado = true;
@@ -396,9 +362,10 @@ class industrialScene extends Phaser.Scene {
                     this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);
                 }
                 this.continuar.setInteractive().on('pointerdown', () => {
+                    this.contMuertes=0;
                     this.music.stop();
                     this.scene.stop();
-                    this.scene.start("IndustrialScene");
+                    this.scene.start("ContempScene");
                 })
             }
         }

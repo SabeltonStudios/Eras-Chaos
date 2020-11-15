@@ -71,55 +71,14 @@ class prehistoriaScene extends Phaser.Scene {
         this.Mapa = this.add.image(0, 0, 'preMap').setOrigin(0)
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
         this.muertesUI = this.add.image(gameConfig.scale.width * 0.97 / 2, 53 * gameConfig.scale.height / 600, 'MuertesUI').setScale(0.45 * gameConfig.scale.width / 800);
-        this.contUI = this.add.text(gameConfig.scale.width * 1.07 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff', stroke: '#000', strokeThickness: 4 }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
+        this.contUI = this.add.text(gameConfig.scale.width * 1.1 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff', stroke: '#000', strokeThickness: 4 }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
 
         this.player = this.physics.add.sprite(gameConfig.scale.width / 6.5, gameConfig.scale.height / 6, 'prePlayerHonda').setOrigin(0, 1).setScale(0.14 * gameConfig.scale.width / 800)//*800/gameConfig.scale.width);
         this.player.body.immovable = true;
         this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5.5 / 6, gameConfig.scale.height / 2, 'preEnemy').setOrigin(1, 1).setScale(0.08 * gameConfig.scale.width / 800)//*800/gameConfig.scale.width);
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
-        this.anims.create({
-            key: 'prePlayerHondaMoving',
-            frames: this.anims.generateFrameNumbers('prePlayerHonda', { start: 0, end: 20 }),
-            frameRate: 30,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'prePlayerHondaIdle',
-            frames: this.anims.generateFrameNumbers('prePlayerHondaIdle', { start: 0, end: 9 }),
-            frameRate: 30,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'prePlayerHondaAttack',
-            frames: this.anims.generateFrameNumbers('prePlayerHondaAttack', { start: 0, end: 37 }),
-            frameRate: 55,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'prePlayerHondaAttackIdle',
-            frames: this.anims.generateFrameNumbers('prePlayerHondaAttackIdle', { start: 0, end: 37 }),
-            frameRate: 55,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'enemyMoving',
-            frames: this.anims.generateFrameNumbers('preEnemy', { start: 0, end: 20 }),
-            frameRate: 30,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'enemyAttacking',
-            frames: this.anims.generateFrameNumbers('preEnemyAttack', { start: 0, end: 37 }),
-            frameRate: 45,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'enemyDying',
-            frames: this.anims.generateFrameNumbers('preEnemyDie', { start: 0, end: 48 }),
-            frameRate: 45,
-            repeat: 0
-        });
+        
         this.player.anims.play("prePlayerHondaMoving", true);
         this.player.setVelocity(0, -200 * gameConfig.scale.height / 600);
         this.player.setBounce(1);
@@ -371,7 +330,6 @@ class prehistoriaScene extends Phaser.Scene {
             clearInterval(this.inter);
             this.shootInput.destroy();
             this.cameras.main.fadeIn(500, 180, 50, 50);
-            //this.music.destroy();
             this.scene.sleep();
             this.scene.setActive(false);
             this.scene.restart();
@@ -389,7 +347,7 @@ class prehistoriaScene extends Phaser.Scene {
             }, this);
             this.enemy.anims.play("enemyDying", true);
             if (completedLevel[0].completado) {
-
+                this.contMuertes=0;
                 this.music.stop();
                 this.scene.stop();
                 this.scene.start("EgiptoScene");
@@ -417,6 +375,7 @@ class prehistoriaScene extends Phaser.Scene {
                 this.continuar.setInteractive().on('pointerdown', () => {
                     this.music.stop();
                     this.scene.stop();
+                    this.contMuertes=0;
                     this.scene.start("EgiptoScene");
                 })
             }
@@ -438,9 +397,7 @@ class prehistoriaScene extends Phaser.Scene {
             spriteDisparar.setInteractive();
             f.enabled = true;
             s.enabled = true;
-            //this.is_paused = false;
         } else {
-            //this.is_paused = true;
             this.player.body.moves = false;
             this.enemy.body.moves = false;
             for (let i = 0; i < this.bulls.length; i++) {
@@ -465,12 +422,10 @@ class prehistoriaScene extends Phaser.Scene {
                 .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("prePlayerHondaMoving", false) } });
         }
         if (this.bulletsPre.isFull()) {
-            //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();
         }
         var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, 'preWeapon').setScale(0.15 * gameConfig.scale.width / 800);
         bomb.setTint(0x85baff);
-        //bomb.setOrigin(0,1);
         bomb.body.setVelocity(300 * gameConfig.scale.height / 600, 0)
         bomb.body.setAllowGravity(false);
         bomb.body.setCircle(50, 0, 0);

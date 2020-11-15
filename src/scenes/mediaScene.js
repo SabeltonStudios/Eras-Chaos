@@ -71,31 +71,13 @@ class mediaScene extends Phaser.Scene {
         this.Mapa = this.add.image(0, 0, 'medMap').setOrigin(0)
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
         this.muertesUI = this.add.image(gameConfig.scale.width * 0.97 / 2, 53 * gameConfig.scale.height / 600, 'MuertesUI').setScale(0.45 * gameConfig.scale.width / 800);
-        this.contUI = this.add.text(gameConfig.scale.width * 1.07 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff',stroke: '#000',strokeThickness: 4 }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
+        this.contUI = this.add.text(gameConfig.scale.width * 1.1 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff',stroke: '#000',strokeThickness: 4 }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
 
         this.player = this.physics.add.sprite(gameConfig.scale.width / 6.5, gameConfig.scale.height / 6, 'medPlayer').setScale(0.07 * gameConfig.scale.height / 600)//*800/gameConfig.scale.width);
         this.player.body.immovable = true;
         this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5.5 / 6, gameConfig.scale.height / 2, 'medEnemy').setOrigin(1, 1).setScale(0.17 * gameConfig.scale.width / 800)//*800/gameConfig.scale.width);
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
-        this.anims.create({
-            key: 'medenemyMoving',
-            frames: this.anims.generateFrameNumbers('medEnemy', { start: 0, end: 19 }),
-            frameRate: 45,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'medenemyAttacking',
-            frames: this.anims.generateFrameNumbers('medEnemyAttack', { start: 0, end: 39 }),
-            frameRate: 64,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'medenemyDying',
-            frames: this.anims.generateFrameNumbers('medEnemyDie', { start: 0, end: 48 }),
-            frameRate: 32,
-            repeat: 0
-        });
         //this.player.anims.play('walk', true);
         this.player.setVelocity(0, -300 * gameConfig.scale.height / 600);
         this.player.setBounce(1);
@@ -342,6 +324,7 @@ class mediaScene extends Phaser.Scene {
             }, this);
             this.enemy.anims.play("medenemyDying", true);
             if (completedLevel[2].completado) {
+                this.contMuertes=0;
                 this.music.stop();
                 this.scene.stop();
                 this.scene.start("IndustrialScene");
@@ -369,6 +352,7 @@ class mediaScene extends Phaser.Scene {
                     this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);
                 }
                 this.continuar.setInteractive().on('pointerdown', () => {
+                    this.contMuertes=0;
                     this.music.stop();
                     this.scene.stop();
                     this.scene.start("IndustrialScene");

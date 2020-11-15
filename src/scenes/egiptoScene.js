@@ -71,7 +71,7 @@ class egiptoScene extends Phaser.Scene {
         this.Mapa = this.add.image(0, 0, 'egiMap').setOrigin(0)
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
         this.muertesUI = this.add.image(gameConfig.scale.width * 0.97 / 2, 53 * gameConfig.scale.height / 600, 'MuertesUI').setScale(0.45 * gameConfig.scale.width / 800);
-        this.contUI = this.add.text(gameConfig.scale.width * 1.07 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff',stroke: '#000',strokeThickness: 4 }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
+        this.contUI = this.add.text(gameConfig.scale.width * 1.1 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff',stroke: '#000',strokeThickness: 4 }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
 
         this.RectanguloMapa = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'rectanguloEgipto');
         this.RectanguloMapa.setScale(this.RectanguloMapa.height / this.Mapa.height * gameConfig.scale.width / this.Mapa.width);
@@ -99,48 +99,7 @@ class egiptoScene extends Phaser.Scene {
         this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5.5 / 6, gameConfig.scale.height / 2, 'egiEnemy').setOrigin(1, 1).setScale(0.17 * gameConfig.scale.width / 800)// * gameConfig.scale.width/800);
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
-        this.anims.create({
-            key: 'egiPlayerHachaMoving',
-            frames: this.anims.generateFrameNumbers('egiPlayerHacha', { start: 0, end: 19 }),
-            frameRate: 30,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'egiPlayerHachaAttack',
-            frames: this.anims.generateFrameNumbers('egiPlayerHachaAttack', { start: 0, end: 52 }),
-            frameRate: 55,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'egiPlayerHachaAttackIdle',
-            frames: this.anims.generateFrameNumbers('egiPlayerHachaAttackIdle', { start: 0, end: 52 }),
-            frameRate: 55,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'egishoot',
-            frames: this.anims.generateFrameNumbers('egiWeapon', { start: 0, end: 7 }),
-            frameRate: 20,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'egienemyMoving',
-            frames: this.anims.generateFrameNumbers('egiEnemy', { start: 0, end: 19 }),
-            frameRate: 45,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'egienemyAttacking',
-            frames: this.anims.generateFrameNumbers('egiEnemyAttack', { start: 0, end: 52 }),
-            frameRate: 64,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'egienemyDying',
-            frames: this.anims.generateFrameNumbers('egiEnemyDie', { start: 0, end: 48 }),
-            frameRate: 32,
-            repeat: 0
-        });
+        
         this.player.anims.play("egiPlayerHachaMoving", true);
         this.player.setVelocity(0, -270 * gameConfig.scale.height / 600);
         this.player.setBounce(1);
@@ -271,14 +230,14 @@ class egiptoScene extends Phaser.Scene {
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
-                this.bomb = this.physics.add.sprite(this.enemy.x - this.enemy.width/3, this.enemy.y-this.enemy.height/3, "egiWeapon").setScale(0.15 * gameConfig.scale.width / 800).setFlip(true, false);
+                this.bomb = this.physics.add.sprite(this.enemy.x - this.enemy.width/3, this.enemy.y-this.enemy.height/3, "egiWeapon").setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false);
                 this.bomb.setTint(0xff7e7d);
 
                 this.bulletsEnemy.add(this.bomb);
                 this.bomb.play("egishoot");
                 this.bomb.body.setVelocity(-350 * gameConfig.scale.height / 600, 0);
                 this.bomb.body.setAllowGravity(false);
-                this.bomb.body.setCircle(100, 30, 30);
+                this.bomb.body.setCircle(125, 0, 0);
                 this.bomb.angle = 270;
                 this.enemy.anims.play("egienemyAttacking", false).once('animationcomplete', () => { if (!this.is_paused) { this.enemy.anims.play("egienemyMoving", true);  } }, this);
             }
@@ -391,7 +350,7 @@ class egiptoScene extends Phaser.Scene {
             }, this);
             this.enemy.anims.play("egienemyDying", true);
             if (completedLevel[1].completado) {
-
+                this.contMuertes=0;
                 this.music.stop();
                 this.scene.stop();
                 this.scene.start("MediaScene");
@@ -419,6 +378,7 @@ class egiptoScene extends Phaser.Scene {
                     this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);
                 }
                 this.continuar.setInteractive().on('pointerdown', () => {
+                    this.contMuertes=0;
                     this.music.stop();
                     this.scene.stop();
                     this.scene.start("MediaScene");
@@ -476,7 +436,7 @@ class egiptoScene extends Phaser.Scene {
             //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();
         }
-        var bomb = this.physics.add.sprite(this.player.x + 10, this.player.y, "egiWeapon").setScale(0.15 * gameConfig.scale.width / 800);
+        var bomb = this.physics.add.sprite(this.player.x + 10, this.player.y, "egiWeapon").setScale(0.12 * gameConfig.scale.width / 800);
         //this.bulletsPre.create(this.player.x + 10, this.player.y, 'axe').setScale(0.2);
         bomb.setTint(0x85baff);
 
@@ -485,7 +445,7 @@ class egiptoScene extends Phaser.Scene {
         bomb.body.setVelocity(350 * gameConfig.scale.height / 600, 0);
         //bomb.setOrigin(0,1);
         bomb.body.setAllowGravity(false);
-        bomb.body.setCircle(100, 30, 30);
+        bomb.body.setCircle(125, 0, 0);
     }
 }
 

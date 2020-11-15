@@ -51,15 +51,6 @@ class contempScene extends Phaser.Scene {
     }
 
     preload() {
-        /*this.load.image('mapaMed', 'assets/Fondos/3.EdadMedia/Background.png');
-
-        this.load.image('medApl', 'assets/Objetos/3.EdadMedia/object_apples.png');
-        this.load.image('medBar', 'assets/Objetos/3.EdadMedia/object_barrel.png');
-        this.load.image('medVas', 'assets/Objetos/3.EdadMedia/object_vase.png');
-
-        this.load.audio('medMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
-        this.load.image('medPlayer','assets/Personajes/3.EdadMedia/BasicoEdadMedia.png');*/
-
     }
     create() {
         if (this.music == null) {
@@ -79,7 +70,7 @@ class contempScene extends Phaser.Scene {
         this.Mapa = this.add.image(0, 0, 'conMapa').setOrigin(0)
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
         this.muertesUI = this.add.image(gameConfig.scale.width * 0.97 / 2, 53 * gameConfig.scale.height / 600, 'MuertesUI').setScale(0.45 * gameConfig.scale.width / 800);
-        this.contUI = this.add.text(gameConfig.scale.width * 1.07 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff',stroke: '#000',strokeThickness: 4 }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
+        this.contUI = this.add.text(gameConfig.scale.width * 1.1 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff',stroke: '#000',strokeThickness: 4 }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
 
         this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'medPlayer').setScale(0.07 * gameConfig.scale.height / 600)//*800/gameConfig.scale.width);
         this.player.body.immovable = true;
@@ -330,7 +321,7 @@ class contempScene extends Phaser.Scene {
 
             clearInterval(this.inter);
             this.win = false;
-            sortResults("Edad Media", "Middle Age", this.contMuertes);
+            sortResults("Actualidad", "Actual Days", this.contMuertes);
             this.shootInput.destroy();
             this.tweens.add({
                 targets: this.music,
@@ -338,9 +329,10 @@ class contempScene extends Phaser.Scene {
                 duration: 500
             }, this);
             if (completedLevel[2].completado) {
+                this.contMuertes=0;
                 this.music.stop();
                 this.scene.stop();
-                this.scene.start("IndustrialScene");
+                this.scene.start("ContempScene");
             }
             else {
                 completedLevel[2].completado = true;
@@ -365,9 +357,10 @@ class contempScene extends Phaser.Scene {
                     this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);
                 }
                 this.continuar.setInteractive().on('pointerdown', () => {
+                    this.contMuertes=0;
                     this.music.stop();
                     this.scene.stop();
-                    this.scene.start("IndustrialScene");
+                    this.scene.start("ContempScene");
                 })
             }
         }
