@@ -79,11 +79,7 @@ class multijugadorSeleccionScene extends Phaser.Scene {
         this.spriteDerechaMapa.setInteractive().on('pointerdown', () => this.trasladarDerecha(0));
 
         //personajes 1
-        if (personajes[0].bloqueado) {
-            this.personajesButton[0] = this.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 2, personajes[0].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
-        } else {
-            this.personajesButton[0] = this.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 2, personajes[0].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
-        }
+        this.personajesButton[0] = this.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 2, personajes[0].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
         this.personajesButton[0].setInteractive().on('pointerdown', () => { if (!personajes[0].bloqueado) selectedChar1 = 0 + this.personajesPosicion; this.deleteTint(1, 0); });
         this.personajesButton[0].setTint(0xDEDE7C);
 
@@ -130,11 +126,7 @@ class multijugadorSeleccionScene extends Phaser.Scene {
         this.spriteDerecha.setInteractive().on('pointerdown', () => this.trasladarDerecha(1));
 
         //personajes 2
-        if (personajes[0].bloqueado) {
-            this.personajes2Button[0] = this.add.sprite(gameConfig.scale.width * 5 / 6 - 240, gameConfig.scale.height / 2, personajes[0].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
-        } else {
-            this.personajes2Button[0] = this.add.sprite(gameConfig.scale.width * 5 / 6 - 240, gameConfig.scale.height / 2, personajes[0].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
-        }
+        this.personajes2Button[0] = this.add.sprite(gameConfig.scale.width * 5 / 6 - 240, gameConfig.scale.height / 2, personajes[0].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
         this.personajes2Button[0].setInteractive().on('pointerdown', () => { if (!personajes[0].bloqueado) selectedChar2 = 0 + this.personajes2Posicion; this.deleteTint(2, 0); });
         this.personajes2Button[0].setTint(0xDEDE7C);
 
@@ -164,7 +156,7 @@ class multijugadorSeleccionScene extends Phaser.Scene {
         } else {
             this.personajes2Button[2] = this.add.sprite((gameConfig.scale.width * 5 / 6), gameConfig.scale.height / 2, personajes[4].seleccionDesbloqueado).setScale(0.4 * gameConfig.scale.height / 600);
         }
-        this.personajes2Button[4].setInteractive().on('pointerdown', () => { if (!personajes[24].bloqueado) selectedChar2 = 4 + this.personajes2Posicion; this.deleteTint(2, 4); });
+        this.personajes2Button[4].setInteractive().on('pointerdown', () => { if (!personajes[4].bloqueado) selectedChar2 = 4 + this.personajes2Posicion; this.deleteTint(2, 4); });
 
         if (personajes[5].bloqueado) {
             this.personajes2Button[5] = this.add.sprite((gameConfig.scale.width * 5 / 6), gameConfig.scale.height / 1.55, personajes[5].seleccionBloqueado).setScale(0.4 * gameConfig.scale.height / 600);
@@ -181,11 +173,7 @@ class multijugadorSeleccionScene extends Phaser.Scene {
         this.spriteDerecha2.setInteractive().on('pointerdown', () => this.trasladarDerecha(2));
 
         //Armas personaje 1
-        if (armas[0].bloqueado) {
-            this.armasButton[0] = this.add.sprite(gameConfig.scale.width /6, gameConfig.scale.height *4.7/ 6, armas[0].seleccionBloqueado).setScale(gameConfig.scale.height / 600);
-        } else {
-            this.armasButton[0] = this.add.sprite(gameConfig.scale.width /6, gameConfig.scale.height *4.7/ 6, armas[0].seleccionDesbloqueado).setScale(gameConfig.scale.height / 600);
-        }
+        this.armasButton[0] = this.add.sprite(gameConfig.scale.width /6, gameConfig.scale.height *4.7/ 6, armas[0].seleccionDesbloqueado).setScale(gameConfig.scale.height / 600);
         this.armasButton[0].setInteractive().on('pointerdown', () => { if (!armas[0].bloqueado) selectedWeapon1 = 0 + this.armasPosicion; this.deleteTint(3, 0); });
         this.armasButton[0].setTint(0xDEDE7C);
 
@@ -545,7 +533,10 @@ class multijugadorSeleccionScene extends Phaser.Scene {
         this.spriteDerechaArmas2.disableInteractive();
         this.spriteDerechaMapa.disableInteractive();
         this.tienda.setInteractive().on('pointerdown', () => this.scene.start("TiendaScene"));
-        this.botonCerrar = this.add.sprite(this.mensaje.width*1.3, this.mensaje.height*1.27, 'CloseB').setScale(0.07*gameConfig.scale.height / 600);
+        //this.botonCerrar = this.add.sprite(gameConfig.scale.width/2+(this.mensaje.width*this.mensaje.scale/2-30), gameConfig.scale.height/2+30, 'CloseB').setOrigin(0.5,0).setScale(0.07*gameConfig.scale.height / 600);
+        this.botonCerrar = this.add.sprite(gameConfig.scale.width/2+(this.mensaje.displayWidth/2-30), gameConfig.scale.height/2+30, 'CloseB').setOrigin(0.5,0).setScale(0.07*gameConfig.scale.height / 600);
+
+        this.botonCerrar.di
         this.botonCerrar.setInteractive().on('pointerdown', () => this.cerrarMensajeTienda());
     }
 

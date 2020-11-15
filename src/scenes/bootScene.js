@@ -358,6 +358,7 @@ class bootScene extends Phaser.Scene {
                 this.load.image('3250monedasi', 'assets/Interfaz/Tienda/Recargar/3250monedasi.png');
         
         
+                /*
                 //Assets multijugador
                 //PersonajePrehistoria
                 //Hacha
@@ -566,6 +567,7 @@ class bootScene extends Phaser.Scene {
                 this.load.spritesheet('indPlayerAKAttackIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Fusil/industrial_basic_fusil_attack_static_spritesheet.png',
                     { frameWidth: 350, frameHeight: 525 });
                 //HeroeRevIndustrial
+                */
     }
 
     create() {
