@@ -1,0 +1,10 @@
+Mosquete attack:
+static: (4 filas x 10 columnas) 660 x 515
+moving: (4 filas x 10 columnas) 745 x 515
+
+Mosquete idle:
+static: (1 imagen) 500 x 515
+moving: (4 filas x 5 columnas) 585 x 515
+
+Game Over:
+(7 filas x 7 columnas) 550 x 540
