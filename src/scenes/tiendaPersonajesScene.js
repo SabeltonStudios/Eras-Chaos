@@ -8,7 +8,7 @@ let personajes=[
         "spriteBloqueado": 'Unvaar',
         "seleccionDesbloqueado": 'UnvaarS',
         "seleccionBloqueado": 'UnvaarBS',
-        "nombre": 'pre'
+        "nombre": 'prePlayer'
     },
     {
         "bloqueado":true,
@@ -18,7 +18,7 @@ let personajes=[
         "spriteBloqueado": 'NahibB',
         "seleccionDesbloqueado": 'NahibS',
         "seleccionBloqueado": 'NahibBS',
-        "nombre": 'egi'
+        "nombre": 'egPlayer'
     },
     {
         "bloqueado":true,
@@ -28,7 +28,7 @@ let personajes=[
         "spriteBloqueado": 'LamberB',
         "seleccionDesbloqueado": 'LamberS',
         "seleccionBloqueado": 'LamberBS',
-        "nombre": 'med'
+        "nombre": 'medPlayer'
     },
     {
         "bloqueado":true,
@@ -38,7 +38,7 @@ let personajes=[
         "spriteBloqueado": 'ThomasB',
         "seleccionDesbloqueado": 'ThomasS',
         "seleccionBloqueado": 'ThomasBS',
-        "nombre": 'ind'
+        "nombre": 'indPlayer'
     },
     {
         "bloqueado":true,
@@ -48,7 +48,7 @@ let personajes=[
         "spriteBloqueado": 'ThomasB',
         "seleccionDesbloqueado": 'ThomasS',
         "seleccionBloqueado": 'ThomasBS',
-        "nombre": 'con'
+        "nombre": 'conPlayer'
     },
     {
         "bloqueado":true,
@@ -58,7 +58,7 @@ let personajes=[
         "spriteBloqueado": 'GaardB',
         "seleccionDesbloqueado": 'Gaard',
         "seleccionBloqueado": 'GaardBS',
-        "nombre": 'preH'
+        "nombre": 'preHeroe'
     },
     {
         "bloqueado":true,
@@ -68,7 +68,7 @@ let personajes=[
         "spriteBloqueado": 'CleopatraB',
         "seleccionDesbloqueado": 'CleopatraS',
         "seleccionBloqueado": 'CleopatraBS',
-        "nombre": 'egiH'
+        "nombre": 'egiHeroe'
     },
     {
         "bloqueado":true,
@@ -78,7 +78,7 @@ let personajes=[
         "spriteBloqueado": 'SirRodrickB',
         "seleccionDesbloqueado": 'SirRodrickS',
         "seleccionBloqueado": 'SirRodrickBS',
-        "nombre": 'medH'
+        "nombre": 'medHeroe'
     },
     {
         "bloqueado":true,
@@ -88,7 +88,7 @@ let personajes=[
         "spriteBloqueado": 'SirRodrickB',
         "seleccionDesbloqueado": 'SirRodrickS',
         "seleccionBloqueado": 'SirRodrickBS',
-        "nombre": 'indH'
+        "nombre": 'indHeroe'
     },
     {
         "bloqueado":true,
@@ -98,7 +98,7 @@ let personajes=[
         "spriteBloqueado": 'SirRodrickB',
         "seleccionDesbloqueado": 'SirRodrickS',
         "seleccionBloqueado": 'SirRodrickBS',
-        "nombre": 'conH'
+        "nombre": 'conHeroe'
     }
 ];
 

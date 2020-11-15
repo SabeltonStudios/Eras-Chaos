@@ -278,7 +278,7 @@ class prehistoriaScene extends Phaser.Scene {
                 this.bomb.body.setCircle(50, 0, 0);
                 this.bomb.angle = 270;
                 this.enemy.body.setOffset(this.enemy.width, 0);
-                this.enemy.anims.play("enemyAttacking", true).once('animationcomplete', () => { if (!this.is_paused) { this.enemy.anims.play("enemyMoving", true); this.enemy.body.setOffset(0, 0); } }, this);
+                this.enemy.anims.play("enemyAttacking", true).once('animationcomplete', () => { if (!this.is_paused) { this.enemy.anims.play("enemyMoving", false); this.enemy.body.setOffset(0, 0); } }, this);
             }
         }, 2000);
     }

@@ -62,8 +62,8 @@ class multijugadorPartidaScene extends Phaser.Scene {
         this.Mapa = this.add.image(0, 0, mapas[selectedMap].nombre + 'Map').setOrigin(0);
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
 
-        this.player = this.physics.add.sprite(gameConfig.scale.width / 6.5, gameConfig.scale.height / 6, personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre).setOrigin(0, 1).setScale(0.14 * gameConfig.scale.height / 600)
-        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5.5 / 6, gameConfig.scale.height / 6, personajes[selectedChar2].nombre + 'Player' + armas[selectedWeapon2].nombre).setOrigin(1, 1).setScale(0.14 * gameConfig.scale.height / 600)
+        this.player = this.physics.add.sprite(gameConfig.scale.width / 6.5, gameConfig.scale.height / 6, personajes[selectedChar1].nombre + armas[selectedWeapon1].nombre).setOrigin(0, 1).setScale(0.14 * gameConfig.scale.height / 600)
+        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5.5 / 6, gameConfig.scale.height / 6, personajes[selectedChar2].nombre + armas[selectedWeapon2].nombre).setOrigin(1, 1).setScale(0.14 * gameConfig.scale.height / 600)
         if (armas[selectedWeapon1].nombre === 'egi' || armas[selectedWeapon2].nombre === 'egi') {
             this.anims.create({
                 key: 'egishoot',
@@ -75,54 +75,54 @@ class multijugadorPartidaScene extends Phaser.Scene {
         //Animaciones P1
         this.anims.create({
             key: personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre,
-            frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre, { start: 0, end: armas[selectedWeapon1].frames[0] }),
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre +armas[selectedWeapon1].nombre, { start: 0, end: armas[selectedWeapon1].frames[0] }),
             frameRate: 32,
             repeat: -1
         });
         if (armas[selectedWeapon1.nombre === 'Honda']) {
             this.anims.create({
                 key: personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle',
-                frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle', { start: 0, end: armas[selectedWeapon1].frames[1] }),
+                frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre + armas[selectedWeapon1].nombre + 'Idle', { start: 0, end: armas[selectedWeapon1].frames[1] }),
                 frameRate: 32,
                 repeat: -1
             });
         }
         this.anims.create({
             key: personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Attack',
-            frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Attack', { start: 0, end: armas[selectedWeapon1].frames[2] }),
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre + armas[selectedWeapon1].nombre + 'Attack', { start: 0, end: armas[selectedWeapon1].frames[2] }),
             frameRate: 64,
             repeat: 0
         });
         this.anims.create({
             key: personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'AttackIdle',
-            frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'AttackIdle', { start: 0, end: armas[selectedWeapon1].frames[3] }),
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre + armas[selectedWeapon1].nombre + 'AttackIdle', { start: 0, end: armas[selectedWeapon1].frames[3] }),
             frameRate: 64,
             repeat: 0
         });
         //Animaciones P2
         this.anims.create({
             key: personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre,
-            frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre + 'Player' + armas[selectedWeapon2].nombre, { start: 0, end: armas[selectedWeapon2].frames[0] }),
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre + armas[selectedWeapon2].nombre, { start: 0, end: armas[selectedWeapon2].frames[0] }),
             frameRate: 32,
             repeat: -1
         });
         if (armas[selectedWeapon2].nombre === 'Honda') {
             this.anims.create({
                 key: personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'Idle',
-                frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre + 'Player' + armas[selectedWeapon2].nombre + 'Idle', { start: 0, end: armas[selectedWeapon2].frames[1] }),
+                frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre + armas[selectedWeapon2].nombre + 'Idle', { start: 0, end: armas[selectedWeapon2].frames[1] }),
                 frameRate: 32,
                 repeat: -1
             });
         }
         this.anims.create({
             key: personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'Attack',
-            frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre + 'Player' + armas[selectedWeapon2].nombre + 'Attack', { start: 0, end: armas[selectedWeapon2].frames[2] }),
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre + armas[selectedWeapon2].nombre + 'Attack', { start: 0, end: armas[selectedWeapon2].frames[2] }),
             frameRate: 64,
             repeat: 0
         });
         this.anims.create({
             key: personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'AttackIdle',
-            frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre + 'Player' + armas[selectedWeapon2].nombre + 'AttackIdle', { start: 0, end: armas[selectedWeapon2].frames[3] }),
+            frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre + armas[selectedWeapon2].nombre + 'AttackIdle', { start: 0, end: armas[selectedWeapon2].frames[3] }),
             frameRate: 64,
             repeat: 0
         });
@@ -213,7 +213,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.player.body.moves = false;
             if (!armas[selectedWeapon1].nombre === 'Honda') {
                 this.player.anims.stop();
-                this.player.setTexture(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle')
+                this.player.setTexture(personajes[selectedChar1].nombre + armas[selectedWeapon1].nombre + 'Idle')
             } else {
                 this.player.anims.play(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle', true)
             }
@@ -236,9 +236,9 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.enemy.body.moves = false;
             if (!armas[selectedWeapon2].nombre === 'Honda') {
                 this.enemy.anims.stop();
-                this.enemy.setTexture(personajes[selectedChar2].nombre + 'Player' + armas[selectedWeapon2].nombre + 'Idle')
+                this.enemy.setTexture(personajes[selectedChar2].nombre + armas[selectedWeapon2].nombre + 'Idle')
             } else {
-                this.enemy.anims.play(personajes[selectedChar2].nombre + 'Player' + armas[selectedWeapon2].nombre + 'Idle', true)
+                this.enemy.anims.play(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'Idle', true)
             }
         })
             .on('pointerup', () => { this.enemy.body.moves = true; this.enemy.anims.play(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre, true) })
@@ -269,7 +269,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.player.body.moves = false;
             if (!armas[selectedWeapon1].nombre === 'Honda') {
                 this.player.anims.stop();
-                this.player.setTexture(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle');
+                this.player.setTexture(personajes[selectedChar1].nombre + armas[selectedWeapon1].nombre + 'Idle');
             } else {
                 this.player.anims.play(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle', true);
             }
@@ -288,9 +288,9 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.enemy.body.moves = false;
             if (!armas[selectedWeapon2].nombre === 'Honda') {
                 this.enemy.anims.stop();
-                this.enemy.setTexture(personajes[selectedChar2].nombre + 'Player' + armas[selectedWeapon2].nombre + 'Idle')
+                this.enemy.setTexture(personajes[selectedChar2].nombre + armas[selectedWeapon2].nombre + 'Idle')
             } else {
-                this.enemy.anims.play(personajes[selectedChar2].nombre + 'Player' + armas[selectedWeapon2].nombre + 'Idle', true)
+                this.enemy.anims.play(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'Idle', true)
             }
         })
             .on('up', () => { this.enemy.body.moves = true; this.enemy.anims.play(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre, true) })

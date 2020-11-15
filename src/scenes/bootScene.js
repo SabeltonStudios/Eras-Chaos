@@ -31,38 +31,38 @@ class bootScene extends Phaser.Scene {
         this.load.image('botonTienda', 'assets/Interfaz/Menu/botonTienda.png');
         this.load.image('botonCreditos', 'assets/Interfaz/Menu/botonCreditos.png');
         this.load.image('botonPuntuaciones', 'assets/Interfaz/Menu/botonPuntuaciones.png');
-        /*
-                //Assets en ingles
-                this.load.image('botonHistoriai', 'assets/Interfaz/Menu/botonHistoriai.png');
-                this.load.image('boton2Jugadoresi', 'assets/Interfaz/Menu/boton2Jugadoresi.png');
-                this.load.image('botonTiendai', 'assets/Interfaz/Menu/botonTiendai.png');
-                this.load.image('botonCreditosi', 'assets/Interfaz/Menu/botonCreditosi.png');
-                this.load.image('botonPuntuacionesi', 'assets/Interfaz/Menu/botonPuntuacionesi.png');
-        
-                //Selección nivel
-                this.load.image('niveles', 'assets/Interfaz/SeleccionNivel/Niveles.png');
-                this.load.image('nivelesi', 'assets/Interfaz/SeleccionNivel/Nivelesi.png');
-                this.load.image('tutorialHistoria', 'assets/Interfaz/SeleccionNivel/tutorialHistoria.png');
-                this.load.image('tutorialHistoriai', 'assets/Interfaz/SeleccionNivel/tutorialHistoriai.png');
-                this.load.image('egiSelectBloq', 'assets/Interfaz/SeleccionNivel/mapaEgiptoB.png');
-                this.load.image('egiSelectBloqi', 'assets/Interfaz/SeleccionNivel/mapaEgiptoBi.png');
-                this.load.image('medSelectBloq', 'assets/Interfaz/SeleccionNivel/mapaEdadMediaB.png');
-                this.load.image('medSelectBloqi', 'assets/Interfaz/SeleccionNivel/mapaEdadMediaBi.png');
-                this.load.image('revSelectBloq', 'assets/Interfaz/SeleccionNivel/mapaRevIndustrialB.png');
-                this.load.image('revSelectBloqi', 'assets/Interfaz/SeleccionNivel/mapaRevIndustrialBi.png');
-                this.load.image('actSelectBloq', 'assets/Interfaz/SeleccionNivel/mapaActualidadB.png');
-                this.load.image('actSelectBloqi', 'assets/Interfaz/SeleccionNivel/mapaActualidadBi.png');
-                
-                this.load.image('honda', 'assets/Interfaz/SeleccionNivel/honda.png');
-                this.load.image('hacha', 'assets/Interfaz/SeleccionNivel/hacha.png');
-                this.load.image('hachaB', 'assets/Interfaz/SeleccionNivel/hachaB.png');
-                this.load.image('ballesta', 'assets/Interfaz/SeleccionNivel/ballesta.png');
-                this.load.image('ballestaB', 'assets/Interfaz/SeleccionNivel/ballestaB.png');
-                this.load.image('mosquete', 'assets/Interfaz/SeleccionNivel/mosquete.png');
-                this.load.image('mosqueteB', 'assets/Interfaz/SeleccionNivel/mosqueteB.png');
-                this.load.image('fusil', 'assets/Interfaz/SeleccionNivel/fusil.png');
-                this.load.image('fusilB', 'assets/Interfaz/SeleccionNivel/fusilB.png');
-        */
+
+        //Assets en ingles
+        this.load.image('botonHistoriai', 'assets/Interfaz/Menu/botonHistoriai.png');
+        this.load.image('boton2Jugadoresi', 'assets/Interfaz/Menu/boton2Jugadoresi.png');
+        this.load.image('botonTiendai', 'assets/Interfaz/Menu/botonTiendai.png');
+        this.load.image('botonCreditosi', 'assets/Interfaz/Menu/botonCreditosi.png');
+        this.load.image('botonPuntuacionesi', 'assets/Interfaz/Menu/botonPuntuacionesi.png');
+
+        //Selección nivel
+        this.load.image('niveles', 'assets/Interfaz/SeleccionNivel/Niveles.png');
+        this.load.image('nivelesi', 'assets/Interfaz/SeleccionNivel/Nivelesi.png');
+        this.load.image('tutorialHistoria', 'assets/Interfaz/SeleccionNivel/tutorialHistoria.png');
+        this.load.image('tutorialHistoriai', 'assets/Interfaz/SeleccionNivel/tutorialHistoriai.png');
+        this.load.image('egiSelectBloq', 'assets/Interfaz/SeleccionNivel/mapaEgiptoB.png');
+        this.load.image('egiSelectBloqi', 'assets/Interfaz/SeleccionNivel/mapaEgiptoBi.png');
+        this.load.image('medSelectBloq', 'assets/Interfaz/SeleccionNivel/mapaEdadMediaB.png');
+        this.load.image('medSelectBloqi', 'assets/Interfaz/SeleccionNivel/mapaEdadMediaBi.png');
+        this.load.image('revSelectBloq', 'assets/Interfaz/SeleccionNivel/mapaRevIndustrialB.png');
+        this.load.image('revSelectBloqi', 'assets/Interfaz/SeleccionNivel/mapaRevIndustrialBi.png');
+        this.load.image('actSelectBloq', 'assets/Interfaz/SeleccionNivel/mapaActualidadB.png');
+        this.load.image('actSelectBloqi', 'assets/Interfaz/SeleccionNivel/mapaActualidadBi.png');
+
+        this.load.image('honda', 'assets/Interfaz/SeleccionNivel/honda.png');
+        this.load.image('hacha', 'assets/Interfaz/SeleccionNivel/hacha.png');
+        this.load.image('hachaB', 'assets/Interfaz/SeleccionNivel/hachaB.png');
+        this.load.image('ballesta', 'assets/Interfaz/SeleccionNivel/ballesta.png');
+        this.load.image('ballestaB', 'assets/Interfaz/SeleccionNivel/ballestaB.png');
+        this.load.image('mosquete', 'assets/Interfaz/SeleccionNivel/mosquete.png');
+        this.load.image('mosqueteB', 'assets/Interfaz/SeleccionNivel/mosqueteB.png');
+        this.load.image('fusil', 'assets/Interfaz/SeleccionNivel/fusil.png');
+        this.load.image('fusilB', 'assets/Interfaz/SeleccionNivel/fusilB.png');
+
 
         //Assets Prehistoria
         this.load.image('preMap', 'assets/Fondos/1.Prehistoria/Background.png');
@@ -96,15 +96,11 @@ class bootScene extends Phaser.Scene {
         this.load.image('egiObj2', 'assets/Objetos/2.AntiguoEgipto/object_cup.png');
         this.load.image('egiObj3', 'assets/Objetos/2.AntiguoEgipto/object_pyramid.png');
         this.load.audio('egiMusic', ['assets/Música/Egipto.mp3', 'assets/Música/Egipto.ogg']);
-        //this.load.spritesheet('dude', 'assets/Interfaz/dude.png', { frameWidth: 32, frameHeight: 48 });
         this.load.image('egiPlayer', 'assets/Personajes/2.AntiguoEgipto/BasicoEgipto.png');
-        //this.load.image('bullet', 'assets/Interfaz/Bullet.png');
         this.load.spritesheet('egiWeapon', 'assets/Armas/ArmaEgipto.png', { frameWidth: 235, frameHeight: 235 });
         this.load.spritesheet('egiPlayerHacha', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Hacha/egipto_basic_axe_idle_moving_spritesheet.png',
             { frameWidth: 370, frameHeight: 541 });
         this.load.image('egiPlayerHachaIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Hacha/egipto_basic_axe_idle_static_spritesheet.png')
-        /*this.load.spritesheet('egiPlayerHachaIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Hacha/egipto_basic_axe_idle_static_spritesheet.png',
-            { frameWidth: 370, frameHeight: 541 });*/
         this.load.spritesheet('egiPlayerHachaAttack', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Hacha/egipto_basic_axe_attack_moving_spritesheet.png',
             { frameWidth: 510, frameHeight: 570 });
         this.load.spritesheet('egiPlayerHachaAttackIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Hacha/egipto_basic_axe_attack_static_spritesheet.png',
@@ -139,6 +135,21 @@ class bootScene extends Phaser.Scene {
         this.load.audio('indMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
         this.load.image('indPlayer', 'assets/Personajes/4.RevIndustrial/BasicoRevIndustrial.png');
         this.load.image('indWeapon', 'assets/Armas/mosquete-bala.png');
+
+        this.load.spritesheet('indPlayerMos', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Mosquete/industrial_basic_mosquete_idle_moving_spritesheet.png',
+            { frameWidth: 585, frameHeight: 525 });
+        this.load.image('indPlayerMosIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Mosquete/industrial_basic_mosquete_idle_static_spritesheet.png');
+        this.load.spritesheet('indPlayerMosAttack', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Mosquete/industrial_basic_mosquete_attack_moving_spritesheet.png',
+            { frameWidth: 745, frameHeight: 525 });
+        this.load.spritesheet('indPlayerMosAttackIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Mosquete/industrial_basic_mosquete_attack_static_spritesheet.png',
+            { frameWidth: 650, frameHeight: 510 });
+
+        this.load.spritesheet('indEnemy', 'assets/Animaciones/Spritesheets/Rev Industrial/Enemigo/Mosquete/industrial_enemy_mosquete_idle_moving_spritesheet_after.png',
+            { frameWidth: 585, frameHeight: 515 });
+        this.load.spritesheet('indEnemyAttack', 'assets/Animaciones/Spritesheets/Rev Industrial/Enemigo/Mosquete/industrial_enemy_mosquete_attack_moving_spritesheet.png',
+            { frameWidth: 745, frameHeight: 515 });
+        this.load.spritesheet('indEnemyDie', 'assets/Animaciones/Spritesheets/Rev Industrial/Enemigo/Game Over/industrial_enemy_gameover_spritesheet.png',
+            { frameWidth: 550, frameHeight: 540 })
 
         //Assets Contemporánea
         this.load.image('conMapa', 'assets/Fondos/5.Actualidad/Background.png');
@@ -461,7 +472,11 @@ class bootScene extends Phaser.Scene {
             { frameWidth: 350, frameHeight: 500 });
         //HeroeEgipto
         //Honda
-        //FALTAN 4
+        this.load.spritesheet('egiHeroeHonda', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Honda/egipto_hero_honda_idle_moving_spritesheet.png',
+            { frameWidth: 373, frameHeight: 514 });
+        this.load.spritesheet('egiHeroeHondaIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Honda/egipto_hero_honda_idle_static_spritesheet.png',
+            { frameWidth: 373, frameHeight: 514 });
+        //FALTAN 2
         //Hacha
         this.load.spritesheet('egiHeroeHacha', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Hacha/egipto_hero_axe_idle_moving_spritesheet.png',
             { frameWidth: 370, frameHeight: 550 });
@@ -495,6 +510,56 @@ class bootScene extends Phaser.Scene {
             { frameWidth: 467, frameHeight: 541 });
         this.load.spritesheet('egiHeroeAKAttackIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Fusil/egipto_hero_fusil_attack_static_spritesheet.png',
             { frameWidth: 368, frameHeight: 541 });
+        //PersonajeEdadMedia
+        //Honda
+        //FALTAN 4
+        //Hacha
+        this.load.spritesheet('medPlayerHacha', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Hacha/medieval_basic_hacha_idle_moving_spritesheet.png',
+            { frameWidth: 370, frameHeight: 540 });
+        this.load.image('medPlayerHachaIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Hacha/medieval_basic_hacha_idle_static_spritesheet.png');
+        this.load.spritesheet('medPlayerHachaAttack', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Hacha/medieval_basic_hacha_attack_moving_spritesheet.png',
+            { frameWidth: 510, frameHeight: 580 });
+        this.load.spritesheet('medPlayerHachaAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Hacha/medieval_basic_hacha_attack_static_spritesheet.png',
+            { frameWidth: 510, frameHeight: 580 });
+        //Mosquete
+        this.load.spritesheet('medPlayerMos', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Mosquete/medieval_basic_mosquete_idle_moving_spritesheet.png',
+            { frameWidth: 585, frameHeight: 510 });
+        this.load.image('medPlayerMosIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Mosquete/medieval_basic_mosquete_idle_spritesheet.png');
+        this.load.spritesheet('medPlayerMosAttack', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Mosquete/medieval_basic_mosquete_attack_moving_spritesheet.png',
+            { frameWidth: 745, frameHeight: 510 });
+        this.load.spritesheet('medPlayerMosAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Mosquete/medieval_basic_mosquete_attack_static_spritesheet.png',
+            { frameWidth: 650, frameHeight: 510 });
+        //Fusil
+        this.load.spritesheet('medPlayerAK', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Fusil/medieval_basic_fusil_idle_moving_spritesheet.png',
+            { frameWidth: 445, frameHeight: 515 });
+        this.load.image('medPlayerAKIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Fusil/medieval_basic_fusil_idle_static_spritesheet.png');
+        this.load.spritesheet('medPlayerAKAttack', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Fusil/medieval_basic_fusil_attack_moving_spritesheet.png',
+            { frameWidth: 445, frameHeight: 515 });
+        this.load.spritesheet('medPlayerAKAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Fusil/medieval_basic_fusil_attack_static_spritesheet.png',
+            { frameWidth: 350, frameHeight: 515 });
+        //HeroeEdadMedia
+        //PersonajeRevIndustrial
+        //Honda
+        //FALTAN 4
+        //Hacha
+        this.load.spritesheet('indPlayerHacha', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Hacha/industrial_basic_hacha_idle_moving_spritesheet.png',
+            { frameWidth: 360, frameHeight: 545 });
+        this.load.image('indPlayerHachaIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Hacha/industrial_basic_axe_idle_static_spritesheet.png');
+        this.load.spritesheet('indPlayerHachaAttack', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Hacha/industrial_basic_hacha_attack_moving_spritesheet.png',
+            { frameWidth: 505, frameHeight: 580 });
+        this.load.spritesheet('indPlayerHachaAttackIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Hacha/industrial_basic_axe_attack_static_spritesheet.png',
+            { frameWidth: 505, frameHeight: 580 });
+        //Ballesta
+        //FALTAN 4
+        //Fusil
+        this.load.spritesheet('indPlayerAK', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Fusil/industrial_basic_fusil_idle_moving_spritesheet.png',
+            { frameWidth: 445, frameHeight: 525 });
+        this.load.image('indPlayerAKIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Fusil/industrial_basic_fusil_idle_static_spritesheet.png');
+        this.load.spritesheet('indPlayerAKAttack', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Fusil/industrial_basic_fusil_attack_moving_spritesheet.png',
+            { frameWidth: 445, frameHeight: 525 });
+        this.load.spritesheet('indPlayerAKAttackIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Fusil/industrial_basic_fusil_attack_static_spritesheet.png',
+            { frameWidth: 350, frameHeight: 525 });
+        //HeroeRevIndustrial
     }
 
     create() {

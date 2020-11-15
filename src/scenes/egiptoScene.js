@@ -105,12 +105,6 @@ class egiptoScene extends Phaser.Scene {
             frameRate: 30,
             repeat: -1
         });
-        /*this.anims.create({
-            key: 'egiPlayerHachaIdle',
-            frames: this.anims.generateFrameNumbers('egiPlayerHachaIdle'),
-            frameRate: 30,
-            repeat: -1
-        });*/
         this.anims.create({
             key: 'egiPlayerHachaAttack',
             frames: this.anims.generateFrameNumbers('egiPlayerHachaAttack', { start: 0, end: 52 }),
