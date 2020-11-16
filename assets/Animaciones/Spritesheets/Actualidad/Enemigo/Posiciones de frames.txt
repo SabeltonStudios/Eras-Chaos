@@ -1,0 +1,9 @@
+Fusil:
+Idle:
+(4 filas x 5 columnas) 455 x 510
+
+Attack:
+(4 filas x 5 columnas) 455 x 510
+
+Game Over:
+(7 filas x 7 columnas) 545 x 530
