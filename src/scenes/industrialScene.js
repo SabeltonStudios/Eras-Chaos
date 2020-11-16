@@ -51,15 +51,6 @@ class industrialScene extends Phaser.Scene {
     }
 
     preload() {
-        /*this.load.image('mapaMed', 'assets/Fondos/3.EdadMedia/Background.png');
-
-        this.load.image('medApl', 'assets/Objetos/3.EdadMedia/object_apples.png');
-        this.load.image('medBar', 'assets/Objetos/3.EdadMedia/object_barrel.png');
-        this.load.image('medVas', 'assets/Objetos/3.EdadMedia/object_vase.png');
-
-        this.load.audio('medMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
-        this.load.image('medPlayer','assets/Personajes/3.EdadMedia/BasicoEdadMedia.png');*/
-
     }
     create() {
         if (this.music == null) {
@@ -71,7 +62,6 @@ class industrialScene extends Phaser.Scene {
         this.gameOver = false;
         this.win = false;
         this.is_paused = false;
-        //this.cameras.main.zoom= 1.3;
         this.cameras.main.zoomTo(1.05, 1000);
         this.physics.world.bounds.setTo(92.5 * gameConfig.scale.width / 800, 69.5 * gameConfig.scale.width / 800, 615 * gameConfig.scale.height / 600, 461 * gameConfig.scale.height / 600);
         this.physics.world.setBoundsCollision(false, false, true, true);
@@ -214,6 +204,7 @@ class industrialScene extends Phaser.Scene {
         }
         this.inter = setInterval(() => {
             if (!this.is_paused) {
+                this.sound.play('indFire',{volume: 0.15});
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
@@ -233,7 +224,7 @@ class industrialScene extends Phaser.Scene {
         t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7 * gameConfig.scale.height / 600);
         t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonRendirse').setScale(gameConfig.scale.height / 600);
         t.BotonMenu.setInteractive().on('pointerdown', () => this.confirmarSalir("MenuPrincipalScene"));
-        t.BotonCerrar = t.add.sprite(gameConfig.scale.width * 0.75, gameConfig.scale.height * 0.36, 'CloseB').setScale(0.1 * gameConfig.scale.height / 600);
+        t.BotonCerrar = t.add.sprite(gameConfig.scale.width / 2 + (t.Menu.displayWidth / 2 - 30), gameConfig.scale.height / 2 - (t.Menu.displayHeight / 2 + 20), 'CloseB').setOrigin(0.5, 0).setScale(0.1 * gameConfig.scale.height / 600);
         t.BotonCerrar.setInteractive().on('pointerdown', () => { this.is_paused = !this.is_paused; t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput); this.ocultarMenu(this) });
         t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda').setScale(gameConfig.scale.height / 600);
         t.BotonTienda.setInteractive().on('pointerdown', () => this.confirmarSalir("TiendaScene"));
@@ -405,6 +396,7 @@ class industrialScene extends Phaser.Scene {
 
     }
     fire() {
+        this.sound.play('indFire',{volume: 0.15});
         if (this.spriteParar.isDown || this.freezeInput.isDown) {
             this.player.anims.play("indPlayerMosAttackIdle", false)
                 .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.stop(); this.player.setTexture('indPlayerMosIdle') } });

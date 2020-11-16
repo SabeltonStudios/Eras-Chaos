@@ -11,7 +11,7 @@ class bootScene extends Phaser.Scene {
         this.TextLoading = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'textLoading').setScale(gameConfig.scale.height / 600);
         this.reloj = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height / 3, '').setScale(0.8 * gameConfig.scale.height / 600);
         this.reloj.anims.play('loading', true);
-        //Assets menu principal
+        /*//Assets menu principal
         this.load.image('fondo', 'assets/Interfaz/Menu/FondoMenuPrincipal.png');
         this.load.image('botonPuntuaciones', 'assets/Interfaz/Menu/BotonPuntuaciones.png');
         this.load.image('botonPuntuacionesi', 'assets/Interfaz/Menu/BotonPuntuacionesi.png');
@@ -64,13 +64,14 @@ class bootScene extends Phaser.Scene {
         this.load.image('mosqueteB', 'assets/Interfaz/SeleccionNivel/mosqueteB.png');
         this.load.image('fusil', 'assets/Interfaz/SeleccionNivel/fusil.png');
         this.load.image('fusilB', 'assets/Interfaz/SeleccionNivel/fusilB.png');
-
+*/
         //Assets Prehistoria
         this.load.image('preMap', 'assets/Fondos/1.Prehistoria/Background.png');
         this.load.image('preObj1', 'assets/Objetos/1.Prehistoria/object_log.png');
         this.load.image('preObj2', 'assets/Objetos/1.Prehistoria/object_skull.png');
         this.load.image('preObj3', 'assets/Objetos/1.Prehistoria/object_stone.png');
         this.load.audio('preMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
+        this.load.audio('preFire', ['assets/EfectosSonido/Honda.mp3', 'assets/EfectosSonido/Honda.ogg']);
         this.load.image('preWeapon', 'assets/Armas/ArmaPrehistoria.png');
         this.load.spritesheet('prePlayerHonda', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basico_honda_idle_moving_spritesheet.png',
             { frameWidth: 373, frameHeight: 541 });
@@ -98,6 +99,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('egiObj2', 'assets/Objetos/2.AntiguoEgipto/object_cup.png');
         this.load.image('egiObj3', 'assets/Objetos/2.AntiguoEgipto/object_pyramid.png');
         this.load.audio('egiMusic', ['assets/Música/Egipto.mp3', 'assets/Música/Egipto.ogg']);
+        this.load.audio('egiFire', ['assets/EfectosSonido/Hacha.mp3', 'assets/EfectosSonido/Hacha.ogg']);
         this.load.image('egiPlayer', 'assets/Personajes/2.AntiguoEgipto/BasicoEgipto.png');
         this.load.spritesheet('egiWeapon', 'assets/Armas/ArmaEgipto.png', { frameWidth: 235, frameHeight: 235 });
         this.load.spritesheet('egiPlayerHacha', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Hacha/egipto_basic_axe_idle_moving_spritesheet.png',
@@ -119,7 +121,8 @@ class bootScene extends Phaser.Scene {
         this.load.image('medObj1', 'assets/Objetos/3.EdadMedia/object_apples.png');
         this.load.image('medObj2', 'assets/Objetos/3.EdadMedia/object_barrel.png');
         this.load.image('medObj3', 'assets/Objetos/3.EdadMedia/object_vase.png');
-        this.load.audio('medMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
+        this.load.audio('medMusic', ['assets/Música/Medieval.mp3', 'assets/Música/Medieval.ogg']);
+        this.load.audio('medFire', ['assets/EfectosSonido/Ballesta.mp3', 'assets/EfectosSonido/Ballesta.ogg']);
         this.load.image('medPlayer', 'assets/Personajes/3.EdadMedia/BasicoEdadMedia.png');
         this.load.image('medWeapon', 'assets/Armas/ballesta-saeta.png')
 
@@ -134,7 +137,8 @@ class bootScene extends Phaser.Scene {
         this.load.image('indObj1', 'assets/Objetos/4.RevolucionIndustrial/object_gear.png');
         this.load.image('indObj2', 'assets/Objetos/4.RevolucionIndustrial/object_toolbox.png');
         this.load.image('indObj3', 'assets/Objetos/4.RevolucionIndustrial/object_wheel.png');
-        this.load.audio('indMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
+        this.load.audio('indMusic', ['assets/Música/RevInds.mp3', 'assets/Música/RevInds.ogg']);
+        this.load.audio('indFire', ['assets/EfectosSonido/mosqueton.mp3', 'assets/EfectosSonido/mosqueton.ogg']);
         this.load.image('indWeapon', 'assets/Armas/mosquete-bala.png');
 
         this.load.spritesheet('indPlayerMos', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Mosquete/industrial_basic_mosquete_idle_moving_spritesheet.png',
@@ -154,15 +158,22 @@ class bootScene extends Phaser.Scene {
 
         //Assets Contemporánea
         this.load.image('conMapa', 'assets/Fondos/5.Actualidad/Background.png');
-        this.load.image('conTaxi', 'assets/Objetos/5.Actualidad/TaxiUp.png');
-        /*
-        this.load.image('conObj1', 'assets/Objetos/5.Actualidad/object_gear.png');
-        this.load.image('conObj2', 'assets/Objetos/5.Actualidad/object_toolbox.png');
-        this.load.image('conObj3', 'assets/Objetos/5.Actualidad/object_wheel.png');
-        */
-        this.load.audio('conMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
+        this.load.image('conTaxiUp', 'assets/Objetos/5.Actualidad/TaxiUp.png');
+        this.load.image('conTaxiDown', 'assets/Objetos/5.Actualidad/TaxiDown.png');
+        this.load.image('conObj1', 'assets/Objetos/5.Actualidad/object_cone.png');
+        this.load.image('conObj2', 'assets/Objetos/5.Actualidad/object_manhole.png');
+        this.load.image('conObj3', 'assets/Objetos/5.Actualidad/object_tire.png');
+        
+        this.load.audio('conMusic', ['assets/Música/actualidad.mp3', 'assets/Música/actualidad.ogg']);
+        this.load.audio('conFire', ['assets/EfectosSonido/Ak.mp3', 'assets/EfectosSonido/Ak.ogg']);
         this.load.image('conWeapon', 'assets/Armas/fusil-bala.png');
 
+        this.load.spritesheet('conEnemy', 'assets/Animaciones/Spritesheets/Actualidad/Enemigo/Fusil/actualidad_enemy_fusil_idle_moving_spritesheet.png',
+            { frameWidth: 455, frameHeight: 510 });
+        this.load.spritesheet('conEnemyAttack', 'assets/Animaciones/Spritesheets/Actualidad/Enemigo/Fusil/actualidad_enemy_fusil_attack_moving_spritesheet.png',
+            { frameWidth: 455, frameHeight: 510 });
+        this.load.spritesheet('conEnemyDie', 'assets/Animaciones/Spritesheets/Actualidad/Enemigo/Game Over/actualidad_enemy_gameover_spritesheet.png',
+            { frameWidth: 545, frameHeight: 530 })
         //Assets Juego
         this.load.image('MuertesUI', 'assets/Interfaz/ContadorMuertes.png')
         this.load.image('CloseB', 'assets/Interfaz/CloseButton.png')
@@ -170,6 +181,8 @@ class bootScene extends Phaser.Scene {
         this.load.image('FreezeBOFF', 'assets/Interfaz/FreezeButtonOFF.png');
         this.load.image('Enhorabuena', 'assets/Interfaz/NivelSuperadoTexto.png');
         this.load.image('Enhorabuenai', 'assets/Interfaz/NivelSuperadoTextoi.png');
+        this.load.image('EnhorabuenaFinal', 'assets/Interfaz/EnhorabuenaFinal.png');
+        this.load.image('EnhorabuenaFinali', 'assets/Interfaz/EnhorabuenaFinali.png');
         this.load.image('ContinuarB', 'assets/Interfaz/ContinuarButton.png');
         this.load.image('ContinuarBi', 'assets/Interfaz/ContinuarButtoni.png');
         this.load.image('Lastima', 'assets/Interfaz/RendidoTexto.png');
@@ -190,7 +203,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('confirmarRendirsei', 'assets/Interfaz/ConfirmarRendiri.png');
         this.load.image('botonTienda', 'assets/Interfaz/Menu/botonTienda.png');
         this.load.image('botonTiendai', 'assets/Interfaz/Menu/botonTiendai.png');
-
+/*
         //Multijugador
         this.load.image('confirmarAbandonar', 'assets/Interfaz/ConfirmarAbandonar.png');
         this.load.image('confirmarAbandonari', 'assets/Interfaz/ConfirmarAbandonari.png');
@@ -591,7 +604,7 @@ class bootScene extends Phaser.Scene {
         this.load.spritesheet('indPlayerAKAttackIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Fusil/industrial_basic_fusil_attack_static_spritesheet.png',
             { frameWidth: 350, frameHeight: 525 });
         //HeroeRevIndustrial
-
+*/
     }
 
     create() {
@@ -740,7 +753,24 @@ class bootScene extends Phaser.Scene {
             repeat: 0
         });
         //Nivel Edad Contemporánea
-
+        this.anims.create({
+            key: 'conenemyMoving',
+            frames: this.anims.generateFrameNumbers('conEnemy', { start: 0, end: 19 }),
+            frameRate: 45,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'conenemyAttacking',
+            frames: this.anims.generateFrameNumbers('conEnemyAttack', { start: 0, end: 19 }),
+            frameRate: 45,
+            repeat: 0
+        });
+        this.anims.create({
+            key: 'conenemyDying',
+            frames: this.anims.generateFrameNumbers('conEnemyDie', { start: 0, end: 48 }),
+            frameRate: 32,
+            repeat: 0
+        });
         //Animaciones Multijugador
 
 

@@ -7,6 +7,8 @@ class multijugadorPartidaScene extends Phaser.Scene {
     win1;
     win2;
     music;
+    TaxiDown;
+    TaxiUp;
     configPre = {
         classType: Phaser.GameObjects.Image,
         defaultKey: 'stone',
@@ -49,8 +51,8 @@ class multijugadorPartidaScene extends Phaser.Scene {
         super("MultijugadorPartidaScene");
     }
     preload() {
-       
-     }
+
+    }
     create() {
         this.win = false;
         this.is_paused = false;
@@ -191,25 +193,66 @@ class multijugadorPartidaScene extends Phaser.Scene {
 
         this.obstacles = this.physics.add.group(this.ObstaclesConfig);
         this.obstacles.setOrigin(0.5, 0.5);
-        this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, mapas[selectedMap].nombre + 'Obj2').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, mapas[selectedMap].nombre + 'Obj2').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, mapas[selectedMap].nombre + 'Obj3').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
+        if (mapas[selectedMap].nombre === 'con') {
+            this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'conObj1').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+            this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.31, 'conObj1').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+            this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.62, 'conObj3').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, mapas[selectedMap].nombre + 'Obj1').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, mapas[selectedMap].nombre + 'Obj3').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.59, mapas[selectedMap].nombre + 'Obj1').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, mapas[selectedMap].nombre + 'Obj2').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+            this.obstacles.create(gameConfig.scale.width * 0.47, gameConfig.scale.height * 0.71, 'conObj2').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+            this.obstacles.create(gameConfig.scale.width * 0.44, gameConfig.scale.height * 0.42, 'conObj3').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+            this.obstacles.create(gameConfig.scale.width * 0.58, gameConfig.scale.height * 0.8, 'conObj2').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+            this.obstacles.create(gameConfig.scale.width * 0.56, gameConfig.scale.height * 0.2, 'conObj1').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, mapas[selectedMap].nombre + 'Obj3').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.29, gameConfig.scale.height * 0.73, mapas[selectedMap].nombre + 'Obj1').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.29, mapas[selectedMap].nombre + 'Obj3').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.75, mapas[selectedMap].nombre + 'Obj2').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
+            this.TaxiUp = this.add.sprite(gameConfig.scale.width / 3, gameConfig.scale.height + 50, 'conTaxiUp').setScale(0.12 * gameConfig.scale.width / 800);
+            this.physics.add.existing(this.TaxiUp);
+            this.TaxiUp.body.setVelocity(0, -800);
+            this.TaxiUp.body.setAllowGravity(false);
+            this.TaxiUp.body.immovable = true;
 
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, mapas[selectedMap].nombre + 'Obj1').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, mapas[selectedMap].nombre + 'Obj2').setScale(0.15 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, mapas[selectedMap].nombre + 'Obj3').setScale(0.17 * gameConfig.scale.width / 800).body.setCircle(117, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, mapas[selectedMap].nombre + 'Obj1').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
+            this.TaxiDown = this.add.sprite(gameConfig.scale.width * 2 / 3, -50, 'conTaxiDown').setScale(0.12 * gameConfig.scale.width / 800);
+            this.physics.add.existing(this.TaxiDown);
+            this.TaxiDown.body.setVelocity(0, 700);
+            this.TaxiDown.body.setAllowGravity(false);
+            this.TaxiDown.body.immovable = true;
 
+
+            var limitUp = this.add.rectangle(gameConfig.scale.width / 2, -gameConfig.scale.height / 2, gameConfig.scale.width, 20);
+            this.physics.add.existing(limitUp);
+            limitUp.body.setAllowGravity(false);
+            limitUp.body.setSize(gameConfig.scale.width, 20);
+            limitUp.body.immovable = true;
+            var limitDown = this.add.rectangle(gameConfig.scale.width / 2, gameConfig.scale.height + gameConfig.scale.height / 2, gameConfig.scale.width, 20);
+            this.physics.add.existing(limitDown);
+            limitDown.body.setAllowGravity(false);
+            limitDown.body.setSize(gameConfig.scale.width, 20);
+            limitDown.body.immovable = true;
+
+            this.physics.add.collider(limitUp, this.TaxiUp, function (wall, taxi) { taxi.y = gameConfig.scale.height + 100; });
+            this.physics.add.collider(limitDown, this.TaxiDown, function (wall, taxi) { taxi.y = -120; });
+            this.physics.add.collider(this.TaxiUp, this.bulletsPre, function (wall, bullet) { wall.moves = true; });
+            this.physics.add.collider(this.TaxiDown, this.bulletsPre, function (wall, bullet) { wall.moves = true; });
+            this.physics.add.collider(this.TaxiUp, this.bulletsEnemy, function (wall, bullet) { wall.moves = true; });
+            this.physics.add.collider(this.TaxiDown, this.bulletsEnemy, function (wall, bullet) { wall.moves = true; });
+        } else {
+            this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, mapas[selectedMap].nombre + 'Obj2').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
+            this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, mapas[selectedMap].nombre + 'Obj2').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+            this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, mapas[selectedMap].nombre + 'Obj3').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
+
+            this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, mapas[selectedMap].nombre + 'Obj1').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+            this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, mapas[selectedMap].nombre + 'Obj3').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+            this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.59, mapas[selectedMap].nombre + 'Obj1').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
+            this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, mapas[selectedMap].nombre + 'Obj2').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+
+            this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, mapas[selectedMap].nombre + 'Obj3').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
+            this.obstacles.create(gameConfig.scale.width * 0.29, gameConfig.scale.height * 0.73, mapas[selectedMap].nombre + 'Obj1').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+            this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.29, mapas[selectedMap].nombre + 'Obj3').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+            this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.75, mapas[selectedMap].nombre + 'Obj2').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
+
+            this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, mapas[selectedMap].nombre + 'Obj1').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
+            this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, mapas[selectedMap].nombre + 'Obj2').setScale(0.15 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
+            this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, mapas[selectedMap].nombre + 'Obj3').setScale(0.17 * gameConfig.scale.width / 800).body.setCircle(117, 40, 20).setAllowGravity(false);
+            this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, mapas[selectedMap].nombre + 'Obj1').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
+        }
         this.physics.add.collider(wallR, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallL, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallU, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
@@ -341,7 +384,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
         t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7 * gameConfig.scale.height / 600);
         t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonRendirse').setScale(gameConfig.scale.height / 600);
         t.BotonMenu.setInteractive().on('pointerdown', () => this.confirmarSalir("MenuPrincipalScene"));
-        t.BotonCerrar = t.add.sprite(gameConfig.scale.width * 0.75, gameConfig.scale.height * 0.36, 'CloseB').setScale(0.1 * gameConfig.scale.height / 600);
+        t.BotonCerrar = t.add.sprite(gameConfig.scale.width / 2 + (t.Menu.displayWidth / 2 - 30), gameConfig.scale.height / 2 - (t.Menu.displayHeight / 2 + 20), 'CloseB').setOrigin(0.5, 0).setScale(0.1 * gameConfig.scale.height / 600);
         t.BotonCerrar.setInteractive().on('pointerdown', () => { this.is_paused = !this.is_paused; t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput, t.spriteParar2, t.spriteDisparar2, t.freezeInput2, t.shootInput2); this.ocultarMenu(this) });
         t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda').setScale(gameConfig.scale.height / 600);
         t.BotonTienda.setInteractive().on('pointerdown', () => this.confirmarSalir("TiendaScene"));
@@ -470,6 +513,10 @@ class multijugadorPartidaScene extends Phaser.Scene {
         this.bulls = this.bulletsPre.getChildren();
         this.ebulls = this.bulletsEnemy.getChildren();
         if (!this.is_paused) {
+            if (mapas[selectedMap].nombre === 'con') {
+                this.TaxiDown.body.moves = true;
+                this.TaxiUp.body.moves = true;
+            }
             this.player.body.moves = true;
             this.enemy.body.moves = true;
             for (let i = 0; i < this.bulls.length; i++) {
@@ -494,6 +541,10 @@ class multijugadorPartidaScene extends Phaser.Scene {
             f2.enabled = true;
             s2.enabled = true;
         } else {
+            if (mapas[selectedMap].nombre === 'con') {
+                this.TaxiDown.body.moves = false;
+                this.TaxiUp.body.moves = false;
+            }
             this.player.body.moves = false;
             this.enemy.body.moves = false;
             for (let i = 0; i < this.bulls.length; i++) {
@@ -522,6 +573,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
     }
     fire(pl1) {
         if (pl1 === true) {
+            this.sound.play(armas[selectedWeapon1].nombre+'Fire',{volume: 0.15});
             if (this.spriteParar.isDown || this.freezeInput.isDown) {
                 this.player.anims.play(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'AttackIdle', false)
                     .once('animationcomplete', () => {
@@ -546,7 +598,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
                 this.bomb = this.physics.add.sprite(this.enemy.x + this.enemy.width / 3, this.enemy.y - this.enemy.height / 3, armas[selectedWeapon1].nombre + 'Weapon').setScale(armas[selectedWeapon1].scale * gameConfig.scale.height / 600);
                 this.bomb.play("egishoot");
             } else {
-                this.bomb = this.physics.add.sprite(this.player.x + 10, this.player.y, armas[selectedWeapon1].nombre + 'Weapon').setScale(armas[selectedWeapon1].scale * gameConfig.scale.height / 600);
+                this.bomb = this.physics.add.sprite(this.enemy.x + this.enemy.width / 3, this.enemy.y - this.enemy.height / 3, armas[selectedWeapon1].nombre + 'Weapon').setScale(armas[selectedWeapon1].scale * gameConfig.scale.height / 600);
             }
 
             this.bomb.setTint(0x85baff);
@@ -559,6 +611,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.bomb.body.setVelocity(armas[selectedWeapon1].speed * gameConfig.scale.height / 600, 0);
             this.bomb.angle = 90;
         } else {
+            this.sound.play(armas[selectedWeapon2].nombre+'Fire',{volume: 0.15});
             this.enemy.body.setOffset(this.enemy.width, 0);
             if (this.spriteParar.isDown || this.freezeInput.isDown) {
                 this.enemy.anims.play(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'AttackIdle', false)
@@ -576,7 +629,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
                     });
             } else {
                 this.enemy.anims.play(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'Attack', false)
-                    .once('animationcomplete', () => { if (!this.is_paused) { this.enemy.anims.play(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre, false);this.enemy.body.setOffset(0, 0); } });
+                    .once('animationcomplete', () => { if (!this.is_paused) { this.enemy.anims.play(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre, false); this.enemy.body.setOffset(0, 0); } });
             }
             if (this.bulletsEnemy.isFull()) {
                 this.bulletsEnemy.getFirst(true).destroy();

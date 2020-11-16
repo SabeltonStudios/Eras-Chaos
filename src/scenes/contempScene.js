@@ -8,12 +8,14 @@ class contempScene extends Phaser.Scene {
     gameOver;
     win;
     music;
+    TaxiDown;
+    TaxiUp;
     configPre = {
         classType: Phaser.GameObjects.Image,
         defaultKey: 'stone',
         defaultFrame: null,
         active: true,
-        maxSize: 5,
+        maxSize: 4,
         bounceX: 1,
         bounceY: 1,
         velocityX: 500,
@@ -24,7 +26,7 @@ class contempScene extends Phaser.Scene {
         defaultKey: 'stone',
         defaultFrame: null,
         active: true,
-        maxSize: 4,
+        maxSize: 6,
         bounceX: 1,
         bounceY: 1,
         velocityX: -500,
@@ -54,7 +56,7 @@ class contempScene extends Phaser.Scene {
     }
     create() {
         if (this.music == null) {
-            this.music = this.sound.add('medMusic');
+            this.music = this.sound.add('conMusic');
         }
         if (this.contMuertes == 0) {
             this.music.play(this.mConfig);
@@ -70,27 +72,22 @@ class contempScene extends Phaser.Scene {
         this.Mapa = this.add.image(0, 0, 'conMapa').setOrigin(0)
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
         this.muertesUI = this.add.image(gameConfig.scale.width * 0.97 / 2, 53 * gameConfig.scale.height / 600, 'MuertesUI').setScale(0.45 * gameConfig.scale.width / 800);
-        this.contUI = this.add.text(gameConfig.scale.width * 1.1 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff',stroke: '#000',strokeThickness: 4 }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
+        this.contUI = this.add.text(gameConfig.scale.width * 1.1 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff', stroke: '#000', strokeThickness: 4 }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
 
-        this.player = this.physics.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 6, 'medPlayer').setScale(0.07 * gameConfig.scale.height / 600)//*800/gameConfig.scale.width);
+        this.player = this.physics.add.sprite(gameConfig.scale.width / 6.5, gameConfig.scale.height / 6, 'medPlayer').setScale(0.14 * gameConfig.scale.height / 600)//*800/gameConfig.scale.width);
         this.player.body.immovable = true;
-        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5 / 6, gameConfig.scale.height / 2, 'medPlayer').setScale(0.07 * gameConfig.scale.height / 600)//*800/gameConfig.scale.width);
+        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5.5 / 6, gameConfig.scale.height / 2, 'conEnemy').setOrigin(1, 1).setScale(0.17 * gameConfig.scale.width / 800);
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
-        /*this.anims.create({
-            key: 'walk',
-            frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
-            frameRate: 10,
-            repeat: -1
-        });
-        this.player.anims.play('walk', true);*/
-        this.player.setVelocity(0, -300 * gameConfig.scale.height / 600);
+
+        //this.player.anims.play('conPlayerMosMoving', true);
+        this.player.setVelocity(0, -350 * gameConfig.scale.height / 600);
         this.player.setBounce(1);
         this.player.body.setAllowGravity(false);
         this.player.setCollideWorldBounds(true);
 
-        //this.enemy.anims.play('walk', true);
-        this.enemy.setVelocity(0, 220 * gameConfig.scale.height / 600);
+        this.enemy.anims.play('conenemyMoving', true);
+        this.enemy.setVelocity(0, 200 * gameConfig.scale.height / 600);
         this.enemy.setBounce(1);
         this.enemy.body.setAllowGravity(false);
         this.enemy.setCollideWorldBounds(true);
@@ -105,52 +102,72 @@ class contempScene extends Phaser.Scene {
         wallL.body.setAllowGravity(false);
         wallL.body.setSize(20, gameConfig.scale.height);
         wallL.body.immovable = true;
-        var wallU = this.add.rectangle(gameConfig.scale.width / 2, 0, gameConfig.scale.width, 120 * gameConfig.scale.height / 600);
+        var wallU = this.add.rectangle(gameConfig.scale.width / 2, 0, gameConfig.scale.width, 20);
         this.physics.add.existing(wallU);
         wallU.body.setAllowGravity(false);
-        wallU.body.setSize(gameConfig.scale.width, 120 * gameConfig.scale.height / 600);
+        wallU.body.setSize(gameConfig.scale.width, 20);
         wallU.body.immovable = true;
-        var wallD = this.add.rectangle(gameConfig.scale.width / 2, gameConfig.scale.height + 20, gameConfig.scale.width, 20);
+        var wallD = this.add.rectangle(gameConfig.scale.width / 2, gameConfig.scale.height, gameConfig.scale.width, 20);
         this.physics.add.existing(wallD);
         wallD.body.setAllowGravity(false);
         wallD.body.setSize(gameConfig.scale.width, 20);
         wallD.body.immovable = true;
 
         this.bulletsPre = this.physics.add.group(this.configPre);
-        Phaser.Actions.Call(this.bulletsPre.getChildren(), function (bullet) {
-            //if(bullet.position.x>gameConfig.scale.width){bullet.destroy();}
-        });
+        Phaser.Actions.Call(this.bulletsPre.getChildren(), function (bullet) { });
         this.bulletsEnemy = this.physics.add.group(this.EnemyConfigPre);
         Phaser.Actions.Call(this.bulletsEnemy.getChildren(), function (bullet) { });
 
         this.obstacles = this.physics.add.group(this.ObstaclesConfig);
         this.obstacles.setOrigin(0.5, 0.5);
-        this.obstacles.create(gameConfig.scale.width / 3, gameConfig.scale.height / 2, 'conTaxi').setScale(0.12 * gameConfig.scale.width / 800).body.setAllowGravity(false);
-        /*this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.25, 'medBar').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, 'medVas').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'conObj1').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 2.1, gameConfig.scale.height * 0.31, 'conObj1').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.62, 'conObj3').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'medApl').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.42, 'medVas').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
-        //this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.59, 'medApl').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'medBar').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.47, gameConfig.scale.height * 0.71, 'conObj2').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.44, gameConfig.scale.height * 0.42, 'conObj3').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.58, gameConfig.scale.height * 0.8, 'conObj2').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.56, gameConfig.scale.height * 0.2, 'conObj1').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, 'medVas').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.29, gameConfig.scale.height * 0.73, 'medApl').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
-        //this.obstacles.create(gameConfig.scale.width * 0.69, gameConfig.scale.height * 0.29, 'medVas').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.75, 'medBar').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.TaxiUp = this.add.sprite(gameConfig.scale.width / 3, gameConfig.scale.height + 50, 'conTaxiUp').setScale(0.12 * gameConfig.scale.width / 800);
+        this.physics.add.existing(this.TaxiUp);
+        this.TaxiUp.body.setVelocity(0, -800);
+        this.TaxiUp.body.setAllowGravity(false);
+        this.TaxiUp.body.immovable = true;
 
-        //this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'medApl').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.87, 'medBar').setScale(0.15 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(115, 40, 20).setAllowGravity(false);
-        //this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'medVas').setScale(0.17 * gameConfig.scale.width / 800).body.setCircle(117, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'medApl').setScale(0.15 * gameConfig.scale.width / 800).body.setCircle(115, 40, 20).setAllowGravity(false);
-*/
+        this.TaxiDown = this.add.sprite(gameConfig.scale.width * 2 / 3, -50, 'conTaxiDown').setScale(0.12 * gameConfig.scale.width / 800);
+        this.physics.add.existing(this.TaxiDown);
+        this.TaxiDown.body.setVelocity(0, 700);
+        this.TaxiDown.body.setAllowGravity(false);
+        this.TaxiDown.body.immovable = true;
+
+
+        var limitUp = this.add.rectangle(gameConfig.scale.width / 2, -gameConfig.scale.height / 2, gameConfig.scale.width, 20);
+        this.physics.add.existing(limitUp);
+        limitUp.body.setAllowGravity(false);
+        limitUp.body.setSize(gameConfig.scale.width, 20);
+        limitUp.body.immovable = true;
+        var limitDown = this.add.rectangle(gameConfig.scale.width / 2, gameConfig.scale.height + gameConfig.scale.height / 2, gameConfig.scale.width, 20);
+        this.physics.add.existing(limitDown);
+        limitDown.body.setAllowGravity(false);
+        limitDown.body.setSize(gameConfig.scale.width, 20);
+        limitDown.body.immovable = true;
+
+        this.physics.add.collider(limitUp, this.TaxiUp, function (wall, taxi) { taxi.y = gameConfig.scale.height + 100; });
+        this.physics.add.collider(limitDown, this.TaxiDown, function (wall, taxi) { taxi.y = -120; });
+        this.physics.add.collider(this.TaxiUp, this.bulletsPre, function (wall, bullet) { wall.moves=true;});
+        this.physics.add.collider(this.TaxiDown, this.bulletsPre, function (wall, bullet) { wall.moves=true; });
+        this.physics.add.collider(this.TaxiUp, this.bulletsEnemy, function (wall, bullet) { wall.moves=true; });
+        this.physics.add.collider(this.TaxiDown, this.bulletsEnemy, function (wall, bullet) { wall.moves=true; });
+
         this.physics.add.collider(wallR, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallL, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
-        this.physics.add.collider(wallU, this.bulletsPre);
+        this.physics.add.collider(wallU, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallD, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
+
         this.physics.add.collider(wallR, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallL, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
-        this.physics.add.collider(wallU, this.bulletsEnemy);
+        this.physics.add.collider(wallU, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallD, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
 
         //this.physics.add.collider(this.player, this.bulletsPre, () => this.gameOver = true);
@@ -182,7 +199,7 @@ class contempScene extends Phaser.Scene {
         this.spritePausar.setInteractive().on('pointerdown', () => this.is_paused = !this.is_paused)
             .on('pointerdown', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
             //.on('pointerdown', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
-            //.on('pointerdown', () => !this.is_paused ? this.enemy.anims.play('walk', true) : this.enemy.anims.stop())
+            .on('pointerdown', () => !this.is_paused ? this.enemy.anims.play('conenemyMoving', true) : this.enemy.anims.stop())
             .on('pointerdown', () => this.spritePausar.setTexture('PauseBOFF'))
             .on('pointerdown', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
             .on('pointerup', () => this.spritePausar.setTexture('PauseBON'))
@@ -203,23 +220,25 @@ class contempScene extends Phaser.Scene {
             this.input.keyboard.on('keydown-' + 'ESC', () => this.is_paused = !this.is_paused)
                 .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
                 //.on('keydown-' + 'ESC', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
-                //.on('keydown-' + 'ESC', () => !this.is_paused ? this.enemy.anims.play('walk', true) : this.enemy.anims.stop())
+                .on('keydown-' + 'ESC', () => !this.is_paused ? this.enemy.anims.play('conenemyMoving', true) : this.enemy.anims.stop())
                 .on('keydown-' + 'ESC', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
                 .on('keydown-' + 'ESC', () => this.spritePausar.setTexture('PauseBOFF'))
                 .on('keyup-' + 'ESC', () => this.spritePausar.setTexture('PauseBON'));
         }
         this.inter = setInterval(() => {
             if (!this.is_paused) {
+                this.sound.play('conFire',{volume: 0.15});
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
-                this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'conWeapon').setScale(0.15 * gameConfig.scale.height / 600);
+                this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y-20, 'conWeapon').setScale(0.15 * gameConfig.scale.height / 600);
                 this.bomb.setTint(0xff7e7d);
                 this.bomb.body.setVelocity(-700 * gameConfig.scale.height / 600, 0);
                 this.bomb.body.setAllowRotation();
                 this.bomb.body.setAllowGravity(false);
-                this.bomb.body.setCircle(50, 5, 5);
+                this.bomb.body.setCircle(50, this.bomb.displayWidth / 2, -this.bomb.displayHeight / 2);
                 this.bomb.angle = 180;
+                this.enemy.anims.play("conenemyAttacking", false).once('animationcomplete', () => { if (!this.is_paused) { this.enemy.anims.play("conenemyMoving", true); } }, this);
             }
         }, 500);
     }
@@ -229,7 +248,7 @@ class contempScene extends Phaser.Scene {
         t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7 * gameConfig.scale.height / 600);
         t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonRendirse').setScale(gameConfig.scale.height / 600);
         t.BotonMenu.setInteractive().on('pointerdown', () => this.confirmarSalir("MenuPrincipalScene"));
-        t.BotonCerrar = t.add.sprite(gameConfig.scale.width * 0.75, gameConfig.scale.height * 0.36, 'CloseB').setScale(0.1 * gameConfig.scale.height / 600);
+        t.BotonCerrar = t.add.sprite(gameConfig.scale.width / 2 + (t.Menu.displayWidth / 2 - 30), gameConfig.scale.height / 2 - (t.Menu.displayHeight / 2 + 20), 'CloseB').setOrigin(0.5, 0).setScale(0.1 * gameConfig.scale.height / 600);
         t.BotonCerrar.setInteractive().on('pointerdown', () => { this.is_paused = !this.is_paused; t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput); this.ocultarMenu(this) });
         t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda').setScale(gameConfig.scale.height / 600);
         t.BotonTienda.setInteractive().on('pointerdown', () => this.confirmarSalir("TiendaScene"));
@@ -272,7 +291,7 @@ class contempScene extends Phaser.Scene {
     }
     rendirse(escena) {
         this.shootInput.destroy();
-        this.contMuertes=0;
+        this.contMuertes = 0;
         clearInterval(this.inter);
         this.ocultarMenu(this);
         this.mensajeSeguro.destroy();
@@ -328,11 +347,12 @@ class contempScene extends Phaser.Scene {
                 volume: 0,
                 duration: 500
             }, this);
-            if (completedLevel[2].completado) {
-                this.contMuertes=0;
+            this.enemy.anims.play("conenemyDying", true);
+            if (completedLevel[4].completado) {
+                this.contMuertes = 0;
                 this.music.stop();
                 this.scene.stop();
-                this.scene.start("ContempScene");
+                this.scene.start("SelectNivelHistoria");
             }
             else {
                 completedLevel[4].completado = true;
@@ -350,17 +370,17 @@ class contempScene extends Phaser.Scene {
                 }, this);
 
                 if (espanol) {
-                    this.enhorabuena = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Enhorabuena').setScale(gameConfig.scale.height / 600);
+                    this.enhorabuena = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'EnhorabuenaFinal').setScale(gameConfig.scale.height / 600);
                     this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarB').setScale(0.6 * gameConfig.scale.height / 600);
                 } else {
-                    this.enhorabuena = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Enhorabuenai').setScale(gameConfig.scale.height / 600);
+                    this.enhorabuena = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'EnhorabuenaFinali').setScale(gameConfig.scale.height / 600);
                     this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);
                 }
                 this.continuar.setInteractive().on('pointerdown', () => {
-                    this.contMuertes=0;
+                    this.contMuertes = 0;
                     this.music.stop();
                     this.scene.stop();
-                    this.scene.start("ContempScene");
+                    this.scene.start("SelectNivelHistoria");
                 })
             }
         }
@@ -369,6 +389,8 @@ class contempScene extends Phaser.Scene {
         this.bulls = this.bulletsPre.getChildren();
         this.ebulls = this.bulletsEnemy.getChildren();
         if (!this.is_paused) {
+            this.TaxiDown.body.moves = true;
+            this.TaxiUp.body.moves = true;
             this.player.body.moves = true;
             this.enemy.body.moves = true;
             for (let i = 0; i < this.bulls.length; i++) {
@@ -384,6 +406,8 @@ class contempScene extends Phaser.Scene {
             //this.is_paused = false;
         } else {
             //this.is_paused = true;
+            this.TaxiDown.body.moves = false;
+            this.TaxiUp.body.moves = false;
             this.player.body.moves = false;
             this.enemy.body.moves = false;
             for (let i = 0; i < this.bulls.length; i++) {
@@ -400,14 +424,21 @@ class contempScene extends Phaser.Scene {
 
     }
     fire() {
+        this.sound.play('conFire',{volume: 0.15});
+        /*if (this.spriteParar.isDown || this.freezeInput.isDown) {
+            this.player.anims.play("indPlayerMosAttackIdle", false)
+                .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.stop(); this.player.setTexture('indPlayerMosIdle') } });
+        } else {
+            this.player.anims.play("indPlayerMosAttack", false)
+                .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("indPlayerMosMoving", false) } });
+        }*/
         if (this.bulletsPre.isFull()) {
             //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();
         }
-        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, 'conWeapon').setScale(0.15 * gameConfig.scale.height / 600);
+        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y-20, 'conWeapon').setScale(0.15 * gameConfig.scale.height / 600);
         bomb.setTint(0x85baff);
         bomb.body.setVelocity(700 * gameConfig.scale.height / 600, 0);
-        bomb.body.setAllowRotation();
         //bomb.setOrigin(0,1);
         bomb.body.setAllowGravity(false);
         bomb.body.setCircle(50, 5, 5);
