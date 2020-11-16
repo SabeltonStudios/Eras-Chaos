@@ -5,21 +5,6 @@ class creditosScene extends Phaser.Scene{
 
     preload(){
 
-        //Assets español
-        this.load.image('tituloCreditos', 'assets/Interfaz/Creditos/tituloCreditos.png');
-        this.load.image('desarrolladores', 'assets/Interfaz/Creditos/desarrolladores.png');
-        this.load.image('contacto', 'assets/Interfaz/Creditos/contacto.png');
-
-        //Assets ingles
-        this.load.image('tituloCreditosi', 'assets/Interfaz/Creditos/tituloCreditosi.png');
-        this.load.image('desarrolladoresi', 'assets/Interfaz/Creditos/desarrolladoresi.png');
-        this.load.image('contactoi', 'assets/Interfaz/Creditos/contactoi.png');
-        this.load.image('twitter','assets/Interfaz/Creditos/twitter.png');
-        this.load.image('instagram','assets/Interfaz/Creditos/instagram.png');
-        this.load.image('youtube','assets/Interfaz/Creditos/youtube.png');
-        this.load.image('itchio','assets/Interfaz/Creditos/itchio.png');
-        this.load.image('github','assets/Interfaz/Creditos/github.png');
-        this.load.image('gmail','assets/Interfaz/Creditos/gmail.png');
 
     }
     create(){

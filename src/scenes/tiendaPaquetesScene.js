@@ -99,7 +99,7 @@ class tiendaPaquetesScene extends Phaser.Scene{
         var i;
         for (i = 0; i < paquetes.length; i++) {
             if(!paquetes[i].comprado){
-                if(i<5){
+                if(i<4){
                     if(!mapas[paquetes[i].mapa].bloqueado && !personajes[paquetes[i].personaje].bloqueado && !armas[paquetes[i].arma].bloqueado){
                         paquetes[i].comprado=true;
                     }else{
@@ -159,16 +159,16 @@ class tiendaPaquetesScene extends Phaser.Scene{
         }
         this.paquetesButton[pos].setTint(0xDEDE7C);
         if(espanol){
-            this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloquear').setScale(gameConfig.scale.height / 600);
+            this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.7,'mensajeDesbloquear').setScale(gameConfig.scale.height / 600);
         }else{
-            this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloqueari').setScale(gameConfig.scale.height / 600);
+            this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.7,'mensajeDesbloqueari').setScale(gameConfig.scale.height / 600);
         }
         
 
-        this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width*1.2 / 2,(gameConfig.scale.height/3)*2.6,'botonDesbloquearNo').setScale(gameConfig.scale.height / 600);
+        this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width*1.2 / 2,(gameConfig.scale.height/3)*2.7,'botonDesbloquearNo').setScale(gameConfig.scale.height / 600);
         this.spriteDesbloquearNo.setInteractive().on('pointerdown',()=> this.cerrarMensajeDesbloquear(pos));
 
-        this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width*0.8 / 2,(gameConfig.scale.height/3)*2.6,'botonDesbloquearSi').setScale(gameConfig.scale.height / 600);
+        this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width*0.8 / 2,(gameConfig.scale.height/3)*2.7,'botonDesbloquearSi').setScale(gameConfig.scale.height / 600);
         this.spriteDesbloquearSi.setInteractive().on('pointerdown',()=> this.comprarPaquete(paquete,dinero,pos));
         
         

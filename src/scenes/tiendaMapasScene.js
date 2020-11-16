@@ -126,13 +126,6 @@ class tiendaMapasScene extends Phaser.Scene{
         this.mapasButton[4] = this.add.sprite((gameConfig.scale.width / 6)*5,gameConfig.scale.height*1.5/3,mapas[4].sprite).setScale(gameConfig.scale.height / 600);
         this.mapasButton[4].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[4+this.mapasPosicion],dinero,4));
 
-        //Flechas derecha e izquierda
-        this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 25,gameConfig.scale.height*1.5/3,'flechaIzquierda').setScale(0.4*gameConfig.scale.height / 600);
-        this.spriteIzquierda.setInteractive().on('pointerdown', () =>this.trasladarIzquierda());
-
-        this.spriteDerecha = this.add.sprite(gameConfig.scale.width*24/25,gameConfig.scale.height*1.5/3,'flechaDerecha').setScale(0.4*gameConfig.scale.height / 600);
-        this.spriteDerecha.setInteractive().on('pointerdown', () =>this.trasladarDerecha());
-
         //Botón de salir
         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15,(gameConfig.scale.height/8)*7.5,'botonSalir').setScale(0.1*gameConfig.scale.height / 600);
         this.spriteSalir.setInteractive().on('pointerdown', () => this.scene.start("TiendaScene"));
@@ -140,8 +133,6 @@ class tiendaMapasScene extends Phaser.Scene{
 
     //Show a message to unlock a map
     desbloquear(mapa,dinero,pos){
-        this.spriteDerecha.disableInteractive();
-        this.spriteIzquierda.disableInteractive();
         var i;
 
         if(mapa.bloqueado){
@@ -208,32 +199,8 @@ class tiendaMapasScene extends Phaser.Scene{
             this.mapasButton[i].setInteractive();
         }
         this.mapasButton[pos].clearTint();
-        this.spriteDerecha.setInteractive();
-        this.spriteIzquierda.setInteractive();
         this.mensajeDesbloquear.destroy();
         this.spriteDesbloquearNo.destroy();
         this.spriteDesbloquearSi.destroy();
-    }
-
-    //Mueve los mapas para que se vean los de la izquierda
-    trasladarIzquierda(){
-        if(this.mapasPosicion>0){
-            this.mapasPosicion--;
-            var i;
-            for (i = 0; i < this.mapasButton.length; i++) {
-                this.mapasButton[i].setTexture(mapas[this.mapasPosicion+i].sprite);
-            }
-        }
-    }
-
-    //Mueve los mapas para que se vean los de la derecha
-    trasladarDerecha(){
-        if((this.mapasPosicion+5)<mapas.length){
-            this.mapasPosicion++;
-            var i;
-            for (i = 0; i < this.mapasButton.length; i++) {
-                this.mapasButton[i].setTexture(mapas[this.mapasPosicion+i].sprite);
-            }
-        }
     }
 }

@@ -126,27 +126,15 @@ class tiendaArmasScene extends Phaser.Scene{
         }
 
         //Asignamos los botones a cinco personajes
-        this.armasButton[0] = this.add.sprite(gameConfig.scale.width / 6,gameConfig.scale.height*1.7/3,armas[0].sprite).setScale(gameConfig.scale.height / 600);
+        var i;
+        for(i=0;i<5;i++){
+            this.armasButton[i] = this.add.sprite(gameConfig.scale.width *(i+1)/ 6,gameConfig.scale.height*1.7/3,armas[i].sprite).setScale(gameConfig.scale.height / 600);
+        }
         this.armasButton[0].setInteractive().on('pointerdown', () =>this.desbloquear(armas[0+this.armasPosicion],dinero,0));
-
-        this.armasButton[1] = this.add.sprite((gameConfig.scale.width / 6)*2,gameConfig.scale.height*1.7/3,armas[1].sprite).setScale(gameConfig.scale.height / 600);
         this.armasButton[1].setInteractive().on('pointerdown', () =>this.desbloquear(armas[1+this.armasPosicion],dinero,1));
-
-        this.armasButton[2] = this.add.sprite((gameConfig.scale.width / 6)*3,gameConfig.scale.height*1.7/3,armas[2].sprite).setScale(gameConfig.scale.height / 600);
         this.armasButton[2].setInteractive().on('pointerdown', () =>this.desbloquear(armas[2+this.armasPosicion],dinero,2));
-
-        this.armasButton[3] = this.add.sprite((gameConfig.scale.width / 6)*4,gameConfig.scale.height*1.7/3,armas[3].sprite).setScale(gameConfig.scale.height / 600);
         this.armasButton[3].setInteractive().on('pointerdown', () =>this.desbloquear(armas[3+this.armasPosicion],dinero,3));
-
-        this.armasButton[4] = this.add.sprite((gameConfig.scale.width / 6)*5,gameConfig.scale.height*1.7/3,armas[4].sprite).setScale(gameConfig.scale.height / 600);
         this.armasButton[4].setInteractive().on('pointerdown', () =>this.desbloquear(armas[4+this.armasPosicion],dinero,4));
-
-        //Flechas derecha e izquierda
-        this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 25,gameConfig.scale.height*1.7/3,'flechaIzquierda').setScale(gameConfig.scale.height *0.4/ 600);
-        this.spriteIzquierda.setInteractive().on('pointerdown', () =>this.trasladarIzquierda());
-
-        this.spriteDerecha = this.add.sprite(gameConfig.scale.width*24/25,gameConfig.scale.height*1.7/3,'flechaDerecha').setScale(gameConfig.scale.height *0.4/ 600);
-        this.spriteDerecha.setInteractive().on('pointerdown', () =>this.trasladarDerecha());
 
         //Botón de salir
         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15,(gameConfig.scale.height/8)*7.5,'botonSalir').setScale(gameConfig.scale.height *0.1/ 600);
@@ -157,9 +145,6 @@ class tiendaArmasScene extends Phaser.Scene{
     
     //Show a message to unlock a map
     desbloquear(arma,dinero,pos){
-        this.spriteDerecha.disableInteractive();
-        this.spriteIzquierda.disableInteractive();
-        
         if(arma.bloqueado){
             var i;
             for (i = 0; i < this.armasButton.length; i++) {
@@ -197,9 +182,9 @@ class tiendaArmasScene extends Phaser.Scene{
             coins = coins-arma.coins;
             dinero.setText(coins);
             if(espanol){
-                this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'¡Has comprado un arma!',{font:"35px euphorigenic", fill: '#E9BB00' ,align:"center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+                this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'¡Has comprado un arma!',{font:"35px euphorigenic", fill: '#E9BB00' ,align:"center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
             }else{
-                this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'You have bought an arm!',{font:"35px euphorigenic", fill: '#E9BB00' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+                this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'You have bought an arm!',{font:"35px euphorigenic", fill: '#E9BB00' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
             }
             this.comprado.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
             var timer = this.time.delayedCall(1000, ()=>this.comprado.destroy(), []);
@@ -209,9 +194,9 @@ class tiendaArmasScene extends Phaser.Scene{
             //If i have enough money and the map is not blocked
             this.cerrarMensajeDesbloquear(pos);
             if(espanol){
-                this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'No tienes monedas suficientes',{font:"35px euphorigenic", fill: '#C10202' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+                this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'No tienes monedas suficientes',{font:"35px euphorigenic", fill: '#C10202' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
             }else{
-                this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'You don not have enought coins',{font:"35px euphorigenic", fill: '#C10202' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+                this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'You don not have enought coins',{font:"35px euphorigenic", fill: '#C10202' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
             }
             this.nocoins.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
             var timer = this.time.delayedCall(1000, ()=>this.nocoins.destroy(), []);
@@ -227,34 +212,9 @@ class tiendaArmasScene extends Phaser.Scene{
             this.armasButton[i].setInteractive();
         }
         this.armasButton[pos].clearTint();
-        this.spriteDerecha.setInteractive();
-        this.spriteIzquierda.setInteractive();
         this.mensajeDesbloquear.destroy();
         this.spriteDesbloquearNo.destroy();
         this.spriteDesbloquearSi.destroy();
     }
 
-    //Mueve los personajes para que se vean los de la izquierda
-    trasladarIzquierda(){
-        if(this.armasPosicion>0){
-            this.armasPosicion--;
-            var i;
-            for (i = 0; i < this.armasButton.length; i++) {
-                this.armasButton[i].setTexture(armas[this.armasPosicion+i].sprite);
-            }
-        }
-    }
-
-    //Mueve los personajes para que se vean los de la derecha
-    trasladarDerecha(){
-        console.log("trasladando derecha");
-        if((this.armasPosicion+5)<armas.length){
-            this.armasPosicion++;
-            var i;
-            for (i = 0; i < this.armasButton.length; i++) {
-                this.armasButton[i].setTexture(armas[this.armasPosicion+i].sprite);
-            }
-        }
-        
-    }
 }

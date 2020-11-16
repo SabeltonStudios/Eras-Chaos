@@ -205,9 +205,9 @@ class tiendaPersonajesScene extends Phaser.Scene{
             coins = coins-personaje.coins;
             dinero.setText(coins);
             if(espanol){
-                this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'¡Has comprado un personaje!',{font:"35px euphorigenic", fill: '#E9BB00' ,align:"center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+                this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'¡Has comprado un personaje!',{font:"35px euphorigenic", fill: '#E9BB00' ,align:"center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
             }else{
-                this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'You have bought a character!',{font:"35px euphorigenic", fill: '#E9BB00' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+                this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'You have bought a character!',{font:"35px euphorigenic", fill: '#E9BB00' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
             }
             this.comprado.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
             var timer = this.time.delayedCall(1000, ()=>this.comprado.destroy(), []);
@@ -216,9 +216,9 @@ class tiendaPersonajesScene extends Phaser.Scene{
             //If i have enough money and the map is not blocked
             this.cerrarMensajeDesbloquear(pos);
             if(espanol){
-                this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'No tienes monedas suficientes',{font:"35px euphorigenic", fill: '#C10202' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+                this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'No tienes monedas suficientes',{font:"35px euphorigenic", fill: '#C10202' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
             }else{
-                this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'You don not have enought coins',{font:"35px euphorigenic", fill: '#C10202' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+                this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'You don not have enought coins',{font:"35px euphorigenic", fill: '#C10202' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
             }
             this.nocoins.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
             var timer = this.time.delayedCall(1000, ()=>this.nocoins.destroy(), []);

@@ -33,7 +33,7 @@
              mediaScene, industrialScene, contempScene,
              multijugadorSeleccionScene, multijugadorPartidaScene,
              tiendaScene,tiendaMapasScene,tiendaPersonajesScene,tiendaArmasScene,
-             tiendaPaquetesScene,tiendaRecargarScene, creditosScene,puntuacionesScene]
+             tiendaPaquetesScene,tiendaRecargarScene, creditosScene,puntuacionesScene,tutorialScene]
     }
 
 window.onload = function () {

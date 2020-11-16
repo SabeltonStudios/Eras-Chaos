@@ -155,10 +155,10 @@ class bootScene extends Phaser.Scene {
         //Assets Contemporánea
         this.load.image('conMapa', 'assets/Fondos/5.Actualidad/Background.png');
         this.load.image('conTaxi', 'assets/Objetos/5.Actualidad/TaxiUp.png');
-        /*this.load.image('conObj1', 'assets/Objetos/5.Actualidad/object_gear.png');
+        this.load.image('conObj1', 'assets/Objetos/5.Actualidad/object_gear.png');
         this.load.image('conObj2', 'assets/Objetos/5.Actualidad/object_toolbox.png');
         this.load.image('conObj3', 'assets/Objetos/5.Actualidad/object_wheel.png');
-        this.load.audio('conMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);*/
+        this.load.audio('conMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
         this.load.image('conWeapon', 'assets/Armas/fusil-bala.png');
 
         //Assets Juego
@@ -360,6 +360,24 @@ class bootScene extends Phaser.Scene {
         this.load.image('1100monedasi', 'assets/Interfaz/Tienda/Recargar/1100monedasi.png');
         this.load.image('1725monedasi', 'assets/Interfaz/Tienda/Recargar/1725monedasi.png');
         this.load.image('3250monedasi', 'assets/Interfaz/Tienda/Recargar/3250monedasi.png');
+
+    
+        //Assets Creditos
+        //Assets español
+        this.load.image('tituloCreditos', 'assets/Interfaz/Creditos/tituloCreditos.png');
+        this.load.image('desarrolladores', 'assets/Interfaz/Creditos/desarrolladores.png');
+        this.load.image('contacto', 'assets/Interfaz/Creditos/contacto.png');
+
+        //Assets ingles
+        this.load.image('tituloCreditosi', 'assets/Interfaz/Creditos/tituloCreditosi.png');
+        this.load.image('desarrolladoresi', 'assets/Interfaz/Creditos/desarrolladoresi.png');
+        this.load.image('contactoi', 'assets/Interfaz/Creditos/contactoi.png');
+        this.load.image('twitter','assets/Interfaz/Creditos/twitter.png');
+        this.load.image('instagram','assets/Interfaz/Creditos/instagram.png');
+        this.load.image('youtube','assets/Interfaz/Creditos/youtube.png');
+        this.load.image('itchio','assets/Interfaz/Creditos/itchio.png');
+        this.load.image('github','assets/Interfaz/Creditos/github.png');
+        this.load.image('gmail','assets/Interfaz/Creditos/gmail.png');
 
         //Assets multijugador
         this.load.image('tutorialMultijugador', 'assets/Interfaz/tutorialMultijugador.png');

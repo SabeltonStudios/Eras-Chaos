@@ -117,9 +117,9 @@ class tiendaRecargarScene extends Phaser.Scene{
     comprarMonedas(moneda,dinero,pos){
         coins += moneda.monedas;
         if(espanol){
-            this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'¡Has comprado '+moneda.monedas+' monedas!',{font:"35px euphorigenic", fill: '#E9BB00' ,align:"center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+            this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.7,'¡Has comprado '+moneda.monedas+' monedas!',{font:"35px euphorigenic", fill: '#E9BB00' ,align:"center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
         }else{
-            this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'You have bought '+moneda.monedas+' coins!',{font:"35px euphorigenic", fill: '#E9BB00' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+            this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.7,'You have bought '+moneda.monedas+' coins!',{font:"35px euphorigenic", fill: '#E9BB00' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
         }
         this.comprado.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
         var timer = this.time.delayedCall(1000, ()=>this.comprado.destroy(), []);
