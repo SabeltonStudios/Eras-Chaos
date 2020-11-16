@@ -32,7 +32,7 @@ class loadingScene extends Phaser.Scene {
         this.anims.create({
             key: 'loading',
             frames: this.anims.generateFrameNumbers('loadingSprite', { start: 0, end: 59 }),
-            frameRate: 55,
+            frameRate: 25,
             repeat: -1
         });
         this.scene.start("BootScene");

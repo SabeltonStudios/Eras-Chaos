@@ -335,10 +335,10 @@ class contempScene extends Phaser.Scene {
                 this.scene.start("ContempScene");
             }
             else {
-                completedLevel[2].completado = true;
-                mapas[2].bloqueado = false;
-                personajes[2].bloqueado = false;
-                armas[2].bloqueado = false;
+                completedLevel[4].completado = true;
+                mapas[4].bloqueado = false;
+                personajes[4].bloqueado = false;
+                armas[4].bloqueado = false;
                 this.is_paused = true;
                 this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput);
                 this.fondo = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondo').setScale(gameConfig.scale.width / 800).setTint(0x000000);

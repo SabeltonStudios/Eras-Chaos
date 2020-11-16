@@ -48,7 +48,18 @@ class multijugadorPartidaScene extends Phaser.Scene {
     constructor() {
         super("MultijugadorPartidaScene");
     }
-    preload() { }
+    preload() {
+        this.Fondo = this.add.image(0, 0, 'fondoLoading').setOrigin(0)
+        this.Fondo.setScale(gameConfig.scale.width / this.Fondo.width, gameConfig.scale.height / this.Fondo.height);
+        this.TextLoading = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'textLoading').setScale(gameConfig.scale.height / 600);
+        this.reloj = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height / 3, '').setScale(0.8 * gameConfig.scale.height / 600);
+        this.reloj.anims.play('loading', true);
+        if (espanol) {
+            this.spriteTutorial = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 5 / 7, 'tutorialMultijugador').setScale(gameConfig.scale.height / 600);
+        } else {
+            this.spriteTutorial = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 5 / 7, 'tutorialMultijugadori').setScale(gameConfig.scale.height / 600);
+        }
+     }
     create() {
         this.win = false;
         this.is_paused = false;
