@@ -9,6 +9,8 @@ class bootScene extends Phaser.Scene {
         this.Fondo = this.add.image(0, 0, 'fondoLoading').setOrigin(0)
         this.Fondo.setScale(gameConfig.scale.width / this.Fondo.width, gameConfig.scale.height / this.Fondo.height);
         this.TextLoading = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'textLoading').setScale(gameConfig.scale.height / 600);
+        this.reloj = this.add.sprite(gameConfig.scale.width/2, gameConfig.scale.height/3, '').setScale(0.8*gameConfig.scale.height/600);
+        this.reloj.anims.play('loading', true);
         //Assets menu principal
         this.load.image('fondo', 'assets/Interfaz/Menu/FondoMenuPrincipal.png');
         this.load.image('botonPuntuaciones', 'assets/Interfaz/Menu/BotonPuntuaciones.png');
@@ -62,7 +64,6 @@ class bootScene extends Phaser.Scene {
         this.load.image('mosqueteB', 'assets/Interfaz/SeleccionNivel/mosqueteB.png');
         this.load.image('fusil', 'assets/Interfaz/SeleccionNivel/fusil.png');
         this.load.image('fusilB', 'assets/Interfaz/SeleccionNivel/fusilB.png');
-
 
         //Assets Prehistoria
         this.load.image('preMap', 'assets/Fondos/1.Prehistoria/Background.png');
@@ -357,8 +358,6 @@ class bootScene extends Phaser.Scene {
                 this.load.image('1725monedasi', 'assets/Interfaz/Tienda/Recargar/1725monedasi.png');
                 this.load.image('3250monedasi', 'assets/Interfaz/Tienda/Recargar/3250monedasi.png');
         
-        
-                /*
                 //Assets multijugador
                 //PersonajePrehistoria
                 //Hacha
@@ -567,7 +566,7 @@ class bootScene extends Phaser.Scene {
                 this.load.spritesheet('indPlayerAKAttackIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Fusil/industrial_basic_fusil_attack_static_spritesheet.png',
                     { frameWidth: 350, frameHeight: 525 });
                 //HeroeRevIndustrial
-                */
+                
     }
 
     create() {

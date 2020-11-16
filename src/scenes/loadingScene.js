@@ -4,8 +4,10 @@ class loadingScene extends Phaser.Scene {
         
     }
     preload(){
-        this.load.image('fondoLoading', 'assets/Interfaz/FondoLoading.png');
-        this.load.image('textLoading', 'assets/Interfaz/textLoading.png');
+        this.load.image('fondoLoading', 'assets/Interfaz/Loading/FondoLoading.png');
+        this.load.image('textLoading', 'assets/Interfaz/Loading/textLoading.png');
+        this.load.spritesheet('loadingSprite', 'assets/Interfaz/Loading/loading-spritesheet.png',
+        { frameWidth: 156, frameHeight: 160 })
     }
    
     create(){
@@ -27,6 +29,12 @@ class loadingScene extends Phaser.Scene {
         this.Fondo = this.add.image(0, 0, 'fondo').setOrigin(0)
         this.Fondo.setScale(gameConfig.scale.width / this.Fondo.width, gameConfig.scale.height / this.Fondo.height);
         
+        this.anims.create({
+            key: 'loading',
+            frames: this.anims.generateFrameNumbers('loadingSprite', { start: 0, end: 59 }),
+            frameRate: 55,
+            repeat: -1
+        });
         this.scene.start("BootScene");
     }
 }
