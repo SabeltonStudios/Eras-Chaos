@@ -155,9 +155,11 @@ class bootScene extends Phaser.Scene {
         //Assets Contemporánea
         this.load.image('conMapa', 'assets/Fondos/5.Actualidad/Background.png');
         this.load.image('conTaxi', 'assets/Objetos/5.Actualidad/TaxiUp.png');
+        /*
         this.load.image('conObj1', 'assets/Objetos/5.Actualidad/object_gear.png');
         this.load.image('conObj2', 'assets/Objetos/5.Actualidad/object_toolbox.png');
         this.load.image('conObj3', 'assets/Objetos/5.Actualidad/object_wheel.png');
+        */
         this.load.audio('conMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
         this.load.image('conWeapon', 'assets/Armas/fusil-bala.png');
 

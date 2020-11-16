@@ -21,7 +21,8 @@ class puntuacionesScene extends Phaser.Scene {
                     this.auxMuertes+= results[i].Muertes+ "\n"
                 }
             }
-            this.resultados.setText(this.aux);
+            this.mapasText.setText(this.auxMapas);
+            this.muertesText.setText(this.auxMuertes);
         } else {
             this.auxMapas= "Mapa\n\n";
             this.auxMuertes= "Muertes\n\n";
