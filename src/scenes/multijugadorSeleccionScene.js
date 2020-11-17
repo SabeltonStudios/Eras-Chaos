@@ -22,7 +22,7 @@ class multijugadorSeleccionScene extends Phaser.Scene {
         this.personajesPosicion = 0;
         this.personajes2Posicion = 0;
         selectedMap = 0;
-        selectedChar1 = 7;
+        selectedChar1 = 0;
         selectedChar2 = 0;
         selectedWeapon1 = 0;
         selectedWeapon2 = 0;
@@ -93,12 +93,12 @@ class multijugadorSeleccionScene extends Phaser.Scene {
                 this.personajesButton[i] = this.add.sprite(gameConfig.scale.width / 9 + (this.personajesButton[0].displayWidth * i), gameConfig.scale.height / 1.9, personajes[i].seleccionDesbloqueado).setScale(0.48 * gameConfig.scale.height / 600);
             }
         }
-        this.personajesButton[0].setInteractive().on('pointerdown', () => { if (!personajes[0].bloqueado) this.deleteTint(1, 0); });
+        this.personajesButton[0].setInteractive().on('pointerdown', () => this.deleteTint(1, 0));
         this.personajesButton[0].setTint(0xDEDE7C);
-        this.personajesButton[1].setInteractive().on('pointerdown', () => { if (!personajes[1].bloqueado) this.deleteTint(1, 1); });
-        this.personajesButton[2].setInteractive().on('pointerdown', () => { if (!personajes[2].bloqueado) this.deleteTint(1, 2); });
-        this.personajesButton[3].setInteractive().on('pointerdown', () => { if (!personajes[3].bloqueado) this.deleteTint(1, 3); });
-        this.personajesButton[4].setInteractive().on('pointerdown', () => { if (!personajes[4].bloqueado) this.deleteTint(1, 4); });
+        this.personajesButton[1].setInteractive().on('pointerdown', () => this.deleteTint(1, 1));
+        this.personajesButton[2].setInteractive().on('pointerdown', () => this.deleteTint(1, 2));
+        this.personajesButton[3].setInteractive().on('pointerdown', () => this.deleteTint(1, 3));
+        this.personajesButton[4].setInteractive().on('pointerdown', () => this.deleteTint(1, 4));
 
         //Flechas derecha e izquierda
         this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 9 - (this.personajesButton[0].displayWidth * 0.7), gameConfig.scale.height / 1.9, 'flechaIzquierda').setScale(0.2 * gameConfig.scale.height / 600);
@@ -122,12 +122,12 @@ class multijugadorSeleccionScene extends Phaser.Scene {
                 this.personajes2Button[i] = this.add.sprite(gameConfig.scale.width * 8 / 9 - (this.personajes2Button[4].displayWidth * (4 - i)), gameConfig.scale.height / 1.9, personajes[i].seleccionDesbloqueado).setScale(0.48 * gameConfig.scale.height / 600);
             }
         }
-        this.personajes2Button[0].setInteractive().on('pointerdown', () => { if (!personajes[0].bloqueado) this.deleteTint(2, 0); });
+        this.personajes2Button[0].setInteractive().on('pointerdown', () => this.deleteTint(2, 0) );
         this.personajes2Button[0].setTint(0xDEDE7C);
-        this.personajes2Button[1].setInteractive().on('pointerdown', () => { if (!personajes[1].bloqueado) this.deleteTint(2, 1); });
-        this.personajes2Button[2].setInteractive().on('pointerdown', () => { if (!personajes[2].bloqueado) this.deleteTint(2, 2); });
-        this.personajes2Button[3].setInteractive().on('pointerdown', () => { if (!personajes[3].bloqueado) this.deleteTint(2, 3); });
-        this.personajes2Button[4].setInteractive().on('pointerdown', () => { if (!personajes[4].bloqueado) this.deleteTint(2, 4); });
+        this.personajes2Button[1].setInteractive().on('pointerdown', () => this.deleteTint(2, 1) );
+        this.personajes2Button[2].setInteractive().on('pointerdown', () => this.deleteTint(2, 2) );
+        this.personajes2Button[3].setInteractive().on('pointerdown', () => this.deleteTint(2, 3) );
+        this.personajes2Button[4].setInteractive().on('pointerdown', () => this.deleteTint(2, 4) );
 
         //Flechas derecha e izquierda
         this.spriteIzquierda2 = this.add.sprite(gameConfig.scale.width * 8 / 9 - (this.personajes2Button[4].displayWidth * 4.7), gameConfig.scale.height / 1.9, 'flechaIzquierda').setScale(0.2 * gameConfig.scale.height / 600);
@@ -339,16 +339,6 @@ class multijugadorSeleccionScene extends Phaser.Scene {
                 }
                 break;
             default:
-                //Si el personaje no esta bloqueado, se selecciona
-                if (!armas[button].bloqueado) {
-                    var i;
-                    for (i = 0; i < this.armas2Button.length; i++) {
-                        this.armas2Button[i].clearTint();
-                    }
-                    this.armas2Button[button].setTint(0xDEDE7C);
-                } else {
-                    this.mostrarMensajeBloqueado();
-                }
                 break;
         }
 
