@@ -1,0 +1,28 @@
+- Fusil
+Idle: 
+Static: (1 imagen) 361 x 538
+Moving: (4 filas x 5 columnas) 451 x 538
+
+Attack:
+Static: (3 filas x 7 columnas) 360 x 538
+Moving: (4 filas x 5 columnas) 454 x 538
+//////////////////////
+- Hacha
+Idle: 
+Static: (1 imagen) 332 x 548
+Moving: (4 filas x 5 columnas) 369 x 548
+
+Attack:
+Static: (7 filas x 8 columnas) 512 x 576
+Moving: (7 filas x 8 columnas) 512 x 576
+//////////////////////
+
+- Mosquete
+Idle: 
+Static: (1 imagen) 491 x 541
+Moving: (4 filas x 5 columnas) 592 x 541
+
+Attack:
+Static: (4 filas x 10 columnas) 654 x 537
+Moving: (4 filas x 10 columnas) 749 x 537
+

@@ -1,20 +1,11 @@
-- Hacha
+- Ballesta
 Idle: 
-Static: (1 imagen) 330 x 540
-Moving: (4 filas x 5 columnas) 370 x 540
+Static: (1 imagen) 362 x 516
+Moving: (filas x columnas) 461 x 516
 
 Attack:
-Static: (7 filas x 8 columnas) 510 x 580
-Moving: (7 filas x 8 columnas) 510 x 580
-//////////////////////
-- Mosquete
-Idle: 
-Static: (1 imagen) 490 x 510
-Moving: (4 filas x 5 columnas) 585 x 510
-
-Attack:
-Static: (4 filas x 10 columnas) 650 x 510
-Moving: (4 filas x 10 columnas) 745 x 510
+Static: (4 filas x 10 columnas) 377 x 521
+Moving: (4 filas x 10 columnas) 479 x 521
 //////////////////////
 - Fusil
 Idle: 
@@ -24,3 +15,31 @@ Moving: (4 filas x 5 columnas) 445 x 515
 Attack:
 Static: (3 filas x 7 columnas) 350 x 515
 Moving: (4 filas x 5 columnas) 445 x 515
+//////////////////////
+- Hacha
+Idle: 
+Static: (1 imagen) 330 x 540
+Moving: (4 filas x 5 columnas) 370 x 540
+
+Attack:
+Static: (7 filas x 8 columnas) 510 x 580
+Moving: (7 filas x 8 columnas) 510 x 580
+//////////////////////
+- Honda
+Idle: 
+Static: (1 imagen) 0 x 0
+Moving: (filas x columnas) 0 x 0
+
+Attack:
+Static: (1 imagen) 0 x 0
+Moving: (filas x columnas) 0 x 0
+//////////////////////
+- Mosquete
+Idle: 
+Static: (1 imagen) 490 x 510
+Moving: (4 filas x 5 columnas) 585 x 510
+
+Attack:
+Static: (4 filas x 10 columnas) 650 x 510
+Moving: (4 filas x 10 columnas) 745 x 510
+
