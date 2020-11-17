@@ -66,7 +66,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
         this.Mapa = this.add.image(0, 0, mapas[selectedMap].nombre + 'Map').setOrigin(0);
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
 
-        this.player = this.physics.add.sprite(gameConfig.scale.width / 6.5, gameConfig.scale.height / 6, personajes[selectedChar1].nombre + armas[selectedWeapon1].nombre).setOrigin(0, 1).setScale(0.14 * gameConfig.scale.height / 600)
+        this.player = this.physics.add.sprite(gameConfig.scale.width / 6.5, gameConfig.scale.height / 6, personajes[selectedChar1].nombre + armas[selectedWeapon1].nombre).setOrigin(0, 1).setScale(0.5* gameConfig.scale.height / 600)
         this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5.5 / 6, gameConfig.scale.height / 6, personajes[selectedChar2].nombre + armas[selectedWeapon2].nombre).setOrigin(1, 1).setScale(0.14 * gameConfig.scale.height / 600)
         if (armas[selectedWeapon1].nombre === 'egi' || armas[selectedWeapon2].nombre === 'egi') {
             this.anims.create({

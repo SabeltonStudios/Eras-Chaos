@@ -18,7 +18,7 @@ let personajes=[
         "spriteBloqueado": 'NahibB',
         "seleccionDesbloqueado": 'NahibS',
         "seleccionBloqueado": 'NahibBS',
-        "nombre": 'egPlayer'
+        "nombre": 'egiPlayer'
     },
     {
         "bloqueado":true,

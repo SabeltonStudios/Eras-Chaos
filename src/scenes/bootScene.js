@@ -27,7 +27,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('fondoMarron', 'assets/Interfaz/fondoMarron.png');
         this.load.image('titlePuntuaciones', 'assets/Interfaz/titlePuntuaciones.png');
         this.load.image('titlePuntuacionesi', 'assets/Interfaz/titlePuntuacionesi.png');
-
+/*
         //Assets en español
         this.load.image('botonHistoria', 'assets/Interfaz/Menu/botonHistoria.png');
         this.load.image('boton2Jugadores', 'assets/Interfaz/Menu/Boton2Jugadores.png');
@@ -65,7 +65,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('mosqueteB', 'assets/Interfaz/SeleccionNivel/mosqueteB.png');
         this.load.image('fusil', 'assets/Interfaz/SeleccionNivel/fusil.png');
         this.load.image('fusilB', 'assets/Interfaz/SeleccionNivel/fusilB.png');
-
+*/
         //Assets Prehistoria
         this.load.image('preMap', 'assets/Fondos/1.Prehistoria/Background.png');
         this.load.image('preObj1', 'assets/Objetos/1.Prehistoria/object_log.png');
@@ -90,7 +90,7 @@ class bootScene extends Phaser.Scene {
         this.load.spritesheet('preEnemyDie', 'assets/Animaciones/Spritesheets/Prehistoria/Enemigo/prehistoria_enemigo_game_over_spritesheet.png',
             { frameWidth: 1228, frameHeight: 1136 })
 
-
+/*
         //Assets Egipto
         this.load.image('egiMap', 'assets/Fondos/2.AntiguoEgipto/Background.png');
         this.load.image('rectanguloEgipto', 'assets/Fondos/2.AntiguoEgipto/RectanguloCentral.png');
@@ -201,10 +201,10 @@ class bootScene extends Phaser.Scene {
         this.load.image('ContinuarBi', 'assets/Interfaz/ContinuarButtoni.png');
         this.load.image('Lastima', 'assets/Interfaz/RendidoTexto.png');
         this.load.image('Lastimai', 'assets/Interfaz/RendidoTextoi.png');
-
+*/
         this.load.audio('buttonSound', ['assets/EfectosSonido/boton3.mp3', 'assets/EfectosSonido/boton3.ogg']);
         this.load.audio('menuMusic', ['assets/Música/Menu.mp3', 'assets/Música/Menu.ogg']);
-
+/*
         this.load.image('ShootBON', 'assets/Interfaz/ShootButton.png');
         this.load.image('ShootBOFF', 'assets/Interfaz/ShootButtonOFF.png');
 
@@ -229,14 +229,14 @@ class bootScene extends Phaser.Scene {
         this.load.image('Gana1', 'assets/Interfaz/GanaP1.png');
         this.load.image('Gana1i', 'assets/Interfaz/GanaP1i.png');
         this.load.image('Gana2', 'assets/Interfaz/GanaP2.png');
-        this.load.image('Gana2i', 'assets/Interfaz/GanaP2i.png');
+        this.load.image('Gana2i', 'assets/Interfaz/GanaP2i.png');*/
         //Assets tienda
         this.load.image('fondoTienda', 'assets/Interfaz/Tienda/fondoTienda.png');
         this.load.image('botonSalir', 'assets/Interfaz/Tienda/botonSalir.png');
         this.load.image('flechaDerecha', 'assets/Interfaz/Tienda/flechaDerecha.png');
         this.load.image('flechaIzquierda', 'assets/Interfaz/Tienda/flechaIzquierda.png');
         this.load.image('coins', 'assets/Interfaz/Tienda/coins.png');
-        //Español
+       /* //Español
         this.load.image('tituloTienda', 'assets/Interfaz/Tienda/tituloTienda.png');
         this.load.image('botonMapas', 'assets/Interfaz/Tienda/botonMapas.png');
         this.load.image('botonPersonajes', 'assets/Interfaz/Tienda/botonPersonajes.png');
@@ -290,7 +290,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('flechaIzquierda', 'assets/Interfaz/Tienda/flechaIzquierda.png');
         this.load.image('botonDesbloquearNo', 'assets/Interfaz/Tienda/botonDesbloquearNo.png');
         this.load.image('botonDesbloquearSi', 'assets/Interfaz/Tienda/botonDesbloquearSi.png');
-
+*/
         //Assets personajes
         this.load.image('Unvaar', 'assets/Interfaz/Tienda/Personajes/Unvaar.png');
         this.load.image('Gaard', 'assets/Interfaz/Tienda/Personajes/Gaard.png');
@@ -343,7 +343,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('jugador1i', 'assets/Interfaz/SeleccionNivel/Jugador1i.png');
         this.load.image('jugador2', 'assets/Interfaz/SeleccionNivel/Jugador2.png');
         this.load.image('jugador2i', 'assets/Interfaz/SeleccionNivel/Jugador2.png');
-
+/*
         //Assets armas
         //Assets español
         this.load.image('tituloArmas', 'assets/Interfaz/Tienda/Armas/tituloArmas.png');
@@ -609,17 +609,17 @@ class bootScene extends Phaser.Scene {
             { frameWidth: 445, frameHeight: 515 });
         this.load.spritesheet('medPlayerAKAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Fusil/medieval_basic_fusil_attack_static_spritesheet.png',
             { frameWidth: 350, frameHeight: 515 });
-        //HeroeEdadMedia
+        *///HeroeEdadMedia
         //Honda
         //FALTAN 4
         //Hacha
         this.load.spritesheet('medHeroeHacha', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Hacha/medieval_hero_axe_idle_moving_spritesheet.png',
-            { frameWidth: 369, frameHeight: 548 });
+            { frameWidth: 103, frameHeight: 153 });
         this.load.image('medHeroeHachaIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Hacha/medieval_hero_axe_idle_static_spritesheet.png');
         this.load.spritesheet('medHeroeHachaAttack', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Hacha/medieval_hero_axe_attack_moving_spritesheet.png',
-            { frameWidth: 512, frameHeight: 576 });
+            { frameWidth: 143, frameHeight: 161 });
         this.load.spritesheet('medHeroeHachaAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Hacha/medieval_hero_axe_attack_static_spritesheet.png',
-            { frameWidth: 512, frameHeight: 576 });
+            { frameWidth: 143, frameHeight: 161 });/*
         //Ballesta
         //FALTAN 4
         //Mosquete
@@ -699,7 +699,7 @@ class bootScene extends Phaser.Scene {
         //Hacha
         //Ballesta
         //Mosquete
-        //Fusil
+        //Fusil*/
     }
 
     create() {
