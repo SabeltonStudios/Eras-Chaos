@@ -130,15 +130,15 @@ class tiendaArmasScene extends Phaser.Scene{
         for(i=0;i<5;i++){
             this.armasButton[i] = this.add.sprite(gameConfig.scale.width *(i+1)/ 6,gameConfig.scale.height*1.7/3,armas[i].sprite).setScale(gameConfig.scale.height / 600);
         }
-        this.armasButton[0].setInteractive().on('pointerdown', () =>this.desbloquear(armas[0+this.armasPosicion],dinero,0));
-        this.armasButton[1].setInteractive().on('pointerdown', () =>this.desbloquear(armas[1+this.armasPosicion],dinero,1));
-        this.armasButton[2].setInteractive().on('pointerdown', () =>this.desbloquear(armas[2+this.armasPosicion],dinero,2));
-        this.armasButton[3].setInteractive().on('pointerdown', () =>this.desbloquear(armas[3+this.armasPosicion],dinero,3));
-        this.armasButton[4].setInteractive().on('pointerdown', () =>this.desbloquear(armas[4+this.armasPosicion],dinero,4));
+        this.armasButton[0].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(armas[0+this.armasPosicion],dinero,0)});
+        this.armasButton[1].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(armas[1+this.armasPosicion],dinero,1)});
+        this.armasButton[2].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(armas[2+this.armasPosicion],dinero,2)});
+        this.armasButton[3].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(armas[3+this.armasPosicion],dinero,3)});
+        this.armasButton[4].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(armas[4+this.armasPosicion],dinero,4)});
 
         //Botón de salir
         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15,(gameConfig.scale.height/8)*7.5,'botonSalir').setScale(gameConfig.scale.height *0.1/ 600);
-        this.spriteSalir.setInteractive().on('pointerdown', () => this.scene.start("TiendaScene"));
+        this.spriteSalir.setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.scene.start("TiendaScene")});
     }
 
     
@@ -160,10 +160,10 @@ class tiendaArmasScene extends Phaser.Scene{
             
 
             this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width*1.2 / 2,(gameConfig.scale.height/3)*2.6,'botonDesbloquearNo').setScale(gameConfig.scale.height / 600);
-            this.spriteDesbloquearNo.setInteractive().on('pointerdown',()=> this.cerrarMensajeDesbloquear(pos));
+            this.spriteDesbloquearNo.setInteractive().on('pointerdown',()=>  {this.sound.play('buttonSound', { volume: 0.15 }); this.cerrarMensajeDesbloquear(pos)});
 
             this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width*0.8 / 2,(gameConfig.scale.height/3)*2.6,'botonDesbloquearSi').setScale(gameConfig.scale.height / 600);
-            this.spriteDesbloquearSi.setInteractive().on('pointerdown',()=> this.comprarArma(arma,dinero,pos));
+            this.spriteDesbloquearSi.setInteractive().on('pointerdown',()=>  {this.sound.play('buttonSound', { volume: 0.15 }); this.comprarArma(arma,dinero,pos)});
         }
         
     }
@@ -180,6 +180,7 @@ class tiendaArmasScene extends Phaser.Scene{
             this.armasButton[pos].setTexture(arma.sprite);
             arma.bloqueado = false;
             coins = coins-arma.coins;
+            Game.saveFile();
             dinero.setText(coins);
             if(espanol){
                 this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'¡Has comprado un arma!',{font:"35px euphorigenic", fill: '#E9BB00' ,align:"center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);

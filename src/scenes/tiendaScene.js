@@ -35,12 +35,12 @@ class tiendaScene extends Phaser.Scene{
         }
 
         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15,(gameConfig.scale.height/8)*7.5,'botonSalir').setScale(0.1*gameConfig.scale.height / 600);
-        this.spriteSalir.setInteractive().on('pointerdown', () => this.scene.start("MenuPrincipalScene"));
-        this.spritePersonajes.setInteractive().on('pointerdown', () => this.scene.start("TiendaPersonajesScene"));
-        this.spriteMapas.setInteractive().on('pointerdown', () => this.scene.start("TiendaMapasScene"));
-        this.spriteArmas.setInteractive().on('pointerdown', () => this.scene.start("TiendaArmasScene"));
-        this.spritePaquetes.setInteractive().on('pointerdown', () => this.scene.start("TiendaPaquetesScene"));
-        this.spriteRecargar.setInteractive().on('pointerdown', () => this.scene.start("TiendaRecargarScene"));
+        this.spriteSalir.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound', { volume: 0.15 }); this.scene.start("MenuPrincipalScene")});
+        this.spritePersonajes.setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.scene.start("TiendaPersonajesScene")});
+        this.spriteMapas.setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.scene.start("TiendaMapasScene")});
+        this.spriteArmas.setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.scene.start("TiendaArmasScene")});
+        this.spritePaquetes.setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 });this.scene.start("TiendaPaquetesScene")});
+        this.spriteRecargar.setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 });this.scene.start("TiendaRecargarScene")});
 
     }
 }

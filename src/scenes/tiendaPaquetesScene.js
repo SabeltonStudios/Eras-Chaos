@@ -29,8 +29,8 @@ let paquetes=[
     {
         "comprado": false,
         "coins" : 1360,
-        "sprite": 'bundleRevIndustrial',
-        "spritei": 'bundleRevIndustriali',
+        "sprite": 'bundleActualidad',
+        "spritei": 'bundleActualidadi',
         "mapa": 4,
         "personaje": 4,
         "arma": 4,
@@ -49,7 +49,7 @@ let paquetes=[
         "comprado": false,
         "coins" : 1360,
         "sprite": 'bundleEdadMedia+',
-        "spritei": 'bundleEgipto+i',
+        "spritei": 'bundleEdadMedia+i',
         "mapa": 2,
         "personaje": 2,
         "heroe": 7,
@@ -68,8 +68,8 @@ let paquetes=[
     {
         "comprado": false,
         "coins" : 1915,
-        "sprite": 'bundleEdadMedia+',
-        "spritei": 'bundleEdadMedia+i',
+        "sprite": 'bundleActualidad+',
+        "spritei": 'bundleActualidad+i',
         "mapa": 4,
         "personaje": 4,
         "heroe": 9,
@@ -131,20 +131,20 @@ class tiendaPaquetesScene extends Phaser.Scene{
             this.paquetesButton[2] = this.add.sprite(gameConfig.scale.width*3 / 4,gameConfig.scale.height*1.7/3,paquetes[this.paquetesTienda[2]].spritei).setScale(gameConfig.scale.height / 1200);
         }
 
-        this.paquetesButton[0].setInteractive().on('pointerdown', () =>this.desbloquear(paquetes[this.paquetesTienda[0+this.paquetesPosicion]],dinero,0));
-        this.paquetesButton[1].setInteractive().on('pointerdown', () =>this.desbloquear(paquetes[this.paquetesTienda[1+this.paquetesPosicion]],dinero,1));
-        this.paquetesButton[2].setInteractive().on('pointerdown', () =>this.desbloquear(paquetes[this.paquetesTienda[2+this.paquetesPosicion]],dinero,2));
+        this.paquetesButton[0].setInteractive().on('pointerdown', () => {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(paquetes[this.paquetesTienda[0+this.paquetesPosicion]],dinero,0)});
+        this.paquetesButton[1].setInteractive().on('pointerdown', () => {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(paquetes[this.paquetesTienda[1+this.paquetesPosicion]],dinero,1)});
+        this.paquetesButton[2].setInteractive().on('pointerdown', () => {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(paquetes[this.paquetesTienda[2+this.paquetesPosicion]],dinero,2)});
 
         //Flechas derecha e izquierda
         this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 25,gameConfig.scale.height*1.7/3,'flechaIzquierda').setScale(gameConfig.scale.height *0.4/ 600);
-        this.spriteIzquierda.setInteractive().on('pointerdown', () =>this.trasladarIzquierda());
+        this.spriteIzquierda.setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 });this.trasladarIzquierda()});
 
         this.spriteDerecha = this.add.sprite(gameConfig.scale.width*24/25,gameConfig.scale.height*1.7/3,'flechaDerecha').setScale(gameConfig.scale.height *0.4/ 600);
-        this.spriteDerecha.setInteractive().on('pointerdown', () =>this.trasladarDerecha());
+        this.spriteDerecha.setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 });this.trasladarDerecha()});
 
         //Botón de salir
         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15,(gameConfig.scale.height/8)*7.5,'botonSalir').setScale(gameConfig.scale.height *0.1/ 600);
-        this.spriteSalir.setInteractive().on('pointerdown', () => this.scene.start("TiendaScene"));
+        this.spriteSalir.setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.scene.start("TiendaScene")});
     }
 
     
@@ -166,10 +166,10 @@ class tiendaPaquetesScene extends Phaser.Scene{
         
 
         this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width*1.2 / 2,(gameConfig.scale.height/3)*2.7,'botonDesbloquearNo').setScale(gameConfig.scale.height / 600);
-        this.spriteDesbloquearNo.setInteractive().on('pointerdown',()=> this.cerrarMensajeDesbloquear(pos));
+        this.spriteDesbloquearNo.setInteractive().on('pointerdown',()=>  {this.sound.play('buttonSound', { volume: 0.15 });this.cerrarMensajeDesbloquear(pos)});
 
         this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width*0.8 / 2,(gameConfig.scale.height/3)*2.7,'botonDesbloquearSi').setScale(gameConfig.scale.height / 600);
-        this.spriteDesbloquearSi.setInteractive().on('pointerdown',()=> this.comprarPaquete(paquete,dinero,pos));
+        this.spriteDesbloquearSi.setInteractive().on('pointerdown',()=>  {this.sound.play('buttonSound', { volume: 0.15 });this.comprarPaquete(paquete,dinero,pos)});
         
         
     }
@@ -185,6 +185,7 @@ class tiendaPaquetesScene extends Phaser.Scene{
             mapas[paquete.mapa].bloqueado = false;
             personajes[paquete.personaje].bloqueado = false;
             armas[paquete.arma].bloqueado = false;
+            Game.saveFile();
             if(paquete.heroe != null){
                 personajes[paquete.heroe].bloqueado = false;
             }
@@ -244,7 +245,7 @@ class tiendaPaquetesScene extends Phaser.Scene{
     //Mueve los personajes para que se vean los de la derecha
     trasladarDerecha(){
         console.log("trasladando derecha");
-        if((this.paquetesPosicion+5)<this.paquetesTienda.length){
+        if((this.paquetesPosicion+3)<this.paquetesTienda.length){
             this.paquetesPosicion++;
             var i;
             for (i = 0; i < this.paquetesButton.length; i++) {

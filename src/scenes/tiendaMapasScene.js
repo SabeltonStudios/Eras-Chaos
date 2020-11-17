@@ -112,23 +112,23 @@ class tiendaMapasScene extends Phaser.Scene{
 
         //Asignamos los botones a cinco mapas
         this.mapasButton[0] = this.add.sprite(gameConfig.scale.width / 6,gameConfig.scale.height*1.5/3,mapas[0].sprite).setScale(gameConfig.scale.height / 600);
-        this.mapasButton[0].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[0+this.mapasPosicion],dinero,0));
+        this.mapasButton[0].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(mapas[0+this.mapasPosicion],dinero,0)});
 
         this.mapasButton[1] = this.add.sprite((gameConfig.scale.width / 6)*2,gameConfig.scale.height*1.5/3,mapas[1].sprite).setScale(gameConfig.scale.height / 600);
-        this.mapasButton[1].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[1+this.mapasPosicion],dinero,1));
+        this.mapasButton[1].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(mapas[1+this.mapasPosicion],dinero,1)});
 
         this.mapasButton[2] = this.add.sprite((gameConfig.scale.width / 6)*3,gameConfig.scale.height*1.5/3,mapas[2].sprite).setScale(gameConfig.scale.height / 600);
-        this.mapasButton[2].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[2+this.mapasPosicion],dinero,2));
+        this.mapasButton[2].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(mapas[2+this.mapasPosicion],dinero,2)});
 
         this.mapasButton[3] = this.add.sprite((gameConfig.scale.width / 6)*4,gameConfig.scale.height*1.5/3,mapas[3].sprite).setScale(gameConfig.scale.height / 600);
-        this.mapasButton[3].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[3+this.mapasPosicion],dinero,3));
+        this.mapasButton[3].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(mapas[3+this.mapasPosicion],dinero,3)});
 
         this.mapasButton[4] = this.add.sprite((gameConfig.scale.width / 6)*5,gameConfig.scale.height*1.5/3,mapas[4].sprite).setScale(gameConfig.scale.height / 600);
-        this.mapasButton[4].setInteractive().on('pointerdown', () =>this.desbloquear(mapas[4+this.mapasPosicion],dinero,4));
+        this.mapasButton[4].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(mapas[4+this.mapasPosicion],dinero,4)});
 
         //Botón de salir
         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15,(gameConfig.scale.height/8)*7.5,'botonSalir').setScale(0.1*gameConfig.scale.height / 600);
-        this.spriteSalir.setInteractive().on('pointerdown', () => this.scene.start("TiendaScene"));
+        this.spriteSalir.setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 });this.scene.start("TiendaScene")});
     }
 
     //Show a message to unlock a map
@@ -149,10 +149,10 @@ class tiendaMapasScene extends Phaser.Scene{
             
 
             this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width*1.2 / 2,(gameConfig.scale.height/3)*2.6,'botonDesbloquearNo').setScale(gameConfig.scale.height / 600);
-            this.spriteDesbloquearNo.setInteractive().on('pointerdown',()=> this.cerrarMensajeDesbloquear(pos));
+            this.spriteDesbloquearNo.setInteractive().on('pointerdown',()=>  {this.sound.play('buttonSound', { volume: 0.15 }); this.cerrarMensajeDesbloquear(pos)});
 
             this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width*0.8 / 2,(gameConfig.scale.height/3)*2.6,'botonDesbloquearSi').setScale(gameConfig.scale.height / 600);
-            this.spriteDesbloquearSi.setInteractive().on('pointerdown',()=> this.comprarMapa(mapa,dinero,pos));
+            this.spriteDesbloquearSi.setInteractive().on('pointerdown',()=>  {this.sound.play('buttonSound', { volume: 0.15 }); this.comprarMapa(mapa,dinero,pos)});
         }
         
     }
@@ -170,6 +170,7 @@ class tiendaMapasScene extends Phaser.Scene{
             mapa.bloqueado = false;
             coins = coins-mapa.coins;
             dinero.setText(coins);
+            Game.saveFile();
             if(espanol){
                 this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'¡Has comprado un mapa!',{font:"35px euphorigenic", fill: '#E9BB00' ,align:"center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
             }else{

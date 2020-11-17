@@ -60,19 +60,19 @@ class tiendaRecargarScene extends Phaser.Scene{
         }
 
         
-        monedasButton[0].setInteractive().on('pointerdown', () =>this.desbloquear(monedas[0+monedasPosicion],dinero,0));
-        monedasButton[1].setInteractive().on('pointerdown', () =>this.desbloquear(monedas[1+monedasPosicion],dinero,1));
-        monedasButton[2].setInteractive().on('pointerdown', () =>this.desbloquear(monedas[2+monedasPosicion],dinero,2));
+        monedasButton[0].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(monedas[0+monedasPosicion],dinero,0)});
+        monedasButton[1].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(monedas[1+monedasPosicion],dinero,1)});
+        monedasButton[2].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(monedas[2+monedasPosicion],dinero,2)});
 
         //Flechas derecha e izquierda
         this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 25,gameConfig.scale.height*1.8/3,'flechaIzquierda').setScale(0.4 * gameConfig.scale.height / 600);
-        this.spriteIzquierda.setInteractive().on('pointerdown', () =>this.trasladarIzquierda());
+        this.spriteIzquierda.setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 });this.trasladarIzquierda()});
 
         this.spriteDerecha = this.add.sprite(gameConfig.scale.width*24/25,gameConfig.scale.height*1.8/3,'flechaDerecha').setScale(0.4 * gameConfig.scale.height / 600);
-        this.spriteDerecha.setInteractive().on('pointerdown', () =>this.trasladarDerecha());
+        this.spriteDerecha.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound', { volume: 0.15 }); this.trasladarDerecha()});
 
         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15,(gameConfig.scale.height/8)*7.5,'botonSalir').setScale(0.1 * gameConfig.scale.height / 600);
-        this.spriteSalir.setInteractive().on('pointerdown', () => this.scene.start("TiendaScene"));
+        this.spriteSalir.setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.scene.start("TiendaScene")});
     }
 
     //Show a message to unlock a map
@@ -116,6 +116,7 @@ class tiendaRecargarScene extends Phaser.Scene{
 
     comprarMonedas(moneda,dinero,pos){
         coins += moneda.monedas;
+        Game.saveFile();
         if(espanol){
             this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.7,'¡Has comprado '+moneda.monedas+' monedas!',{font:"35px euphorigenic", fill: '#E9BB00' ,align:"center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
         }else{

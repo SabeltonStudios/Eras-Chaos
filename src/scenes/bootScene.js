@@ -305,6 +305,10 @@ class bootScene extends Phaser.Scene {
         this.load.image('SirRodrickB', 'assets/Interfaz/Tienda/Personajes/SirRodrickB.png');
         this.load.image('Thomas', 'assets/Interfaz/Tienda/Personajes/Thomas.png');
         this.load.image('ThomasB', 'assets/Interfaz/Tienda/Personajes/ThomasB.png');
+        this.load.image('Eveline', 'assets/Interfaz/Tienda/Personajes/Eveline.png');
+        this.load.image('EvelineB', 'assets/Interfaz/Tienda/Personajes/EvelineB.png');
+        this.load.image('Pillie', 'assets/Interfaz/Tienda/Personajes/Pillie.png');
+        this.load.image('PillieB', 'assets/Interfaz/Tienda/Personajes/PillieB.png');
 
         this.load.image('UnvaarS', 'assets/Interfaz/SeleccionNivel/Unvaar.png');
         this.load.image('GaardS', 'assets/Interfaz/SeleccionNivel/Gaard.png');
@@ -319,6 +323,10 @@ class bootScene extends Phaser.Scene {
         this.load.image('SirRodrickBS', 'assets/Interfaz/SeleccionNivel/SirRodrickB.png');
         this.load.image('ThomasS', 'assets/Interfaz/SeleccionNivel/Thomas.png');
         this.load.image('ThomasBS', 'assets/Interfaz/SeleccionNivel/ThomasB.png');
+        this.load.image('EvelineS', 'assets/Interfaz/SeleccionNivel/Eveline.png');
+        this.load.image('EvelineBS', 'assets/Interfaz/SeleccionNivel/EvelineB.png');
+        this.load.image('PillieS', 'assets/Interfaz/SeleccionNivel/Pillie.png');
+        this.load.image('PillieBS', 'assets/Interfaz/SeleccionNivel/PillieB.png');
 
         this.load.image('itemBl', 'assets/Interfaz/SeleccionNivel/itemBloqueado.png');
         this.load.image('itemBli', 'assets/Interfaz/SeleccionNivel/itemBloqueadoi.png');
@@ -369,6 +377,8 @@ class bootScene extends Phaser.Scene {
         this.load.image('bundleEdadMedia', 'assets/Interfaz/Tienda/Paquetes/bundleEdadMedia.png');
         this.load.image('bundleEdadMedia+', 'assets/Interfaz/Tienda/Paquetes/bundleEdadMedia+.png');
         this.load.image('bundleRevIndustrial', 'assets/Interfaz/Tienda/Paquetes/bundleRevIndustrial.png');
+        this.load.image('bundleActualidad', 'assets/Interfaz/Tienda/Paquetes/bundleActualidad.png');
+        this.load.image('bundleActualidad+', 'assets/Interfaz/Tienda/Paquetes/bundleActualidad+.png');
         //Assets ingles
         this.load.image('tituloPaquetesi', 'assets/Interfaz/Tienda/Paquetes/tituloPaquetesi.png');
         this.load.image('bundleEgiptoi', 'assets/Interfaz/Tienda/Paquetes/bundleEgiptoi.png');
@@ -376,7 +386,8 @@ class bootScene extends Phaser.Scene {
         this.load.image('bundleEdadMediai', 'assets/Interfaz/Tienda/Paquetes/bundleEdadMediai.png');
         this.load.image('bundleEdadMedia+i', 'assets/Interfaz/Tienda/Paquetes/bundleEdadMedia+i.png');
         this.load.image('bundleRevIndustriali', 'assets/Interfaz/Tienda/Paquetes/bundleRevIndustriali.png');
-
+        this.load.image('bundleActualidadi', 'assets/Interfaz/Tienda/Paquetes/bundleActualidadi.png');
+        this.load.image('bundleActualidad+i', 'assets/Interfaz/Tienda/Paquetes/bundleActualidad+i.png');
 
         //Assets recargar
         //Assets español
@@ -894,6 +905,8 @@ class bootScene extends Phaser.Scene {
 
         MenuMusic = this.sound.add('menuMusic', { volume: 0.3, loop: true });
         this.scene.start("MenuPrincipalScene");
+
+        Game.loadFile();
     }
 
     update() {

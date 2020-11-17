@@ -4,7 +4,7 @@
     // adjust the width dynamically based on the device screen ratio
     const DEFAULT_WIDTH = (window.innerWidth / window.innerHeight) * DEFAULT_HEIGHT
     var espanol = new Boolean(true);
-    
+    var Game = {};
     var gameConfig = {
         type: Phaser.AUTO,
 
@@ -42,4 +42,27 @@ window.onload = function () {
     window.focus();
 }
 
+Game.saveFile = function(){
+    var file = {
+        coins: coins,
+        mapas: mapas,
+        armas: armas,
+        personajes: personajes,
+        results: results,
+        espanol: espanol,
+    };
+    localStorage.setItem('saveFile',JSON.stringify(file));
+};
+
+Game.loadFile = function(){
+    var file = JSON.parse(localStorage.getItem('saveFile'));
+    if(file != null){
+        coins = file.coins;
+        mapas = file.mapas;
+        armas = file.armas;
+        personajes = file.personajes;
+        results = file.results;
+        espanol = file.espanol;
+    }
+};
 

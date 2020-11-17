@@ -5,11 +5,8 @@ var selectedWeapon1 = 0;
 var selectedWeapon2 = 0;
 //var numRounds;
 class multijugadorSeleccionScene extends Phaser.Scene {
-    mapasPosicion = 0;
     personajesPosicion = 0;
     personajes2Posicion = 0;
-    armasPosicion = 0;
-    armas2Posicion = 0;
     personajesButton = [];
     personajes2Button = [];
     mapasButton = [];
@@ -21,6 +18,15 @@ class multijugadorSeleccionScene extends Phaser.Scene {
     preload() {
     }
     create() {
+
+        this.personajesPosicion = 0;
+        this.personajes2Posicion = 0;
+        selectedMap = 0;
+        selectedChar1 = 0;
+        selectedChar2 = 0;
+        selectedWeapon1 = 0;
+        selectedWeapon2 = 0;
+        
         if (!MenuMusic.isPlaying) {
             MenuMusic.play();
         }
@@ -140,12 +146,12 @@ class multijugadorSeleccionScene extends Phaser.Scene {
             }
 
         }
-        this.armasButton[0].setInteractive().on('pointerdown', () => { if (!armas[0].bloqueado) selectedWeapon1 = 0 + this.armasPosicion; this.deleteTint(3, 0); });
+        this.armasButton[0].setInteractive().on('pointerdown', () => { if (!armas[0].bloqueado) selectedWeapon1 = 0; this.deleteTint(3, 0); });
         this.armasButton[0].setTint(0xDEDE7C);
-        this.armasButton[1].setInteractive().on('pointerdown', () => { if (!armas[1].bloqueado) selectedWeapon1 = 1 + this.armasPosicion; this.deleteTint(3, 1); });
-        this.armasButton[2].setInteractive().on('pointerdown', () => { if (!armas[2].bloqueado) selectedWeapon1 = 2 + this.armasPosicion; this.deleteTint(3, 2); });
-        this.armasButton[3].setInteractive().on('pointerdown', () => { if (!armas[3].bloqueado) selectedWeapon1 = 3 + this.armasPosicion; this.deleteTint(3, 3); });
-        this.armasButton[4].setInteractive().on('pointerdown', () => { if (!armas[4].bloqueado) selectedWeapon1 = 4 + this.armasPosicion; this.deleteTint(3, 4); });
+        this.armasButton[1].setInteractive().on('pointerdown', () => { if (!armas[1].bloqueado) selectedWeapon1 = 1; this.deleteTint(3, 1); });
+        this.armasButton[2].setInteractive().on('pointerdown', () => { if (!armas[2].bloqueado) selectedWeapon1 = 2; this.deleteTint(3, 2); });
+        this.armasButton[3].setInteractive().on('pointerdown', () => { if (!armas[3].bloqueado) selectedWeapon1 = 3; this.deleteTint(3, 3); });
+        this.armasButton[4].setInteractive().on('pointerdown', () => { if (!armas[4].bloqueado) selectedWeapon1 = 4; this.deleteTint(3, 4); });
 
         //Armas personaje 2
         var i;
@@ -162,11 +168,11 @@ class multijugadorSeleccionScene extends Phaser.Scene {
             }
         }
         this.armas2Button[0].setTint(0xDEDE7C);
-        this.armas2Button[0].setInteractive().on('pointerdown', () => { if (!armas[0].bloqueado) selectedWeapon2 = 0 + this.armas2Posicion; this.deleteTint(4, 0); });
-        this.armas2Button[1].setInteractive().on('pointerdown', () => { if (!armas[1].bloqueado) selectedWeapon2 = 1 + this.armas2Posicion; this.deleteTint(4, 1); });
-        this.armas2Button[2].setInteractive().on('pointerdown', () => { if (!armas[2].bloqueado) selectedWeapon2 = 2 + this.armas2Posicion; this.deleteTint(4, 2); });
-        this.armas2Button[3].setInteractive().on('pointerdown', () => { if (!armas[3].bloqueado) selectedWeapon2 = 3 + this.armas2Posicion; this.deleteTint(4, 3); });
-        this.armas2Button[4].setInteractive().on('pointerdown', () => { if (!armas[4].bloqueado) selectedWeapon2 = 4 + this.armas2Posicion; this.deleteTint(4, 4); });
+        this.armas2Button[0].setInteractive().on('pointerdown', () => { if (!armas[0].bloqueado) selectedWeapon2 = 0; this.deleteTint(4, 0); });
+        this.armas2Button[1].setInteractive().on('pointerdown', () => { if (!armas[1].bloqueado) selectedWeapon2 = 1; this.deleteTint(4, 1); });
+        this.armas2Button[2].setInteractive().on('pointerdown', () => { if (!armas[2].bloqueado) selectedWeapon2 = 2; this.deleteTint(4, 2); });
+        this.armas2Button[3].setInteractive().on('pointerdown', () => { if (!armas[3].bloqueado) selectedWeapon2 = 3; this.deleteTint(4, 3); });
+        this.armas2Button[4].setInteractive().on('pointerdown', () => { if (!armas[4].bloqueado) selectedWeapon2 = 4; this.deleteTint(4, 4); });
 
         //Botón de salir
         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15, (gameConfig.scale.height / 8) * 7.5, 'botonSalir').setScale(0.1 * gameConfig.scale.height / 600);
@@ -268,10 +274,11 @@ class multijugadorSeleccionScene extends Phaser.Scene {
 
     //Limpia los tintes, y se lo pone al seleccionado
     deleteTint(option, button) {
+        this.sound.play('buttonSound', { volume: 0.15 });
         console.log("selecciona");
         switch (option) {
             case 0:
-                if (!mapas[this.mapasPosicion + button].bloqueado) {
+                if (!mapas[button].bloqueado) {
                     var i;
                     for (i = 0; i < this.mapasButton.length; i++) {
                         this.mapasButton[i].clearTint();
@@ -307,7 +314,7 @@ class multijugadorSeleccionScene extends Phaser.Scene {
                 break;
             case 3:
                 //Si el personaje no esta bloqueado, se selecciona
-                if (!armas[this.armasPosicion + button].bloqueado) {
+                if (!armas[button].bloqueado) {
                     var i;
                     for (i = 0; i < this.armasButton.length; i++) {
                         this.armasButton[i].clearTint();
@@ -319,7 +326,7 @@ class multijugadorSeleccionScene extends Phaser.Scene {
                 break;
             case 4:
                 //Si el personaje no esta bloqueado, se selecciona
-                if (!armas[this.armas2Posicion + button].bloqueado) {
+                if (!armas[button].bloqueado) {
                     var i;
                     for (i = 0; i < this.armas2Button.length; i++) {
                         this.armas2Button[i].clearTint();
@@ -331,7 +338,7 @@ class multijugadorSeleccionScene extends Phaser.Scene {
                 break;
             default:
                 //Si el personaje no esta bloqueado, se selecciona
-                if (!armas[this.armas2Posicion + button].bloqueado) {
+                if (!armas[button].bloqueado) {
                     var i;
                     for (i = 0; i < this.armas2Button.length; i++) {
                         this.armas2Button[i].clearTint();

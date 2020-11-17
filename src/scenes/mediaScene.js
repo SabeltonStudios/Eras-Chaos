@@ -320,6 +320,7 @@ class mediaScene extends Phaser.Scene {
             clearInterval(this.inter);
             this.win = false;
             sortResults("Edad Media", "Middle Age", this.contMuertes,3);
+            Game.saveFile();
             this.shootInput.destroy();
             this.tweens.add({
                 targets: this.music,
@@ -338,6 +339,7 @@ class mediaScene extends Phaser.Scene {
                 mapas[2].bloqueado = false;
                 personajes[2].bloqueado = false;
                 armas[2].bloqueado = false;
+                Game.saveFile();
                 this.is_paused = true;
                 this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput);
                 this.fondo = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondo').setScale(gameConfig.scale.width / 800).setTint(0x000000);

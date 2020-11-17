@@ -395,6 +395,7 @@ class egiptoScene extends Phaser.Scene {
             clearInterval(this.inter);
             this.win = false;
             sortResults("Antiguo Egipto", "Ancient Egipt", this.contMuertes,4);
+            Game.saveFile();
             this.shootInput.destroy();
             this.tweens.add({
                 targets: this.music,
@@ -413,6 +414,7 @@ class egiptoScene extends Phaser.Scene {
                 mapas[1].bloqueado = false;
                 personajes[1].bloqueado = false;
                 armas[1].bloqueado = false;
+                Game.saveFile();
                 this.is_paused = true;
                 this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput);
                 this.fondo = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondo').setScale(gameConfig.scale.width / 800).setTint(0x000000);

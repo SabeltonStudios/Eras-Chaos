@@ -195,6 +195,7 @@ class menuPrincipalScene extends Phaser.Scene {
             this.spriteTienda.setTexture('botonTiendai').setScale(gameConfig.scale.height / 600);
             this.spriteCreditos.setTexture('botonCreditosi').setScale(gameConfig.scale.height / 600);
             espanol = false;
+            Game.saveFile();
         }
     }
 
@@ -214,6 +215,7 @@ class menuPrincipalScene extends Phaser.Scene {
             this.spriteCreditos.setTexture('botonCreditos').setScale(gameConfig.scale.height / 600);
 
             espanol = true;
+            Game.saveFile();
         }
 
     }
