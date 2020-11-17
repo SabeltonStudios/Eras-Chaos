@@ -54,22 +54,22 @@ class selectNivelHistoria extends Phaser.Scene {
         
         //Asignamos los botones a cinco mapas
         this.mapasButton[0] = this.add.sprite(gameConfig.scale.width / 6, gameConfig.scale.height / 3, mapas[0].sprite).setScale(gameConfig.scale.height / 600);
-        this.mapasButton[0].setInteractive().on('pointerdown', () => this.scene.start("PrehistoriaScene"));
+        this.mapasButton[0].setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15});this.MenuMusic.stop(); this.scene.start("PrehistoriaScene")});
 
         this.mapasButton[1] = this.add.sprite((gameConfig.scale.width / 6) * 2, gameConfig.scale.height / 3, mapas[1].sprite).setScale(gameConfig.scale.height / 600);
-        this.mapasButton[1].setInteractive().on('pointerdown', ()=>completedLevel[0].completado? this.scene.start("EgiptoScene"): console.log("no has completado el nivel anterior"));
+        this.mapasButton[1].setInteractive().on('pointerdown', ()=>{this.sound.play('buttonSound',{volume: 0.15}); this.MenuMusic.stop(); completedLevel[0].completado? this.scene.start("EgiptoScene"): console.log("no has completado el nivel anterior")});
 
         this.mapasButton[2] = this.add.sprite((gameConfig.scale.width / 6) * 3, gameConfig.scale.height / 3, mapas[2].sprite).setScale(gameConfig.scale.height / 600);
-        this.mapasButton[2].setInteractive().on('pointerdown', ()=>completedLevel[1].completado? this.scene.start("MediaScene"): console.log("no has completado el nivel anterior"));
+        this.mapasButton[2].setInteractive().on('pointerdown', ()=>{this.sound.play('buttonSound',{volume: 0.15});this.MenuMusic.stop(); completedLevel[1].completado? this.scene.start("MediaScene"): console.log("no has completado el nivel anterior")});
 
         this.mapasButton[3] = this.add.sprite((gameConfig.scale.width / 6) * 4, gameConfig.scale.height / 3, mapas[3].sprite).setScale(gameConfig.scale.height / 600);
-        this.mapasButton[3].setInteractive().on('pointerdown', () => completedLevel[2].completado? this.scene.start("IndustrialScene"): console.log("no has completado el nivel anterior"));
+        this.mapasButton[3].setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15});this.MenuMusic.stop(); completedLevel[2].completado? this.scene.start("IndustrialScene"): console.log("no has completado el nivel anterior")});
 
         this.mapasButton[4] = this.add.sprite((gameConfig.scale.width / 6) * 5, gameConfig.scale.height / 3, mapas[4].sprite).setScale(gameConfig.scale.height / 600);
-        this.mapasButton[4].setInteractive().on('pointerdown', () => completedLevel[3].completado? this.scene.start("ContempScene"): console.log("no has completado el nivel anterior"));
+        this.mapasButton[4].setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15});this.MenuMusic.stop(); completedLevel[3].completado? this.scene.start("ContempScene"): console.log("no has completado el nivel anterior")});
 
         //Botón de salir
         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15, (gameConfig.scale.height / 8) * 7.5, 'botonSalir').setScale(0.1*gameConfig.scale.height / 600);
-        this.spriteSalir.setInteractive().on('pointerdown', () => this.scene.start("MenuPrincipalScene"));
+        this.spriteSalir.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); this.scene.start("MenuPrincipalScene")});
     }
 }

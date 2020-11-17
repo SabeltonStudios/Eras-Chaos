@@ -196,7 +196,7 @@ class contempScene extends Phaser.Scene {
             .on('pointerout', () => this.spriteDisparar.setTexture('ShootBON'));
 
         this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.3 / 16, gameConfig.scale.height / 13, 'PauseBON').setScale(0.07 * gameConfig.scale.width / 800);
-        this.spritePausar.setInteractive().on('pointerdown', () => this.is_paused = !this.is_paused)
+        this.spritePausar.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15});this.is_paused = !this.is_paused})
             .on('pointerdown', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
             //.on('pointerdown', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
             .on('pointerdown', () => !this.is_paused ? this.enemy.anims.play('conenemyMoving', true) : this.enemy.anims.stop())
@@ -217,7 +217,7 @@ class contempScene extends Phaser.Scene {
             .on('down', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('up', () => this.spriteDisparar.setTexture('ShootBON'));
         if (!this.win) {
-            this.input.keyboard.on('keydown-' + 'ESC', () => this.is_paused = !this.is_paused)
+            this.input.keyboard.on('keydown-' + 'ESC', () => {this.sound.play('buttonSound',{volume: 0.15});this.is_paused = !this.is_paused})
                 .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
                 //.on('keydown-' + 'ESC', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
                 .on('keydown-' + 'ESC', () => !this.is_paused ? this.enemy.anims.play('conenemyMoving', true) : this.enemy.anims.stop())
@@ -244,14 +244,15 @@ class contempScene extends Phaser.Scene {
     }
     mostrarMenu(t) {
         this.music.setVolume(0.05);
-        t.Menu = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'PauseMenu').setScale(0.5 * gameConfig.scale.height / 600);
+        this.Menu = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'PauseMenu').setScale(0.5 * gameConfig.scale.height / 600);
         t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7 * gameConfig.scale.height / 600);
         t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonRendirse').setScale(gameConfig.scale.height / 600);
-        t.BotonMenu.setInteractive().on('pointerdown', () => this.confirmarSalir("MenuPrincipalScene"));
+        t.BotonMenu.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); this.confirmarSalir("MenuPrincipalScene")});
         t.BotonCerrar = t.add.sprite(gameConfig.scale.width / 2 + (t.Menu.displayWidth / 2 - 30), gameConfig.scale.height / 2 - (t.Menu.displayHeight / 2 + 20), 'CloseB').setOrigin(0.5, 0).setScale(0.1 * gameConfig.scale.height / 600);
-        t.BotonCerrar.setInteractive().on('pointerdown', () => { this.is_paused = !this.is_paused; t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput); this.ocultarMenu(this) });
+        //this.BotonCerrar = t.add.sprite(gameConfig.scale.width/2+(this.menu.displayWidth/2), gameConfig.scale.height * 0.36, 'CloseB').setScale(0.1 * gameConfig.scale.height / 600);
+        t.BotonCerrar.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15});  this.is_paused = !this.is_paused; t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput); this.ocultarMenu(this) });
         t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda').setScale(gameConfig.scale.height / 600);
-        t.BotonTienda.setInteractive().on('pointerdown', () => this.confirmarSalir("TiendaScene"));
+        t.BotonTienda.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); this.confirmarSalir("TiendaScene")});
         if (!espanol) {
             t.PauseTitle.setTexture('PauseTitlei');
             t.BotonMenu.setTexture('botonRendirsei');
@@ -269,6 +270,7 @@ class contempScene extends Phaser.Scene {
         }
         this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width * 1.1 / 2, (gameConfig.scale.height / 3) * 2.6, 'botonDesbloquearNo').setScale(0.5 * gameConfig.scale.height / 600);
         this.spriteDesbloquearNo.setInteractive().on('pointerdown', () => {
+            this.sound.play('buttonSound',{volume: 0.15});
             this.mensajeSeguro.destroy();
             this.spriteDesbloquearNo.destroy();
             this.spriteDesbloquearSi.destroy();
@@ -279,7 +281,7 @@ class contempScene extends Phaser.Scene {
         });
 
         this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width * 0.9 / 2, (gameConfig.scale.height / 3) * 2.6, 'botonDesbloquearSi').setScale(0.5 * gameConfig.scale.height / 600);
-        this.spriteDesbloquearSi.setInteractive().on('pointerdown', () => this.rendirse(salir));
+        this.spriteDesbloquearSi.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15});this.rendirse(salir)});
     }
     ocultarMenu(t) {
         this.music.setVolume(0.2);
@@ -319,6 +321,7 @@ class contempScene extends Phaser.Scene {
             this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);;
         }
         this.continuar.setInteractive().on('pointerdown', () => {
+            this.sound.play('buttonSound',{volume: 0.15});
             this.music.stop();
             this.scene.stop();
             this.scene.start(escena);
@@ -377,6 +380,7 @@ class contempScene extends Phaser.Scene {
                     this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);
                 }
                 this.continuar.setInteractive().on('pointerdown', () => {
+                    this.sound.play('buttonSound',{volume: 0.15});
                     this.contMuertes = 0;
                     this.music.stop();
                     this.scene.stop();

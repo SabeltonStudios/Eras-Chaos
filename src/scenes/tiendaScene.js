@@ -12,6 +12,9 @@ class tiendaScene extends Phaser.Scene{
     }
 
     create(){
+        if (!this.MenuMusic.isPlaying) {
+            this.MenuMusic = this.sound.play('menuMusic', { volume: 0.5, loop:true });
+        }
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
 

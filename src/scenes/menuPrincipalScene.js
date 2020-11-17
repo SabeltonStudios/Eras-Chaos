@@ -78,6 +78,7 @@ function sortResults(mapa, mapai, nuevoValor) {
         console.log(results[i].Mapa, results[i].Muertes);
     }*/
 }
+let MenuMusic;
 class menuPrincipalScene extends Phaser.Scene {
 
     constructor() {
@@ -89,7 +90,9 @@ class menuPrincipalScene extends Phaser.Scene {
     }
 
     create() {
-
+        if (!this.MenuMusic.isPlaying) {
+            this.MenuMusic = this.sound.play('menuMusic', { volume: 0.5,loop:true });
+        }
         this.Fondo = this.add.image(0, 0, 'fondo').setOrigin(0)
         this.Fondo.setScale(gameConfig.scale.width / this.Fondo.width, gameConfig.scale.height / this.Fondo.height);
 
@@ -119,13 +122,13 @@ class menuPrincipalScene extends Phaser.Scene {
         }
 
         //Interactividad de los botones
-        this.spriteHistoria.setInteractive().on('pointerdown', () => this.scene.start("SelectNivelHistoria"))
-        this.spriteMultijugadorSeleccion.setInteractive().on('pointerdown', () => this.scene.start("MultijugadorSeleccionScene"))
-        this.spritePuntuaciones.setInteractive().on('pointerdown', () => this.scene.start("PuntuacionesScene"))
-        this.spriteTienda.setInteractive().on('pointerdown', () => this.scene.start("TiendaScene"));
-        this.spriteCreditos.setInteractive().on('pointerdown', () => this.scene.start("CreditosScene"));
-        this.spriteIngles.setInteractive().on('pointerdown', () => this.cambiarIdiomaIngles());
-        this.spriteEspanol.setInteractive().on('pointerdown', () => this.cambiarIdiomaEspanol());
+        this.spriteHistoria.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.scene.start("SelectNivelHistoria") })
+        this.spriteMultijugadorSeleccion.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.scene.start("MultijugadorSeleccionScene") })
+        this.spritePuntuaciones.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.scene.start("PuntuacionesScene") })
+        this.spriteTienda.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.scene.start("TiendaScene") });
+        this.spriteCreditos.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.scene.start("CreditosScene") });
+        this.spriteIngles.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.cambiarIdiomaIngles() });
+        this.spriteEspanol.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.cambiarIdiomaEspanol() });
     }
 
     update() {

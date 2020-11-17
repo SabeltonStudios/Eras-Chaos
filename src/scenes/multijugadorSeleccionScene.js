@@ -21,6 +21,9 @@ class multijugadorSeleccionScene extends Phaser.Scene {
     preload() {
     }
     create() {
+        if (!this.MenuMusic.isPlaying) {
+            this.MenuMusic = this.sound.play('menuMusic', { volume: 0.5, loop:true });
+        }
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
         if (espanol) {
@@ -93,10 +96,10 @@ class multijugadorSeleccionScene extends Phaser.Scene {
 
         //Flechas derecha e izquierda
         this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 9 - (this.personajesButton[0].displayWidth * 0.7), gameConfig.scale.height / 1.9, 'flechaIzquierda').setScale(0.2 * gameConfig.scale.height / 600);
-        this.spriteIzquierda.setInteractive().on('pointerdown', () => this.trasladarIzquierda(1));
+        this.spriteIzquierda.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); this.trasladarIzquierda(1)});
 
         this.spriteDerecha = this.add.sprite(gameConfig.scale.width / 9 + (this.personajesButton[0].displayWidth * 4.7), gameConfig.scale.height / 1.9, 'flechaDerecha').setScale(0.2 * gameConfig.scale.height / 600);
-        this.spriteDerecha.setInteractive().on('pointerdown', () => this.trasladarDerecha(1));
+        this.spriteDerecha.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); this.trasladarDerecha(1)});
 
         //personajes 2
         var i;
@@ -122,10 +125,10 @@ class multijugadorSeleccionScene extends Phaser.Scene {
 
         //Flechas derecha e izquierda
         this.spriteIzquierda2 = this.add.sprite(gameConfig.scale.width * 8 / 9 - (this.personajes2Button[4].displayWidth * 4.7), gameConfig.scale.height / 1.9, 'flechaIzquierda').setScale(0.2 * gameConfig.scale.height / 600);
-        this.spriteIzquierda2.setInteractive().on('pointerdown', () => this.trasladarIzquierda(2));
+        this.spriteIzquierda2.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); this.trasladarIzquierda(2)});
 
         this.spriteDerecha2 = this.add.sprite(gameConfig.scale.width * 8 / 9 + (this.personajes2Button[4].displayWidth * 0.7), gameConfig.scale.height / 1.9, 'flechaDerecha').setScale(0.2 * gameConfig.scale.height / 600);
-        this.spriteDerecha2.setInteractive().on('pointerdown', () => this.trasladarDerecha(2));
+        this.spriteDerecha2.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); this.trasladarDerecha(2)});
 
         var i;
         this.armasButton[0] = this.add.sprite(gameConfig.scale.width / 9, gameConfig.scale.height * 4.3 / 6, armas[0].seleccionDesbloqueado).setScale(1.25 * gameConfig.scale.height / 600);
@@ -167,10 +170,12 @@ class multijugadorSeleccionScene extends Phaser.Scene {
 
         //Botón de salir
         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15, (gameConfig.scale.height / 8) * 7.5, 'botonSalir').setScale(0.1 * gameConfig.scale.height / 600);
-        this.spriteSalir.setInteractive().on('pointerdown', () => this.scene.start("MenuPrincipalScene"));
+        this.spriteSalir.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); this.scene.start("MenuPrincipalScene")});
 
         this.spriteJugar = this.add.sprite(gameConfig.scale.width / 2, (gameConfig.scale.height / 8) * 7.5, 'botonPlay').setScale(0.4 * gameConfig.scale.height / 600);
         this.spriteJugar.setInteractive().on('pointerdown', () => {
+            this.MenuMusic.stop();
+            this.sound.play('buttonSound',{volume: 0.15}); 
             this.scene.start("TutorialScene");;
         });
     }
@@ -368,12 +373,11 @@ class multijugadorSeleccionScene extends Phaser.Scene {
         this.spriteDerecha2.disableInteractive();
         this.spriteIzquierda.disableInteractive();
         this.spriteIzquierda2.disableInteractive();
-        this.tienda.setInteractive().on('pointerdown', () => this.scene.start("TiendaScene"));
+        this.tienda.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); this.scene.start("TiendaScene")});
         //this.botonCerrar = this.add.sprite(gameConfig.scale.width/2+(this.mensaje.width*this.mensaje.scale/2-30), gameConfig.scale.height/2+30, 'CloseB').setOrigin(0.5,0).setScale(0.07*gameConfig.scale.height / 600);
         this.botonCerrar = this.add.sprite(gameConfig.scale.width / 2 + (this.mensaje.displayWidth / 2 - 30), gameConfig.scale.height / 2 + 30, 'CloseB').setOrigin(0.5, 0).setScale(0.07 * gameConfig.scale.height / 600);
 
-        this.botonCerrar.di
-        this.botonCerrar.setInteractive().on('pointerdown', () => this.cerrarMensajeTienda());
+        this.botonCerrar.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); this.cerrarMensajeTienda()});
     }
 
     cerrarMensajeTienda() {

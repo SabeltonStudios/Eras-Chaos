@@ -23,24 +23,24 @@ class creditosScene extends Phaser.Scene{
         }
 
         this.spriteTwitter = this.add.sprite(gameConfig.scale.width*2.8/4,gameConfig.scale.height*5/12,'twitter').setScale(0.9 * gameConfig.scale.height / 600);
-        this.spriteTwitter.setInteractive().on('pointerdown', () => window.open('https://twitter.com/SabeltonStudios', '_blank'));
+        this.spriteTwitter.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); window.open('https://twitter.com/SabeltonStudios', '_blank')});
 
         this.spriteInstagram = this.add.sprite(gameConfig.scale.width*2.8/4,gameConfig.scale.height*6/12,'instagram').setScale(0.9 * gameConfig.scale.height / 600);
-        this.spriteInstagram.setInteractive().on('pointerdown', () => window.open('https://www.instagram.com/sabeltonstudios/', '_blank'));
+        this.spriteInstagram.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); window.open('https://www.instagram.com/sabeltonstudios/', '_blank')});
 
         this.spriteYoutube = this.add.sprite(gameConfig.scale.width*2.8/4,gameConfig.scale.height*7/12,'youtube').setScale(0.9 * gameConfig.scale.height / 600);
-        this.spriteYoutube.setInteractive().on('pointerdown', () => window.open('https://youtube.com/channel/UCaw0EJIphiofJF5lcD1SEJg', '_blank'));
+        this.spriteYoutube.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); window.open('https://youtube.com/channel/UCaw0EJIphiofJF5lcD1SEJg', '_blank')});
 
         this.spriteItchio = this.add.sprite(gameConfig.scale.width*2.8/4,gameConfig.scale.height*8/12,'itchio').setScale(0.9 * gameConfig.scale.height / 600);
-        this.spriteItchio.setInteractive().on('pointerdown', () => window.open('https://sabeltonstudios.itch.io/', '_blank'));
+        this.spriteItchio.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); window.open('https://sabeltonstudios.itch.io/', '_blank')});
 
         this.spriteGithub = this.add.sprite(gameConfig.scale.width*2.8/4,gameConfig.scale.height*9/12,'github').setScale(0.9 * gameConfig.scale.height / 600);
-        this.spriteGithub.setInteractive().on('pointerdown', () => window.open('https://github.com/SabeltonStudios', '_blank'));
+        this.spriteGithub.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); window.open('https://github.com/SabeltonStudios', '_blank')});
 
         this.spriteGmail = this.add.sprite(gameConfig.scale.width*2.8/4,gameConfig.scale.height*10/12,'gmail').setScale(0.9 * gameConfig.scale.height / 600);
-        this.spriteGmail.setInteractive().on('pointerdown', () => window.open('https://mail.google.com/', '_blank'));
+        this.spriteGmail.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); window.open('https://mail.google.com/', '_blank')});
 
         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15,(gameConfig.scale.height/8)*7.5,'botonSalir').setScale(0.1 * gameConfig.scale.height / 600);
-        this.spriteSalir.setInteractive().on('pointerdown', () => this.scene.start("MenuPrincipalScene"));
+        this.spriteSalir.setInteractive().on('pointerdown', () =>{this.sound.play('buttonSound',{volume: 0.15});  this.scene.start("MenuPrincipalScene")});
     }
 }

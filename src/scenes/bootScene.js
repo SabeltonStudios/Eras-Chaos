@@ -187,6 +187,9 @@ class bootScene extends Phaser.Scene {
         this.load.image('ContinuarBi', 'assets/Interfaz/ContinuarButtoni.png');
         this.load.image('Lastima', 'assets/Interfaz/RendidoTexto.png');
         this.load.image('Lastimai', 'assets/Interfaz/RendidoTextoi.png');
+        
+        this.load.audio('buttonSound', ['assets/EfectosSonido/boton3.mp3', 'assets/EfectosSonido/boton3.ogg']);
+        this.load.audio('menuMusic', ['assets/Música/Menu.mp3', 'assets/Música/Menu.ogg']);
 
         this.load.image('ShootBON', 'assets/Interfaz/ShootButton.png');
         this.load.image('ShootBOFF', 'assets/Interfaz/ShootButtonOFF.png');
