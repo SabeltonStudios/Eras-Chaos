@@ -236,7 +236,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('flechaDerecha', 'assets/Interfaz/Tienda/flechaDerecha.png');
         this.load.image('flechaIzquierda', 'assets/Interfaz/Tienda/flechaIzquierda.png');
         this.load.image('coins', 'assets/Interfaz/Tienda/coins.png');
-       //Español
+        //Español
         this.load.image('tituloTienda', 'assets/Interfaz/Tienda/tituloTienda.png');
         this.load.image('botonMapas', 'assets/Interfaz/Tienda/botonMapas.png');
         this.load.image('botonPersonajes', 'assets/Interfaz/Tienda/botonPersonajes.png');
@@ -609,7 +609,7 @@ class bootScene extends Phaser.Scene {
             { frameWidth: 445, frameHeight: 515 });
         this.load.spritesheet('medPlayerAKAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Fusil/medieval_basic_fusil_attack_static_spritesheet.png',
             { frameWidth: 350, frameHeight: 515 });
-        //HeroeEdadMedia
+        //HeroeEdadMedia*/
         //Honda
         //FALTAN 4
         //Hacha
@@ -631,13 +631,13 @@ class bootScene extends Phaser.Scene {
         this.load.spritesheet('medHeroeMosAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Mosquete/medieval_hero_mosquete_attack_static_spritesheet.png',
             { frameWidth: 654, frameHeight: 537 });
         //Fusil
-        this.load.spritesheet('medHeroeAK', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_idle_moving_spritesheet.png',
-            { frameWidth: 451, frameHeight: 538 });
-        this.load.image('medHeroeAKIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_idle_static_spritesheet.png');
-        this.load.spritesheet('medHeroeAKAttack', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_attack_moving_spritesheet.png',
-            { frameWidth: 454, frameHeight: 538 });
-        this.load.spritesheet('medHeroeAKAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_attack_static_spritesheet.png',
-            { frameWidth: 360, frameHeight: 538 });
+        this.load.spritesheet('medHeroeAK', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_idle_moving_spritesheet14.png',
+            { frameWidth: 63, frameHeight: 75 });
+        this.load.image('medHeroeAKIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_idle_static_spritesheet14.png');
+        this.load.spritesheet('medHeroeAKAttack', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_attack_moving_spritesheet14.png',
+            { frameWidth: 64, frameHeight: 75 });
+        this.load.spritesheet('medHeroeAKAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_attack_static_spritesheet14.png',
+            { frameWidth: 50, frameHeight: 75 });
         //PersonajeRevIndustrial
         //Honda
         //FALTAN 4
