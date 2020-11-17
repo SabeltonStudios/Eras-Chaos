@@ -21,8 +21,8 @@ class multijugadorSeleccionScene extends Phaser.Scene {
     preload() {
     }
     create() {
-        if (!this.MenuMusic.isPlaying) {
-            this.MenuMusic = this.sound.play('menuMusic', { volume: 0.5, loop:true });
+        if (!MenuMusic.isPlaying) {
+            MenuMusic.play();
         }
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
@@ -174,7 +174,7 @@ class multijugadorSeleccionScene extends Phaser.Scene {
 
         this.spriteJugar = this.add.sprite(gameConfig.scale.width / 2, (gameConfig.scale.height / 8) * 7.5, 'botonPlay').setScale(0.4 * gameConfig.scale.height / 600);
         this.spriteJugar.setInteractive().on('pointerdown', () => {
-            this.MenuMusic.stop();
+            MenuMusic.stop();
             this.sound.play('buttonSound',{volume: 0.15}); 
             this.scene.start("TutorialScene");;
         });

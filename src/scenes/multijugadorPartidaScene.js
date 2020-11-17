@@ -577,7 +577,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
     }
     fire(pl1) {
         if (pl1 === true) {
-            this.sound.play(armas[selectedWeapon1].nombre+'Fire',{volume: 0.15});
+            this.sound.play(armas[selectedWeapon1].nombre+'Fire',{volume: 0.08});
             if (this.spriteParar.isDown || this.freezeInput.isDown) {
                 this.player.anims.play(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'AttackIdle', false)
                     .once('animationcomplete', () => {
@@ -615,7 +615,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.bomb.body.setVelocity(armas[selectedWeapon1].speed * gameConfig.scale.height / 600, 0);
             this.bomb.angle = 90;
         } else {
-            this.sound.play(armas[selectedWeapon2].nombre+'Fire',{volume: 0.15});
+            this.sound.play(armas[selectedWeapon2].nombre+'Fire',{volume: 0.08});
             this.enemy.body.setOffset(this.enemy.width, 0);
             if (this.spriteParar.isDown || this.freezeInput.isDown) {
                 this.enemy.anims.play(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'AttackIdle', false)

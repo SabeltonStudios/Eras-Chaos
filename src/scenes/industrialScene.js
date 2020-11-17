@@ -204,7 +204,7 @@ class industrialScene extends Phaser.Scene {
         }
         this.inter = setInterval(() => {
             if (!this.is_paused) {
-                this.sound.play('indFire',{volume: 0.15});
+                this.sound.play('indFire',{volume: 0.08});
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
@@ -319,7 +319,7 @@ class industrialScene extends Phaser.Scene {
 
             clearInterval(this.inter);
             this.win = false;
-            sortResults("Revolucion Industrial", "Industrial Revolution", this.contMuertes);
+            sortResults("Revolucion Industrial", "Industrial Revolution", this.contMuertes,2);
             this.shootInput.destroy();
             this.tweens.add({
                 targets: this.music,
@@ -400,7 +400,7 @@ class industrialScene extends Phaser.Scene {
 
     }
     fire() {
-        this.sound.play('indFire',{volume: 0.15});
+        this.sound.play('indFire',{volume: 0.08});
         if (this.spriteParar.isDown || this.freezeInput.isDown) {
             this.player.anims.play("indPlayerMosAttackIdle", false)
                 .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.stop(); this.player.setTexture('indPlayerMosIdle') } });

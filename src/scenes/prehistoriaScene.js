@@ -227,7 +227,7 @@ class prehistoriaScene extends Phaser.Scene {
         }
         this.inter = setInterval(() => {
             if (!this.is_paused) {
-                this.sound.play('preFire',{volume: 0.15});
+                this.sound.play('preFire',{volume: 0.08});
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
@@ -341,7 +341,7 @@ class prehistoriaScene extends Phaser.Scene {
         if (this.win) {
             clearInterval(this.inter);
             this.win = false;
-            sortResults("Prehistoria", "Prehistory", this.contMuertes);
+            sortResults("Prehistoria", "Prehistory", this.contMuertes,5);
             this.music.setVolume(0.05);
             this.shootInput.destroy();
             this.tweens.add({
@@ -419,7 +419,7 @@ class prehistoriaScene extends Phaser.Scene {
 
     }
     fire() {
-        this.sound.play('preFire',{volume:0.15});
+        this.sound.play('preFire',{volume:0.08});
         if (this.spriteParar.isDown || this.freezeInput.isDown) {
             this.player.anims.play("prePlayerHondaAttackIdle", false)
                 .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("prePlayerHondaIdle", true) } });

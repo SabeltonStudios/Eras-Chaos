@@ -227,7 +227,7 @@ class contempScene extends Phaser.Scene {
         }
         this.inter = setInterval(() => {
             if (!this.is_paused) {
-                this.sound.play('conFire',{volume: 0.15});
+                this.sound.play('conFire',{volume: 0.08});
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
@@ -343,7 +343,7 @@ class contempScene extends Phaser.Scene {
 
             clearInterval(this.inter);
             this.win = false;
-            sortResults("Actualidad", "Actual Days", this.contMuertes);
+            sortResults("Actualidad", "Actual Days", this.contMuertes,1);
             this.shootInput.destroy();
             this.tweens.add({
                 targets: this.music,
@@ -428,7 +428,7 @@ class contempScene extends Phaser.Scene {
 
     }
     fire() {
-        this.sound.play('conFire',{volume: 0.15});
+        this.sound.play('conFire',{volume: 0.08});
         /*if (this.spriteParar.isDown || this.freezeInput.isDown) {
             this.player.anims.play("indPlayerMosAttackIdle", false)
                 .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.stop(); this.player.setTexture('indPlayerMosIdle') } });

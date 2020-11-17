@@ -2,83 +2,124 @@ let results = [
     {
         "Mapa": "",
         "Mapai": "",
-        "Muertes": -1
+        "Muertes": -1,
+        "Indice": -1
     },
     {
         "Mapa": "",
         "Mapai": "",
-        "Muertes": -1
+        "Muertes": -1,
+        "Indice": -1
     },
     {
         "Mapa": "",
         "Mapai": "",
-        "Muertes": -1
+        "Muertes": -1,
+        "Indice": -1
     },
     {
         "Mapa": "",
         "Mapai": "",
-        "Muertes": -1
+        "Muertes": -1,
+        "Indice": -1
     },
     {
         "Mapa": "",
         "Mapai": "",
-        "Muertes": -1
+        "Muertes": -1,
+        "Indice": -1
     },
     {
         "Mapa": "",
         "Mapai": "",
-        "Muertes": -1
+        "Muertes": -1,
+        "Indice": -1
     },
     {
         "Mapa": "",
         "Mapai": "",
-        "Muertes": -1
+        "Muertes": -1,
+        "Indice": -1
     },
     {
         "Mapa": "",
         "Mapai": "",
-        "Muertes": -1
+        "Muertes": -1,
+        "Indice": -1
     },
     {
         "Mapa": "",
         "Mapai": "",
-        "Muertes": -1
+        "Muertes": -1,
+        "Indice": -1
     },
     {
         "Mapa": "",
         "Mapai": "",
-        "Muertes": -1
+        "Muertes": -1,
+        "Indice": -1
     }
 ];
-function sortResults(mapa, mapai, nuevoValor) {
+function sortResults(mapa, mapai, nuevoValor, indice) {
     for (let i = 0; i < results.length; i++) {
+        if (nuevoValor == results[i].Muertes) {
+            if (indice <= results[i].Indice) {
+                var MapaAux = results[i].Mapa;
+                var MapaiAux = results[i].Mapai;
+                var MuertesAux = results[i].Muertes;
+                var IndiceAux = results[i].Indice;
+                results[i].Muertes = nuevoValor;
+                results[i].Mapa = mapa;
+                results[i].Mapai = mapai;
+                results[i].Indice = indice;
+                for (let j = results.length - 1; j > i + 1; j--) {
+                    results[j].Mapa = results[j - 1].Mapa;
+                    results[j].Mapai = results[j - 1].Mapai;
+                    results[j].Muertes = results[j - 1].Muertes;
+                    results[j].Indice = results[j - 1].Indice;
+                }
+                if (i + 1 < results.length) {
+                    results[i + 1].Mapa = MapaAux;
+                    results[i + 1].Mapai = MapaiAux;
+                    results[i + 1].Muertes = MuertesAux;
+                    results[i + 1].Indice = IndiceAux;
+                }
+                break;
+            }
+        }
+        else if (nuevoValor < results[i].Muertes || results[i].Muertes == -1) {
 
-        if (nuevoValor < results[i].Muertes || results[i].Muertes == -1) {
             var MapaAux = results[i].Mapa;
             var MapaiAux = results[i].Mapai;
             var MuertesAux = results[i].Muertes;
+            var IndiceAux = results[i].Indice;
             results[i].Muertes = nuevoValor;
             results[i].Mapa = mapa;
             results[i].Mapai = mapai;
+            results[i].Indice = indice;
 
             for (let j = results.length - 1; j > i + 1; j--) {
                 results[j].Mapa = results[j - 1].Mapa;
                 results[j].Mapai = results[j - 1].Mapai;
                 results[j].Muertes = results[j - 1].Muertes;
+                results[j].Indice = results[j - 1].Indice;
             }
-            if (i + i < results.length) {
+            if (i + 1 < results.length) {
                 results[i + 1].Mapa = MapaAux;
                 results[i + 1].Mapai = MapaiAux;
                 results[i + 1].Muertes = MuertesAux;
+                results[i + 1].Indice = IndiceAux;
+
             }
+
             break;
         }
     }
-    /*for(let i=0; i<results.length; i++){
-        console.log(results[i].Mapa, results[i].Muertes);
+    /*for (let i = 0; i < results.length; i++) {
+        console.log(results[i].Mapa, results[i].Muertes, results[i].Indice);
     }*/
 }
-let MenuMusic;
+
 class menuPrincipalScene extends Phaser.Scene {
 
     constructor() {
@@ -86,12 +127,15 @@ class menuPrincipalScene extends Phaser.Scene {
     }
 
     preload() {
-
+        if (!MenuMusic.isPlaying) {
+            MenuMusic.play();
+        }
     }
 
     create() {
-        if (!this.MenuMusic.isPlaying) {
-            this.MenuMusic = this.sound.play('menuMusic', { volume: 0.5,loop:true });
+
+        if (!MenuMusic.isPlaying) {
+            MenuMusic.play();
         }
         this.Fondo = this.add.image(0, 0, 'fondo').setOrigin(0)
         this.Fondo.setScale(gameConfig.scale.width / this.Fondo.width, gameConfig.scale.height / this.Fondo.height);

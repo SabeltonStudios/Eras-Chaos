@@ -227,7 +227,7 @@ class egiptoScene extends Phaser.Scene {
         }
         this.inter = setInterval(() => {
             if (!this.is_paused) {
-                this.sound.play('egiFire',{volume: 0.15});
+                this.sound.play('egiFire',{volume: 0.08});
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
@@ -345,7 +345,7 @@ class egiptoScene extends Phaser.Scene {
         if (this.win) {
             clearInterval(this.inter);
             this.win = false;
-            sortResults("Antiguo Egipto", "Ancient Egipt", this.contMuertes);
+            sortResults("Antiguo Egipto", "Ancient Egipt", this.contMuertes,4);
             this.shootInput.destroy();
             this.tweens.add({
                 targets: this.music,
@@ -430,7 +430,7 @@ class egiptoScene extends Phaser.Scene {
 
     }
     fire() {
-        this.sound.play('egiFire',{volume: 0.15});
+        this.sound.play('egiFire',{volume: 0.08});
         if (this.spriteParar.isDown || this.freezeInput.isDown) {
             this.player.anims.play("egiPlayerHachaAttackIdle", false)
                 .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.stop(); this.player.setTexture('egiPlayerHachaIdle') } });

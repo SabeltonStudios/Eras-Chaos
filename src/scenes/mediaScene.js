@@ -205,7 +205,7 @@ class mediaScene extends Phaser.Scene {
         }
         this.inter = setInterval(() => {
             if (!this.is_paused) {
-                this.sound.play('medFire',{volume: 0.15});
+                this.sound.play('medFire',{volume: 0.08});
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
@@ -319,7 +319,7 @@ class mediaScene extends Phaser.Scene {
 
             clearInterval(this.inter);
             this.win = false;
-            sortResults("Edad Media", "Middle Age", this.contMuertes);
+            sortResults("Edad Media", "Middle Age", this.contMuertes,3);
             this.shootInput.destroy();
             this.tweens.add({
                 targets: this.music,
@@ -400,7 +400,7 @@ class mediaScene extends Phaser.Scene {
 
     }
     fire() {
-        this.sound.play('medFire',{volume: 0.15});
+        this.sound.play('medFire',{volume: 0.08});
         if (this.bulletsPre.isFull()) {
             //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();
