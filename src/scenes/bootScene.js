@@ -92,10 +92,8 @@ class bootScene extends Phaser.Scene {
 
 
         //Assets Egipto
-        this.load.image('egiMap', 'assets/Fondos/2.AntiguoEgipto/BackgroundNoColumns.png');
+        this.load.image('egiMap', 'assets/Fondos/2.AntiguoEgipto/Background.png');
         this.load.image('rectanguloEgipto', 'assets/Fondos/2.AntiguoEgipto/RectanguloCentral.png');
-        this.load.image('columnaC', 'assets/Fondos/2.AntiguoEgipto/ColumnUp.png');
-        this.load.image('columnaD', 'assets/Fondos/2.AntiguoEgipto/ColumnRight.png');
         this.load.image('egiObj1', 'assets/Objetos/2.AntiguoEgipto/object_cats.png');
         this.load.image('egiObj2', 'assets/Objetos/2.AntiguoEgipto/object_cup.png');
         this.load.image('egiObj3', 'assets/Objetos/2.AntiguoEgipto/object_pyramid.png');
@@ -146,7 +144,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('indObj2', 'assets/Objetos/4.RevolucionIndustrial/object_toolbox.png');
         this.load.image('indObj3', 'assets/Objetos/4.RevolucionIndustrial/object_wheel.png');
         this.load.audio('indMusic', ['assets/Música/RevInds.mp3', 'assets/Música/RevInds.ogg']);
-        this.load.audio('indFire', ['assets/EfectosSonido/mosqueton.wav', 'assets/EfectosSonido/mosqueton.ogg']);
+        this.load.audio('indFire', ['assets/EfectosSonido/mosqueton.mp3', 'assets/EfectosSonido/mosqueton.ogg']);
         this.load.image('indWeapon', 'assets/Armas/mosquete-bala.png');
 
         this.load.spritesheet('indPlayerMos', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Mosquete/industrial_basic_mosquete_idle_moving_spritesheet.png',

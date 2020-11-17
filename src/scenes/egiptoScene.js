@@ -76,9 +76,9 @@ class egiptoScene extends Phaser.Scene {
         this.RectanguloMapa = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'rectanguloEgipto');
         this.RectanguloMapa.setScale(this.RectanguloMapa.height / this.Mapa.height * gameConfig.scale.width / this.Mapa.width);
 
-        this.columnas = this.physics.add.staticGroup();
+        //this.columnas = this.physics.add.staticGroup();
 
-        //Columnas izquierda
+        /*//Columnas izquierda
         this.columnas.create(gameConfig.scale.width * 0.041, gameConfig.scale.height * 0.21, 'columnaD').setScale(0.175 * gameConfig.scale.width / 800, 0.175 * gameConfig.scale.height / 600).refreshBody();
         this.columnas.create(gameConfig.scale.width * 0.041, gameConfig.scale.height * 0.712, 'columnaD').setScale(0.175 * gameConfig.scale.width / 800, 0.175 * gameConfig.scale.height / 600).refreshBody();
         //Columnas centro
@@ -92,7 +92,7 @@ class egiptoScene extends Phaser.Scene {
         this.aux[1].flipX = true;
         this.aux[2].body.setSize(gameConfig.scale.width / 3, 0.16 * gameConfig.scale.height, false);
         this.aux[3].body.setSize(gameConfig.scale.width / 3, 0.16 * gameConfig.scale.height, false);
-        this.aux[3].body.setOffset(-gameConfig.scale.width / 3 + 65 * gameConfig.scale.width / 800, 0);
+        this.aux[3].body.setOffset(-gameConfig.scale.width / 3 + 65 * gameConfig.scale.width / 800, 0);*/
 
         this.player = this.physics.add.sprite(gameConfig.scale.width / 6.5, gameConfig.scale.height / 6, 'egiPlayerHacha').setOrigin(0, 1).setScale(0.14 * gameConfig.scale.width / 800)// * gameConfig.scale.width/800 );
         this.player.body.immovable = true;
@@ -161,6 +161,55 @@ class egiptoScene extends Phaser.Scene {
         //this.obstacles.create(gameConfig.scale.width * 0.61, gameConfig.scale.height * 0.17, 'egiObj3').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
         this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'egiObj1').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(110, 40, 20).setAllowGravity(false);
 
+        this.ColumnaI0=  this.add.rectangle(40, gameConfig.scale.height *0.65/3, 100*gameConfig.scale.width/800, gameConfig.scale.height/2.8);
+        this.physics.add.existing(this.ColumnaI0);
+        this.ColumnaI0.body.setAllowGravity(false);
+        this.ColumnaI0.body.setSize(100*gameConfig.scale.width/800, gameConfig.scale.height/2.8);
+        this.ColumnaI0.body.immovable = true;
+
+        this.ColumnaI1=  this.add.rectangle(40, gameConfig.scale.height *2.2/3, 100*gameConfig.scale.width/800, gameConfig.scale.height/2.8);
+        this.physics.add.existing(this.ColumnaI1);
+        this.ColumnaI1.body.setAllowGravity(false);
+        this.ColumnaI1.body.setSize(100*gameConfig.scale.width/800, gameConfig.scale.height/2.8);
+        this.ColumnaI1.body.immovable = true;
+
+        this.ColumnaD0=  this.add.rectangle(gameConfig.scale.width-40, gameConfig.scale.height *0.65/3, 100*gameConfig.scale.width/800, gameConfig.scale.height/2.8);
+        this.physics.add.existing(this.ColumnaD0);
+        this.ColumnaD0.body.setAllowGravity(false);
+        this.ColumnaD0.body.setSize(100*gameConfig.scale.width/800, gameConfig.scale.height/2.8);
+        this.ColumnaD0.body.immovable = true;
+
+        this.ColumnaD1=  this.add.rectangle(gameConfig.scale.width-40, gameConfig.scale.height *2.2/3, 100*gameConfig.scale.width/800, gameConfig.scale.height/2.8);
+        this.physics.add.existing(this.ColumnaD1);
+        this.ColumnaD1.body.setAllowGravity(false);
+        this.ColumnaD1.body.setSize(100*gameConfig.scale.width/800, gameConfig.scale.height/2.8);
+        this.ColumnaD1.body.immovable = true;
+
+        this.ColumnaC0=  this.add.rectangle(gameConfig.scale.width/6.3, 40*gameConfig.scale.height/600, gameConfig.scale.width/2.8, 100*gameConfig.scale.height/600);
+        this.physics.add.existing(this.ColumnaC0);
+        this.ColumnaC0.body.setAllowGravity(false);
+        this.ColumnaC0.body.setSize(gameConfig.scale.width/2.8, 100*gameConfig.scale.height/600);
+        this.ColumnaC0.body.immovable = true;
+
+        this.ColumnaC1=  this.add.rectangle(gameConfig.scale.width*4.25/5, 40*gameConfig.scale.height/600, gameConfig.scale.width/2.8, 100*gameConfig.scale.height/600);
+        this.physics.add.existing(this.ColumnaC1);
+        this.ColumnaC1.body.setAllowGravity(false);
+        this.ColumnaC1.body.setSize(gameConfig.scale.width/2.8, 100*gameConfig.scale.height/600);
+        this.ColumnaC1.body.immovable = true;
+
+        this.physics.add.collider(this.bulletsPre, this.ColumnaC0);
+        this.physics.add.collider(this.bulletsEnemy, this.ColumnaC0);
+        this.physics.add.collider(this.bulletsPre, this.ColumnaC1);
+        this.physics.add.collider(this.bulletsEnemy, this.ColumnaC1);
+        this.physics.add.collider(this.bulletsPre, this.ColumnaD0);
+        this.physics.add.collider(this.bulletsEnemy, this.ColumnaD0);
+        this.physics.add.collider(this.bulletsPre, this.ColumnaD1);
+        this.physics.add.collider(this.bulletsEnemy, this.ColumnaD1);
+        this.physics.add.collider(this.bulletsPre, this.ColumnaI0);
+        this.physics.add.collider(this.bulletsEnemy, this.ColumnaI0);
+        this.physics.add.collider(this.bulletsPre, this.ColumnaI1);
+        this.physics.add.collider(this.bulletsEnemy, this.ColumnaI1);
+
         this.physics.add.collider(wallR, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallL, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallU, this.bulletsPre, function (wall, bullet) { bullet.destroy(); });
@@ -169,8 +218,8 @@ class egiptoScene extends Phaser.Scene {
         this.physics.add.collider(wallL, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallU, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallD, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
-        this.physics.add.collider(this.bulletsPre, this.columnas);
-        this.physics.add.collider(this.bulletsEnemy, this.columnas);
+        /*this.physics.add.collider(this.bulletsPre, this.columnas);
+        this.physics.add.collider(this.bulletsEnemy, this.columnas);*/
         //this.physics.add.collider(this.player, this.bulletsPre, () => this.gameOver = true);
         this.physics.add.collider(this.player, this.bulletsEnemy, () => this.gameOver = true);
         this.physics.add.collider(this.enemy, this.bulletsPre, () => { this.bulletsPre.clear(); this.win = true });

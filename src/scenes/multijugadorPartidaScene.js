@@ -147,23 +147,41 @@ class multijugadorPartidaScene extends Phaser.Scene {
         this.enemy.setCollideWorldBounds(true);
 
         if (mapas[selectedMap].nombre === 'egi') {
-            this.columnas = this.physics.add.staticGroup();
+            this.ColumnaI0 = this.add.rectangle(40, gameConfig.scale.height * 0.65 / 3, 100 * gameConfig.scale.width / 800, gameConfig.scale.height / 2.8);
+            this.physics.add.existing(this.ColumnaI0);
+            this.ColumnaI0.body.setAllowGravity(false);
+            this.ColumnaI0.body.setSize(100 * gameConfig.scale.width / 800, gameConfig.scale.height / 2.8);
+            this.ColumnaI0.body.immovable = true;
 
-            //Columnas izquierda
-            this.columnas.create(gameConfig.scale.width * 0.041, gameConfig.scale.height * 0.21, 'columnaD').setScale(0.175 * gameConfig.scale.width / 800, 0.175 * gameConfig.scale.height / 600).refreshBody();
-            this.columnas.create(gameConfig.scale.width * 0.041, gameConfig.scale.height * 0.712, 'columnaD').setScale(0.175 * gameConfig.scale.width / 800, 0.175 * gameConfig.scale.height / 600).refreshBody();
-            //Columnas centro
-            this.columnas.create(gameConfig.scale.width * 0.72, gameConfig.scale.height * 0.0791, 'columnaC').setScale(0.175 * gameConfig.scale.width / 800, 0.175 * gameConfig.scale.height / 600).refreshBody();//.refreshBody();
-            this.columnas.create(gameConfig.scale.width * 0.28, gameConfig.scale.height * 0.0791, 'columnaC').setScale(0.175 * gameConfig.scale.width / 800, 0.175 * gameConfig.scale.height / 600).refreshBody();
-            //Columnas derecha
-            this.columnas.create(gameConfig.scale.width * 0.958, gameConfig.scale.height * 0.21, 'columnaD').setScale(0.175 * gameConfig.scale.width / 800, 0.175 * gameConfig.scale.height / 600).refreshBody();//.refreshBody();
-            this.columnas.create(gameConfig.scale.width * 0.958, gameConfig.scale.height * 0.712, 'columnaD').setScale(0.175 * gameConfig.scale.width / 800, 0.175 * gameConfig.scale.height / 600).refreshBody();
-            this.aux = this.columnas.getChildren();
-            this.aux[0].flipX = true;
-            this.aux[1].flipX = true;
-            this.aux[2].body.setSize(gameConfig.scale.width / 3, 0.16 * gameConfig.scale.height, false);
-            this.aux[3].body.setSize(gameConfig.scale.width / 3, 0.16 * gameConfig.scale.height, false);
-            this.aux[3].body.setOffset(-gameConfig.scale.width / 3 + 65 * gameConfig.scale.width / 800, 0);
+            this.ColumnaI1 = this.add.rectangle(40, gameConfig.scale.height * 2.2 / 3, 100 * gameConfig.scale.width / 800, gameConfig.scale.height / 2.8);
+            this.physics.add.existing(this.ColumnaI1);
+            this.ColumnaI1.body.setAllowGravity(false);
+            this.ColumnaI1.body.setSize(100 * gameConfig.scale.width / 800, gameConfig.scale.height / 2.8);
+            this.ColumnaI1.body.immovable = true;
+
+            this.ColumnaD0 = this.add.rectangle(gameConfig.scale.width - 40, gameConfig.scale.height * 0.65 / 3, 100 * gameConfig.scale.width / 800, gameConfig.scale.height / 2.8);
+            this.physics.add.existing(this.ColumnaD0);
+            this.ColumnaD0.body.setAllowGravity(false);
+            this.ColumnaD0.body.setSize(100 * gameConfig.scale.width / 800, gameConfig.scale.height / 2.8);
+            this.ColumnaD0.body.immovable = true;
+
+            this.ColumnaD1 = this.add.rectangle(gameConfig.scale.width - 40, gameConfig.scale.height * 2.2 / 3, 100 * gameConfig.scale.width / 800, gameConfig.scale.height / 2.8);
+            this.physics.add.existing(this.ColumnaD1);
+            this.ColumnaD1.body.setAllowGravity(false);
+            this.ColumnaD1.body.setSize(100 * gameConfig.scale.width / 800, gameConfig.scale.height / 2.8);
+            this.ColumnaD1.body.immovable = true;
+
+            this.ColumnaC0 = this.add.rectangle(gameConfig.scale.width / 6.3, 40 * gameConfig.scale.height / 600, gameConfig.scale.width / 2.8, 100 * gameConfig.scale.height / 600);
+            this.physics.add.existing(this.ColumnaC0);
+            this.ColumnaC0.body.setAllowGravity(false);
+            this.ColumnaC0.body.setSize(gameConfig.scale.width / 2.8, 100 * gameConfig.scale.height / 600);
+            this.ColumnaC0.body.immovable = true;
+
+            this.ColumnaC1 = this.add.rectangle(gameConfig.scale.width * 4.25 / 5, 40 * gameConfig.scale.height / 600, gameConfig.scale.width / 2.8, 100 * gameConfig.scale.height / 600);
+            this.physics.add.existing(this.ColumnaC1);
+            this.ColumnaC1.body.setAllowGravity(false);
+            this.ColumnaC1.body.setSize(gameConfig.scale.width / 2.8, 100 * gameConfig.scale.height / 600);
+            this.ColumnaC1.body.immovable = true;
         }
         var wallR = this.add.rectangle(gameConfig.scale.width + 20, gameConfig.scale.height / 2, 20, gameConfig.scale.height);
         this.physics.add.existing(wallR);
@@ -262,8 +280,19 @@ class multijugadorPartidaScene extends Phaser.Scene {
         this.physics.add.collider(wallU, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
         this.physics.add.collider(wallD, this.bulletsEnemy, function (wall, bullet) { bullet.destroy(); });
         if (mapas[selectedMap].nombre === 'egi') {
-            this.physics.add.collider(this.bulletsPre, this.columnas);
-            this.physics.add.collider(this.bulletsEnemy, this.columnas);
+
+            this.physics.add.collider(this.bulletsPre, this.ColumnaC0);
+            this.physics.add.collider(this.bulletsEnemy, this.ColumnaC0);
+            this.physics.add.collider(this.bulletsPre, this.ColumnaC1);
+            this.physics.add.collider(this.bulletsEnemy, this.ColumnaC1);
+            this.physics.add.collider(this.bulletsPre, this.ColumnaD0);
+            this.physics.add.collider(this.bulletsEnemy, this.ColumnaD0);
+            this.physics.add.collider(this.bulletsPre, this.ColumnaD1);
+            this.physics.add.collider(this.bulletsEnemy, this.ColumnaD1);
+            this.physics.add.collider(this.bulletsPre, this.ColumnaI0);
+            this.physics.add.collider(this.bulletsEnemy, this.ColumnaI0);
+            this.physics.add.collider(this.bulletsPre, this.ColumnaI1);
+            this.physics.add.collider(this.bulletsEnemy, this.ColumnaI1);
         }
         this.physics.add.collider(this.player, this.bulletsEnemy, () => { this.bulletsPre.clear(); this.bulletsEnemy.clear(); this.win2 = true });
         this.physics.add.collider(this.enemy, this.bulletsPre, () => { this.bulletsPre.clear(); this.bulletsEnemy.clear(); this.win1 = true });
@@ -321,7 +350,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             .on('pointerout', () => this.spriteDisparar2.setTexture('ShootBON'));
 
         this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.3 / 16, gameConfig.scale.height / 13, 'PauseBON').setScale(0.07 * gameConfig.scale.width / 800);
-        this.spritePausar.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15});this.is_paused = !this.is_paused})
+        this.spritePausar.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.is_paused = !this.is_paused })
             .on('pointerdown', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput, this.spriteParar2, this.spriteDisparar2, this.freezeInput2, this.shootInput2))
             .on('pointerdown', () => !this.is_paused ? this.player.anims.play(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre, true) : this.player.anims.stop())
             .on('pointerdown', () => !this.is_paused ? this.enemy.anims.play(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre, true) : this.enemy.anims.stop())
@@ -369,7 +398,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             .on('down', () => this.spriteDisparar2.setTexture('ShootBOFF'))
             .on('up', () => this.spriteDisparar2.setTexture('ShootBON'));
         if (!this.win1 && !this.win2) {
-            this.input.keyboard.on('keydown-' + 'ESC', () => {this.sound.play('buttonSound',{volume: 0.15});this.is_paused = !this.is_paused})
+            this.input.keyboard.on('keydown-' + 'ESC', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.is_paused = !this.is_paused })
                 .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput, this.spriteParar2, this.spriteDisparar2, this.freezeInput2, this.shootInput2))
                 .on('keydown-' + 'ESC', () => !this.is_paused ? this.player.anims.play(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre, true) : this.player.anims.stop())
                 .on('keydown-' + 'ESC', () => !this.is_paused ? this.enemy.anims.play(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre, true) : this.enemy.anims.stop())
@@ -383,12 +412,12 @@ class multijugadorPartidaScene extends Phaser.Scene {
         this.Menu = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'PauseMenu').setScale(0.5 * gameConfig.scale.height / 600);
         t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7 * gameConfig.scale.height / 600);
         t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonRendirse').setScale(gameConfig.scale.height / 600);
-        t.BotonMenu.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); this.confirmarSalir("MenuPrincipalScene")});
+        t.BotonMenu.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.confirmarSalir("MenuPrincipalScene") });
         t.BotonCerrar = t.add.sprite(gameConfig.scale.width / 2 + (t.Menu.displayWidth / 2 - 30), gameConfig.scale.height / 2 - (t.Menu.displayHeight / 2 + 20), 'CloseB').setOrigin(0.5, 0).setScale(0.1 * gameConfig.scale.height / 600);
         //this.BotonCerrar = t.add.sprite(gameConfig.scale.width/2+(this.menu.displayWidth/2), gameConfig.scale.height * 0.36, 'CloseB').setScale(0.1 * gameConfig.scale.height / 600);
-        t.BotonCerrar.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15});  this.is_paused = !this.is_paused; t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput); this.ocultarMenu(this) });
+        t.BotonCerrar.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.is_paused = !this.is_paused; t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput); this.ocultarMenu(this) });
         t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda').setScale(gameConfig.scale.height / 600);
-        t.BotonTienda.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); this.confirmarSalir("TiendaScene")});
+        t.BotonTienda.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.confirmarSalir("TiendaScene") });
         if (!espanol) {
             t.PauseTitle.setTexture('PauseTitlei');
             t.BotonMenu.setTexture('botonRendirsei');
@@ -406,7 +435,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
         }
         this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width * 1.1 / 2, (gameConfig.scale.height / 3) * 2.6, 'botonDesbloquearNo').setScale(0.5 * gameConfig.scale.height / 600);
         this.spriteDesbloquearNo.setInteractive().on('pointerdown', () => {
-            this.sound.play('buttonSound',{volume: 0.15});
+            this.sound.play('buttonSound', { volume: 0.15 });
             this.mensajeSeguro.destroy();
             this.spriteDesbloquearNo.destroy();
             this.spriteDesbloquearSi.destroy();
@@ -417,7 +446,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
         });
 
         this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width * 0.9 / 2, (gameConfig.scale.height / 3) * 2.6, 'botonDesbloquearSi').setScale(0.5 * gameConfig.scale.height / 600);
-        this.spriteDesbloquearSi.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15});this.rendirse(salir)});
+        this.spriteDesbloquearSi.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.rendirse(salir) });
     }
     ocultarMenu(t) {
         this.music.setVolume(0.2);
@@ -457,7 +486,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);;
         }
         this.continuar.setInteractive().on('pointerdown', () => {
-            this.sound.play('buttonSound',{volume: 0.15});
+            this.sound.play('buttonSound', { volume: 0.15 });
             this.music.stop();
             this.scene.stop();
             this.scene.start(escena);
@@ -505,7 +534,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.win1 = false;
             this.win2 = false;
             this.continuar.setInteractive().on('pointerdown', () => {
-                this.sound.play('buttonSound',{volume: 0.15});
+                this.sound.play('buttonSound', { volume: 0.15 });
                 this.music.stop();
                 this.scene.stop();
                 this.scene.start("MultijugadorSeleccionScene");
@@ -577,7 +606,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
     }
     fire(pl1) {
         if (pl1 === true) {
-            this.sound.play(armas[selectedWeapon1].nombre+'Fire',{volume: 0.08});
+            this.sound.play(armas[selectedWeapon1].nombre + 'Fire', { volume: 0.08 });
             if (this.spriteParar.isDown || this.freezeInput.isDown) {
                 this.player.anims.play(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'AttackIdle', false)
                     .once('animationcomplete', () => {
@@ -615,7 +644,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.bomb.body.setVelocity(armas[selectedWeapon1].speed * gameConfig.scale.height / 600, 0);
             this.bomb.angle = 90;
         } else {
-            this.sound.play(armas[selectedWeapon2].nombre+'Fire',{volume: 0.08});
+            this.sound.play(armas[selectedWeapon2].nombre + 'Fire', { volume: 0.08 });
             this.enemy.body.setOffset(this.enemy.width, 0);
             if (this.spriteParar.isDown || this.freezeInput.isDown) {
                 this.enemy.anims.play(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'AttackIdle', false)
