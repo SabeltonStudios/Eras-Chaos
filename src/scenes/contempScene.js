@@ -74,13 +74,13 @@ class contempScene extends Phaser.Scene {
         this.muertesUI = this.add.image(gameConfig.scale.width * 0.97 / 2, 53 * gameConfig.scale.height / 600, 'MuertesUI').setScale(0.45 * gameConfig.scale.width / 800);
         this.contUI = this.add.text(gameConfig.scale.width * 1.1 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff', stroke: '#000', strokeThickness: 4 }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
 
-        this.player = this.physics.add.sprite(gameConfig.scale.width / 6.5, gameConfig.scale.height / 6, 'medPlayer').setScale(0.14 * gameConfig.scale.height / 600)//*800/gameConfig.scale.width);
+        this.player = this.physics.add.sprite(gameConfig.scale.width / 6.5, gameConfig.scale.height / 6, 'medPlayer').setOrigin(0,1).setScale(0.14 * gameConfig.scale.height / 600)//*800/gameConfig.scale.width);
         this.player.body.immovable = true;
         this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5.5 / 6, gameConfig.scale.height / 2, 'conEnemy').setOrigin(1, 1).setScale(0.17 * gameConfig.scale.width / 800);
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
 
-        //this.player.anims.play('conPlayerMosMoving', true);
+        this.player.anims.play("conPlayerAKMoving", true);
         this.player.setVelocity(0, -350 * gameConfig.scale.height / 600);
         this.player.setBounce(1);
         this.player.body.setAllowGravity(false);
@@ -182,15 +182,15 @@ class contempScene extends Phaser.Scene {
 
 
         this.spriteParar = this.add.sprite(gameConfig.scale.width * 15 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
-        this.spriteParar.setInteractive().on('pointerdown', () => this.player.body.moves = false /*cambiar a iddle */)
-            .on('pointerup', () => this.player.body.moves = true)//,this.player.anims.play('walk', true))
-            .on('pointerout', () => this.player.body.moves = true)//, this.player.anims.play('walk', true))
+        this.spriteParar.setInteractive().on('pointerdown', () => { this.player.body.moves = false; this.player.anims.stop(); this.player.setTexture('conPlayerAKIdle') })
+            .on('pointerup', () => { this.player.body.moves = true; this.player.anims.play('conPlayerAKMoving', true) })
+            .on('pointerout', () => { this.player.body.moves = true; this.player.anims.play('conPlayerAKMoving', true) })
             .on('pointerdown', () => this.spriteParar.setTexture('FreezeBOFF'))
             .on('pointerup', () => this.spriteParar.setTexture('FreezeBON'))
             .on('pointerout', () => this.spriteParar.setTexture('FreezeBON'));
 
         this.spriteDisparar = this.add.sprite(gameConfig.scale.width / 16, gameConfig.scale.height * 11 / 12, 'ShootBON').setScale(0.1 * gameConfig.scale.width / 800);
-        this.spriteDisparar.setInteractive().on('pointerdown', () => this.fire() /*animar disparo */)
+        this.spriteDisparar.setInteractive().on('pointerdown', () => this.fire())
             .on('pointerdown', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('pointerup', () => this.spriteDisparar.setTexture('ShootBON'))
             .on('pointerout', () => this.spriteDisparar.setTexture('ShootBON'));
@@ -198,7 +198,7 @@ class contempScene extends Phaser.Scene {
         this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.3 / 16, gameConfig.scale.height / 13, 'PauseBON').setScale(0.07 * gameConfig.scale.width / 800);
         this.spritePausar.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15});this.is_paused = !this.is_paused})
             .on('pointerdown', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
-            //.on('pointerdown', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
+            .on('pointerdown', () => !this.is_paused ? this.player.anims.play('conPlayerAKMoving', true) : this.player.anims.stop())
             .on('pointerdown', () => !this.is_paused ? this.enemy.anims.play('conenemyMoving', true) : this.enemy.anims.stop())
             .on('pointerdown', () => this.spritePausar.setTexture('PauseBOFF'))
             .on('pointerdown', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
@@ -207,8 +207,8 @@ class contempScene extends Phaser.Scene {
 
 
         this.freezeInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-        this.freezeInput.on('down', () => this.player.body.moves = false /*cambiar a iddle */)
-            .on('up', () => this.player.body.moves = true)//, this.player.anims.play('walk', true))
+        this.freezeInput.on('down', () => { this.player.body.moves = false; this.player.anims.stop(); this.player.setTexture('conPlayerAKIdle') })
+            .on('up', () => { this.player.body.moves = true; this.player.anims.play('conPlayerAKMoving', true) })
             .on('down', () => this.spriteParar.setTexture('FreezeBOFF'))
             .on('up', () => this.spriteParar.setTexture('FreezeBON'));
 
@@ -219,7 +219,7 @@ class contempScene extends Phaser.Scene {
         if (!this.win) {
             this.input.keyboard.on('keydown-' + 'ESC', () => {this.sound.play('buttonSound',{volume: 0.15});this.is_paused = !this.is_paused})
                 .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
-                //.on('keydown-' + 'ESC', () => !this.is_paused ? this.player.anims.play('walk', true) : this.player.anims.stop())
+                .on('keydown-' + 'ESC', () => !this.is_paused ? this.player.anims.play('conPlayerAKMoving', true) : this.player.anims.stop())
                 .on('keydown-' + 'ESC', () => !this.is_paused ? this.enemy.anims.play('conenemyMoving', true) : this.enemy.anims.stop())
                 .on('keydown-' + 'ESC', () => !this.is_paused ? this.ocultarMenu(this) : this.mostrarMenu(this))
                 .on('keydown-' + 'ESC', () => this.spritePausar.setTexture('PauseBOFF'))
@@ -429,13 +429,13 @@ class contempScene extends Phaser.Scene {
     }
     fire() {
         this.sound.play('conFire',{volume: 0.08});
-        /*if (this.spriteParar.isDown || this.freezeInput.isDown) {
-            this.player.anims.play("indPlayerMosAttackIdle", false)
-                .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.stop(); this.player.setTexture('indPlayerMosIdle') } });
+        if (this.spriteParar.isDown || this.freezeInput.isDown) {
+            this.player.anims.play("conPlayerAKAttackIdle", false)
+                .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.stop(); this.player.setTexture('conPlayerAKIdle') } });
         } else {
-            this.player.anims.play("indPlayerMosAttack", false)
-                .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("indPlayerMosMoving", false) } });
-        }*/
+            this.player.anims.play("conPlayerAKAttack", false)
+                .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("conPlayerAKMoving", false) } });
+        }
         if (this.bulletsPre.isFull()) {
             //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();
