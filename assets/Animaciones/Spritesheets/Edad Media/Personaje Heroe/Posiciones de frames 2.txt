@@ -1,11 +1,11 @@
-- Fusil
+- Fusil // (50% más pequeño que hacha)
 Idle: 
-Static: (1 imagen) 101 x 151
-Moving: (4 filas x 5 columnas) 126 x 151
+Static: (1 imagen) 51 x 75
+Moving: (4 filas x 5 columnas) 63 x 75
 
 Attack:
-Static: (3 filas x 7 columnas) 101 x 151
-Moving: (4 filas x 5 columnas) 127 x 151
+Static: (3 filas x 7 columnas) 50 x 75
+Moving: (4 filas x 5 columnas) 64 x 75
 //////////////////////
 - Hacha
 Idle: 
