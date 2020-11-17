@@ -901,7 +901,6 @@ class bootScene extends Phaser.Scene {
             frameRate: 32,
             repeat: 0
         });
-        //Animaciones Multijugador
 
         MenuMusic = this.sound.add('menuMusic', { volume: 0.3, loop: true });
         this.scene.start("MenuPrincipalScene");
