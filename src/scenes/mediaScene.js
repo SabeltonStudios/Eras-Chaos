@@ -73,9 +73,9 @@ class mediaScene extends Phaser.Scene {
         this.muertesUI = this.add.image(gameConfig.scale.width * 0.97 / 2, 53 * gameConfig.scale.height / 600, 'MuertesUI').setScale(0.45 * gameConfig.scale.width / 800);
         this.contUI = this.add.text(gameConfig.scale.width * 1.1 / 2, 32 * gameConfig.scale.height / 600, this.contMuertes, { fontFamily: 'Arial', fontSize: 72, color: '#fff',stroke: '#000',strokeThickness: 4 }).setOrigin(0.5, 0).setScale(0.5 * gameConfig.scale.width / 800);
 
-        this.player = this.physics.add.sprite(gameConfig.scale.width / 6.5, gameConfig.scale.height / 6, 'medPlayer').setScale(0.14 * gameConfig.scale.height / 600)//*800/gameConfig.scale.width);
+        this.player = this.physics.add.sprite(gameConfig.scale.width / 6.5, gameConfig.scale.height / 5, 'medPlayerBall').setScale(gameConfig.scale.width / 800)//*800/gameConfig.scale.width);
         this.player.body.immovable = true;
-        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5.5 / 6, gameConfig.scale.height / 2, 'medEnemy').setOrigin(1, 1).setScale(0.17 * gameConfig.scale.width / 800)//*800/gameConfig.scale.width);
+        this.enemy = this.physics.add.sprite(gameConfig.scale.width * 5.5 / 6, gameConfig.scale.height / 2, 'medEnemy').setOrigin(1, 1).setScale(gameConfig.scale.width / 800)//*800/gameConfig.scale.width);
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
         this.player.anims.play("medPlayerBallMoving", true);

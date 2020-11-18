@@ -77,20 +77,20 @@ class bootScene extends Phaser.Scene {
         this.load.audio('preFire', ['assets/EfectosSonido/Honda.mp3', 'assets/EfectosSonido/Honda.ogg']);
         this.load.image('preWeapon', 'assets/Armas/ArmaPrehistoria.png');
         this.load.spritesheet('prePlayerHonda', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basico_honda_idle_moving_spritesheet.png',
-            { frameWidth: 373, frameHeight: 541 });
+            { frameWidth: 373*0.14, frameHeight: 541*0.14 });
         this.load.spritesheet('prePlayerHondaIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basico_honda_idle_static_spritesheet.png',
-            { frameWidth: 373, frameHeight: 541 });
+            { frameWidth: 373*0.14, frameHeight: 541*0.14 });
         this.load.spritesheet('prePlayerHondaAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basic_honda_attack_moving_spritesheet.png',
-            { frameWidth: 837, frameHeight: 557 });
+            { frameWidth: 837*0.14, frameHeight: 557*0.14 });
         this.load.spritesheet('prePlayerHondaAttackIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basic_honda_attack_static_spritesheet.png',
-            { frameWidth: 837, frameHeight: 541 });
+            { frameWidth: 837*0.14, frameHeight: 541*0.14 });
         this.load.spritesheet('preEnemy', 'assets/Animaciones/Spritesheets/Prehistoria/Enemigo/enemigo_prehistoria_honda_idle_moving_spritesheet.png',
-            { frameWidth: 736, frameHeight: 1039 });
+            { frameWidth: 736*0.07, frameHeight: 1039*0.07 });
         //cambiar↓
         this.load.spritesheet('preEnemyAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Enemigo/enemigo_prehistoria_honda_idle_moving_spritesheet.png',
-            { frameWidth: 736, frameHeight: 1039 });
+            { frameWidth: 736*0.07, frameHeight: 1039*0.07 });
         this.load.spritesheet('preEnemyDie', 'assets/Animaciones/Spritesheets/Prehistoria/Enemigo/prehistoria_enemigo_game_over_spritesheet.png',
-            { frameWidth: 1228, frameHeight: 1136 })
+            { frameWidth: 1228*0.07, frameHeight: 1136*0.07 })
 
 
         //Assets Egipto
@@ -104,19 +104,19 @@ class bootScene extends Phaser.Scene {
         this.load.image('egiPlayer', 'assets/Personajes/2.AntiguoEgipto/BasicoEgipto.png');
         this.load.spritesheet('egiWeapon', 'assets/Armas/ArmaEgipto.png', { frameWidth: 235, frameHeight: 235 });
         this.load.spritesheet('egiPlayerHacha', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Hacha/egipto_basic_axe_idle_moving_spritesheet.png',
-            { frameWidth: 370, frameHeight: 541 });
+            { frameWidth: 370*0.14, frameHeight: 541*0.14 });
         this.load.image('egiPlayerHachaIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Hacha/egipto_basic_axe_idle_static_spritesheet.png')
         this.load.spritesheet('egiPlayerHachaAttack', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Hacha/egipto_basic_axe_attack_moving_spritesheet.png',
-            { frameWidth: 510, frameHeight: 570 });
+            { frameWidth: 510*0.14, frameHeight: 570*0.14 });
         this.load.spritesheet('egiPlayerHachaAttackIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Hacha/egipto_basic_axe_attack_static_spritesheet.png',
-            { frameWidth: 510, frameHeight: 570 });
+            { frameWidth: 510*0.14, frameHeight: 570 *0.14});
 
         this.load.spritesheet('egiEnemy', 'assets/Animaciones/Spritesheets/Egipto/Enemigo/Hacha/egipto_enemigo_axe_idle_moving_spritesheet.png',
-            { frameWidth: 370, frameHeight: 545 });
+            { frameWidth: 370*0.14, frameHeight: 545 *0.14});
         this.load.spritesheet('egiEnemyAttack', 'assets/Animaciones/Spritesheets/Egipto/Enemigo/Hacha/egipto_enemigo_axe_attack_moving_spritesheet.png',
-            { frameWidth: 510, frameHeight: 589 });
+            { frameWidth: 510*0.14, frameHeight: 589 *0.14});
         this.load.spritesheet('egiEnemyDie', 'assets/Animaciones/Spritesheets/Egipto/Enemigo/Game over/egipto_enemigo_gameover_spritesheet.png',
-            { frameWidth: 534, frameHeight: 526 })
+            { frameWidth: 534*0.14, frameHeight: 526 *0.14})
         //Assets Edad Media
         this.load.image('medMap', 'assets/Fondos/3.EdadMedia/Background.png');
         this.load.image('medObj1', 'assets/Objetos/3.EdadMedia/object_apples.png');
@@ -127,19 +127,19 @@ class bootScene extends Phaser.Scene {
         this.load.image('medPlayer', 'assets/Personajes/3.EdadMedia/BasicoEdadMedia.png');
         this.load.image('medWeapon', 'assets/Armas/ballesta-saeta.png')
         this.load.spritesheet('medPlayerBall', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Ballesta/medieval_basic_ballesta_idle_moving_spritesheet.png',
-            { frameWidth: 461, frameHeight: 516 });
+            { frameWidth: 461*0.14, frameHeight: 516 *0.14});
         this.load.image('medPlayerBallIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Ballesta/medieval_basic_ballesta_idle_static_spritesheet.png');
         this.load.spritesheet('medPlayerBallAttack', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Ballesta/medieval_basic_ballesta_attack_moving_spritesheet.png',
-            { frameWidth: 479, frameHeight: 521 });
+            { frameWidth: 479*0.14, frameHeight: 521*0.14 });
         this.load.spritesheet('medPlayerBallAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Ballesta/medieval_basic_ballesta_attack_static_spritesheet.png',
-            { frameWidth: 377, frameHeight: 521 });
+            { frameWidth: 377*0.14, frameHeight: 521*0.14 });
 
         this.load.spritesheet('medEnemy', 'assets/Animaciones/Spritesheets/Edad Media/Enemigo/Ballesta/medieval_enemigo_ballesta_idle_moving_spritesheet.png',
-            { frameWidth: 454, frameHeight: 541 });
+            { frameWidth: 454*0.14, frameHeight: 541*0.14 });
         this.load.spritesheet('medEnemyAttack', 'assets/Animaciones/Spritesheets/Edad Media/Enemigo/Ballesta/medieval_enemigo_ballesta_attack_moving_spritesheet.png',
-            { frameWidth: 470, frameHeight: 541 });
+            { frameWidth: 470*0.14, frameHeight: 541*0.14 });
         this.load.spritesheet('medEnemyDie', 'assets/Animaciones/Spritesheets/Edad Media/Enemigo/Game Over/medieval_enemigo_gameover_spritesheet.png',
-            { frameWidth: 594, frameHeight: 553 })
+            { frameWidth: 594*0.14, frameHeight: 553*0.14 })
         //Assets Revolución Industrial
         this.load.image('indMap', 'assets/Fondos/4.RevolucionIndustrial/Background.png');
         this.load.image('indObj1', 'assets/Objetos/4.RevolucionIndustrial/object_gear.png');
@@ -150,19 +150,19 @@ class bootScene extends Phaser.Scene {
         this.load.image('indWeapon', 'assets/Armas/mosquete-bala.png');
 
         this.load.spritesheet('indPlayerMos', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Mosquete/industrial_basic_mosquete_idle_moving_spritesheet.png',
-            { frameWidth: 585, frameHeight: 525 });
+            { frameWidth: 585*0.14, frameHeight: 525*0.14 });
         this.load.image('indPlayerMosIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Mosquete/industrial_basic_mosquete_idle_static_spritesheet.png');
         this.load.spritesheet('indPlayerMosAttack', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Mosquete/industrial_basic_mosquete_attack_moving_spritesheet.png',
-            { frameWidth: 745, frameHeight: 525 });
+            { frameWidth: 745*0.14, frameHeight: 525*0.14 });
         this.load.spritesheet('indPlayerMosAttackIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Mosquete/industrial_basic_mosquete_attack_static_spritesheet.png',
-            { frameWidth: 650, frameHeight: 510 });
+            { frameWidth: 650*0.14, frameHeight: 510*0.14 });
 
         this.load.spritesheet('indEnemy', 'assets/Animaciones/Spritesheets/Rev Industrial/Enemigo/Mosquete/industrial_enemy_mosquete_idle_moving_spritesheet_after.png',
-            { frameWidth: 585, frameHeight: 515 });
+            { frameWidth: 585*0.14, frameHeight: 515*0.14 });
         this.load.spritesheet('indEnemyAttack', 'assets/Animaciones/Spritesheets/Rev Industrial/Enemigo/Mosquete/industrial_enemy_mosquete_attack_moving_spritesheet.png',
-            { frameWidth: 745, frameHeight: 515 });
+            { frameWidth: 745*0.14, frameHeight: 515*0.14 });
         this.load.spritesheet('indEnemyDie', 'assets/Animaciones/Spritesheets/Rev Industrial/Enemigo/Game Over/industrial_enemy_gameover_spritesheet.png',
-            { frameWidth: 550, frameHeight: 540 })
+            { frameWidth: 550*0.14, frameHeight: 540*0.14 })
 
         //Assets Contemporánea
         this.load.image('conMapa', 'assets/Fondos/5.Actualidad/Background.png');
@@ -177,19 +177,19 @@ class bootScene extends Phaser.Scene {
         this.load.image('conWeapon', 'assets/Armas/fusil-bala.png');
 
         this.load.spritesheet('conPlayerAK', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Fusil/actualidad_basic_fusil_idle_moving_spritesheet.png',
-            { frameWidth: 459, frameHeight: 512 });
+            { frameWidth: 459*0.14, frameHeight: 512*0.14 });
         this.load.image('conPlayerAKIdle', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Fusil/actualidad_basic_fusil_idle_static_spritesheet.png');
         this.load.spritesheet('conPlayerAKAttack', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Fusil/actualidad_basic_fusil_attack_moving_spritesheet.png',
-            { frameWidth: 462, frameHeight: 512 });
+            { frameWidth: 462*0.14, frameHeight: 512*0.14 });
         this.load.spritesheet('conPlayerAKAttackIdle', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Fusil/actualidad_basic_fusil_attack_static_spritesheet.png',
-            { frameWidth: 360, frameHeight: 512 });
+            { frameWidth: 360*0.14, frameHeight: 512*0.14 });
 
         this.load.spritesheet('conEnemy', 'assets/Animaciones/Spritesheets/Actualidad/Enemigo/Fusil/actualidad_enemy_fusil_idle_moving_spritesheet.png',
-            { frameWidth: 455, frameHeight: 510 });
+            { frameWidth: 455*0.14, frameHeight: 510*0.14 });
         this.load.spritesheet('conEnemyAttack', 'assets/Animaciones/Spritesheets/Actualidad/Enemigo/Fusil/actualidad_enemy_fusil_attack_moving_spritesheet.png',
-            { frameWidth: 455, frameHeight: 510 });
+            { frameWidth: 455*0.14, frameHeight: 510*0.14 });
         this.load.spritesheet('conEnemyDie', 'assets/Animaciones/Spritesheets/Actualidad/Enemigo/Game Over/actualidad_enemy_gameover_spritesheet.png',
-            { frameWidth: 545, frameHeight: 530 })
+            { frameWidth: 545*0.14, frameHeight: 530*0.14 })
         //Assets Juego
         this.load.image('MuertesUI', 'assets/Interfaz/ContadorMuertes.png')
         this.load.image('CloseB', 'assets/Interfaz/CloseButton.png')
@@ -430,272 +430,273 @@ class bootScene extends Phaser.Scene {
         //PersonajePrehistoria
         //Hacha
         this.load.spritesheet('prePlayerHacha', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Hacha/prehistoria_basico_axe_idle_moving_spritesheet.png',
-            { frameWidth: 370, frameHeight: 545 });
+            { frameWidth: 370*0.14, frameHeight: 545*0.14 });
         this.load.image('prePlayerHachaIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Hacha/prehistoria_basico_axe_idle_static_spritesheet.png');
 
         //FALTAN 2
         //Ballesta
         this.load.spritesheet('prePlayerBall', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Ballesta/prehistoria_basico_ballesta_idle_moving_spritesheet.png',
-            { frameWidth: 454, frameHeight: 541 });
+            { frameWidth: 454*0.14, frameHeight: 541*0.14 });
         this.load.image('prePlayerBallIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Ballesta/prehistoria_basico_ballesta_idle_static_spritesheet.png');
 
         this.load.spritesheet('prePlayerBallAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Ballesta/prehistoria_basico_ballesta_attack_moving_spritesheet.png',
-            { frameWidth: 470, frameHeight: 541 });
+            { frameWidth: 470*0.14, frameHeight: 541*0.14 });
         this.load.spritesheet('prePlayerBallAttackIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Ballesta/prehistoria_basico_ballesta_attack_static_spritesheet_after.png',
-            { frameWidth: 383, frameHeight: 541 });
+            { frameWidth: 383*0.14, frameHeight: 541*0.14 });
         //Mosquete
         this.load.spritesheet('prePlayerMos', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Mosquete/prehistoria_basico_mosquete_idle_moving_spritesheet.png',
-            { frameWidth: 596, frameHeight: 541 });
+            { frameWidth: 596*0.14, frameHeight: 541*0.14 });
         this.load.image('prePlayerMosIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Mosquete/prehistoria_basico_mosquete_idle_static_spritesheet.png');
 
         this.load.spritesheet('prePlayerMosAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Mosquete/prehistoria_basico_mosquete_attack_moving_spritesheet.png',
-            { frameWidth: 760, frameHeight: 541 });
+            { frameWidth: 760*0.14, frameHeight: 541*0.14 });
         this.load.spritesheet('prePlayerMosAttackIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Mosquete/prehistoria_basico_mosquete_attack_static_spritesheet.png',
-            { frameWidth: 670, frameHeight: 541 });
+            { frameWidth: 670*0.14, frameHeight: 541 *0.14});
         //AK-47
         this.load.spritesheet('prePlayerAK', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Fusil/prehistoria_basico_fusil_idle_moving_spritesheet.png',
-            { frameWidth: 467, frameHeight: 541 });
+            { frameWidth: 467*0.14, frameHeight: 541*0.14 });
         this.load.image('prePlayerAKIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Fusil/prehistoria_basico_fusil_idle_static_spritesheet.png');
 
         this.load.spritesheet('prePlayerAKAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Fusil/prehistoria_basico_fusil_attack_moving_spritesheet_after.png',
-            { frameWidth: 467, frameHeight: 541 });
+            { frameWidth: 467*0.14, frameHeight: 541*0.14 });
         this.load.spritesheet('prePlayerAKAttackIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Fusil/prehistoria_basico_fusil_attack_static_spritesheet.png',
-            { frameWidth: 368, frameHeight: 541 });
+            { frameWidth: 368*0.14, frameHeight: 541*0.14 });
         //HeroePrehistoria
         //Honda
         this.load.spritesheet('preHeroeHonda', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Honda/prehistoria_basico_honda_idle_moving_spritesheet.png',
-            { frameWidth: 373, frameHeight: 541 });
+            { frameWidth: 373*0.14, frameHeight: 541*0.14 });
         this.load.spritesheet('preHeroeHondaIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Honda/prehistoria_basico_honda_idle_static_spritesheet.png',
-            { frameWidth: 373, frameHeight: 541 });
+            { frameWidth: 373*0.14, frameHeight: 541 *0.14});
         this.load.spritesheet('preHeroeHondaAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Honda/prehistoria_basico_honda_attack_moving_spritesheet.png',
-            { frameWidth: 837, frameHeight: 541 });
+            { frameWidth: 837*0.14, frameHeight: 541*0.14 });
         this.load.spritesheet('preHeroeHondaAttackIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Honda/prehistoria_basico_honda_attack_static_spritesheet_after.png',
-            { frameWidth: 837, frameHeight: 541 });
+            { frameWidth: 837*0.14, frameHeight: 541*0.14 });
         //Hacha
         this.load.spritesheet('preHeroeHacha', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Hacha/prehistoria_hero_hacha_idle_moving_spritesheet.png',
-            { frameWidth: 370, frameHeight: 545 });
+            { frameWidth: 370*0.14, frameHeight: 545*0.14 });
         this.load.image('preHeroeHachaIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Hacha/prehistoria_hero_hacha_idle_static_spritesheet.png');
-        //{ frameWidth: 330, frameHeight: 545 });
+        //{ frameWidth: 330*0.14, frameHeight: 545*0.14 });
         this.load.spritesheet('preHeroeHachaAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Hacha/prehistoria_hero_hacha_attack_moving_spritesheet.png',
-            { frameWidth: 510, frameHeight: 589 });
+            { frameWidth: 510*0.14, frameHeight: 589*0.14 });
         this.load.spritesheet('preHeroeHachaAttackIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Hacha/prehistoria_hero_hacha_attack_static_spritesheet.png',
-            { frameWidth: 510, frameHeight: 589 });
+            { frameWidth: 510*0.14, frameHeight: 589*0.14 });
         //Ballesta
         this.load.spritesheet('preHeroeBall', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Ballesta/prehistoria_hero_ballesta_idle_moving_spritesheet.png',
-            { frameWidth: 454, frameHeight: 541 });
+            { frameWidth: 454*0.14, frameHeight: 541*0.14 });
         this.load.image('preHeroeBallIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Ballesta/prehistoria_hero_ballesta_idle_static_spritesheet.png');
-        //{ frameWidth: 370, frameHeight: 541 });
+        //{ frameWidth: 370*0.14, frameHeight: 541 *0.14});
         this.load.spritesheet('preHeroeBallAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Ballesta/prehistoria_hero_ballesta_attack_moving_spritesheet.png',
-            { frameWidth: 510, frameHeight: 589 });
+            { frameWidth: 510*0.14, frameHeight: 589 *0.14});
         this.load.spritesheet('preHeroeBallAttackIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Ballesta/prehistoria_hero_ballesta_attack_static_spritesheet.png',
-            { frameWidth: 510, frameHeight: 589 });
+            { frameWidth: 510*0.14, frameHeight: 589*0.14 });
         //Mosquete
         this.load.spritesheet('preHeroeMos', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Mosquete/prehistoria_hero_mosquete_idle_moving_spritesheet.png',
-            { frameWidth: 596, frameHeight: 541 });
+            { frameWidth: 596*0.14, frameHeight: 541*0.14 });
         this.load.image('preHeroeMosIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Mosquete/prehistoria_hero_mosquete_idle_static_spritesheet.png');
-        //{ frameWidth: 506, frameHeight: 541 });
+        //{ frameWidth: 506*0.14, frameHeight: 541*0.14 });
         this.load.spritesheet('preHeroeMosAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Mosquete/prehistoria_hero_mosquete_attack_moving_spritesheet.png',
-            { frameWidth: 760, frameHeight: 541 });
+            { frameWidth: 760*0.14, frameHeight: 541 *0.14});
         this.load.spritesheet('preHeroeMosAttackIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Mosquete/prehistoria_hero_mosquete_attack_static_spritesheet.png',
-            { frameWidth: 670, frameHeight: 541 });
+            { frameWidth: 670*0.14, frameHeight: 541*0.14 });
         //AK
         this.load.spritesheet('preHeroeAK', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Fusil/prehistoria_basico_fusil_idle_moving_spritesheet.png',
-            { frameWidth: 467, frameHeight: 541 });
+            { frameWidth: 467*0.14, frameHeight: 541*0.14 });
         this.load.image('preHeroeAKIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Fusil/prehistoria_basico_fusil_idle_static_spritesheet.png');
-        //{ frameWidth: 370, frameHeight: 541 });
+        //{ frameWidth: 370*0.14, frameHeight: 541 *0.14});
         this.load.spritesheet('preHeroeAKAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Fusil/prehistoria_basico_fusil_attack_moving_spritesheet.png',
-            { frameWidth: 467, frameHeight: 541 });
+            { frameWidth: 467*0.14, frameHeight: 541*0.14 });
         this.load.spritesheet('preHeroeAKAttackIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje heroe/Fusil/prehistoria_basico_fusil_attack_static_spritesheet.png',
-            { frameWidth: 368, frameHeight: 541 });
+            { frameWidth: 368*0.14, frameHeight: 541*0.14 });
         //PersonajeEgipto
         //Honda
         this.load.spritesheet('egiPlayerHonda', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Honda/egipto_basic_honda_idle_moving_spritesheet.png',
-            { frameWidth: 373, frameHeight: 514 });
+            { frameWidth: 373*0.14, frameHeight: 514*0.14 });
         this.load.spritesheet('egiPlayerHondaIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Honda/egipto_basic_honda_idle_static_spritesheet.png',
-            { frameWidth: 373, frameHeight: 514 });
+            { frameWidth: 373*0.14, frameHeight: 514*0.14 });
         this.load.spritesheet('egiPlayerHondaAttack', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Honda/egipto_basic_honda_attack_moving_spritesheet.png',
-            { frameWidth: 837, frameHeight: 500 });
+            { frameWidth: 837*0.14, frameHeight: 500*0.14});
         this.load.spritesheet('egiPlayerHondaAttackIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Honda/egipto_basic_honda_attack_static_spritesheet.png',
-            { frameWidth: 837, frameHeight: 500 });
+            { frameWidth: 837*0.14, frameHeight: 500*0.14 });
         //Ballesta
         this.load.spritesheet('egiPlayerBall', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Ballesta/egipto_basic_ballesta_idle_moving_spritesheet.png',
-            { frameWidth: 454, frameHeight: 500 });
+            { frameWidth: 454*0.14, frameHeight: 500*0.14 });
         this.load.image('egiPlayerBallIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Ballesta/egipto_basic_ballesta_idle_static_spritesheet.png');
-        //{ frameWidth: 370, frameHeight: 500 });
+        //{ frameWidth: 370*0.14, frameHeight: 500*0.14 });
         this.load.spritesheet('egiPlayerBallAttack', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Ballesta/egipto_basic_ballesta_attack_moving_spritesheet.png',
-            { frameWidth: 465, frameHeight: 500 });
+            { frameWidth: 465*0.14, frameHeight: 500*0.14 });
         this.load.spritesheet('egiPlayerBallAttackIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Ballesta/egipto_basic_ballesta_attack_static_spritesheet.png',
-            { frameWidth: 370, frameHeight: 500 });
+            { frameWidth: 370*0.14, frameHeight: 500 *0.14});
         //Mosquete
         this.load.spritesheet('egiPlayerMos', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Mosquete/egipto_basic_mosquete_idle_moving_spritesheet.png',
-            { frameWidth: 596, frameHeight: 510 });
+            { frameWidth: 596*0.14, frameHeight: 510*0.14 });
         this.load.image('egiPlayerMosIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Mosquete/egipto_basic_mosquete_idle_static_spritesheet.png');
-        //{ frameWidth: 650, frameHeight: 510 });
+        //{ frameWidth: 650*0.14, frameHeight: 510*0.14 });
         this.load.spritesheet('egiPlayerMosAttack', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Mosquete/egipto_basic_mosquete_attack_moving_spritesheet.png',
-            { frameWidth: 750, frameHeight: 510 });
+            { frameWidth: 750*0.14, frameHeight: 510*0.14 });
         this.load.spritesheet('egiPlayerMosAttackIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Mosquete/egipto_basic_mosquete_attack_static_spritesheet.png',
-            { frameWidth: 650, frameHeight: 510 });
+            { frameWidth: 650*0.14, frameHeight: 510*0.14 });
         //AK
         this.load.spritesheet('egiPlayerAK', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Fusil/egipto_basic_fusil_idle_moving_spritesheet.png',
-            { frameWidth: 450, frameHeight: 500 });
+            { frameWidth: 450*0.14, frameHeight: 500*0.14 });
         this.load.image('egiPlayerAKIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Fusil/egipto_basic_fusil_idle_static_spritesheet_after.png');
-        //{ frameWidth: 350, frameHeight: 500 });
+        //{ frameWidth: 350*0.14, frameHeight: 500*0.14 });
         this.load.spritesheet('egiPlayerAKAttack', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Fusil/egipto_basic_fusil_attack_moving_spritesheet.png',
-            { frameWidth: 450, frameHeight: 500 });
+            { frameWidth: 450*0.14, frameHeight: 500 *0.14});
         this.load.spritesheet('egiPlayerAKAttackIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Fusil/egipto_basic_fusil_attack_static_spritesheet.png',
-            { frameWidth: 350, frameHeight: 500 });
+            { frameWidth: 350*0.14, frameHeight: 500 *0.14});
         //HeroeEgipto
         //Honda
         this.load.spritesheet('egiHeroeHonda', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Honda/egipto_hero_honda_idle_moving_spritesheet.png',
-            { frameWidth: 373, frameHeight: 514 });
+            { frameWidth: 373*0.14, frameHeight: 514*0.14 });
         this.load.spritesheet('egiHeroeHondaIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Honda/egipto_hero_honda_idle_static_spritesheet.png',
-            { frameWidth: 373, frameHeight: 514 });
+            { frameWidth: 373*0.14, frameHeight: 514*0.14 });
         //FALTAN 2
         //Hacha
         this.load.spritesheet('egiHeroeHacha', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Hacha/egipto_hero_axe_idle_moving_spritesheet.png',
-            { frameWidth: 370, frameHeight: 550 });
+            { frameWidth: 370*0.14, frameHeight: 550 *0.14});
         this.load.image('egiHeroeHachaIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Hacha/egipto_hero_axe_idle_static_spritsheet.png');
-        //{ frameWidth: 330, frameHeight: 550 });
+        //{ frameWidth: 330*0.14, frameHeight: 550*0.14 });
         this.load.spritesheet('egiHeroeHachaAttack', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Hacha/egipto_hero_axe_attack_moving_spritesheet.png',
-            { frameWidth: 510, frameHeight: 589 });
+            { frameWidth: 510*0.14, frameHeight: 589*0.14 });
         this.load.spritesheet('egiHeroeHachaAttackIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Hacha/egipto_hero_axe_attack_static_spritesheet.png',
-            { frameWidth: 510, frameHeight: 589 });
+            { frameWidth: 510*0.14, frameHeight: 589*0.14 });
         //Ballesta
         this.load.spritesheet('egiHeroeBall', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Ballesta/egipto_hero_ballesta_idle_moving_spritsheet.png',
-            { frameWidth: 454, frameHeight: 545 });
+            { frameWidth: 454*0.14, frameHeight: 545*0.14 });
         this.load.image('egiHeroeBallIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Ballesta/egipto_hero_ballesta_idle_static_spritsheet.png');
-        //{ frameWidth: 370, frameHeight: 545 });
+        //{ frameWidth: 370*0.14, frameHeight: 545*0.14 });
         //FALTAN 2
         //Mosquete
         this.load.spritesheet('egiHeroeMos', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Mosquete/egipto_hero_mosquete_idle_moving_spritesheet.png',
-            { frameWidth: 596, frameHeight: 550 });
+            { frameWidth: 596*0.14, frameHeight: 550*0.14 });
         this.load.image('egiHeroeMosIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Mosquete/egipto_hero_mosquete_idle_static_spritesheet.png');
-        //{ frameWidth: 506, frameHeight: 550 });
+        //{ frameWidth: 506*0.14, frameHeight: 550*0.14 });
         this.load.spritesheet('egiHeroeMosAttack', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Mosquete/egipto_hero_mosquete_attack_moving_spritesheet.png',
-            { frameWidth: 760, frameHeight: 550 });
+            { frameWidth: 760*0.14, frameHeight: 550*0.14 });
         this.load.spritesheet('egiHeroeMosAttackIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Mosquete/egipto_hero_mosquete_attack_static_spritesheet.png',
-            { frameWidth: 670, frameHeight: 550 });
+            { frameWidth: 670*0.14, frameHeight: 550*0.14 });
         //Fusil
         this.load.spritesheet('egiHeroeAK', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Fusil/egipto_hero_fusil_idle_moving_spritesheet.png',
-            { frameWidth: 467, frameHeight: 550 });
+            { frameWidth: 467*0.14, frameHeight: 550*0.14 });
         this.load.image('egiHeroeAKIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Fusil/egipto_hero_fusil_idle_static_spritesheet.png');
-        //{ frameWidth: 370, frameHeight: 550 });
+        //{ frameWidth: 370*0.14, frameHeight: 550*0.14 });
         this.load.spritesheet('egiHeroeAKAttack', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Fusil/egipto_hero_fusil_attack_moving_spritesheet.png',
-            { frameWidth: 467, frameHeight: 541 });
+            { frameWidth: 467*0.14, frameHeight: 541 *0.14});
         this.load.spritesheet('egiHeroeAKAttackIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Fusil/egipto_hero_fusil_attack_static_spritesheet.png',
-            { frameWidth: 368, frameHeight: 541 });
+            { frameWidth: 368*0.14, frameHeight: 541*0.14 });
         //PersonajeEdadMedia
         //Honda
         //FALTAN 4
         //Hacha
         this.load.spritesheet('medPlayerHacha', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Hacha/medieval_basic_hacha_idle_moving_spritesheet.png',
-            { frameWidth: 370, frameHeight: 540 });
+            { frameWidth: 370*0.14, frameHeight: 540*0.14 });
         this.load.image('medPlayerHachaIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Hacha/medieval_basic_hacha_idle_static_spritesheet.png');
         this.load.spritesheet('medPlayerHachaAttack', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Hacha/medieval_basic_hacha_attack_moving_spritesheet.png',
-            { frameWidth: 510, frameHeight: 580 });
+            { frameWidth: 510*0.14, frameHeight: 580*0.14 });
         this.load.spritesheet('medPlayerHachaAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Hacha/medieval_basic_hacha_attack_static_spritesheet.png',
-            { frameWidth: 510, frameHeight: 580 });
+            { frameWidth: 510*0.14, frameHeight: 580*0.14 });
         //Mosquete
         this.load.spritesheet('medPlayerMos', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Mosquete/medieval_basic_mosquete_idle_moving_spritesheet.png',
-            { frameWidth: 585, frameHeight: 510 });
+            { frameWidth: 585*0.14, frameHeight: 510*0.14 });
         this.load.image('medPlayerMosIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Mosquete/medieval_basic_mosquete_idle_spritesheet.png');
         this.load.spritesheet('medPlayerMosAttack', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Mosquete/medieval_basic_mosquete_attack_moving_spritesheet.png',
-            { frameWidth: 745, frameHeight: 510 });
+            { frameWidth: 745*0.14, frameHeight: 510*0.14 });
         this.load.spritesheet('medPlayerMosAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Mosquete/medieval_basic_mosquete_attack_static_spritesheet.png',
-            { frameWidth: 650, frameHeight: 510 });
+            { frameWidth: 650*0.14, frameHeight: 510 *0.14});
         //Fusil
         this.load.spritesheet('medPlayerAK', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Fusil/medieval_basic_fusil_idle_moving_spritesheet.png',
-            { frameWidth: 445, frameHeight: 515 });
+            { frameWidth: 445*0.14, frameHeight: 515*0.14 });
         this.load.image('medPlayerAKIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Fusil/medieval_basic_fusil_idle_static_spritesheet.png');
         this.load.spritesheet('medPlayerAKAttack', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Fusil/medieval_basic_fusil_attack_moving_spritesheet.png',
-            { frameWidth: 445, frameHeight: 515 });
+            { frameWidth: 445*0.14, frameHeight: 515*0.14 });
         this.load.spritesheet('medPlayerAKAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Fusil/medieval_basic_fusil_attack_static_spritesheet.png',
-            { frameWidth: 350, frameHeight: 515 });
+            { frameWidth: 350*0.14, frameHeight: 515*0.14 });
         //HeroeEdadMedia
         //Honda
         //FALTAN 4
         //Hacha
         this.load.spritesheet('medHeroeHacha', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Hacha/medieval_hero_axe_idle_moving_spritesheet.png',
-            { frameWidth: 103, frameHeight: 153 });
+            { frameWidth: 369*0.14, frameHeight: 548*0.14 });
         this.load.image('medHeroeHachaIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Hacha/medieval_hero_axe_idle_static_spritesheet.png');
         this.load.spritesheet('medHeroeHachaAttack', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Hacha/medieval_hero_axe_attack_moving_spritesheet.png',
-            { frameWidth: 143, frameHeight: 161 });
+            { frameWidth: 512*0.14, frameHeight: 576*0.14 });
         this.load.spritesheet('medHeroeHachaAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Hacha/medieval_hero_axe_attack_static_spritesheet.png',
-            { frameWidth: 143, frameHeight: 161 });
+            { frameWidth: 512*0.14, frameHeight: 576*0.14 });
         //Ballesta
         //FALTAN 4
         //Mosquete
         this.load.spritesheet('medHeroeMos', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Mosquete/medieval_hero_mosquete_idle_moving_spritesheet.png',
-            { frameWidth: 592, frameHeight: 541 });
+            { frameWidth: 592*0.14, frameHeight: 541*0.14 });
         this.load.image('medHeroeMosIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Mosquete/medieval_hero_mosquete_idle_static_spritesheet.png');
         this.load.spritesheet('medHeroeMosAttack', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Mosquete/medieval_hero_mosquete_attack_moving_spritesheet.png',
-            { frameWidth: 749, frameHeight: 537 });
+            { frameWidth: 749*0.14, frameHeight: 537*0.14 });
         this.load.spritesheet('medHeroeMosAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Mosquete/medieval_hero_mosquete_attack_static_spritesheet.png',
-            { frameWidth: 654, frameHeight: 537 });
+            { frameWidth: 654*0.14, frameHeight: 537*0.14 });
         //Fusil
-        this.load.spritesheet('medHeroeAK', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_idle_moving_spritesheet14.png',
-            { frameWidth: 63, frameHeight: 75 });
-        this.load.image('medHeroeAKIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_idle_static_spritesheet14.png');
-        this.load.spritesheet('medHeroeAKAttack', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_attack_moving_spritesheet14.png',
-            { frameWidth: 64, frameHeight: 75 });
-        this.load.spritesheet('medHeroeAKAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_attack_static_spritesheet14.png',
-            { frameWidth: 50, frameHeight: 75 });
-        //PersonajeRevIndustrial
+        this.load.spritesheet('medHeroeAK', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_idle_moving_spritesheet.png',
+            { frameWidth: 451*0.14, frameHeight: 538*0.14 });
+        this.load.image('medHeroeAKIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_idle_static_spritesheet.png');
+        this.load.spritesheet('medHeroeAKAttack', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_attack_moving_spritesheet.png',
+            { frameWidth: 454*0.14, frameHeight: 538*0.14 });
+        this.load.spritesheet('medHeroeAKAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_attack_static_spritesheet.png',
+            { frameWidth: 360*0.14, frameHeight: 538*0.14 });
+       //PersonajeRevIndustrial
         //Honda
         //FALTAN 4
         //Hacha
         this.load.spritesheet('indPlayerHacha', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Hacha/industrial_basic_hacha_idle_moving_spritesheet.png',
-            { frameWidth: 360, frameHeight: 545 });
+            { frameWidth: 360*0.14, frameHeight: 545*0.14 });
         this.load.image('indPlayerHachaIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Hacha/industrial_basic_axe_idle_static_spritesheet.png');
         this.load.spritesheet('indPlayerHachaAttack', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Hacha/industrial_basic_hacha_attack_moving_spritesheet.png',
-            { frameWidth: 505, frameHeight: 580 });
+            { frameWidth: 505*0.14, frameHeight: 580*0.14 });
         this.load.spritesheet('indPlayerHachaAttackIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Hacha/industrial_basic_axe_attack_static_spritesheet.png',
-            { frameWidth: 505, frameHeight: 580 });
+            { frameWidth: 505*0.14, frameHeight: 580*0.14 });
         //Ballesta
         //FALTAN 4
         //Fusil
         this.load.spritesheet('indPlayerAK', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Fusil/industrial_basic_fusil_idle_moving_spritesheet.png',
-            { frameWidth: 445, frameHeight: 525 });
+            { frameWidth: 445*0.14, frameHeight: 525*0.14 });
         this.load.image('indPlayerAKIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Fusil/industrial_basic_fusil_idle_static_spritesheet.png');
         this.load.spritesheet('indPlayerAKAttack', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Fusil/industrial_basic_fusil_attack_moving_spritesheet.png',
-            { frameWidth: 445, frameHeight: 525 });
+            { frameWidth: 445*0.14, frameHeight: 525*0.14 });
         this.load.spritesheet('indPlayerAKAttackIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Fusil/industrial_basic_fusil_attack_static_spritesheet.png',
-            { frameWidth: 350, frameHeight: 525 });
+            { frameWidth: 350*0.14, frameHeight: 525*0.14 });
         //HeroeRevIndustrial
-        //Personaje Contemporanea
+
+       //Personaje Contemporanea
         //Honda
         this.load.spritesheet('conPlayerHonda', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Honda/actualidad_basic_honda_idle_moving_spritesheet.png',
-            { frameWidth: 365, frameHeight: 517 });
+            { frameWidth: 365*0.14, frameHeight: 517*0.14 });
         this.load.spritesheet('conPlayerHondaIdle', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Honda/actualidad_basic_honda_idle_static_spritesheet.png',
-            { frameWidth: 365, frameHeight: 500 });
+            { frameWidth: 365*0.14, frameHeight: 500*0.14 });
         this.load.spritesheet('conPlayerHondaAttack', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Honda/actualidad_basic_honda_attack_moving_spritesheet.png',
-            { frameWidth: 830, frameHeight: 517 });
+            { frameWidth: 830*0.14, frameHeight: 517*0.14 });
         this.load.spritesheet('conPlayerHondaAttackIdle', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Honda/actualidad_basic_honda_attack_static_spritesheet.png',
-            { frameWidth: 830, frameHeight: 517 });
+            { frameWidth: 830*0.14, frameHeight: 517*0.14 });
         //Hacha
         this.load.spritesheet('conPlayerHacha', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Hacha/actualidad_basic_axe_idle_moving_spritesheet.png',
-            { frameWidth: 363, frameHeight: 546 });
+            { frameWidth: 363*0.14, frameHeight: 546*0.14 });
         this.load.image('conPlayerHachaIdle', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Hacha/actualidad_basic_axe_idle_static_spritesheet.png');
         this.load.spritesheet('conPlayerHachaAttack', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Hacha/actualidad_basic_axe_attack_moving_spritesheet.png',
-            { frameWidth: 510, frameHeight: 583 });
+            { frameWidth: 510*0.14, frameHeight: 583 *0.14});
         this.load.spritesheet('conPlayerHachaAttackIdle', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Hacha/actualidad_basic_axe_attack_static_spritesheet.png',
-            { frameWidth: 510, frameHeight: 583 });
+            { frameWidth: 510*0.14, frameHeight: 583 *0.14});
         //Ballesta
         this.load.spritesheet('conPlayerBall', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Ballesta/actualidad_basic_ballesta_idle_moving_spritesheet.png',
-            { frameWidth: 466, frameHeight: 512 });
+            { frameWidth: 466*0.14, frameHeight: 512*0.14 });
         this.load.image('conPlayerBallIdle', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Ballesta/actualidad_basic_ballesta_idle_static_spritesheet.png');
         this.load.spritesheet('conPlayerBallAttack', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Ballesta/actualidad_basic_ballesta_attack_moving_spritesheet.png',
-            { frameWidth: 464, frameHeight: 512 });
+            { frameWidth: 464*0.14, frameHeight: 512*0.14 });
         this.load.spritesheet('conPlayerBallAttackIdle', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Ballesta/actualidad_basic_ballesta_attack_static_spritesheet.png',
-            { frameWidth: 380, frameHeight: 512 });
+            { frameWidth: 380*0.14, frameHeight: 512 *0.14});
         //Mosquete
         this.load.spritesheet('conPlayerMos', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Mosquete/actualidad_basic_mosquete_idle_moving_spritesheet.png',
-            { frameWidth: 600, frameHeight: 517 });
+            { frameWidth: 600*0.14, frameHeight: 517*0.14 });
         this.load.image('conPlayerMosIdle', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Mosquete/actualidad_basic_mosquete_idle_static_spritesheet.png');
         this.load.spritesheet('conPlayerMosAttack', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Mosquete/actualidad_basic_mosquete_attack_moving_spritesheet.png',
-            { frameWidth: 757, frameHeight: 517 });
+            { frameWidth: 757*0.14, frameHeight: 517*0.14 });
         this.load.spritesheet('conPlayerMosAttackIdle', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Mosquete/actualidad_basic_mosquete_attack_static_spritesheet.png',
-            { frameWidth: 656, frameHeight: 517 });
+            { frameWidth: 656*0.14, frameHeight: 517*0.14 });
         //Heroe Contemporanea
         //Honda
         //Hacha
