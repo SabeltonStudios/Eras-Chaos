@@ -134,16 +134,17 @@ class menuPrincipalScene extends Phaser.Scene {
 
     create() {
 
-        if (!MenuMusic.isPlaying) {
-            MenuMusic.play();
-        }
         this.Fondo = this.add.image(0, 0, 'fondo').setOrigin(0)
         this.Fondo.setScale(gameConfig.scale.width / this.Fondo.width, gameConfig.scale.height / this.Fondo.height);
 
         this.spriteFondoBlanco = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondoBlanco').setScale(gameConfig.scale.height / 600);
 
         this.spriteTitulo = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height / 4, 'titulo').setScale(gameConfig.scale.height / 600);
-
+        this.spriteSound = this.add.sprite(gameConfig.scale.width * 2 / 16, gameConfig.scale.height * 2 / 14, 'botonSoundOn').setScale(0.4*gameConfig.scale.height / 600);
+        if(this.game.sound.mute==true){
+            this.spriteSound.setTexture('botonSoundOff')
+        }
+        this.spriteSound.setInteractive().on('pointerdown', ()=> {this.game.sound.mute= !this.game.sound.mute; this.game.sound.mute==true ? this.spriteSound.setTexture('botonSoundOn'): this.spriteSound.setTexture('botonSoundOff')});
         //Si el idioma es español se cargan los botones en español
         if (espanol) {
             this.spriteHistoria = this.add.sprite(gameConfig.scale.width / 2, (gameConfig.scale.height / 10) * 4, 'botonHistoria').setScale(gameConfig.scale.height / 600);
@@ -180,6 +181,7 @@ class menuPrincipalScene extends Phaser.Scene {
     }
 
     cambiarIdiomaIngles() {
+        
         if (espanol) {
             this.spriteIngles.setTexture('botonInglesOn').setScale(gameConfig.scale.height / 600);
             this.spriteIngles.setInteractive(OffscreenCanvas);

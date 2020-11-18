@@ -131,13 +131,13 @@ class contempScene extends Phaser.Scene {
 
         this.TaxiUp = this.add.sprite(gameConfig.scale.width / 3, gameConfig.scale.height + 50, 'conTaxiUp').setScale(0.12 * gameConfig.scale.width / 800);
         this.physics.add.existing(this.TaxiUp);
-        this.TaxiUp.body.setVelocity(0, -800);
+        this.TaxiUp.body.setVelocity(0, -600);
         this.TaxiUp.body.setAllowGravity(false);
         this.TaxiUp.body.immovable = true;
 
         this.TaxiDown = this.add.sprite(gameConfig.scale.width * 2 / 3, -50, 'conTaxiDown').setScale(0.12 * gameConfig.scale.width / 800);
         this.physics.add.existing(this.TaxiDown);
-        this.TaxiDown.body.setVelocity(0, 700);
+        this.TaxiDown.body.setVelocity(0, 550);
         this.TaxiDown.body.setAllowGravity(false);
         this.TaxiDown.body.immovable = true;
 

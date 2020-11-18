@@ -20,6 +20,8 @@ class bootScene extends Phaser.Scene {
         this.load.image('botonInglesOn', 'assets/Interfaz/Menu/BotonInglesOn.png');
         this.load.image('botonEspanolOff', 'assets/Interfaz/Menu/BotonEspanolOff.png');
         this.load.image('botonInglesOff', 'assets/Interfaz/Menu/BotonInglesOff.png');
+        this.load.image('botonSoundOn', 'assets/Interfaz/Menu/ButtonSoundOn.png');
+        this.load.image('botonSoundOff', 'assets/Interfaz/Menu/ButtonSoundOff.png');
 
         this.load.image('fondoBlanco', 'assets/Interfaz/Menu/fondoBlanco.png');
         this.load.image('titulo', 'assets/Interfaz/Menu/titulo.png');
@@ -609,7 +611,7 @@ class bootScene extends Phaser.Scene {
             { frameWidth: 445, frameHeight: 515 });
         this.load.spritesheet('medPlayerAKAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Fusil/medieval_basic_fusil_attack_static_spritesheet.png',
             { frameWidth: 350, frameHeight: 515 });
-        //HeroeEdadMedia*/
+        //HeroeEdadMedia
         //Honda
         //FALTAN 4
         //Hacha

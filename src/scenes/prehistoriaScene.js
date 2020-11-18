@@ -156,22 +156,6 @@ class prehistoriaScene extends Phaser.Scene {
         this.physics.add.collider(this.bulletsEnemy, this.bulletsEnemy);
         this.physics.add.collider(this.bulletsPre, this.bulletsEnemy);
 
-        /*this.rock = this.add.ellipse(gameConfig.scale.width / 20, gameConfig.scale.height * 11.5 / 12, 200, 200);
-        //this.house = this.add.ellipse(gameConfig.scale.width / 20, gameConfig.scale.height / 24, 250, 250);
-        //this.physics.add.existing(this.house);
-        this.physics.add.existing(this.rock);
-        this.rock.body.setAllowGravity(false);
-        this.rock.body.setCircle(100* gameConfig.scale.width / 800, -50* gameConfig.scale.height / 600,-50* gameConfig.scale.width / 800);
-        this.rock.body.immovable = true;
-        /*this.house.body.immovable = true;
-        this.house.body.setAllowGravity(false);
-        this.house.body.setCircle(125* gameConfig.scale.height / 600, 0,0);*/
-
-        /*this.physics.add.collider(this.bulletsEnemy, this.rock);
-        //this.physics.add.collider(this.bulletsEnemy, this.house);
-        this.physics.add.collider(this.bulletsPre, this.rock);
-        //this.physics.add.collider(this.bulletsPre, this.house);*/
-
         this.physics.add.collider(this.bulletsEnemy, this.obstacles);
         this.physics.add.collider(this.bulletsPre, this.obstacles);
 
