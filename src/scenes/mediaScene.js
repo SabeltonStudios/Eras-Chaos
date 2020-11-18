@@ -205,7 +205,7 @@ class mediaScene extends Phaser.Scene {
         }
         this.inter = setInterval(() => {
             if (!this.is_paused) {
-                this.sound.play('medFire',{volume: 0.08});
+                this.sound.play('BallFire',{volume: 0.08});
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
@@ -402,7 +402,7 @@ class mediaScene extends Phaser.Scene {
 
     }
     fire() {
-        this.sound.play('medFire',{volume: 0.08});
+        this.sound.play('BallFire',{volume: 0.08});
         if (this.spriteParar.isDown || this.freezeInput.isDown) {
             this.player.anims.play("medPlayerBallAttackIdle", false)
                 .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.stop(); this.player.setTexture('medPlayerBallIdle') } });

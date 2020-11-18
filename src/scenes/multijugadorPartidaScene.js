@@ -63,6 +63,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
         if (this.music == null) {
             this.music = this.sound.add(mapas[selectedMap].nombre + 'Music');
         }
+        this.music.play(this.mConfig);
         this.Mapa = this.add.image(0, 0, mapas[selectedMap].nombre + 'Map').setOrigin(0);
         this.Mapa.setScale(gameConfig.scale.width / this.Mapa.width, gameConfig.scale.height / this.Mapa.height);
 

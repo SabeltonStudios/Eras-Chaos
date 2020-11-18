@@ -258,7 +258,7 @@ class egiptoScene extends Phaser.Scene {
         }
         this.inter = setInterval(() => {
             if (!this.is_paused) {
-                this.sound.play('egiFire',{volume: 0.08});
+                this.sound.play('HachaFire',{volume: 0.08});
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
@@ -463,7 +463,7 @@ class egiptoScene extends Phaser.Scene {
 
     }
     fire() {
-        this.sound.play('egiFire',{volume: 0.08});
+        this.sound.play('HachaFire',{volume: 0.08});
         if (this.spriteParar.isDown || this.freezeInput.isDown) {
             this.player.anims.play("egiPlayerHachaAttackIdle", false)
                 .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.stop(); this.player.setTexture('egiPlayerHachaIdle') } });

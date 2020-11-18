@@ -227,7 +227,7 @@ class contempScene extends Phaser.Scene {
         }
         this.inter = setInterval(() => {
             if (!this.is_paused) {
-                this.sound.play('conFire',{volume: 0.08});
+                this.sound.play('AKFire',{volume: 0.08});
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
@@ -430,7 +430,7 @@ class contempScene extends Phaser.Scene {
 
     }
     fire() {
-        this.sound.play('conFire',{volume: 0.08});
+        this.sound.play('AKFire',{volume: 0.08});
         if (this.spriteParar.isDown || this.freezeInput.isDown) {
             this.player.anims.play("conPlayerAKAttackIdle", false)
                 .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.stop(); this.player.setTexture('conPlayerAKIdle') } });
