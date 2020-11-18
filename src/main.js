@@ -50,6 +50,7 @@ Game.saveFile = function(){
         personajes: personajes,
         results: results,
         espanol: espanol,
+        completedLevel: completedLevel,
     };
     localStorage.setItem('saveFile',JSON.stringify(file));
 };
@@ -63,6 +64,7 @@ Game.loadFile = function(){
         personajes = file.personajes;
         results = file.results;
         espanol = file.espanol;
+        completedLevel = file.completedLevel;
     }
 };
 

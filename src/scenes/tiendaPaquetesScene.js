@@ -58,8 +58,8 @@ let paquetes=[
     {
         "comprado": false,
         "coins" : 1725,
-        "sprite": 'bundleEdadMedia+',
-        "spritei": 'bundleEdadMedia+i',
+        "sprite": 'bundleRevIndustrial+',
+        "spritei": 'bundleRevIndustrial+i',
         "mapa": 3,
         "personaje": 3,
         "heroe": 8,
@@ -89,6 +89,7 @@ class tiendaPaquetesScene extends Phaser.Scene{
     }
 
     create(){
+        this.paquetesPosicion = 0;
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
 

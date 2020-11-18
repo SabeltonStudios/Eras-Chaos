@@ -90,6 +90,7 @@ class tiendaArmasScene extends Phaser.Scene{
     }
 
     create(){
+        this.armasPosicion = 0;
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
 

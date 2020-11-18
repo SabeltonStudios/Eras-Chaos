@@ -25,9 +25,11 @@ let monedas=[
     }
 ];
 
-let monedasButton = [];
-var monedasPosicion = 0;
+
+
 class tiendaRecargarScene extends Phaser.Scene{
+    monedasButton = [];
+    monedasPosicion = 0;
     constructor(){
         super("TiendaRecargarScene");
     }
@@ -36,7 +38,7 @@ class tiendaRecargarScene extends Phaser.Scene{
     }
 
     create(){
-        monedasPosicion = 0;
+        this.monedasPosicion = 0;
 
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
@@ -48,21 +50,21 @@ class tiendaRecargarScene extends Phaser.Scene{
         if(espanol){
             this.spriteTituloRecargar = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/8,'tituloRecargar').setScale(0.8 * gameConfig.scale.height / 600);
             this.spriteMensaje = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/4.5,'mensajeModoMultijugador').setScale(0.8 *gameConfig.scale.height / 600);
-            monedasButton[0] = this.add.sprite(gameConfig.scale.width / 4,gameConfig.scale.height*1.8/3,monedas[0].sprite).setScale(gameConfig.scale.height / 600);
-            monedasButton[1] = this.add.sprite(gameConfig.scale.width*2 / 4,gameConfig.scale.height*1.8/3,monedas[1].sprite).setScale(gameConfig.scale.height / 600);
-            monedasButton[2] = this.add.sprite(gameConfig.scale.width*3 / 4,gameConfig.scale.height*1.8/3,monedas[2].sprite).setScale(gameConfig.scale.height / 600);
+            this.monedasButton[0] = this.add.sprite(gameConfig.scale.width / 4,gameConfig.scale.height*1.8/3,monedas[0].sprite).setScale(gameConfig.scale.height / 600);
+            this.monedasButton[1] = this.add.sprite(gameConfig.scale.width*2 / 4,gameConfig.scale.height*1.8/3,monedas[1].sprite).setScale(gameConfig.scale.height / 600);
+            this.monedasButton[2] = this.add.sprite(gameConfig.scale.width*3 / 4,gameConfig.scale.height*1.8/3,monedas[2].sprite).setScale(gameConfig.scale.height / 600);
         }else{
             this.spriteTituloRecargar = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/8,'tituloRecargari').setScale(0.8 * gameConfig.scale.height / 600);
             this.spriteMensaje = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/4.5,'mensajeModoMultijugadori').setScale(0.8 *gameConfig.scale.height / 600);
-            monedasButton[0] = this.add.sprite(gameConfig.scale.width / 4,gameConfig.scale.height*1.8/3,monedas[0].spritei).setScale(gameConfig.scale.height / 600);
-            monedasButton[1] = this.add.sprite(gameConfig.scale.width*2 / 4,gameConfig.scale.height*1.8/3,monedas[1].spritei).setScale(gameConfig.scale.height / 600);
-            monedasButton[2] = this.add.sprite(gameConfig.scale.width*3 / 4,gameConfig.scale.height*1.8/3,monedas[2].spritei).setScale(gameConfig.scale.height / 600);
+            this.monedasButton[0] = this.add.sprite(gameConfig.scale.width / 4,gameConfig.scale.height*1.8/3,monedas[0].spritei).setScale(gameConfig.scale.height / 600);
+            this.monedasButton[1] = this.add.sprite(gameConfig.scale.width*2 / 4,gameConfig.scale.height*1.8/3,monedas[1].spritei).setScale(gameConfig.scale.height / 600);
+            this.monedasButton[2] = this.add.sprite(gameConfig.scale.width*3 / 4,gameConfig.scale.height*1.8/3,monedas[2].spritei).setScale(gameConfig.scale.height / 600);
         }
 
         
-        monedasButton[0].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(monedas[0+monedasPosicion],dinero,0)});
-        monedasButton[1].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(monedas[1+monedasPosicion],dinero,1)});
-        monedasButton[2].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(monedas[2+monedasPosicion],dinero,2)});
+        this.monedasButton[0].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(monedas[0+this.monedasPosicion],dinero,0)});
+        this.monedasButton[1].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(monedas[1+this.monedasPosicion],dinero,1)});
+        this.monedasButton[2].setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.desbloquear(monedas[2+this.monedasPosicion],dinero,2)});
 
         //Flechas derecha e izquierda
         this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 25,gameConfig.scale.height*1.8/3,'flechaIzquierda').setScale(0.4 * gameConfig.scale.height / 600);
@@ -80,12 +82,12 @@ class tiendaRecargarScene extends Phaser.Scene{
         this.spriteDerecha.disableInteractive();
         this.spriteIzquierda.disableInteractive();
         var i;
-        for (i = 0; i < monedasButton.length; i++) {
-            monedasButton[i].disableInteractive();
+        for (i = 0; i < this.monedasButton.length; i++) {
+            this.monedasButton[i].disableInteractive();
         }
 
         if(espanol){
-            monedasButton[pos].setTint(0xDEDE7C);
+            this.monedasButton[pos].setTint(0xDEDE7C);
             this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloquear').setScale(gameConfig.scale.height / 600);
         }else{
             this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloqueari').setScale(gameConfig.scale.height / 600);
@@ -103,10 +105,10 @@ class tiendaRecargarScene extends Phaser.Scene{
     //Destroy the message
     cerrarMensajeDesbloquear(pos){
         var i;
-        for (i = 0; i < monedasButton.length; i++) {
-            monedasButton[i].setInteractive();
+        for (i = 0; i < this.monedasButton.length; i++) {
+            this.monedasButton[i].setInteractive();
         }
-        monedasButton[pos].clearTint();
+        this.monedasButton[pos].clearTint();
         this.spriteDerecha.setInteractive();
         this.spriteIzquierda.setInteractive();
         this.mensajeDesbloquear.destroy();
@@ -130,14 +132,14 @@ class tiendaRecargarScene extends Phaser.Scene{
 
     //Mueve los mapas para que se vean los de la izquierda
     trasladarIzquierda(){
-        if(monedasPosicion>0){
-            monedasPosicion--;
+        if(this.monedasPosicion>0){
+            this.monedasPosicion--;
             var i;
-            for (i = 0; i < monedasButton.length; i++) {
+            for (i = 0; i < this.monedasButton.length; i++) {
                 if(espanol){
-                    monedasButton[i].setTexture(monedas[monedasPosicion+i].sprite);
+                    this.monedasButton[i].setTexture(monedas[this.monedasPosicion+i].sprite);
                 }else{
-                    monedasButton[i].setTexture(monedas[monedasPosicion+i].spritei);
+                    this.monedasButton[i].setTexture(monedas[this.monedasPosicion+i].spritei);
                 }
                 
             }
@@ -146,14 +148,14 @@ class tiendaRecargarScene extends Phaser.Scene{
 
     //Mueve los mapas para que se vean los de la derecha
     trasladarDerecha(){
-        if((monedasPosicion+3)<monedas.length){
-            monedasPosicion++;
+        if((this.monedasPosicion+3)<monedas.length){
+            this.monedasPosicion++;
             var i;
-            for (i = 0; i < monedasButton.length; i++) {
+            for (i = 0; i < this.monedasButton.length; i++) {
                 if(espanol){
-                    monedasButton[i].setTexture(monedas[monedasPosicion+i].sprite);
+                    this.monedasButton[i].setTexture(monedas[this.monedasPosicion+i].sprite);
                 }else{
-                    monedasButton[i].setTexture(monedas[monedasPosicion+i].spritei);
+                    this.monedasButton[i].setTexture(monedas[this.monedasPosicion+i].spritei);
                 }
             }
         }

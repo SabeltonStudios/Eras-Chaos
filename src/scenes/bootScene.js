@@ -308,6 +308,8 @@ class bootScene extends Phaser.Scene {
         this.load.image('SirRodrickB', 'assets/Interfaz/Tienda/Personajes/SirRodrickB.png');
         this.load.image('Thomas', 'assets/Interfaz/Tienda/Personajes/Thomas.png');
         this.load.image('ThomasB', 'assets/Interfaz/Tienda/Personajes/ThomasB.png');
+        this.load.image('MrHolmes', 'assets/Interfaz/Tienda/Personajes/Mr.Holmes.png');
+        this.load.image('MrHolmesB', 'assets/Interfaz/Tienda/Personajes/Mr.HolmesB.png');
         this.load.image('Eveline', 'assets/Interfaz/Tienda/Personajes/Eveline.png');
         this.load.image('EvelineB', 'assets/Interfaz/Tienda/Personajes/EvelineB.png');
         this.load.image('Pillie', 'assets/Interfaz/Tienda/Personajes/Pillie.png');
@@ -326,6 +328,8 @@ class bootScene extends Phaser.Scene {
         this.load.image('SirRodrickBS', 'assets/Interfaz/SeleccionNivel/SirRodrickB.png');
         this.load.image('ThomasS', 'assets/Interfaz/SeleccionNivel/Thomas.png');
         this.load.image('ThomasBS', 'assets/Interfaz/SeleccionNivel/ThomasB.png');
+        this.load.image('MrHolmesS', 'assets/Interfaz/SeleccionNivel/Mr.Holmes.png');
+        this.load.image('MrHolmesBS', 'assets/Interfaz/SeleccionNivel/Mr.HolmesB.png');
         this.load.image('EvelineS', 'assets/Interfaz/SeleccionNivel/Eveline.png');
         this.load.image('EvelineBS', 'assets/Interfaz/SeleccionNivel/EvelineB.png');
         this.load.image('PillieS', 'assets/Interfaz/SeleccionNivel/Pillie.png');
@@ -380,6 +384,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('bundleEdadMedia', 'assets/Interfaz/Tienda/Paquetes/bundleEdadMedia.png');
         this.load.image('bundleEdadMedia+', 'assets/Interfaz/Tienda/Paquetes/bundleEdadMedia+.png');
         this.load.image('bundleRevIndustrial', 'assets/Interfaz/Tienda/Paquetes/bundleRevIndustrial.png');
+        this.load.image('bundleRevIndustrial+', 'assets/Interfaz/Tienda/Paquetes/bundleRevIndustrial+.png');
         this.load.image('bundleActualidad', 'assets/Interfaz/Tienda/Paquetes/bundleActualidad.png');
         this.load.image('bundleActualidad+', 'assets/Interfaz/Tienda/Paquetes/bundleActualidad+.png');
         //Assets ingles
@@ -389,6 +394,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('bundleEdadMediai', 'assets/Interfaz/Tienda/Paquetes/bundleEdadMediai.png');
         this.load.image('bundleEdadMedia+i', 'assets/Interfaz/Tienda/Paquetes/bundleEdadMedia+i.png');
         this.load.image('bundleRevIndustriali', 'assets/Interfaz/Tienda/Paquetes/bundleRevIndustriali.png');
+        this.load.image('bundleRevIndustrial+i', 'assets/Interfaz/Tienda/Paquetes/bundleRevIndustrial+i.png');
         this.load.image('bundleActualidadi', 'assets/Interfaz/Tienda/Paquetes/bundleActualidadi.png');
         this.load.image('bundleActualidad+i', 'assets/Interfaz/Tienda/Paquetes/bundleActualidad+i.png');
 
@@ -425,6 +431,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('github', 'assets/Interfaz/Creditos/github.png');
         this.load.image('gmail', 'assets/Interfaz/Creditos/gmail.png');
 
+        
         //Assets multijugador
         this.load.image('tutorialMultijugador', 'assets/Interfaz/tutorialMultijugador.png');
         this.load.image('tutorialMultijugadori', 'assets/Interfaz/tutorialMultijugadori.png');
@@ -704,6 +711,7 @@ class bootScene extends Phaser.Scene {
         //Ballesta
         //Mosquete
         //Fusil
+        
     }
 
     create() {

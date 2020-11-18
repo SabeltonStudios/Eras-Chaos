@@ -18,5 +18,9 @@ class tutorialScene extends Phaser.Scene{
             this.buttonContinuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 6 / 7, 'ContinuarBi').setScale(gameConfig.scale.height / 600);
         }
         this.buttonContinuar.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); this.scene.start("MultijugadorPartidaScene")});
+
+         //Botón de salir
+         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15,(gameConfig.scale.height/8)*7.5,'botonSalir').setScale(gameConfig.scale.height *0.1/ 600);
+         this.spriteSalir.setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.scene.start("MultijugadorSeleccionScene")});
     }
 }

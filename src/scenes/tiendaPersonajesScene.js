@@ -83,11 +83,11 @@ let personajes=[
     {
         "bloqueado":true,
         "coins" : 650,
-        "sprite": 'SirRodrickB',
-        "spriteDesbloqueado": 'SirRodrick',
-        "spriteBloqueado": 'SirRodrickB',
-        "seleccionDesbloqueado": 'SirRodrickS',
-        "seleccionBloqueado": 'SirRodrickBS',
+        "sprite": 'MrHolmesB',
+        "spriteDesbloqueado": 'MrHolmes',
+        "spriteBloqueado": 'MrHolmesB',
+        "seleccionDesbloqueado": 'MrHolmesS',
+        "seleccionBloqueado": 'MrHolmesBS',
         "nombre": 'indHeroe'
     },
     {
@@ -113,6 +113,7 @@ class tiendaPersonajesScene extends Phaser.Scene{
     }
 
     create(){
+        this.personajesPosicion = 0;
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
 
