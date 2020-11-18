@@ -80,25 +80,12 @@ class selectNivelHistoria extends Phaser.Scene {
         this.scene.start(escena)
     }
     mostrarMensaje() {
-        for (let i = 0; i < this.mapasButton.length; i++) {
-            this.mapasButton[i].disableInteractive();
+        if(espanol){
+            this.comprado = this.add.text(gameConfig.scale.width / 2,gameConfig.scale.height/2,'No has desbloqueado el nivel anterior',{font:"35px euphorigenic", fill: '#FFFFFF' ,align:"center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+        }else{
+            this.comprado = this.add.text(gameConfig.scale.width / 2,gameConfig.scale.height/2,'You have not completed the previous level',{font:"35px euphorigenic", fill: '#FFFFFF' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
         }
-        this.spriteSalir.disableInteractive();
-        if (espanol) {
-            this.aviso = this.add.text(gameConfig.scale.width / 2, gameConfig.scale.height /2, 'No has completado\nel nivel anterior', { font: "25px euphorigenic", fill: '#ffffff', align: "center" }).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
-        } else {
-            this.aviso = this.add.text(gameConfig.scale.width / 2, gameConfig.scale.height /2, 'You have not completed\nthe previous level', { font: "25px euphorigenic", fill: '#ffffff', align: "center" }).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
-        }
-        this.botonCerrar = this.add.sprite(this.aviso.x + this.aviso.displayWidth / 2+40, this.aviso.y + this.aviso.displayHeight / 2 -80, 'CloseB').setOrigin(0.5, 0).setScale(0.07 * gameConfig.scale.height / 600);
-
-        this.botonCerrar.setInteractive().on('pointerdown', () => {
-            this.sound.play('buttonSound', { volume: 0.15 });
-            this.aviso.destroy();
-            this.botonCerrar.destroy()
-            for (let i = 0; i < this.mapasButton.length; i++) {
-                this.mapasButton[i].setInteractive();
-            }
-            this.spriteSalir.setInteractive();
-        });
+        this.comprado.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
+        var timer = this.time.delayedCall(1000, ()=>this.comprado.destroy(), []);
     }
 }

@@ -349,7 +349,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('jugador1', 'assets/Interfaz/SeleccionNivel/Jugador1.png');
         this.load.image('jugador1i', 'assets/Interfaz/SeleccionNivel/Jugador1i.png');
         this.load.image('jugador2', 'assets/Interfaz/SeleccionNivel/Jugador2.png');
-        this.load.image('jugador2i', 'assets/Interfaz/SeleccionNivel/Jugador2.png');
+        this.load.image('jugador2i', 'assets/Interfaz/SeleccionNivel/Jugador2i.png');
 
         //Assets armas
         //Assets español

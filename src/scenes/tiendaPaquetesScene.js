@@ -160,18 +160,18 @@ class tiendaPaquetesScene extends Phaser.Scene{
         }
         this.paquetesButton[pos].setTint(0xDEDE7C);
         if(espanol){
-            this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.7,'mensajeDesbloquear').setScale(gameConfig.scale.height / 600);
+            this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloquear').setScale(gameConfig.scale.height / 600);
         }else{
-            this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.7,'mensajeDesbloqueari').setScale(gameConfig.scale.height / 600);
+            this.mensajeDesbloquear = this.add.sprite(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.4,'mensajeDesbloqueari').setScale(gameConfig.scale.height / 600);
         }
         
 
-        this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width*1.2 / 2,(gameConfig.scale.height/3)*2.7,'botonDesbloquearNo').setScale(gameConfig.scale.height / 600);
-        this.spriteDesbloquearNo.setInteractive().on('pointerdown',()=>  {this.sound.play('buttonSound', { volume: 0.15 });this.cerrarMensajeDesbloquear(pos)});
+        this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width/2+(this.mensajeDesbloquear.displayWidth/4),(gameConfig.scale.height/3)*2.4+(this.mensajeDesbloquear.displayHeight/5),'botonDesbloquearNo').setScale(gameConfig.scale.height / 600);
+        this.spriteDesbloquearNo.setInteractive().on('pointerdown',()=>  {this.sound.play('buttonSound', { volume: 0.15 }); this.cerrarMensajeDesbloquear(pos)});
 
-        this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width*0.8 / 2,(gameConfig.scale.height/3)*2.7,'botonDesbloquearSi').setScale(gameConfig.scale.height / 600);
-        this.spriteDesbloquearSi.setInteractive().on('pointerdown',()=>  {this.sound.play('buttonSound', { volume: 0.15 });this.comprarPaquete(paquete,dinero,pos)});
-        
+        this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width/2-(this.mensajeDesbloquear.displayWidth/4),(gameConfig.scale.height/3)*2.4+(this.mensajeDesbloquear.displayHeight/5),'botonDesbloquearSi').setScale(gameConfig.scale.height / 600);
+        this.spriteDesbloquearSi.setInteractive().on('pointerdown',()=>  {this.sound.play('buttonSound', { volume: 0.15 }); this.comprarPaquete(paquete,dinero,pos)});
+    
         
     }
 
@@ -192,9 +192,9 @@ class tiendaPaquetesScene extends Phaser.Scene{
             }
             this.borrarPaquete();
             if(espanol){
-                this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'¡Has comprado un paquete!',{font:"35px euphorigenic", fill: '#E9BB00' ,align:"center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+                this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.7,'¡Has comprado un paquete!',{font:"35px euphorigenic", fill: '#E9BB00' ,align:"center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
             }else{
-                this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'You have bought a bundle!',{font:"35px euphorigenic", fill: '#E9BB00' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+                this.comprado = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.7,'You have bought a bundle!',{font:"35px euphorigenic", fill: '#E9BB00' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
             }
             this.comprado.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
             var timer = this.time.delayedCall(1000, ()=>this.comprado.destroy(), []);
@@ -203,9 +203,9 @@ class tiendaPaquetesScene extends Phaser.Scene{
             //If i have enough money and the map is not blocked
             this.cerrarMensajeDesbloquear(pos);
             if(espanol){
-                this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'No tienes monedas suficientes',{font:"35px euphorigenic", fill: '#C10202' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+                this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.7,'No tienes monedas suficientes',{font:"35px euphorigenic", fill: '#C10202' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
             }else{
-                this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.3,'You don not have enought coins',{font:"35px euphorigenic", fill: '#C10202' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
+                this.nocoins = this.add.text(gameConfig.scale.width / 2,(gameConfig.scale.height/3)*2.7,'You don not have enought coins',{font:"35px euphorigenic", fill: '#C10202' ,align: "center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
             }
             this.nocoins.setShadow(1.5, 1.5, 'rgba(0,0,0,1)', 1);
             var timer = this.time.delayedCall(800, ()=>this.nocoins.destroy(), []);
