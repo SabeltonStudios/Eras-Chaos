@@ -16,7 +16,7 @@
             height: DEFAULT_HEIGHT
         },
         input: {
-            activePointers: 3,
+            activePointers: 5,
             // ...
         },
         physics: {

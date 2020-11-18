@@ -159,7 +159,7 @@ class mediaScene extends Phaser.Scene {
         this.physics.add.collider(this.bulletsPre, this.obstacles);
 
 
-        this.spriteParar = this.add.sprite(gameConfig.scale.width * 15 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
+        this.spriteParar = this.add.sprite(gameConfig.scale.width * 14.5 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.15 * gameConfig.scale.width / 800);
         this.spriteParar.setInteractive().on('pointerdown', () =>  {this.player.body.moves = false;this.player.anims.stop(); this.player.setTexture('medPlayerBallIdle')})
             .on('pointerup', () => {this.player.body.moves = true; this.player.anims.play('medPlayerBallMoving', true)})
             .on('pointerout', () => {this.player.body.moves = true; this.player.anims.play('medPlayerBallMoving', true)})
@@ -167,7 +167,7 @@ class mediaScene extends Phaser.Scene {
             .on('pointerup', () => this.spriteParar.setTexture('FreezeBON'))
             .on('pointerout', () => this.spriteParar.setTexture('FreezeBON'));
 
-        this.spriteDisparar = this.add.sprite(gameConfig.scale.width / 16, gameConfig.scale.height * 11 / 12, 'ShootBON').setScale(0.1 * gameConfig.scale.width / 800);
+        this.spriteDisparar = this.add.sprite(gameConfig.scale.width*1.5 / 16, gameConfig.scale.height * 11 / 12, 'ShootBON').setScale(0.15 * gameConfig.scale.width / 800);
         this.spriteDisparar.setInteractive().on('pointerdown', () => this.fire())
             .on('pointerdown', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('pointerup', () => this.spriteDisparar.setTexture('ShootBON'))

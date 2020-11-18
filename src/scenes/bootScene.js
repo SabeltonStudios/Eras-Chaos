@@ -164,7 +164,7 @@ class bootScene extends Phaser.Scene {
             { frameWidth: 550*0.14, frameHeight: 540*0.14 })
 
         //Assets Contemporánea
-        this.load.image('conMapa', 'assets/Fondos/5.Actualidad/Background.png');
+        this.load.image('conMap', 'assets/Fondos/5.Actualidad/Background.png');
         this.load.image('conTaxiUp', 'assets/Objetos/5.Actualidad/TaxiUp.png');
         this.load.image('conTaxiDown', 'assets/Objetos/5.Actualidad/TaxiDown.png');
         this.load.image('conObj1', 'assets/Objetos/5.Actualidad/object_cone.png');
@@ -780,7 +780,7 @@ class bootScene extends Phaser.Scene {
         });
         this.anims.create({
             key: 'egishoot',
-            frames: this.anims.generateFrameNumbers('egiWeapon', { start: 0, end: 7 }),
+            frames: this.anims.generateFrameNumbers('HachaWeapon', { start: 0, end: 7 }),
             frameRate: 20,
             repeat: -1
         });

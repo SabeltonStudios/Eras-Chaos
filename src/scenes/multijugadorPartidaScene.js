@@ -306,7 +306,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
         this.physics.add.collider(this.bulletsPre, this.obstacles);
 
 
-        this.spriteParar = this.add.sprite(gameConfig.scale.width * 2.2 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
+        this.spriteParar = this.add.sprite(gameConfig.scale.width * 2.6 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.15 * gameConfig.scale.width / 800);
         this.spriteParar.setInteractive().on('pointerdown', () => {
             this.player.body.moves = false;
             if (armas[selectedWeapon1].nombre != 'Honda') {
@@ -322,14 +322,14 @@ class multijugadorPartidaScene extends Phaser.Scene {
             .on('pointerup', () => this.spriteParar.setTexture('FreezeBON'))
             .on('pointerout', () => this.spriteParar.setTexture('FreezeBON'));
 
-        this.spriteDisparar = this.add.sprite(gameConfig.scale.width / 16, gameConfig.scale.height * 11 / 12, 'ShootBON').setScale(0.1 * gameConfig.scale.width / 800);
+        this.spriteDisparar = this.add.sprite(gameConfig.scale.width*1.2 / 16, gameConfig.scale.height * 11 / 12, 'ShootBON').setScale(0.15 * gameConfig.scale.width / 800);
         this.spriteDisparar.setInteractive().on('pointerdown', () => this.fire(true))
             .on('pointerdown', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('pointerup', () => this.spriteDisparar.setTexture('ShootBON'))
             .on('pointerout', () => this.spriteDisparar.setTexture('ShootBON'));
 
         //Player 2
-        this.spriteParar2 = this.add.sprite(gameConfig.scale.width * 69 / 80, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.1 * gameConfig.scale.width / 800);
+        this.spriteParar2 = this.add.sprite(gameConfig.scale.width * 13.4 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.15 * gameConfig.scale.width / 800);
         this.spriteParar2.setInteractive().on('pointerdown', () => {
             this.enemy.body.moves = false;
             if (armas[selectedWeapon2].nombre != 'Honda') {
@@ -345,7 +345,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             .on('pointerup', () => this.spriteParar2.setTexture('FreezeBON'))
             .on('pointerout', () => this.spriteParar2.setTexture('FreezeBON'));
 
-        this.spriteDisparar2 = this.add.sprite(gameConfig.scale.width * 15 / 16, gameConfig.scale.height * 11 / 12, 'ShootBON').setScale(0.1 * gameConfig.scale.width / 800);
+        this.spriteDisparar2 = this.add.sprite(gameConfig.scale.width * 14.8 / 16, gameConfig.scale.height * 11 / 12, 'ShootBON').setScale(0.15 * gameConfig.scale.width / 800);
         this.spriteDisparar2.setInteractive().on('pointerdown', () => this.fire(false))
             .on('pointerdown', () => this.spriteDisparar2.setTexture('ShootBOFF'))
             .on('pointerup', () => this.spriteDisparar2.setTexture('ShootBON'))
@@ -642,9 +642,10 @@ class multijugadorPartidaScene extends Phaser.Scene {
             if (armas[selectedWeapon1].nombre != 'Ball') {
                 this.bomb.body.setAllowGravity(false);
                 this.bomb.body.setCircle(armas[selectedWeapon1].circle[0], armas[selectedWeapon1].circle[1], armas[selectedWeapon1].circle[2]);
+                this.bomb.angle = 90;
             }
             this.bomb.body.setVelocity(armas[selectedWeapon1].speed * gameConfig.scale.height / 600, 0);
-            this.bomb.angle = 90;
+            
         } else {
             this.sound.play(armas[selectedWeapon2].nombre + 'Fire', { volume: 0.08 });
             this.enemy.body.setOffset(this.enemy.width, 0);
@@ -680,9 +681,12 @@ class multijugadorPartidaScene extends Phaser.Scene {
             if (armas[selectedWeapon2].nombre != 'Ball') {
                 this.bomb.body.setAllowGravity(false);
                 this.bomb.body.setCircle(armas[selectedWeapon2].circle[0], armas[selectedWeapon2].circle[1], armas[selectedWeapon2].circle[2]);
+                this.bomb.angle = 270;
+            }else{
+                this.bomb.angle=180;
             }
             this.bomb.body.setVelocity(-armas[selectedWeapon2].speed * gameConfig.scale.height / 600, 0);
-            this.bomb.angle = 270;
+            
         }
     }
 
