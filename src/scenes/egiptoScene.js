@@ -262,7 +262,7 @@ class egiptoScene extends Phaser.Scene {
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
-                this.bomb = this.physics.add.sprite(this.enemy.x - this.enemy.width/3, this.enemy.y-this.enemy.height/3, "egiWeapon").setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false);
+                this.bomb = this.physics.add.sprite(this.enemy.x - this.enemy.displayWidth / 3, this.enemy.y - this.enemy.displayHeight *2/ 3, "HachaWeapon").setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false);
                 this.bomb.setTint(0xff7e7d);
 
                 this.bulletsEnemy.add(this.bomb);
@@ -364,6 +364,7 @@ class egiptoScene extends Phaser.Scene {
     update() {
         if (this.gameOver) {
             this.gameOver = false;
+            this.sound.play('dieSound',{volume:0.2});
             this.contMuertes++;
             clearInterval(this.inter);
             this.shootInput.destroy();
@@ -378,6 +379,8 @@ class egiptoScene extends Phaser.Scene {
             this.win = false;
             sortResults("Antiguo Egipto", "Ancient Egipt", this.contMuertes,4);
             Game.saveFile();
+            this.music.setVolume(0.05);
+            this.sound.play('winSound',{volume:0.08});
             this.shootInput.destroy();
             this.tweens.add({
                 targets: this.music,
@@ -475,7 +478,7 @@ class egiptoScene extends Phaser.Scene {
             //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();
         }
-        var bomb = this.physics.add.sprite(this.player.x + 10, this.player.y, "egiWeapon").setScale(0.12 * gameConfig.scale.width / 800);
+        var bomb = this.physics.add.sprite(this.player.x + this.player.displayWidth / 3, this.player.y - this.player.displayHeight *2/ 3, "HachaWeapon").setScale(0.12 * gameConfig.scale.width / 800);
         //this.bulletsPre.create(this.player.x + 10, this.player.y, 'axe').setScale(0.2);
         bomb.setTint(0x85baff);
 

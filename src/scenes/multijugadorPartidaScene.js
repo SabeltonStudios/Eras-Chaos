@@ -88,7 +88,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.anims.create({
                 key: personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle',
                 frames: this.anims.generateFrameNumbers(personajes[selectedChar1].nombre + armas[selectedWeapon1].nombre + 'Idle', { start: 0, end: armas[selectedWeapon1].frames[1] }),
-                frameRate: 32,
+                frameRate: 15,
                 repeat: -1
             });
         }
@@ -115,7 +115,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.anims.create({
                 key: personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'Idle',
                 frames: this.anims.generateFrameNumbers(personajes[selectedChar2].nombre + armas[selectedWeapon2].nombre + 'Idle', { start: 0, end: armas[selectedWeapon2].frames[1] }),
-                frameRate: 32,
+                frameRate: 15,
                 repeat: -1
             });
         }
@@ -135,6 +135,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
         this.player.body.immovable = true;
         this.enemy.flipX = true;
         this.enemy.body.immovable = true;
+        console.log(personajes[selectedChar1].nombre + armas[selectedWeapon1].nombre)
         this.player.anims.play(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre, true);
         this.player.setVelocity(0, -200 * gameConfig.scale.height / 600);
         this.player.setBounce(1);
@@ -416,7 +417,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
         t.BotonMenu.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.confirmarSalir("MenuPrincipalScene") });
         t.BotonCerrar = t.add.sprite(gameConfig.scale.width / 2 + (t.Menu.displayWidth / 2 - 30), gameConfig.scale.height / 2 - (t.Menu.displayHeight / 2 + 20), 'CloseB').setOrigin(0.5, 0).setScale(0.1 * gameConfig.scale.height / 600);
         //this.BotonCerrar = t.add.sprite(gameConfig.scale.width/2+(this.menu.displayWidth/2), gameConfig.scale.height * 0.36, 'CloseB').setScale(0.1 * gameConfig.scale.height / 600);
-        t.BotonCerrar.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.is_paused = !this.is_paused; t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput); this.ocultarMenu(this) });
+        t.BotonCerrar.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.is_paused = !this.is_paused; t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput, t.spriteParar2,t.spriteDisparar2,t.freezeInput2,t.shootInput2); this.ocultarMenu(this) });
         t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda').setScale(gameConfig.scale.height / 600);
         t.BotonTienda.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.confirmarSalir("TiendaScene") });
         if (!espanol) {
@@ -459,8 +460,8 @@ class multijugadorPartidaScene extends Phaser.Scene {
     }
     rendirse(escena) {
         this.shootInput.destroy();
+        this.shootInput2.destroy();
         this.contMuertes = 0;
-        clearInterval(this.inter);
         this.ocultarMenu(this);
         this.mensajeSeguro.destroy();
         this.spriteDesbloquearNo.destroy();
@@ -495,9 +496,9 @@ class multijugadorPartidaScene extends Phaser.Scene {
     }
     update() {
         if (this.win1 || this.win2) {
-            clearInterval(this.inter);
 
             this.music.setVolume(0.05);
+            this.sound.play('winSound',{volume:0.08});
             this.shootInput.destroy();
             this.shootInput2.destroy();
             this.tweens.add({
@@ -629,10 +630,10 @@ class multijugadorPartidaScene extends Phaser.Scene {
             }
 
             if (armas[selectedWeapon1].nombre === 'Hacha') {
-                this.bomb = this.physics.add.sprite(this.enemy.x + this.enemy.width / 3, this.enemy.y - this.enemy.height / 3, armas[selectedWeapon1].nombre + 'Weapon').setScale(armas[selectedWeapon1].scale * gameConfig.scale.height / 600);
+                this.bomb = this.physics.add.sprite(this.player.x + this.player.displayWidth / 3, this.player.y - this.player.displayHeight*2 / 3, armas[selectedWeapon1].nombre + 'Weapon').setScale(armas[selectedWeapon1].scale * gameConfig.scale.height / 600);
                 this.bomb.play("egishoot");
             } else {
-                this.bomb = this.physics.add.sprite(this.enemy.x + this.enemy.width / 3, this.enemy.y - this.enemy.height / 3, armas[selectedWeapon1].nombre + 'Weapon').setScale(armas[selectedWeapon1].scale * gameConfig.scale.height / 600);
+                this.bomb = this.physics.add.sprite(this.player.x + this.player.displayWidth / 3, this.player.y - this.player.displayHeight/2, armas[selectedWeapon1].nombre + 'Weapon').setScale(armas[selectedWeapon1].scale * gameConfig.scale.height / 600);
             }
 
             this.bomb.setTint(0x85baff);
@@ -669,10 +670,10 @@ class multijugadorPartidaScene extends Phaser.Scene {
                 this.bulletsEnemy.getFirst(true).destroy();
             }
             if (armas[selectedWeapon2].nombre === 'Hacha') {
-                this.bomb = this.physics.add.sprite(this.enemy.x + this.enemy.width / 3, this.enemy.y - this.enemy.height / 3, armas[selectedWeapon1].nombre + 'Weapon').setScale(armas[selectedWeapon2].scale * gameConfig.scale.height / 600);
+                this.bomb = this.physics.add.sprite(this.enemy.x - this.enemy.displayWidth / 3, this.enemy.y - this.enemy.displayHeight*2 / 3, armas[selectedWeapon1].nombre + 'Weapon').setScale(armas[selectedWeapon2].scale * gameConfig.scale.height / 600);
                 this.bomb.play("egishoot");
             } else {
-                this.bomb = this.physics.add.sprite(this.enemy.x - 10, this.enemy.y, armas[selectedWeapon2].nombre + 'Weapon').setScale(armas[selectedWeapon2].scale * gameConfig.scale.height / 600);
+                this.bomb = this.physics.add.sprite(this.enemy.x - this.enemy.displayWidth / 3, this.enemy.y - this.enemy.displayHeight/2, armas[selectedWeapon2].nombre + 'Weapon').setScale(armas[selectedWeapon2].scale * gameConfig.scale.height / 600);
             }
             this.bomb.setTint(0xff7e7d);
             this.bulletsEnemy.add(this.bomb);

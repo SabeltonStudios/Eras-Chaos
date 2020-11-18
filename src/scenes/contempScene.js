@@ -231,7 +231,7 @@ class contempScene extends Phaser.Scene {
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
-                this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y-20, 'conWeapon').setScale(0.15 * gameConfig.scale.height / 600);
+                this.bomb = this.bulletsEnemy.create(this.enemy.x - this.enemy.displayWidth / 3, this.enemy.y - this.enemy.displayHeight/2, 'AKWeapon').setScale(0.15 * gameConfig.scale.height / 600);
                 this.bomb.setTint(0xff7e7d);
                 this.bomb.body.setVelocity(-700 * gameConfig.scale.height / 600, 0);
                 this.bomb.body.setAllowRotation();
@@ -330,6 +330,7 @@ class contempScene extends Phaser.Scene {
     update() {
         if (this.gameOver) {
             this.gameOver = false;
+            this.sound.play('dieSound',{volume:0.2});
             this.contMuertes++;
             clearInterval(this.inter);
             this.shootInput.destroy();
@@ -345,6 +346,8 @@ class contempScene extends Phaser.Scene {
             this.win = false;
             sortResults("Actualidad", "Current Days", this.contMuertes,1);
             Game.saveFile();
+            this.music.setVolume(0.05);
+            this.sound.play('winSound',{volume:0.08});
             this.shootInput.destroy();
             this.tweens.add({
                 targets: this.music,
@@ -442,7 +445,7 @@ class contempScene extends Phaser.Scene {
             //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();
         }
-        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y-20, 'conWeapon').setScale(0.15 * gameConfig.scale.height / 600);
+        var bomb = this.bulletsPre.create(this.player.x + this.player.displayWidth / 3, this.player.y - this.player.displayHeight / 2, 'AKWeapon').setScale(0.15 * gameConfig.scale.height / 600);
         bomb.setTint(0x85baff);
         bomb.body.setVelocity(700 * gameConfig.scale.height / 600, 0);
         //bomb.setOrigin(0,1);

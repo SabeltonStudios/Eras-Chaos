@@ -133,7 +133,9 @@ class menuPrincipalScene extends Phaser.Scene {
     }
 
     create() {
-
+        if (!MenuMusic.isPlaying) {
+            MenuMusic.play();
+        }
         this.Fondo = this.add.image(0, 0, 'fondo').setOrigin(0)
         this.Fondo.setScale(gameConfig.scale.width / this.Fondo.width, gameConfig.scale.height / this.Fondo.height);
 

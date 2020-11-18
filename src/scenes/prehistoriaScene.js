@@ -215,7 +215,7 @@ class prehistoriaScene extends Phaser.Scene {
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
-                this.bomb = this.bulletsEnemy.create(this.enemy.x - 10, this.enemy.y, 'preWeapon').setScale(0.15 * gameConfig.scale.width / 800);
+                this.bomb = this.bulletsEnemy.create(this.enemy.x - this.enemy.displayWidth / 3, this.enemy.y - this.enemy.displayHeight/2, 'HondaWeapon').setScale(0.15 * gameConfig.scale.width / 800);
                 this.bomb.setTint(0xff7e7d);
                 this.bomb.body.setVelocity(-300 * gameConfig.scale.height / 600, 0);
                 this.bomb.body.setAllowGravity(false);
@@ -314,6 +314,7 @@ class prehistoriaScene extends Phaser.Scene {
     update() {
         if (this.gameOver) {
             this.gameOver = false;
+            this.sound.play('dieSound',{volume:0.2});
             this.contMuertes++;
             clearInterval(this.inter);
             this.shootInput.destroy();
@@ -326,7 +327,9 @@ class prehistoriaScene extends Phaser.Scene {
             clearInterval(this.inter);
             this.win = false;
             sortResults("Prehistoria", "Prehistory", this.contMuertes,5);
+            Game.saveFile();
             this.music.setVolume(0.05);
+            this.sound.play('winSound',{volume:0.08});
             this.shootInput.destroy();
             this.tweens.add({
                 targets: this.music,
@@ -343,6 +346,7 @@ class prehistoriaScene extends Phaser.Scene {
             }
             else {
                 completedLevel[0].completado = true;
+                Game.saveFile();
                 this.is_paused = true;
                 this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput);
                 this.fondo = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondo').setScale(gameConfig.scale.width / 800).setTint(0x000000);
@@ -414,7 +418,7 @@ class prehistoriaScene extends Phaser.Scene {
         if (this.bulletsPre.isFull()) {
             this.bulletsPre.getFirst(true).destroy();
         }
-        var bomb = this.bulletsPre.create(this.player.x + 10, this.player.y, 'preWeapon').setScale(0.15 * gameConfig.scale.width / 800);
+        var bomb = this.bulletsPre.create(this.player.x + this.player.displayWidth / 3, this.player.y - this.player.displayHeight/2, 'HondaWeapon').setScale(0.15 * gameConfig.scale.width / 800);
         bomb.setTint(0x85baff);
         bomb.body.setVelocity(300 * gameConfig.scale.height / 600, 0)
         bomb.body.setAllowGravity(false);

@@ -73,9 +73,9 @@ class bootScene extends Phaser.Scene {
         this.load.image('preObj1', 'assets/Objetos/1.Prehistoria/object_log.png');
         this.load.image('preObj2', 'assets/Objetos/1.Prehistoria/object_skull.png');
         this.load.image('preObj3', 'assets/Objetos/1.Prehistoria/object_stone.png');
-        this.load.audio('preMusic', ['assets/Música/PrehistoriaFinal.mp3', 'assets/Música/PrehistoriaFinal.ogg']);
+        this.load.audio('preMusic', ['assets/Música/PrehistoriaFinal2.mp3', 'assets/Música/PrehistoriaFinal2.ogg']);
         this.load.audio('HondaFire', ['assets/EfectosSonido/Honda.mp3', 'assets/EfectosSonido/Honda.ogg']);
-        this.load.image('preWeapon', 'assets/Armas/ArmaPrehistoria.png');
+        this.load.image('HondaWeapon', 'assets/Armas/ArmaPrehistoria.png');
         this.load.spritesheet('prePlayerHonda', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basico_honda_idle_moving_spritesheet.png',
             { frameWidth: 373*0.14, frameHeight: 541*0.14 });
         this.load.spritesheet('prePlayerHondaIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basico_honda_idle_static_spritesheet.png',
@@ -100,10 +100,9 @@ class bootScene extends Phaser.Scene {
         this.load.image('egiObj1', 'assets/Objetos/2.AntiguoEgipto/object_cats.png');
         this.load.image('egiObj2', 'assets/Objetos/2.AntiguoEgipto/object_cup.png');
         this.load.image('egiObj3', 'assets/Objetos/2.AntiguoEgipto/object_pyramid.png');
-        this.load.audio('egiMusic', ['assets/Música/Egipto.mp3', 'assets/Música/Egipto.ogg']);
+        this.load.audio('egiMusic', ['assets/Música/Egipto2.mp3', 'assets/Música/Egipto2.ogg']);
         this.load.audio('HachaFire', ['assets/EfectosSonido/Hacha.mp3', 'assets/EfectosSonido/Hacha.ogg']);
-        this.load.image('egiPlayer', 'assets/Personajes/2.AntiguoEgipto/BasicoEgipto.png');
-        this.load.spritesheet('egiWeapon', 'assets/Armas/ArmaEgipto.png', { frameWidth: 235, frameHeight: 235 });
+        this.load.spritesheet('HachaWeapon', 'assets/Armas/ArmaEgipto.png', { frameWidth: 235, frameHeight: 235 });
         this.load.spritesheet('egiPlayerHacha', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Hacha/egipto_basic_axe_idle_moving_spritesheet.png',
             { frameWidth: 370*0.14, frameHeight: 541*0.14 });
         this.load.image('egiPlayerHachaIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Basico/Hacha/egipto_basic_axe_idle_static_spritesheet.png')
@@ -123,10 +122,9 @@ class bootScene extends Phaser.Scene {
         this.load.image('medObj1', 'assets/Objetos/3.EdadMedia/object_apples.png');
         this.load.image('medObj2', 'assets/Objetos/3.EdadMedia/object_barrel.png');
         this.load.image('medObj3', 'assets/Objetos/3.EdadMedia/object_vase.png');
-        this.load.audio('medMusic', ['assets/Música/Medieval.mp3', 'assets/Música/Medieval.ogg']);
+        this.load.audio('medMusic', ['assets/Música/Medieval2.mp3', 'assets/Música/Medieval2.ogg']);
         this.load.audio('BallFire', ['assets/EfectosSonido/Ballesta.mp3', 'assets/EfectosSonido/Ballesta.ogg']);
-        this.load.image('medPlayer', 'assets/Personajes/3.EdadMedia/BasicoEdadMedia.png');
-        this.load.image('medWeapon', 'assets/Armas/ballesta-saeta.png')
+        this.load.image('BallWeapon', 'assets/Armas/ballesta-saeta.png')
         this.load.spritesheet('medPlayerBall', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Ballesta/medieval_basic_ballesta_idle_moving_spritesheet.png',
             { frameWidth: 461*0.14, frameHeight: 516 *0.14});
         this.load.image('medPlayerBallIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Ballesta/medieval_basic_ballesta_idle_static_spritesheet.png');
@@ -146,9 +144,9 @@ class bootScene extends Phaser.Scene {
         this.load.image('indObj1', 'assets/Objetos/4.RevolucionIndustrial/object_gear.png');
         this.load.image('indObj2', 'assets/Objetos/4.RevolucionIndustrial/object_toolbox.png');
         this.load.image('indObj3', 'assets/Objetos/4.RevolucionIndustrial/object_wheel.png');
-        this.load.audio('indMusic', ['assets/Música/RevInds.mp3', 'assets/Música/RevInds.ogg']);
+        this.load.audio('indMusic', ['assets/Música/RevInds2.mp3', 'assets/Música/RevInds2.ogg']);
         this.load.audio('MosFire', ['assets/EfectosSonido/mosqueton.mp3', 'assets/EfectosSonido/mosqueton.ogg']);
-        this.load.image('indWeapon', 'assets/Armas/mosquete-bala.png');
+        this.load.image('MosWeapon', 'assets/Armas/mosquete-bala.png');
 
         this.load.spritesheet('indPlayerMos', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Mosquete/industrial_basic_mosquete_idle_moving_spritesheet.png',
             { frameWidth: 585*0.14, frameHeight: 525*0.14 });
@@ -175,7 +173,7 @@ class bootScene extends Phaser.Scene {
 
         this.load.audio('conMusic', ['assets/Música/actualidad.mp3', 'assets/Música/actualidad.ogg']);
         this.load.audio('AKFire', ['assets/EfectosSonido/Ak.mp3', 'assets/EfectosSonido/Ak.ogg']);
-        this.load.image('conWeapon', 'assets/Armas/fusil-bala.png');
+        this.load.image('AKWeapon', 'assets/Armas/fusil-bala.png');
 
         this.load.spritesheet('conPlayerAK', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Basico/Fusil/actualidad_basic_fusil_idle_moving_spritesheet.png',
             { frameWidth: 459*0.14, frameHeight: 512*0.14 });
@@ -206,6 +204,8 @@ class bootScene extends Phaser.Scene {
         this.load.image('Lastimai', 'assets/Interfaz/RendidoTextoi.png');
 
         this.load.audio('buttonSound', ['assets/EfectosSonido/boton3.mp3', 'assets/EfectosSonido/boton3.ogg']);
+        this.load.audio('winSound', ['assets/EfectosSonido/Ganar.mp3', 'assets/EfectosSonido/Ganar.ogg']);
+        this.load.audio('dieSound', ['assets/EfectosSonido/crackbone.mp3', 'assets/EfectosSonido/crackbone.ogg']);
         this.load.audio('menuMusic', ['assets/Música/Menu.mp3', 'assets/Música/Menu.ogg']);
 
         this.load.image('ShootBON', 'assets/Interfaz/ShootButton.png');

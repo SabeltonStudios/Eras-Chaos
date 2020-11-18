@@ -24,7 +24,7 @@ class loadingScene extends Phaser.Scene {
             this.add.text(0,0,"",{font:"20px euphorigenic"});
 
         }else{
-            scene.scale.lockOrientation('landscape');
+            this.scale.lockOrientation('landscape');
             gameConfig.scale.width=this.cameras.main.width;
             gameConfig.scale.height=this.cameras.main.height;
             this.add.text(0,0,"",{font:"20px euphorigenic"});
