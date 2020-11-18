@@ -1,10 +1,10 @@
-- Fusil // (50% más pequeño que hacha)
+- Fusil // (50% más pequeño que hacha // Ahora todos los sprites están alineados)
 Idle: 
-Static: (1 imagen) 51 x 75
-Moving: (4 filas x 5 columnas) 63 x 75
+Static: (1 imagen) 64 x 75
+Moving: (4 filas x 5 columnas) 64 x 75
 
 Attack:
-Static: (3 filas x 7 columnas) 50 x 75
+Static: (3 filas x 7 columnas) 64 x 75
 Moving: (4 filas x 5 columnas) 64 x 75
 //////////////////////
 - Hacha
