@@ -84,6 +84,7 @@ class bootScene extends Phaser.Scene {
             { frameWidth: 837*0.14, frameHeight: 557*0.14 });
         this.load.spritesheet('prePlayerHondaAttackIdle', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basic_honda_attack_static_spritesheet.png',
             { frameWidth: 837*0.14, frameHeight: 541*0.14 });
+
         this.load.spritesheet('preEnemy', 'assets/Animaciones/Spritesheets/Prehistoria/Enemigo/enemigo_prehistoria_honda_idle_moving_spritesheet.png',
             { frameWidth: 736*0.07, frameHeight: 1039*0.07 });
         //cambiar↓
@@ -717,7 +718,7 @@ class bootScene extends Phaser.Scene {
         this.anims.create({
             key: 'prePlayerHondaIdle',
             frames: this.anims.generateFrameNumbers('prePlayerHondaIdle', { start: 0, end: 9 }),
-            frameRate: 30,
+            frameRate: 10,
             repeat: -1
         });
         this.anims.create({
