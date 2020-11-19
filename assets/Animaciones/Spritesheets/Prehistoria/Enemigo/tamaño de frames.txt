@@ -1,21 +1,11 @@
 Enemigo prehistoria
-- Honda idle static (sin moverse): 
-10 frames (2 filas x 5 columnas)
-w = 736
-h = 1039
+Honda attack: (5 filas x 8 columnas) 830 x 515
 
+//CREO QUE ESTO YA NO ES NECESARIO
 - Honda idle moving (moviéndose): 
 21 frames (3 filas x 7 columnas)
 w = 736
 h = 1039
-
-- Honda atacar static (sin moverse):
-38 frames (6 filas x 7 columnas)
-w = 1654
-h = 1021
-
-- Honda atacar moving (moviéndose): 
-En proceso...
 
 - Game over:
 49 frames (7 filas x 7 columnas)
