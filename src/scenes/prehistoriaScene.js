@@ -53,7 +53,7 @@ class prehistoriaScene extends Phaser.Scene {
     }
 
     preload() {
-        
+
     }
     create() {
         //Gestión de la música para que se añada al entrar al nivel y sólo se ejecute desde cero al llegar
@@ -96,7 +96,7 @@ class prehistoriaScene extends Phaser.Scene {
         this.enemy.setBounce(1);
         this.enemy.body.setAllowGravity(false);
         this.enemy.setCollideWorldBounds(true);
-        //Creación de cuatro muros exteriores a la pantalla paa eliminar los proyectiles que se salen de la escena
+        //Creación de cuatro muros exteriores a la pantalla para eliminar los proyectiles que se salen de la escena
         var wallR = this.add.rectangle(gameConfig.scale.width + 20, gameConfig.scale.height / 2, 20, gameConfig.scale.height);
         this.physics.add.existing(wallR);
         wallR.body.setAllowGravity(false);
@@ -123,17 +123,17 @@ class prehistoriaScene extends Phaser.Scene {
         //Creación de los distintos obstáculos presentes en escena
         this.obstacles = this.physics.add.group(this.ObstaclesConfig);
         this.obstacles.setOrigin(0.5, 0.5);
-        this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'preObj3').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, 'preObj2').setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(120, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'preObj3').setScale(0.12 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width / 1.9, gameConfig.scale.height * 0.77, 'preObj2').setScale(0.1 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(120, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'preObj3').setScale(0.1 * gameConfig.scale.width / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'preObj1').setScale(0.12 * gameConfig.scale.width / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.4, gameConfig.scale.height * 0.6, 'preObj3').setScale(0.1 * gameConfig.scale.height / 600).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.4, 'preObj1').setScale(0.12 * gameConfig.scale.height / 600).body.setCircle(112, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, 'preObj2').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.7, 'preObj1').setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.3, gameConfig.scale.height * 0.3, 'preObj2').setScale(0.12 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.7, 'preObj1').setScale(0.12 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
 
-        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'preObj3').setScale(0.12 * gameConfig.scale.height / 800).body.setCircle(112, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'preObj3').setScale(0.1 * gameConfig.scale.height / 800).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'preObj3').setScale(0.12 * gameConfig.scale.height / 600).body.setCircle(112, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'preObj3').setScale(0.1 * gameConfig.scaleheight / 600).body.setCircle(110, 40, 20).setAllowGravity(false);
         //Colisiones con muros exteriores para eliminar proyectiles, entre el jugador y las balas enemigas para fijar la derrota, 
         //del enemigo con nuestras proyectiles para fijar la victoria (y limpiar el grupo para evitar detecciones vacías),
         //y entre los proyectiles entre sí y con los obstaculos para los rebotes
@@ -156,7 +156,7 @@ class prehistoriaScene extends Phaser.Scene {
         this.physics.add.collider(this.bulletsPre, this.obstacles);
 
         //Botón interactivo para detener al jugador
-        this.spriteParar = this.add.sprite(gameConfig.scale.width * 14.5 / 16, gameConfig.scale.height * 11 / 12, 'FreezeBON').setScale(0.15 * gameConfig.scale.width / 800);
+        this.spriteParar = this.add.sprite(gameConfig.scale.width * 14.5 / 16, gameConfig.scale.height * 10.5 / 12, 'FreezeBON').setScale(0.15 * gameConfig.scale.width / 800);
         this.spriteParar.setInteractive().on('pointerdown', () => { this.player.body.moves = false; this.player.anims.play("prePlayerHondaIdle", true); })
             .on('pointerup', () => { this.player.body.moves = true; this.player.anims.play("prePlayerHondaMoving", true) })
             .on('pointerout', () => { this.player.body.moves = true; this.player.anims.play("prePlayerHondaMoving", true) })
@@ -164,7 +164,7 @@ class prehistoriaScene extends Phaser.Scene {
             .on('pointerup', () => this.spriteParar.setTexture('FreezeBON'))
             .on('pointerout', () => this.spriteParar.setTexture('FreezeBON'));
         //Botón interactivo para disparar proyectiles
-        this.spriteDisparar = this.add.sprite(gameConfig.scale.width *1.5/ 16, gameConfig.scale.height * 11 / 12, 'ShootBON').setScale(0.15 * gameConfig.scale.width / 800);
+        this.spriteDisparar = this.add.sprite(gameConfig.scale.width * 1.5 / 16, gameConfig.scale.height * 10.5 / 12, 'ShootBON').setScale(0.15 * gameConfig.scale.width / 800);
         this.spriteDisparar.setInteractive().on('pointerdown', () => {
             this.fire()
         })
@@ -173,7 +173,7 @@ class prehistoriaScene extends Phaser.Scene {
             .on('pointerout', () => this.spriteDisparar.setTexture('ShootBON'));
         //Botón interactivo para pausar el juego
         this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.3 / 16, gameConfig.scale.height / 13, 'PauseBON').setScale(0.07 * gameConfig.scale.width / 800);
-        this.spritePausar.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15});this.is_paused = !this.is_paused})
+        this.spritePausar.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.is_paused = !this.is_paused })
             .on('pointerdown', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
             .on('pointerdown', () => !this.is_paused ? this.player.anims.play("prePlayerHondaMoving", true) : this.player.anims.stop())
             .on('pointerdown', () => !this.is_paused ? this.enemy.anims.play("enemyMoving", true) : this.enemy.anims.stop())
@@ -198,7 +198,7 @@ class prehistoriaScene extends Phaser.Scene {
             .on('up', () => this.spriteDisparar.setTexture('ShootBON'));
         //Input de teclado para pausar el juego, sólo si no se ha ganado
         if (!this.win) {
-            this.input.keyboard.on('keydown-' + 'ESC', () => {this.sound.play('buttonSound',{volume: 0.15});this.is_paused = !this.is_paused})
+            this.input.keyboard.on('keydown-' + 'ESC', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.is_paused = !this.is_paused })
                 .on('keydown-' + 'ESC', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
                 .on('keydown-' + 'ESC', () => !this.is_paused ? this.player.anims.play("prePlayerHondaMoving", true) : this.player.anims.stop())
                 .on('keydown-' + 'ESC', () => !this.is_paused ? this.enemy.anims.play("enemyMoving", true) : this.enemy.anims.stop())
@@ -206,14 +206,14 @@ class prehistoriaScene extends Phaser.Scene {
                 .on('keydown-' + 'ESC', () => this.spritePausar.setTexture('PauseBOFF'))
                 .on('keyup-' + 'ESC', () => this.spritePausar.setTexture('PauseBON'));
         }
-        //Método para disparar proyectiles del enemigo cada 2 segundos, fijando la spropiedas físicas correspondientes y ejecutando su animación
+        //Método para disparar proyectiles del enemigo cada 2 segundos, fijando las propiedades físicas correspondientes y ejecutando su animación
         this.inter = setInterval(() => {
             if (!this.is_paused) {
-                this.sound.play('HondaFire',{volume: 0.08});
+                this.sound.play('HondaFire', { volume: 0.08 });
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
-                this.bomb = this.bulletsEnemy.create(this.enemy.x - this.enemy.displayWidth / 3, this.enemy.y - this.enemy.displayHeight/2, 'HondaWeapon').setScale(0.15 * gameConfig.scale.width / 800);
+                this.bomb = this.bulletsEnemy.create(this.enemy.x - this.enemy.displayWidth / 3, this.enemy.y - this.enemy.displayHeight / 2, 'HondaWeapon').setScale(0.15 * gameConfig.scale.width / 800);
                 this.bomb.setTint(0xff7e7d);
                 this.bomb.body.setVelocity(-300 * gameConfig.scale.height / 600, 0);
                 this.bomb.body.setAllowGravity(false);
@@ -230,11 +230,11 @@ class prehistoriaScene extends Phaser.Scene {
         this.Menu = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'PauseMenu').setScale(0.5 * gameConfig.scale.height / 600);
         t.PauseTitle = t.add.image(gameConfig.scale.width / 2, gameConfig.scale.height * 0.36, 'PauseTitle').setScale(0.7 * gameConfig.scale.height / 600);
         t.BotonMenu = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.5, 'botonRendirse').setScale(gameConfig.scale.height / 600);
-        t.BotonMenu.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); this.confirmarSalir("MenuPrincipalScene")});
+        t.BotonMenu.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.confirmarSalir("MenuPrincipalScene") });
         t.BotonCerrar = t.add.sprite(gameConfig.scale.width / 2 + (t.Menu.displayWidth / 2 - 30), gameConfig.scale.height / 2 - (t.Menu.displayHeight / 2 + 20), 'CloseB').setOrigin(0.5, 0).setScale(0.1 * gameConfig.scale.height / 600);
-        t.BotonCerrar.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15});  this.is_paused = !this.is_paused; t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput); this.ocultarMenu(this) });
+        t.BotonCerrar.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.is_paused = !this.is_paused; t.pauseGame(t.spriteParar, t.spriteDisparar, t.freezeInput, t.shootInput); this.ocultarMenu(this) });
         t.BotonTienda = t.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 0.6, 'botonTienda').setScale(gameConfig.scale.height / 600);
-        t.BotonTienda.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15}); this.confirmarSalir("TiendaScene")});
+        t.BotonTienda.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.confirmarSalir("TiendaScene") });
         if (!espanol) {
             t.PauseTitle.setTexture('PauseTitlei');
             t.BotonMenu.setTexture('botonRendirsei');
@@ -254,7 +254,7 @@ class prehistoriaScene extends Phaser.Scene {
         //Si niega querer salir limpiamos la UI
         this.spriteDesbloquearNo = this.add.sprite(gameConfig.scale.width * 1.1 / 2, (gameConfig.scale.height / 3) * 2.6, 'botonDesbloquearNo').setScale(0.5 * gameConfig.scale.height / 600);
         this.spriteDesbloquearNo.setInteractive().on('pointerdown', () => {
-            this.sound.play('buttonSound',{volume: 0.15});
+            this.sound.play('buttonSound', { volume: 0.15 });
             this.mensajeSeguro.destroy();
             this.spriteDesbloquearNo.destroy();
             this.spriteDesbloquearSi.destroy();
@@ -265,7 +265,7 @@ class prehistoriaScene extends Phaser.Scene {
         });
         //Si confirma, llamamos a la función rendirse
         this.spriteDesbloquearSi = this.add.sprite(gameConfig.scale.width * 0.9 / 2, (gameConfig.scale.height / 3) * 2.6, 'botonDesbloquearSi').setScale(0.5 * gameConfig.scale.height / 600);
-        this.spriteDesbloquearSi.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound',{volume: 0.15});this.rendirse(salir)});
+        this.spriteDesbloquearSi.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.rendirse(salir) });
     }
     //Función para limpiar los elementos visuales del menú de pausa
     ocultarMenu(t) {
@@ -309,7 +309,7 @@ class prehistoriaScene extends Phaser.Scene {
             this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);;
         }
         this.continuar.setInteractive().on('pointerdown', () => {
-            this.sound.play('buttonSound',{volume: 0.15});
+            this.sound.play('buttonSound', { volume: 0.15 });
             this.music.stop();
             this.scene.stop();
             this.scene.start(escena);
@@ -320,7 +320,7 @@ class prehistoriaScene extends Phaser.Scene {
         // además de incrementar el contador de muertes
         if (this.gameOver) {
             this.gameOver = false;
-            this.sound.play('dieSound',{volume:0.2});
+            this.sound.play('dieSound', { volume: 0.2 });
             this.contMuertes++;
             clearInterval(this.inter);
             this.shootInput.destroy();
@@ -334,10 +334,10 @@ class prehistoriaScene extends Phaser.Scene {
         if (this.win) {
             clearInterval(this.inter);
             this.win = false;
-            sortResults("Prehistoria", "Prehistory", this.contMuertes,5);
+            sortResults("Prehistoria", "Prehistory", this.contMuertes, 5);
             Game.saveFile();
             this.music.setVolume(0.05);
-            this.sound.play('winSound',{volume:0.08});
+            this.sound.play('winSound', { volume: 0.08 });
             this.shootInput.destroy();
             this.tweens.add({
                 targets: this.music,
@@ -347,7 +347,7 @@ class prehistoriaScene extends Phaser.Scene {
             this.enemy.anims.play("enemyDying", true);
             //Si el jugador ya había completado el nivel antes simplemente limpiamos y cargamos el siguiente nivel
             if (completedLevel[0].completado) {
-                this.contMuertes=0;
+                this.contMuertes = 0;
                 this.music.stop();
                 this.scene.stop();
                 this.scene.start("EgiptoScene");
@@ -376,10 +376,10 @@ class prehistoriaScene extends Phaser.Scene {
                     this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);
                 }
                 this.continuar.setInteractive().on('pointerdown', () => {
-                    this.sound.play('buttonSound',{volume: 0.15});
+                    this.sound.play('buttonSound', { volume: 0.15 });
                     this.music.stop();
                     this.scene.stop();
-                    this.contMuertes=0;
+                    this.contMuertes = 0;
                     this.scene.start("EgiptoScene");
                 })
             }
@@ -422,7 +422,7 @@ class prehistoriaScene extends Phaser.Scene {
     //Función para disparar usada por el jugador, que dependiendo del estado en que se encuentre pasa a una u
     //otra animación
     fire() {
-        this.sound.play('HondaFire',{volume:0.08});
+        this.sound.play('HondaFire', { volume: 0.08 });
         if (this.spriteParar.isDown || this.freezeInput.isDown) {
             this.player.anims.play("prePlayerHondaAttackIdle", false)
                 .once('animationcomplete', () => { if (!this.is_paused) { this.player.anims.play("prePlayerHondaIdle", true) } });
@@ -434,7 +434,7 @@ class prehistoriaScene extends Phaser.Scene {
             this.bulletsPre.getFirst(true).destroy();
         }
         //el proyectil se tiñe para distinguirlo del enemigo, y se le fija su ángulo, escala, velocidad, collider y deshabilitación de la gravedad
-        var bomb = this.bulletsPre.create(this.player.x + this.player.displayWidth / 3, this.player.y - this.player.displayHeight/2, 'HondaWeapon').setScale(0.15 * gameConfig.scale.width / 800);
+        var bomb = this.bulletsPre.create(this.player.x + this.player.displayWidth / 3, this.player.y - this.player.displayHeight / 2, 'HondaWeapon').setScale(0.15 * gameConfig.scale.width / 800);
         bomb.setTint(0x85baff);
         bomb.body.setVelocity(300 * gameConfig.scale.height / 600, 0)
         bomb.body.setAllowGravity(false);

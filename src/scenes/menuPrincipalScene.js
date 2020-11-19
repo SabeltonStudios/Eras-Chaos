@@ -118,9 +118,6 @@ function sortResults(mapa, mapai, nuevoValor, indice) {
             break;
         }
     }
-    /*for (let i = 0; i < results.length; i++) {
-        console.log(results[i].Mapa, results[i].Muertes, results[i].Indice);
-    }*/
 }
 
 class menuPrincipalScene extends Phaser.Scene {

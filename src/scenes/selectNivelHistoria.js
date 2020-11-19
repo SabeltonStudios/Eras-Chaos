@@ -1,3 +1,4 @@
+//Array para conocer los niveles que han sido ya completados
 let completedLevel = [
     {
         "completado": false

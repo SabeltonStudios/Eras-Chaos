@@ -1,3 +1,4 @@
+//Variable para la gestiónd e la musica de menu entre escenas
 let MenuMusic;
 class bootScene extends Phaser.Scene {
     constructor() {
@@ -6,7 +7,7 @@ class bootScene extends Phaser.Scene {
     }
 
     preload() {
-
+//GUI inicial de carga de juego
         this.Fondo = this.add.image(0, 0, 'fondoLoading').setOrigin(0)
         this.Fondo.setScale(gameConfig.scale.width / this.Fondo.width, gameConfig.scale.height / this.Fondo.height);
         this.TextLoading = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'textLoading').setScale(gameConfig.scale.height / 600);
@@ -552,7 +553,10 @@ class bootScene extends Phaser.Scene {
             { frameWidth: 373 * 0.14, frameHeight: 514 * 0.14 });
         this.load.spritesheet('egiHeroeHondaIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Honda/egipto_hero_honda_idle_static_spritesheet.png',
             { frameWidth: 373 * 0.14, frameHeight: 514 * 0.14 });
-        //FALTAN 2
+        this.load.spritesheet('egiHeroeHondaAttack', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Honda/egipto_hero_honda_attack_moving_spritesheet.png',
+            { frameWidth: 830 * 0.14, frameHeight: 550 * 0.14 });
+        this.load.spritesheet('egiHeroeHondaAttackIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Honda/egipto_hero_honda_attack_static_spritesheet.png',
+            { frameWidth: 836 * 0.14, frameHeight: 540 * 0.14 });
         //Hacha
         this.load.spritesheet('egiHeroeHacha', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Hacha/egipto_hero_axe_idle_moving_spritesheet.png',
             { frameWidth: 370 * 0.14, frameHeight: 550 * 0.14 });
@@ -680,7 +684,13 @@ class bootScene extends Phaser.Scene {
         this.load.spritesheet('indPlayerHachaAttackIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Hacha/industrial_basic_axe_attack_static_spritesheet.png',
             { frameWidth: 505 * 0.14, frameHeight: 580 * 0.14 });
         //Ballesta
-        //FALTAN 4
+        this.load.spritesheet('indPlayerBall', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Ballesta/industrial_basic_ballesta_idle_moving_spritesheet.png',
+            { frameWidth: 360 * 0.14, frameHeight: 537 * 0.14 });
+        this.load.image('indPlayerBallIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Ballesta/industrial_basic_ballesta_idle_static_spritesheet.png');
+        this.load.spritesheet('indPlayerBallAttack', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Ballesta/industrial_basic_ballesta_attack_moving_spritesheet.png',
+            { frameWidth: 474 * 0.14, frameHeight: 534 * 0.14 });
+        this.load.spritesheet('indPlayerBallAttackIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Ballesta/industrial_basic_ballesta_attack_static_spritesheet.png',
+            { frameWidth: 381 * 0.14, frameHeight: 534 * 0.14 });
         //Fusil
         this.load.spritesheet('indPlayerAK', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Fusil/industrial_basic_fusil_idle_moving_spritesheet.png',
             { frameWidth: 445 * 0.14, frameHeight: 525 * 0.14 });
@@ -690,8 +700,14 @@ class bootScene extends Phaser.Scene {
         this.load.spritesheet('indPlayerAKAttackIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Fusil/industrial_basic_fusil_attack_static_spritesheet.png',
             { frameWidth: 350 * 0.14, frameHeight: 525 * 0.14 });
         //HeroeRevIndustrial
-        //Honda
-        //Faltan 4
+        this.load.spritesheet('indHeroeHonda', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Heroe/Honda/industrial_hero_honda_idle_moving_spritesheet.png',
+            { frameWidth: 365 * 0.14, frameHeight: 540 * 0.14 });
+        this.load.spritesheet('indHeroeHondaIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Heroe/Honda/industrial_hero_honda_idle_static_spritesheet.png',
+            { frameWidth: 367 * 0.14, frameHeight: 526 * 0.14 });
+        this.load.spritesheet('indHeroeHondaAttack', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Heroe/Honda/industrial_hero_honda_attack_moving_spritesheet.png',
+            { frameWidth: 832 * 0.14, frameHeight: 536 * 0.14 });
+        this.load.spritesheet('indHeroeHondaAttackIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Heroe/Honda/industrial_hero_honda_attack_static_spritesheet.png',
+            { frameWidth: 834 * 0.14, frameHeight: 528 * 0.14 });
         //Hacha
         this.load.spritesheet('indHeroeHacha', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Heroe/Hacha/industrial_hero_axe_idle_moving_spritesheet.png',
             { frameWidth: 360 * 0.14, frameHeight: 540 * 0.14 });
@@ -760,7 +776,14 @@ class bootScene extends Phaser.Scene {
             { frameWidth: 656 * 0.14, frameHeight: 517 * 0.14 });
         //Heroe Contemporanea
         //Honda
-        //Faltan 4
+        this.load.spritesheet('conHeroeHonda', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Heroe/Honda/actualidad_hero_honda_idle_moving_spritesheet.png',
+            { frameWidth: 373 * 0.14, frameHeight: 519 * 0.14 });
+        this.load.spritesheet('conHeroeHondaIdle', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Heroe/Honda/actualidad_hero_honda_idle_static_spritesheet.png',
+            { frameWidth: 366 * 0.14, frameHeight: 502 * 0.14 });
+        this.load.spritesheet('conHeroeHondaAttack', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Heroe/Honda/actualidad_hero_honda_attack_moving_spritesheet.png',
+            { frameWidth: 831 * 0.14, frameHeight: 515 * 0.14 });
+        this.load.spritesheet('conHeroeHondaAttackIdle', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Heroe/Honda/actualidad_hero_honda_attack_static_spritesheet.png',
+            { frameWidth: 833 * 0.14, frameHeight: 511 * 0.14 });
         //Hacha
         this.load.spritesheet('conHeroeHacha', 'assets/Animaciones/Spritesheets/Actualidad/Personaje Heroe/Hacha/actualidad_hero_axe_idle_moving_spritesheet.png',
             { frameWidth: 360 * 0.14, frameHeight: 540 * 0.14 });
@@ -997,7 +1020,7 @@ class bootScene extends Phaser.Scene {
 
         MenuMusic = this.sound.add('menuMusic', { volume: 0.3, loop: true });
         this.scene.start("MenuPrincipalScene");
-
+        //Carga de fichero de caché
         Game.loadFile();
     }
 

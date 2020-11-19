@@ -10,12 +10,10 @@ class loadingScene extends Phaser.Scene {
         this.load.spritesheet('loadingSprite', 'assets/Interfaz/Loading/loading-spritesheet.png',
         { frameWidth: 156, frameHeight: 160 })
     }
-   
+   //Según el dispositivo en que nos encontremos, la configuración para mostrar en pantalla, difiere
     create(){
         if (this.sys.game.device.os.desktop) {
-            //this.game.Scale = Phaser.Scale.RESIZE;
             this.game.scale.setGameSize(1920, 1920*3/4);
-            //this.game.scale.setGameSize(800, 600);
             this.game.scale.scaleMode = Phaser.Scale.SHOW_ALL;
             this.game.scale.pageAlignHorizontally = true;
             this.game.scale.pageAlignVertically = true;
