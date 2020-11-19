@@ -116,10 +116,15 @@ class multijugadorSeleccionScene extends Phaser.Scene {
         this.personajesButton[4].setInteractive().on('pointerdown', () => this.deleteTint(1, 4));
 
         //Flechas derecha e izquierda
-        this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 9 - (this.personajesButton[0].displayWidth * 0.7), gameConfig.scale.height / 1.9, 'flechaIzquierda').setScale(0.2 * gameConfig.scale.height / 600);
+        if(this.sys.game.device.os.desktop){
+            this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 9 - (this.personajesButton[0].displayWidth * 0.8), gameConfig.scale.height / 1.9, 'flechaIzquierda').setScale(0.2 * gameConfig.scale.height / 600);
+            this.spriteDerecha = this.add.sprite(gameConfig.scale.width / 9 + (this.personajesButton[0].displayWidth * 4.8), gameConfig.scale.height / 1.9, 'flechaDerecha').setScale(0.2 * gameConfig.scale.height / 600);
+        }else{
+            this.spriteIzquierda = this.add.sprite(gameConfig.scale.width / 9 - (this.personajesButton[0].displayWidth * 0.9), gameConfig.scale.height / 1.9, 'flechaIzquierda').setScale(0.4 * gameConfig.scale.height / 600);
+            this.spriteDerecha = this.add.sprite(gameConfig.scale.width / 9 + (this.personajesButton[0].displayWidth * 4.9), gameConfig.scale.height / 1.9, 'flechaDerecha').setScale(0.4 * gameConfig.scale.height / 600);
+        }
         this.spriteIzquierda.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.trasladarIzquierda(1) });
 
-        this.spriteDerecha = this.add.sprite(gameConfig.scale.width / 9 + (this.personajesButton[0].displayWidth * 4.7), gameConfig.scale.height / 1.9, 'flechaDerecha').setScale(0.2 * gameConfig.scale.height / 600);
         this.spriteDerecha.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.trasladarDerecha(1) });
 
         //personajes jugador 2
@@ -148,10 +153,14 @@ class multijugadorSeleccionScene extends Phaser.Scene {
         this.personajes2Button[4].setInteractive().on('pointerdown', () => this.deleteTint(2, 4) );
 
         //Flechas derecha e izquierda
-        this.spriteIzquierda2 = this.add.sprite(gameConfig.scale.width * 8 / 9 - (this.personajes2Button[4].displayWidth * 4.7), gameConfig.scale.height / 1.9, 'flechaIzquierda').setScale(0.2 * gameConfig.scale.height / 600);
+        if(this.sys.game.device.os.desktop){
+            this.spriteIzquierda2 = this.add.sprite(gameConfig.scale.width * 8 / 9 - (this.personajes2Button[4].displayWidth * 4.8), gameConfig.scale.height / 1.9, 'flechaIzquierda').setScale(0.2 * gameConfig.scale.height / 600);
+            this.spriteDerecha2 = this.add.sprite(gameConfig.scale.width * 8 / 9 + (this.personajes2Button[4].displayWidth * 0.8), gameConfig.scale.height / 1.9, 'flechaDerecha').setScale(0.2 * gameConfig.scale.height / 600);
+        }else{
+            this.spriteIzquierda2 = this.add.sprite(gameConfig.scale.width * 8 / 9 - (this.personajes2Button[4].displayWidth * 4.9), gameConfig.scale.height / 1.9, 'flechaIzquierda').setScale(0.4 * gameConfig.scale.height / 600);
+            this.spriteDerecha2 = this.add.sprite(gameConfig.scale.width * 8 / 9 + (this.personajes2Button[4].displayWidth * 0.9), gameConfig.scale.height / 1.9, 'flechaDerecha').setScale(0.4 * gameConfig.scale.height / 600);
+        }
         this.spriteIzquierda2.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.trasladarIzquierda(2) });
-
-        this.spriteDerecha2 = this.add.sprite(gameConfig.scale.width * 8 / 9 + (this.personajes2Button[4].displayWidth * 0.7), gameConfig.scale.height / 1.9, 'flechaDerecha').setScale(0.2 * gameConfig.scale.height / 600);
         this.spriteDerecha2.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.trasladarDerecha(2) });
 
         //Armas jugador 1

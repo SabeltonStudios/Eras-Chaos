@@ -386,7 +386,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.player.body.moves = false;
             if (armas[selectedWeapon1].nombre != 'Honda') {
                 this.player.anims.stop();
-                this.player.setTexture(personajes[selectedChar1].nombre + armas[selectedWeapon1].nombre + 'Idle')
+                this.player.setTexture(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle')
             } else {
                 this.player.anims.play(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle', true)
             }
@@ -410,7 +410,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.enemy.body.moves = false;
             if (armas[selectedWeapon2].nombre != 'Honda') {
                 this.enemy.anims.stop();
-                this.enemy.setTexture(personajes[selectedChar2].nombre + armas[selectedWeapon2].nombre + 'Idle')
+                this.enemy.setTexture(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'Idle')
             } else {
                 this.enemy.anims.play(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'Idle', true)
             }
@@ -426,8 +426,12 @@ class multijugadorPartidaScene extends Phaser.Scene {
             .on('pointerdown', () => this.spriteDisparar2.setTexture('ShootBOFF'))
             .on('pointerup', () => this.spriteDisparar2.setTexture('ShootBON'))
             .on('pointerout', () => this.spriteDisparar2.setTexture('ShootBON'));
-        //Botón interactivo para detener el juego
-        this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.3 / 16, gameConfig.scale.height / 13, 'PauseBON').setScale(0.07 * gameConfig.scale.width / 800);
+        //Botón interactivo para pausar el juego, ajustado el tamaño dependiendo del dispositivo
+        if(this.sys.game.device.os.desktop){
+            this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.3 / 16, gameConfig.scale.height / 13, 'PauseBON').setScale(0.07 * gameConfig.scale.width / 800);
+        }else{
+            this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.1 / 16, gameConfig.scale.height / 12.9, 'PauseBON').setScale(0.10 * gameConfig.scale.width / 800);
+        }
         this.spritePausar.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.is_paused = !this.is_paused })
             .on('pointerdown', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput, this.spriteParar2, this.spriteDisparar2, this.freezeInput2, this.shootInput2))
             .on('pointerdown', () => !this.is_paused ? this.player.anims.play(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre, true) : this.player.anims.stop())
@@ -444,7 +448,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.player.body.moves = false;
             if (armas[selectedWeapon1].nombre != 'Honda') {
                 this.player.anims.stop();
-                this.player.setTexture(personajes[selectedChar1].nombre + armas[selectedWeapon1].nombre + 'Idle');
+                this.player.setTexture(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle');
             } else {
                 this.player.anims.play(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle', true);
             }
@@ -464,7 +468,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.enemy.body.moves = false;
             if (armas[selectedWeapon2].nombre != 'Honda') {
                 this.enemy.anims.stop();
-                this.enemy.setTexture(personajes[selectedChar2].nombre + armas[selectedWeapon2].nombre + 'Idle')
+                this.enemy.setTexture(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'Idle')
             } else {
                 this.enemy.anims.play(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'Idle', true)
             }
@@ -567,10 +571,10 @@ class multijugadorPartidaScene extends Phaser.Scene {
         }, this);
         if (espanol) {
             this.lastima = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Abandono').setScale(gameConfig.scale.height / 600);
-            this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarB').setScale(0.6 * gameConfig.scale.height / 600);;
+            this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarB').setScale(gameConfig.scale.height / 600);;
         } else {
             this.lastima = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Abandonoi').setScale(gameConfig.scale.height / 600);
-            this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);;
+            this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(gameConfig.scale.height / 600);;
         }
         this.continuar.setInteractive().on('pointerdown', () => {
             this.sound.play('buttonSound', { volume: 0.15 });
@@ -605,19 +609,19 @@ class multijugadorPartidaScene extends Phaser.Scene {
             if (this.win1) {
                 if (espanol) {
                     this.enhorabuena = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Gana1').setScale(gameConfig.scale.height / 600);
-                    this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarB').setScale(0.6 * gameConfig.scale.height / 600);
+                    this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarB').setScale(gameConfig.scale.height / 600);
                 } else {
                     this.enhorabuena = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Gana1i').setScale(gameConfig.scale.height / 600);
-                    this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);
+                    this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(gameConfig.scale.height / 600);
                 }
             }
             else if (this.win2) {
                 if (espanol) {
                     this.enhorabuena = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Gana2').setScale(gameConfig.scale.height / 600);
-                    this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarB').setScale(0.6 * gameConfig.scale.height / 600);
+                    this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarB').setScale(gameConfig.scale.height / 600);
                 } else {
                     this.enhorabuena = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Gana2i').setScale(gameConfig.scale.height / 600);
-                    this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);
+                    this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(gameConfig.scale.height / 600);
                 }
             }
             this.win1 = false;
@@ -739,7 +743,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
                 this.bomb.setSize(this.bomb.displayWidth, this.bomb.displayHeight * 2.5);
             }
             if (armas[selectedWeapon1].nombre != 'Ball' || armas[selectedWeapon1].nombre != 'AK') {
-                this.bomb.angle = 90;
+                this.bomb.angle = 0;
             }
             this.bomb.body.setVelocity(armas[selectedWeapon1].speed * gameConfig.scale.height / 600, 0);
 
@@ -783,14 +787,13 @@ class multijugadorPartidaScene extends Phaser.Scene {
             if (armas[selectedWeapon2].nombre != 'Ball') {
                 this.bomb.body.setAllowGravity(false);
                 this.bomb.body.setCircle(armas[selectedWeapon2].circle[0], armas[selectedWeapon2].circle[1], armas[selectedWeapon2].circle[2]);
-                this.bomb.angle = 270;
             } else {
                 this.bomb.setSize(this.bomb.displayWidth, this.bomb.displayHeight * 2.5);
             }
-            if (armas[selectedWeapon1].nombre != 'Ball' || armas[selectedWeapon1].nombre != 'AK') {
-                this.bomb.angle = 270;
+            if (armas[selectedWeapon2].nombre != 'Ball' || armas[selectedWeapon2].nombre != 'AK') {
+                this.bomb.angle = 180;
             } else {
-                this.bomb.angle = 180
+                this.bomb.angle = 270;
             }
             this.bomb.body.setVelocity(-armas[selectedWeapon2].speed * gameConfig.scale.height / 600, 0);
 

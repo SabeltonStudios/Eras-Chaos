@@ -200,8 +200,12 @@ class contempScene extends Phaser.Scene {
             .on('pointerdown', () => this.spriteDisparar.setTexture('ShootBOFF'))
             .on('pointerup', () => this.spriteDisparar.setTexture('ShootBON'))
             .on('pointerout', () => this.spriteDisparar.setTexture('ShootBON'));
-        //Botón interactivo para pausar el juego
-        this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.3 / 16, gameConfig.scale.height / 13, 'PauseBON').setScale(0.07 * gameConfig.scale.width / 800);
+        //Botón interactivo para pausar el juego, ajustado el tamaño dependiendo del dispositivo
+        if(this.sys.game.device.os.desktop){
+            this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.3 / 16, gameConfig.scale.height / 13, 'PauseBON').setScale(0.07 * gameConfig.scale.width / 800);
+        }else{
+            this.spritePausar = this.add.sprite(gameConfig.scale.width * 15.1 / 16, gameConfig.scale.height / 12.9, 'PauseBON').setScale(0.10 * gameConfig.scale.width / 800);
+        }
         this.spritePausar.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.is_paused = !this.is_paused })
             .on('pointerdown', () => this.pauseGame(this.spriteParar, this.spriteDisparar, this.freezeInput, this.shootInput))
             .on('pointerdown', () => !this.is_paused ? this.player.anims.play('conPlayerAKMoving', true) : this.player.anims.stop())
@@ -330,10 +334,10 @@ class contempScene extends Phaser.Scene {
         }, this);
         if (espanol) {
             this.lastima = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Lastima').setScale(gameConfig.scale.height / 600);
-            this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarB').setScale(0.6 * gameConfig.scale.height / 600);;
+            this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarB').setScale(gameConfig.scale.height / 600);
         } else {
             this.lastima = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'Lastimai').setScale(gameConfig.scale.height / 600);
-            this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);;
+            this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(gameConfig.scale.height / 600);
         }
         this.continuar.setInteractive().on('pointerdown', () => {
             this.sound.play('buttonSound', { volume: 0.15 });
@@ -400,10 +404,10 @@ class contempScene extends Phaser.Scene {
 
                 if (espanol) {
                     this.enhorabuena = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'EnhorabuenaFinal').setScale(gameConfig.scale.height / 600);
-                    this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarB').setScale(0.6 * gameConfig.scale.height / 600);
+                    this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarB').setScale(gameConfig.scale.height / 600);
                 } else {
                     this.enhorabuena = this.add.image(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'EnhorabuenaFinali').setScale(gameConfig.scale.height / 600);
-                    this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(0.6 * gameConfig.scale.height / 600);
+                    this.continuar = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 2 / 3, 'ContinuarBi').setScale(gameConfig.scale.height / 600);
                 }
                 this.continuar.setInteractive().on('pointerdown', () => {
                     this.sound.play('buttonSound', { volume: 0.15 });
