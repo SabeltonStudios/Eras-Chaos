@@ -643,6 +643,8 @@ class multijugadorPartidaScene extends Phaser.Scene {
                 this.bomb.body.setAllowGravity(false);
                 this.bomb.body.setCircle(armas[selectedWeapon1].circle[0], armas[selectedWeapon1].circle[1], armas[selectedWeapon1].circle[2]);
                 this.bomb.angle = 90;
+            }else{
+                this.bomb.setSize(this.bomb.displayWidth, this.bomb.displayHeight*2.5);
             }
             this.bomb.body.setVelocity(armas[selectedWeapon1].speed * gameConfig.scale.height / 600, 0);
             
@@ -683,6 +685,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
                 this.bomb.body.setCircle(armas[selectedWeapon2].circle[0], armas[selectedWeapon2].circle[1], armas[selectedWeapon2].circle[2]);
                 this.bomb.angle = 270;
             }else{
+                this.bomb.setSize(this.bomb.displayWidth, this.bomb.displayHeight*2.5);
                 this.bomb.angle=180;
             }
             this.bomb.body.setVelocity(-armas[selectedWeapon2].speed * gameConfig.scale.height / 600, 0);

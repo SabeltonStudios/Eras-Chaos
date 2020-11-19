@@ -24,8 +24,8 @@ let armas=[
         "seleccionBloqueado": 'hachaB',
         "nombre": 'Hacha',
         "speed":350,
-        "scale":0.12,
-        "circle":[125,0,0],
+        "scale":0.1,
+        "circle":[130,0,0],
         "frames": [19,0,52,52]
     },
     {
@@ -40,7 +40,7 @@ let armas=[
         "seleccionBloqueado": 'ballestaB',
         "nombre": 'Ball',
         "speed":500,
-        "scale":0.15,
+        "scale":0.17,
         "circle":null,
         "frames": [19,0,39,39]
     },

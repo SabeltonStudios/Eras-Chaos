@@ -209,10 +209,11 @@ class mediaScene extends Phaser.Scene {
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
-                this.bomb = this.bulletsEnemy.create(this.enemy.x - this.enemy.displayWidth / 3, this.enemy.y - this.enemy.displayHeight/2, 'BallWeapon').setScale(0.15 * gameConfig.scale.height / 600);
+                this.bomb = this.bulletsEnemy.create(this.enemy.x - this.enemy.displayWidth / 3, this.enemy.y - this.enemy.displayHeight/2, 'BallWeapon').setScale(0.17 * gameConfig.scale.height / 600);
                 this.bomb.setTint(0xff7e7d);
                 this.bomb.body.setVelocity(-500 * gameConfig.scale.height / 600, 0);
                 this.bomb.body.setAllowRotation();
+                this.bomb.setSize(this.bomb.displayWidth, this.bomb.displayHeight*2.5)
                 this.bomb.angle = 180;
                 this.enemy.anims.play("medenemyAttacking", false).once('animationcomplete', () => { if (!this.is_paused) { this.enemy.anims.play("medenemyMoving", true); } }, this);
             }
@@ -417,7 +418,8 @@ class mediaScene extends Phaser.Scene {
             //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();
         }
-        var bomb = this.bulletsPre.create(this.player.x + this.player.displayWidth / 3, this.player.y - this.player.displayHeight/2, 'BallWeapon').setScale(0.15 * gameConfig.scale.height / 600);
+        var bomb = this.bulletsPre.create(this.player.x + this.player.displayWidth / 3, this.player.y - this.player.displayHeight/2, 'BallWeapon').setScale(0.17 * gameConfig.scale.height / 600);
+        bomb.setSize(bomb.displayWidth, bomb.displayHeight*2.5)
         bomb.setTint(0x85baff);
         bomb.body.setVelocity(500 * gameConfig.scale.height / 600, 0);
         bomb.body.setAllowRotation();

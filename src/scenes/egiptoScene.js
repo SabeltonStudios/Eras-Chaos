@@ -262,14 +262,14 @@ class egiptoScene extends Phaser.Scene {
                 if (this.bulletsEnemy.isFull()) {
                     this.bulletsEnemy.getFirst(true).destroy();
                 }
-                this.bomb = this.physics.add.sprite(this.enemy.x - this.enemy.displayWidth / 3, this.enemy.y - this.enemy.displayHeight *2/ 3, "HachaWeapon").setScale(0.12 * gameConfig.scale.width / 800).setFlip(true, false);
+                this.bomb = this.physics.add.sprite(this.enemy.x - this.enemy.displayWidth / 3, this.enemy.y - this.enemy.displayHeight *2/ 3, "HachaWeapon").setScale(0.1 * gameConfig.scale.width / 800).setFlip(true, false);
                 this.bomb.setTint(0xff7e7d);
 
                 this.bulletsEnemy.add(this.bomb);
                 this.bomb.play("egishoot");
                 this.bomb.body.setVelocity(-350 * gameConfig.scale.height / 600, 0);
                 this.bomb.body.setAllowGravity(false);
-                this.bomb.body.setCircle(125, 0, 0);
+                this.bomb.body.setCircle(130, 0, 0);
                 this.bomb.angle = 270;
                 this.enemy.anims.play("egienemyAttacking", false).once('animationcomplete', () => { if (!this.is_paused) { this.enemy.anims.play("egienemyMoving", true);  } }, this);
             }
@@ -478,7 +478,7 @@ class egiptoScene extends Phaser.Scene {
             //bullets.remove(bullets.getFirst(true), true);
             this.bulletsPre.getFirst(true).destroy();
         }
-        var bomb = this.physics.add.sprite(this.player.x + this.player.displayWidth / 3, this.player.y - this.player.displayHeight *2/ 3, "HachaWeapon").setScale(0.12 * gameConfig.scale.width / 800);
+        var bomb = this.physics.add.sprite(this.player.x + this.player.displayWidth / 3, this.player.y - this.player.displayHeight *2/ 3, "HachaWeapon").setScale(0.1 * gameConfig.scale.width / 800);
         //this.bulletsPre.create(this.player.x + 10, this.player.y, 'axe').setScale(0.2);
         bomb.setTint(0x85baff);
 
@@ -487,7 +487,7 @@ class egiptoScene extends Phaser.Scene {
         bomb.body.setVelocity(350 * gameConfig.scale.height / 600, 0);
         //bomb.setOrigin(0,1);
         bomb.body.setAllowGravity(false);
-        bomb.body.setCircle(125, 0, 0);
+        bomb.body.setCircle(130, 0, 0);
     }
 }
 
