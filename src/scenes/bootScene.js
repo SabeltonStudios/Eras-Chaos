@@ -73,7 +73,7 @@ class bootScene extends Phaser.Scene {
         this.load.image('preObj1', 'assets/Objetos/1.Prehistoria/object_log.png');
         this.load.image('preObj2', 'assets/Objetos/1.Prehistoria/object_skull.png');
         this.load.image('preObj3', 'assets/Objetos/1.Prehistoria/object_stone.png');
-        this.load.audio('preMusic', ['assets/Música/PrehistoriaFinal2.mp3', 'assets/Música/PrehistoriaFinal2.ogg']);
+        this.load.audio('preMusic', ['assets/Música/Prehistoria.mp3', 'assets/Música/Prehistoria.ogg']);
         this.load.audio('HondaFire', ['assets/EfectosSonido/Honda.mp3', 'assets/EfectosSonido/Honda.ogg']);
         this.load.image('HondaWeapon', 'assets/Armas/ArmaPrehistoria.png');
         this.load.spritesheet('prePlayerHonda', 'assets/Animaciones/Spritesheets/Prehistoria/Personaje basico/Honda/prehistoria_basico_honda_idle_moving_spritesheet.png',
@@ -87,9 +87,8 @@ class bootScene extends Phaser.Scene {
 
         this.load.spritesheet('preEnemy', 'assets/Animaciones/Spritesheets/Prehistoria/Enemigo/enemigo_prehistoria_honda_idle_moving_spritesheet.png',
             { frameWidth: 736*0.07, frameHeight: 1039*0.07 });
-        //cambiar↓
-        this.load.spritesheet('preEnemyAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Enemigo/enemigo_prehistoria_honda_idle_moving_spritesheet.png',
-            { frameWidth: 736*0.07, frameHeight: 1039*0.07 });
+        this.load.spritesheet('preEnemyAttack', 'assets/Animaciones/Spritesheets/Prehistoria/Enemigo/prehistoria_enemy_honda_attack_moving_spritesheet.png',
+            { frameWidth: 830*0.14, frameHeight: 515*0.14 });
         this.load.spritesheet('preEnemyDie', 'assets/Animaciones/Spritesheets/Prehistoria/Enemigo/prehistoria_enemigo_game_over_spritesheet.png',
             { frameWidth: 1228*0.07, frameHeight: 1136*0.07 })
 
