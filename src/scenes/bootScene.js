@@ -550,9 +550,9 @@ class bootScene extends Phaser.Scene {
         //HeroeEgipto
         //Honda
         this.load.spritesheet('egiHeroeHonda', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Honda/egipto_hero_honda_idle_moving_spritesheet.png',
-            { frameWidth: 373 * 0.14, frameHeight: 514 * 0.14 });
+            { frameWidth: 370 * 0.14, frameHeight: 555 * 0.14 });
         this.load.spritesheet('egiHeroeHondaIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Honda/egipto_hero_honda_idle_static_spritesheet.png',
-            { frameWidth: 373 * 0.14, frameHeight: 514 * 0.14 });
+            { frameWidth: 370 * 0.14, frameHeight: 545 * 0.14 });
         this.load.spritesheet('egiHeroeHondaAttack', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Honda/egipto_hero_honda_attack_moving_spritesheet.png',
             { frameWidth: 830 * 0.14, frameHeight: 550 * 0.14 });
         this.load.spritesheet('egiHeroeHondaAttackIdle', 'assets/Animaciones/Spritesheets/Egipto/Personaje Heroe/Honda/egipto_hero_honda_attack_static_spritesheet.png',
@@ -592,9 +592,9 @@ class bootScene extends Phaser.Scene {
         //PersonajeEdadMedia
         //Honda
         this.load.spritesheet('medPlayerHonda', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Honda/medieval_basic_honda_idle_moving_spritesheet.png',
-            { frameWidth: 360 * 0.14, frameHeight: 515 * 0.14 });
+            { frameWidth: 360 * 0.14, frameHeight: 514 * 0.14 });
         this.load.spritesheet('medPlayerHondaIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Honda/medieval_basic_honda_idle_static_spritesheet.png',
-            { frameWidth: 360 * 0.14, frameHeight: 515 * 0.14 });
+            { frameWidth: 360 * 0.14, frameHeight: 514 * 0.14 });
         this.load.spritesheet('medPlayerHondaAttack', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Honda/medieval_basic_honda_attack_moving_spritesheet.png',
             { frameWidth: 830 * 0.14, frameHeight: 510 * 0.14 });
         this.load.spritesheet('medPlayerHondaAttackIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Basico/Honda/medieval_basic_honda_attack_idle_spritesheet.png',
@@ -643,7 +643,7 @@ class bootScene extends Phaser.Scene {
             { frameWidth: 512 * 0.14, frameHeight: 576 * 0.14 });
         //Ballesta
         this.load.spritesheet('medHeroeBall', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Ballesta/medieval_hero_ballesta_idle_moving_spritesheet.png',
-            { frameWidth: 360 * 0.14, frameHeight: 537 * 0.14 });
+            { frameWidth: 458 * 0.14, frameHeight: 537 * 0.14 });
         this.load.image('medHeroeBallIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Ballesta/medieval_hero_ballesta_idle_static_spritesheet.png');
         this.load.spritesheet('medHeroeBallAttack', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Ballesta/medieval_hero_ballesta_attack_moving_spritesheet.png',
             { frameWidth: 474 * 0.14, frameHeight: 534 * 0.14 });
@@ -659,7 +659,7 @@ class bootScene extends Phaser.Scene {
             { frameWidth: 654 * 0.14, frameHeight: 537 * 0.14 });
         //Fusil
         this.load.spritesheet('medHeroeAK', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_idle_moving_spritesheet.png',
-            { frameWidth: 451 * 0.14, frameHeight: 538 * 0.14 });
+            { frameWidth: 457 * 0.14, frameHeight: 538 * 0.14 });
         this.load.image('medHeroeAKIdle', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_idle_static_spritesheet.png');
         this.load.spritesheet('medHeroeAKAttack', 'assets/Animaciones/Spritesheets/Edad Media/Personaje Heroe/Fusil/medieval_hero_fusil_attack_moving_spritesheet.png',
             { frameWidth: 454 * 0.14, frameHeight: 538 * 0.14 });
@@ -685,12 +685,12 @@ class bootScene extends Phaser.Scene {
             { frameWidth: 505 * 0.14, frameHeight: 580 * 0.14 });
         //Ballesta
         this.load.spritesheet('indPlayerBall', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Ballesta/industrial_basic_ballesta_idle_moving_spritesheet.png',
-            { frameWidth: 360 * 0.14, frameHeight: 537 * 0.14 });
+            { frameWidth: 457 * 0.14, frameHeight: 523 * 0.14 });
         this.load.image('indPlayerBallIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Ballesta/industrial_basic_ballesta_idle_static_spritesheet.png');
         this.load.spritesheet('indPlayerBallAttack', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Ballesta/industrial_basic_ballesta_attack_moving_spritesheet.png',
-            { frameWidth: 474 * 0.14, frameHeight: 534 * 0.14 });
+            { frameWidth: 454 * 0.14, frameHeight: 526 * 0.14 });
         this.load.spritesheet('indPlayerBallAttackIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Ballesta/industrial_basic_ballesta_attack_static_spritesheet.png',
-            { frameWidth: 381 * 0.14, frameHeight: 534 * 0.14 });
+            { frameWidth: 378 * 0.14, frameHeight: 526 * 0.14 });
         //Fusil
         this.load.spritesheet('indPlayerAK', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Basico/Fusil/industrial_basic_fusil_idle_moving_spritesheet.png',
             { frameWidth: 445 * 0.14, frameHeight: 525 * 0.14 });
@@ -721,7 +721,7 @@ class bootScene extends Phaser.Scene {
             { frameWidth: 450 * 0.14, frameHeight: 525 * 0.14 });
         this.load.image('indHeroeBallIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Heroe/Ballesta/industrial_hero_ballesta_idle_static_spritesheet.png');
         this.load.spritesheet('indHeroeBallAttack', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Heroe/Ballesta/industrial_hero_ballesta_attack_moving_spritesheet.png',
-            { frameWidth: 425 * 0.14, frameHeight: 525 * 0.14 });
+            { frameWidth: 470 * 0.14, frameHeight: 525 * 0.14 });
         this.load.spritesheet('indHeroeBallAttackIdle', 'assets/Animaciones/Spritesheets/Rev Industrial/Personaje Heroe/Ballesta/industrial_hero_ballesta_attack_static_spritesheet.png',
             { frameWidth: 380 * 0.14, frameHeight: 525 * 0.14 });
         //Mosquete
@@ -1019,8 +1019,9 @@ class bootScene extends Phaser.Scene {
         });
 
         MenuMusic = this.sound.add('menuMusic', { volume: 0.3, loop: true });
+        MenuMusic.play();
         this.scene.start("MenuPrincipalScene");
-        //Carga de fichero de caché
+        //Carga el fichero de caché
         Game.loadFile();
     }
 

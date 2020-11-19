@@ -386,7 +386,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.player.body.moves = false;
             if (armas[selectedWeapon1].nombre != 'Honda') {
                 this.player.anims.stop();
-                this.player.setTexture(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle')
+                this.player.setTexture(personajes[selectedChar1].nombre + armas[selectedWeapon1].nombre + 'Idle')
             } else {
                 this.player.anims.play(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle', true)
             }
@@ -410,7 +410,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.enemy.body.moves = false;
             if (armas[selectedWeapon2].nombre != 'Honda') {
                 this.enemy.anims.stop();
-                this.enemy.setTexture(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'Idle')
+                this.enemy.setTexture(personajes[selectedChar2].nombre + armas[selectedWeapon2].nombre + 'Idle')
             } else {
                 this.enemy.anims.play(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'Idle', true)
             }
@@ -448,7 +448,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.player.body.moves = false;
             if (armas[selectedWeapon1].nombre != 'Honda') {
                 this.player.anims.stop();
-                this.player.setTexture(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle');
+                this.player.setTexture(personajes[selectedChar1].nombre + armas[selectedWeapon1].nombre + 'Idle');
             } else {
                 this.player.anims.play(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle', true);
             }
@@ -468,7 +468,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
             this.enemy.body.moves = false;
             if (armas[selectedWeapon2].nombre != 'Honda') {
                 this.enemy.anims.stop();
-                this.enemy.setTexture(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'Idle')
+                this.enemy.setTexture(personajes[selectedChar2].nombre + armas[selectedWeapon2].nombre + 'Idle')
             } else {
                 this.enemy.anims.play(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'Idle', true)
             }
