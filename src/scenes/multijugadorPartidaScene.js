@@ -64,10 +64,8 @@ class multijugadorPartidaScene extends Phaser.Scene {
         this.cameras.main.zoomTo(1.05, 1000);
         this.physics.world.bounds.setTo(92.5 * gameConfig.scale.width / 800, 69.5 * gameConfig.scale.width / 800, 615 * gameConfig.scale.height / 600, 461 * gameConfig.scale.height / 600);
         this.physics.world.setBoundsCollision(false, false, true, true);
-        //Creación (si no existía) y ejecución de la musica según el mapa seleccionado
-        if (this.music == null) {
-            this.music = this.sound.add(mapas[selectedMap].nombre + 'Music');
-        }
+        //Creación y ejecución de la musica según el mapa seleccionado
+        this.music = this.sound.add(mapas[selectedMap].nombre + 'Music');
         this.music.play(this.mConfig);
         //Pintado del mapa según lo seleccionado en la pantalla anterior
         this.Mapa = this.add.image(0, 0, mapas[selectedMap].nombre + 'Map').setOrigin(0);
