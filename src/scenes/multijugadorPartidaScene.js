@@ -713,7 +713,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
                                 this.player.anims.play(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle', true)
                             } else {
                                 this.player.anims.stop();
-                                this.player.setTexture(personajes[selectedChar1].nombre + 'Player' + armas[selectedWeapon1].nombre + 'Idle');
+                                this.player.setTexture(personajes[selectedChar1].nombre + armas[selectedWeapon1].nombre + 'Idle');
                             }
                         }
                     });
@@ -762,7 +762,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
                                 this.enemy.body.setOffset(0, 0);
                             } else {
                                 this.enemy.anims.stop();
-                                this.enemy.setTexture(personajes[selectedChar2].nombre + 'Player2' + armas[selectedWeapon2].nombre + 'Idle');
+                                this.enemy.setTexture(personajes[selectedChar2].nombre + armas[selectedWeapon2].nombre + 'Idle');
                                 this.enemy.body.setOffset(0, 0);
                             }
                         }
