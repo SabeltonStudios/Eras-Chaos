@@ -25,4 +25,21 @@ Moving: (4 filas x 5 columnas) 592 x 541
 Attack:
 Static: (4 filas x 10 columnas) 654 x 537
 Moving: (4 filas x 10 columnas) 749 x 537
+//////////////////////
 
+- Ballesta:
+Idle:
+Moving (4 filas x 5 columnas): 360 x 537
+Static (1 imagen): 370 x 545
+
+Attack:
+Moving: (4 filas x 10 columnas) 474 x 534
+Static: (4 filas x 10 columnas) 381 x 534
+
+/////////////////////
+Honda:
+idle static: (2 filas x 5 columnas) 360 x 520
+idle moving: (3 filas x 7 columnas) 360 x 535
+
+attack moving: (5 filas x 8 columnas) 830 x 530
+attack static: (5 filas x 8 columnas) 830 x 530

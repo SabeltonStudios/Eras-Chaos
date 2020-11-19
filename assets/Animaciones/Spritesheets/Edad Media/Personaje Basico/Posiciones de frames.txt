@@ -27,12 +27,12 @@ Moving: (7 filas x 8 columnas) 510 x 580
 //////////////////////
 - Honda
 Idle: 
-Static: (1 imagen) 0 x 0
-Moving: (filas x columnas) 0 x 0
+Static: (5 filas x 8 columnas) 360 x 515
+Moving: (3 filas x 7 columnas) 360 x 515
 
 Attack:
-Static: (1 imagen) 0 x 0
-Moving: (filas x columnas) 0 x 0
+Static: (5 filas x 8 columnas) 830 x 510
+Moving: (5 filas x 8 columnas) 830 x 510
 //////////////////////
 - Mosquete
 Idle: 

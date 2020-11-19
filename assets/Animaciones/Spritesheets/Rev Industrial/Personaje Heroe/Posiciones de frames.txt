@@ -1,0 +1,37 @@
+--- Ballesta:
+Attack:
+Moving: (4 filas x 10 columnas) 425 x 525
+Static: (4 filas x 10 columnas) 380 x 525
+
+Idle:
+Moving: (4 filas x 5 columnas) 450 x 525
+Static: (1 imagen) 360 x 525
+
+--- Fusil:
+Attack:
+Moving: (4 filas x 5 columnas) 450 x 530
+Static: (4 filas x 5 columnas) 350 x 515
+
+Idle:
+Moving: (4 filas x 5 columnas) 450 x 530
+Static: (1 imagen) 350 x 515
+
+--- Hacha:
+Attack:
+Moving: (7 filas x 8 columnas) 505 x 575
+Static: (7 filas x 8 columnas) 505 x 575
+
+Idle:
+Moving: (4 filas x 5 columnas) 360 x 540
+Static: (1 imagen) 320 x 530
+
+--- Mosquete:
+Attack:
+Moving: (4 filas x 10 columnas) 745 x 530
+Static: (4 filas x 10 columnas) 650 x 515
+
+Idle:
+Moving: (4 filas x 5 columnas) 585 x 530
+Static: (1 imagen) 490 x 515
+
+
