@@ -22,12 +22,12 @@ class selectNivelHistoria extends Phaser.Scene {
     }
     mapasButton = [];
     create() {
-        //completedLevel[3].completado=true;
         if (!MenuMusic.isPlaying) {
             MenuMusic.play();
         }
         this.Fondo = this.add.image(0, 0, 'fondoTienda').setOrigin(0);
         this.Fondo.setScale(gameConfig.scale.width / this.Fondo.width, gameConfig.scale.height / this.Fondo.height);
+        //Asignación de sprites según el idioma y si el nivel ha sido desbloqueado o no
         if (espanol) {
             this.spriteTituloMapas = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height / 7, 'niveles').setScale(gameConfig.scale.height / 600);
             this.spriteTutorial = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 5.5 / 7, 'tutorialHistoria').setScale(0.8*gameConfig.scale.height / 600);
@@ -75,10 +75,12 @@ class selectNivelHistoria extends Phaser.Scene {
         this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15, (gameConfig.scale.height / 8) * 7.5, 'botonSalir').setScale(0.1 * gameConfig.scale.height / 600);
         this.spriteSalir.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.scene.start("MenuPrincipalScene") });
     }
+    //Carga del nivel seleccionado
     startMapa(escena){
         MenuMusic.stop();
         this.scene.start(escena)
     }
+    //Mensaje indicativo de que no se ha desbloqueado el nivel. Desaparece tras 1 segundo
     mostrarMensaje() {
         if(espanol){
             this.comprado = this.add.text(gameConfig.scale.width / 2,gameConfig.scale.height/2,'No has desbloqueado el nivel anterior',{font:"35px euphorigenic", fill: '#FFFFFF' ,align:"center"}).setOrigin(0.5, 0).setScale(gameConfig.scale.height / 600);
