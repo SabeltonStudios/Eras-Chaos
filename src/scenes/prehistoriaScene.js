@@ -133,7 +133,7 @@ class prehistoriaScene extends Phaser.Scene {
         this.obstacles.create(gameConfig.scale.width * 0.7, gameConfig.scale.height * 0.7, 'preObj1').setScale(0.12 * gameConfig.scale.height / 600).setFlip(true, false).body.setCircle(112, 40, 20).setAllowGravity(false);
 
         this.obstacles.create(gameConfig.scale.width * 0.39, gameConfig.scale.height * 0.15, 'preObj3').setScale(0.12 * gameConfig.scale.height / 600).body.setCircle(112, 40, 20).setAllowGravity(false);
-        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'preObj3').setScale(0.1 * gameConfig.scaleheight / 600).body.setCircle(110, 40, 20).setAllowGravity(false);
+        this.obstacles.create(gameConfig.scale.width * 0.6, gameConfig.scale.height * 0.85, 'preObj3').setScale(0.1 * gameConfig.scale.height / 600).body.setCircle(110, 40, 20).setAllowGravity(false);
         //Colisiones con muros exteriores para eliminar proyectiles, entre el jugador y las balas enemigas para fijar la derrota, 
         //del enemigo con nuestras proyectiles para fijar la victoria (y limpiar el grupo para evitar detecciones vacías),
         //y entre los proyectiles entre sí y con los obstaculos para los rebotes

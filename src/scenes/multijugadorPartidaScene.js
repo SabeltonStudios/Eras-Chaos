@@ -788,7 +788,7 @@ class multijugadorPartidaScene extends Phaser.Scene {
                 this.bomb.setSize(this.bomb.displayWidth, this.bomb.displayHeight * 2.5);
             }
             if (armas[selectedWeapon1].nombre != 'Ball' || armas[selectedWeapon1].nombre != 'AK') {
-                this.bomb.angle = 90;
+                this.bomb.angle = 270;
             } else {
                 this.bomb.angle = 180
             }
