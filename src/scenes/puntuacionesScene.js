@@ -6,7 +6,7 @@ class puntuacionesScene extends Phaser.Scene {
         this.Fondo = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
         this.Fondo.setScale(gameConfig.scale.width / this.Fondo.width, gameConfig.scale.height / this.Fondo.height);
         this.Titulo = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height / 8, 'titlePuntuaciones').setScale(0.8 * gameConfig.scale.height / 600);
-        this.fondoMarron = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 1.2 / 2, 'fondoMarron').setScale(gameConfig.scale.height / 600);
+        this.fondoMarron = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height * 1.2 / 2, 'fondoMarron').setScale(gameConfig.scale.width / 800);
         //Se crean los textos necesarios para mostrar los resultados
         this.mapasText = this.add.text(gameConfig.scale.width / 2 - (this.fondoMarron.displayWidth / 3.5), gameConfig.scale.height / 3.5, "", { font: "28px euphorigenic", fill: '#fff', align: 'left' }).setOrigin(0.5, 0).setScale(gameConfig.scale.width / 800);
         this.muertesText = this.add.text(gameConfig.scale.width / 2 + (this.fondoMarron.displayWidth / 3.5), gameConfig.scale.height / 3.5, "", { font: "28px euphorigenic", fill: '#fff', align: 'right' }).setOrigin(0.5, 0).setScale(gameConfig.scale.width / 800);
