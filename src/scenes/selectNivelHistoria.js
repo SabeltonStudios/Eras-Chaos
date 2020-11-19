@@ -72,7 +72,7 @@ class selectNivelHistoria extends Phaser.Scene {
         this.mapasButton[4].setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); completedLevel[3].completado ? this.startMapa("ContempScene") : this.mostrarMensaje() });
 
         //Botón de salir
-        this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15, (gameConfig.scale.height / 8) * 7.5, 'botonSalir').setScale(0.1 * gameConfig.scale.height / 600);
+        this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15, (gameConfig.scale.height / 8) * 7.5, 'botonSalir').setScale(0.15 * gameConfig.scale.height / 600);
         this.spriteSalir.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.scene.start("MenuPrincipalScene") });
     }
     //Carga del nivel seleccionado

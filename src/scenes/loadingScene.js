@@ -4,6 +4,7 @@ class loadingScene extends Phaser.Scene {
         
     }
     preload(){
+        //Se cargan los sprites necesarios para la pantalla de carga
         this.load.image('fondoLoading', 'assets/Interfaz/Loading/FondoLoading.png');
         this.load.image('textLoading', 'assets/Interfaz/Loading/textLoading.png');
         this.load.spritesheet('loadingSprite', 'assets/Interfaz/Loading/loading-spritesheet.png',
@@ -32,6 +33,7 @@ class loadingScene extends Phaser.Scene {
         this.Fondo = this.add.image(0, 0, 'fondo').setOrigin(0)
         this.Fondo.setScale(gameConfig.scale.width / this.Fondo.width, gameConfig.scale.height / this.Fondo.height);
         
+        //Animación del reloj de arena
         this.anims.create({
             key: 'loading',
             frames: this.anims.generateFrameNumbers('loadingSprite', { start: 0, end: 59 }),

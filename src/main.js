@@ -42,6 +42,8 @@ window.onload = function () {
     window.focus();
 }
 
+//Función para almacenar en webstorage: monedas, mapas, armas, personajes,
+//resultados, idioma y niveles completados
 Game.saveFile = function(){
     var file = {
         coins: coins,
@@ -55,8 +57,11 @@ Game.saveFile = function(){
     localStorage.setItem('saveFile',JSON.stringify(file));
 };
 
+//Función para recuperar de webstorage: monedas, mapas, armas, personajes,
+//resultados, idioma y niveles completados
 Game.loadFile = function(){
     var file = JSON.parse(localStorage.getItem('saveFile'));
+    //Si el archivo no está vacio
     if(file != null){
         coins = file.coins;
         mapas = file.mapas;

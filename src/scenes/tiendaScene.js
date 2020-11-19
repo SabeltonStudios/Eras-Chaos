@@ -6,18 +6,19 @@ class tiendaScene extends Phaser.Scene{
     }
 
     preload(){
-        
-        
-        
     }
 
     create(){
+        //Si no se está reproduciendo la música, se reproduce la música del menú
         if (!MenuMusic.isPlaying) {
             MenuMusic.play();
         }
+
+        //Añade el fondo de la tienda
         this.FondoTienda = this.add.image(0, 0, 'fondoTienda').setOrigin(0)
         this.FondoTienda.setScale(gameConfig.scale.width / this.FondoTienda.width, gameConfig.scale.height / this.FondoTienda.height);
 
+        //Añade el titulo, botones de mapas, personajes, armas, paquetes y recargar en inglés o en español
         if(espanol){
             this.spriteTituloTienda = this.add.sprite(gameConfig.scale.width/2,gameConfig.scale.height/8,'tituloTienda').setScale(0.8 *gameConfig.scale.height / 600);
             this.spriteMapas = this.add.sprite(gameConfig.scale.width*1.2 / 4,gameConfig.scale.height*2/5,'botonMapas').setScale(gameConfig.scale.height / 600);
@@ -34,7 +35,8 @@ class tiendaScene extends Phaser.Scene{
             this.spriteRecargar = this.add.sprite((gameConfig.scale.width / 10)*8.7,(gameConfig.scale.height/8)*7.5,'botonRecargari').setScale(0.9*gameConfig.scale.height / 600);
         }
 
-        this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15,(gameConfig.scale.height/8)*7.5,'botonSalir').setScale(0.1*gameConfig.scale.height / 600);
+        //Setea la interactividad de cada botón con su correspondiente función
+        this.spriteSalir = this.add.sprite(gameConfig.scale.width / 15,(gameConfig.scale.height/8)*7.5,'botonSalir').setScale(0.15*gameConfig.scale.height / 600);
         this.spriteSalir.setInteractive().on('pointerdown', () => {this.sound.play('buttonSound', { volume: 0.15 }); this.scene.start("MenuPrincipalScene")});
         this.spritePersonajes.setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.scene.start("TiendaPersonajesScene")});
         this.spriteMapas.setInteractive().on('pointerdown', () =>  {this.sound.play('buttonSound', { volume: 0.15 }); this.scene.start("TiendaMapasScene")});

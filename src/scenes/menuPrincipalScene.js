@@ -1,3 +1,4 @@
+//Array de resultados para las puntuaciones, con mapa, muertes, e indice
 let results = [
     {
         "Mapa": "",
@@ -60,6 +61,8 @@ let results = [
         "Indice": -1
     }
 ];
+
+//Función que ordena los resultados
 function sortResults(mapa, mapai, nuevoValor, indice) {
     for (let i = 0; i < results.length; i++) {
         if (nuevoValor == results[i].Muertes) {
@@ -127,21 +130,28 @@ class menuPrincipalScene extends Phaser.Scene {
     }
 
     preload() {
+        //Si no está sonando la música del menu, se reproduce
         if (!MenuMusic.isPlaying) {
             MenuMusic.play();
         }
     }
 
     create() {
+        //Si no está sonando la música del menu, se reproduce
         if (!MenuMusic.isPlaying) {
             MenuMusic.play();
         }
+
+        //Añade el fondo del menú principal
         this.Fondo = this.add.image(0, 0, 'fondo').setOrigin(0)
         this.Fondo.setScale(gameConfig.scale.width / this.Fondo.width, gameConfig.scale.height / this.Fondo.height);
-
+        //Añade un fondo con transparencia blanco
         this.spriteFondoBlanco = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height / 2, 'fondoBlanco').setScale(gameConfig.scale.height / 600);
 
+        //Añade el sprite del titulo
         this.spriteTitulo = this.add.sprite(gameConfig.scale.width / 2, gameConfig.scale.height / 4, 'titulo').setScale(gameConfig.scale.height / 600);
+        
+        //Añade el botón de sonido
         this.spriteSound = this.add.sprite(gameConfig.scale.width * 2 / 16, gameConfig.scale.height * 2 / 14, 'botonSoundOn').setScale(0.4*gameConfig.scale.height / 600);
         if(this.game.sound.mute==true){
             this.spriteSound.setTexture('botonSoundOff')
@@ -178,36 +188,39 @@ class menuPrincipalScene extends Phaser.Scene {
         this.spriteEspanol.setInteractive().on('pointerdown', () => { this.sound.play('buttonSound', { volume: 0.15 }); this.cambiarIdiomaEspanol() });
     }
 
-    update() {
-
-    }
-
+    //Función que cambia al idioma inglés
     cambiarIdiomaIngles() {
-        
+        //Si el juego está en español
         if (espanol) {
+            //Cambia la textura de ingles y desactiva el botón
             this.spriteIngles.setTexture('botonInglesOn').setScale(gameConfig.scale.height / 600);
-            this.spriteIngles.setInteractive(OffscreenCanvas);
+            this.spriteIngles.disableInteractive();
 
+            //Cambia la textura de español y activa el botón
             this.spriteEspanol.setTexture('botonEspanolOff').setScale(gameConfig.scale.height / 600);
             this.spriteEspanol.setInteractive().on('pointerdown', () => this.cambiarIdiomaEspanol());
 
             //Cambiar los demás sprites del menu
-
             this.spriteHistoria.setTexture('botonHistoriai').setScale(gameConfig.scale.height / 600);
             this.spritePuntuaciones.setTexture('botonPuntuacionesi').setScale(gameConfig.scale.height / 600);
             this.spriteMultijugadorSeleccion.setTexture('boton2Jugadoresi').setScale(gameConfig.scale.height / 600);
             this.spriteTienda.setTexture('botonTiendai').setScale(gameConfig.scale.height / 600);
             this.spriteCreditos.setTexture('botonCreditosi').setScale(gameConfig.scale.height / 600);
+
+            //Cambia el valor de la variable y almacena la información en caché
             espanol = false;
             Game.saveFile();
         }
     }
 
     cambiarIdiomaEspanol() {
+        //Si el juego no está en español
         if (!espanol) {
+            //Cambia la textura de español y desactiva el botón
             this.spriteEspanol.setTexture('botonEspanolOn').setScale(gameConfig.scale.height / 600);
-            this.spriteEspanol.setInteractive(OffscreenCanvas);
+            this.spriteEspanol.disableInteractive();
 
+            //Cambia la textura de inglés y activa el botón
             this.spriteIngles.setTexture('botonInglesOff').setScale(gameConfig.scale.height / 600);
             this.spriteIngles.setInteractive().on('pointerdown', () => this.cambiarIdiomaIngles());
 
@@ -218,6 +231,7 @@ class menuPrincipalScene extends Phaser.Scene {
             this.spriteTienda.setTexture('botonTienda').setScale(gameConfig.scale.height / 600);
             this.spriteCreditos.setTexture('botonCreditos').setScale(gameConfig.scale.height / 600);
 
+            //Cambia el valor de la variable y almacena la información en caché
             espanol = true;
             Game.saveFile();
         }
