@@ -33,3 +33,12 @@ Static: (4 filas x 10 columnas) 650 x 500
 Idle:
 Moving: (4 filas x 5 columnas) 585 x 510
 Static: (1 imagen) 490 x 500
+
+--- Honda:
+Attack:
+Moving: (5 filas x 8 columnas) 831 x 515
+Static: (5 filas x 8 columnas) 833 x 511
+
+Idle:
+Moving: (3 filas x 7 columnas) 373 x 519
+Static: (2 filas x 5 columnas) 366 x 502
